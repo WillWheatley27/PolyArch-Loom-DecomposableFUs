@@ -1,0 +1,16 @@
+# Simulation / build artifacts
+build/
+obj_dir*/
+*.vcd
+*.log
+simv*
+csrc/
+ucli.key
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor
+*.swp
+*~
