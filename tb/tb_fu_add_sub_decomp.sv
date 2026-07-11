@@ -100,19 +100,23 @@ module tb_fu_add_sub_decomp #(
     end : bp
   endtask
 
-  task automatic check_input_invalid;
+  task automatic check_input_invalid(input logic v0, input logic v1);
     begin : ii
       mode = 2'b00; op_sel = 4'b0000; in_data_0 = '0; in_data_1 = '0;
-      in_valid_0 = 1'b0; in_valid_1 = 1'b1; out_ready = 1'b1;
+      in_valid_0 = v0; in_valid_1 = v1; out_ready = 1'b1;
       #1;
       if (out_valid !== 1'b0) begin : iiv
-        $display("FAIL: out_valid high when in_valid_0 low");
+        $display("FAIL: out_valid high when in_valid_0=%b in_valid_1=%b", v0, v1);
         error_count = error_count + 1;
       end : iiv
-      if (in_ready_1 !== 1'b0) begin : iir
-        $display("FAIL: in_ready_1 high when join incomplete");
+      if (v0 && (in_ready_0 !== 1'b0)) begin : iir0
+        $display("FAIL: in_ready_0 high when join incomplete (in_valid_0=%b in_valid_1=%b)", v0, v1);
         error_count = error_count + 1;
-      end : iir
+      end : iir0
+      if (v1 && (in_ready_1 !== 1'b0)) begin : iir1
+        $display("FAIL: in_ready_1 high when join incomplete (in_valid_0=%b in_valid_1=%b)", v0, v1);
+        error_count = error_count + 1;
+      end : iir1
     end : ii
   endtask
 
@@ -147,9 +151,32 @@ module tb_fu_add_sub_decomp #(
     // ---- Directed: 2x32 mixed ops (lane0 add, lane1 sub via op[2]) ----
     check_vec(2'b01, 4'b0100, 64'h0000_000A_0000_000A, 64'h0000_0003_0000_0003);
 
+    // ---- All-lanes corner cluster ----
+    // 4x16, all lanes 0x0000, add
+    check_vec(2'b10, 4'b0000, 64'h0000_0000_0000_0000, 64'h0000_0000_0000_0000);
+    // 4x16, all lanes 0xFFFF, add
+    check_vec(2'b10, 4'b0000, 64'hFFFF_FFFF_FFFF_FFFF, 64'hFFFF_FFFF_FFFF_FFFF);
+    // 4x16, all lanes 0xFFFF, subtract
+    check_vec(2'b10, 4'b1111, 64'hFFFF_FFFF_FFFF_FFFF, 64'hFFFF_FFFF_FFFF_FFFF);
+    // 2x32, both lanes max (0xFFFFFFFF), add
+    check_vec(2'b01, 4'b0000, 64'hFFFF_FFFF_FFFF_FFFF, 64'hFFFF_FFFF_FFFF_FFFF);
+    // 1x64, max (0xFFFF_FFFF_FFFF_FFFF), add
+    check_vec(2'b00, 4'b0000, 64'hFFFF_FFFF_FFFF_FFFF, 64'hFFFF_FFFF_FFFF_FFFF);
+    // 1x64, max (0xFFFF_FFFF_FFFF_FFFF), subtract
+    check_vec(2'b00, 4'b0001, 64'hFFFF_FFFF_FFFF_FFFF, 64'hFFFF_FFFF_FFFF_FFFF);
+
+    // ---- Directed: 2x32 subtract borrow-break: lane0 borrows past bit 31,
+    //      must not leak into lane1 (independent operands, both lanes subtract) ----
+    check_vec(2'b01, 4'b0101, 64'h0000_0005_0000_0000, 64'h0000_0002_0000_0001);
+
     // ---- Handshake corners ----
     check_backpressure(2'b10, 4'b0101, 64'h1111_2222_3333_4444, 64'h0001_0001_0001_0001);
-    check_input_invalid();
+    // (a) in_valid_0=0, in_valid_1=1
+    check_input_invalid(1'b0, 1'b1);
+    // (b) in_valid_0=1, in_valid_1=0
+    check_input_invalid(1'b1, 1'b0);
+    // (c) in_valid_0=0, in_valid_1=0
+    check_input_invalid(1'b0, 1'b0);
 
     // ---- Randomized (all modes incl reserved 11) ----
     for (i = 0; i < NRAND; i = i + 1) begin : rl

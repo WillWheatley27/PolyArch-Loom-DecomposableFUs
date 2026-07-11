@@ -37,9 +37,7 @@ module fu_add_sub_decomp (
   assign in_ready_0 = out_ready & out_valid;
   assign in_ready_1 = out_ready & out_valid;
 
-  // verilator lint_off UNUSEDPARAM
   localparam logic [1:0] M_1X64 = 2'b00;
-  // verilator lint_on UNUSEDPARAM
   localparam logic [1:0] M_2X32 = 2'b01;
   localparam logic [1:0] M_4X16 = 2'b10;
 
@@ -50,6 +48,7 @@ module fu_add_sub_decomp (
     brk16 = 1'b0; brk32 = 1'b0; brk48 = 1'b0;
     gov0  = op_sel[0]; gov1 = op_sel[0]; gov2 = op_sel[0]; gov3 = op_sel[0];
     case (mode)
+      M_1X64: ;   // single 64-bit lane (defaults already set above)
       M_2X32: begin : d2x32
         brk32 = 1'b1;
         gov2  = op_sel[2]; gov3 = op_sel[2];
@@ -58,7 +57,7 @@ module fu_add_sub_decomp (
         brk16 = 1'b1; brk32 = 1'b1; brk48 = 1'b1;
         gov1  = op_sel[1]; gov2 = op_sel[2]; gov3 = op_sel[3];
       end : d4x16
-      default: ;  // M_1X64 and reserved 2'b11 -> defaults (single 64-bit lane)
+      default: ;  // reserved 2'b11 -> behaves as 1x64
     endcase
   end : decode
 
