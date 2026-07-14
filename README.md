@@ -19,8 +19,19 @@ with a per-lane `op_sel` (add/sub) bit. One shared adder segmented at the
 16/32/48-bit boundaries by mode-gated carries. Combinational, latency 0.
 
 ```bash
-./run.sh          # verilator --lint-only -Wall, then build + sim (all modes)
+./run.sh                  # fu_add_sub_decomp (default): lint -Wall, then build + sim
+./run.sh fu_mult_decomp   # any module: rtl/<name>.sv + tb/tb_<name>.sv
 ```
+
+## fu_mult_decomp
+
+64-bit integer multiply that runs as 1×64, 2×32, or 4×16 lanes via a runtime `mode`
+input. Each lane returns the low (truncated) product of its width — multiply-low, like
+`PMULLW`/`PMULLD` — which is sign-agnostic, so there is no signed/unsigned `op_sel`. One
+shared 16×16 block-product array (the 64×64 partial-product array at 16-bit granularity)
+is reused across modes; only the summation/alignment network and the output mux change.
+Combinational, latency 0. The two corner partial products (weight 2⁶⁴) influence no
+lane's low bits and are not built.
 
 ## Verification gate
 
