@@ -33,6 +33,20 @@ is reused across modes; only the summation/alignment network and the output mux 
 Combinational, latency 0. The two corner partial products (weight 2⁶⁴) influence no
 lane's low bits and are not built.
 
+## fu_fp_add_sub_decomp
+
+Full IEEE-754 add/sub that runs as 1×fp64, 2×fp32, or 4×fp16 lanes via a runtime
+`mode` input, with a per-lane `op_sel` (add/sub) bit. Round-to-nearest-even, gradual
+underflow (subnormals), NaN / ±Inf / signed-zero. One shared format-parameterized core
+(align → add/sub → normalize → round) is written once and reused at all three lane
+widths; only the mantissa/exponent field widths and bias differ. Combinational, latency 0.
+This proves functional decomposition; a physically segmented aligner/adder/normalizer is
+the area follow-up.
+
+Because Verilator does not support `shortreal`, the testbench golden is **hardware FP via
+DPI-C** (`tb/fu_fp_add_sub_decomp_golden.c`: `double` / `float` / x86 F16C for fp16) —
+a bit-exact, DUT-independent reference. `run.sh` compiles it with `-mf16c` automatically.
+
 ## Verification gate
 
 `verilator --lint-only -Wall` clean + testbench `PASS:`. All three modes run in one
