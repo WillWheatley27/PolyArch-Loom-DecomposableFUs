@@ -56,6 +56,16 @@ whose lexicographic combine chain is broken at the 16/32/48-bit boundaries by mo
 reinterprets only each lane's top block. Combinational, latency 0. Same segmented-datapath
 pattern as `fu_add_sub_decomp`, on a comparator instead of an adder.
 
+## fu_fp_mult_decomp
+
+Full IEEE-754 multiply that runs as 1×fp64, 2×fp32, or 4×fp16 lanes via a runtime `mode`.
+Round-to-nearest-even, gradual underflow (subnormals), NaN / ±Inf / signed-zero, Inf×0→NaN.
+No `op_sel` (multiply has no add/sub variant; result sign = sign_a ^ sign_b). One shared
+format-parameterized core (sign XOR, exponent add, exact mantissa multiply into a wide field,
+single-shot normalize/round handling gradual underflow) reused at all three lane widths — the
+mantissa multiplier is the dominant, lane-separable resource. Combinational, latency 0.
+Golden is hardware FP via DPI-C (`double` / `float` / F16C), compiled with `-mf16c`.
+
 ## Verification gate
 
 `verilator --lint-only -Wall` clean + testbench `PASS:`. All three modes run in one
