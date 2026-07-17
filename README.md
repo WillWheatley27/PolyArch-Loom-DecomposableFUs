@@ -94,6 +94,15 @@ renormalize; NaN/Inf/±0/already-integral returned unchanged, sign preserved. Co
 latency 0. DPI-C golden (C `floor`/`ceil`/`trunc`/`round`/`rint` on `double`/`float`/F16C),
 compiled with `-mf16c`.
 
+## fu_int_to_fp_decomp
+
+Integer→float conversion (share group 8: `sitofp`/`uitofp`) that runs as 1×(int64→fp64),
+2×(int32→fp32), or 4×(int16→fp16) via a runtime `mode`, with a global `is_signed` (sitofp vs
+uitofp). **Unary** op. Per lane: sign/magnitude → leading-one position → left-justify → RNE round
+→ pack; round-overflow → +Inf (e.g. `uitofp(0xFFFF)`→fp16 = +Inf). One shared LZC + shifter +
+rounder reused at all widths; only bias/mantissa-width/packing switch per mode. Combinational,
+latency 0. DPI-C golden (trusted C int→float casts; fp16 via float then F16C), `-mf16c`.
+
 ## Verification gate
 
 `verilator --lint-only -Wall` clean + testbench `PASS:`. All three modes run in one
