@@ -47,6 +47,15 @@ Because Verilator does not support `shortreal`, the testbench golden is **hardwa
 DPI-C** (`tb/fu_fp_add_sub_decomp_golden.c`: `double` / `float` / x86 F16C for fp16) —
 a bit-exact, DUT-independent reference. `run.sh` compiles it with `-mf16c` automatically.
 
+## fu_min_max_decomp
+
+64-bit min/max that runs as 1×64, 2×32, or 4×16 lanes via a runtime `mode`, with per-lane
+`op_sel` (min/max) and a global `is_signed` bit — covering share groups 6 (`minsi/maxsi`) and
+7 (`minui/maxui`) in one unit. One shared 64-bit comparator (four 16-bit block comparators)
+whose lexicographic combine chain is broken at the 16/32/48-bit boundaries by mode; signedness
+reinterprets only each lane's top block. Combinational, latency 0. Same segmented-datapath
+pattern as `fu_add_sub_decomp`, on a comparator instead of an adder.
+
 ## Verification gate
 
 `verilator --lint-only -Wall` clean + testbench `PASS:`. All three modes run in one
