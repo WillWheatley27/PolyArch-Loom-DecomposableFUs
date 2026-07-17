@@ -84,6 +84,16 @@ NaN-propagating (NaN if either operand is NaN) and −0.0 < +0.0. Order is a sig
 format-parameterized comparator reused at all lane widths. Combinational, latency 0. DPI-C
 hardware golden (`double`/`float`/F16C), compiled with `-mf16c`.
 
+## fu_rounding_decomp
+
+FP round-to-integral (share group 17: `floor`/`ceil`/`trunc`/`round`/`roundeven`) that runs as
+1×fp64, 2×fp32, or 4×fp16 lanes via a runtime `mode`, with a global `round_mode[2:0]` selecting
+the rounding direction. **Unary** op (single operand, 1-input handshake). Per lane: clear the
+fractional bits and conditionally increment the integer part per mode/sign/guard/sticky, then
+renormalize; NaN/Inf/±0/already-integral returned unchanged, sign preserved. Combinational,
+latency 0. DPI-C golden (C `floor`/`ceil`/`trunc`/`round`/`rint` on `double`/`float`/F16C),
+compiled with `-mf16c`.
+
 ## Verification gate
 
 `verilator --lint-only -Wall` clean + testbench `PASS:`. All three modes run in one
