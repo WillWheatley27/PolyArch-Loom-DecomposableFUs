@@ -103,6 +103,15 @@ uitofp). **Unary** op. Per lane: sign/magnitude → leading-one position → lef
 rounder reused at all widths; only bias/mantissa-width/packing switch per mode. Combinational,
 latency 0. DPI-C golden (trusted C int→float casts; fp16 via float then F16C), `-mf16c`.
 
+## fu_fp_to_int_decomp
+
+Float→integer conversion (share group 9: `fptosi`/`fptoui`) that runs as 1×(fp64→int64),
+2×(fp32→int32), or 4×(fp16→int16) via a runtime `mode`, with a global `is_signed`. **Unary** op.
+**Saturating**, round-toward-zero (the defined hardware behavior — `arith.fptosi/fptoui` are UB on
+overflow): NaN→0, ±Inf→saturate, out-of-range→clamp to int min/max, `|x|<1`→0. One shared shifter
++ saturation logic reused at all widths; bias/significand-width/range switch per mode.
+Combinational, latency 0. DPI-C golden (C `trunc` + range clamp; fp16 via F16C), `-mf16c`.
+
 ## Verification gate
 
 `verilator --lint-only -Wall` clean + testbench `PASS:`. All three modes run in one
