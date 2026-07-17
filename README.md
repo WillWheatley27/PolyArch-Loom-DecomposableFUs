@@ -66,6 +66,15 @@ single-shot normalize/round handling gradual underflow) reused at all three lane
 mantissa multiplier is the dominant, lane-separable resource. Combinational, latency 0.
 Golden is hardware FP via DPI-C (`double` / `float` / F16C), compiled with `-mf16c`.
 
+## fu_barrel_shift_decomp
+
+64-bit barrel shift that runs as 1×64, 2×32, or 4×16 lanes via a runtime `mode`, with a global
+`shift_op` (SLL / SRL / SRA — share group 4: `shli`/`shrui`/`shrsi`) and **per-lane independent
+shift amounts** taken from `in_data_1` (each lane's low `log2(width)` bits; higher count bits
+ignored, as in x86/RISC-V masking). Each lane shifts within its own width — no cross-lane spill.
+Combinational, latency 0. Proves functional decomposition; a physically-shared segmented barrel
+network (per-stage lane blocking) is the area follow-up (the per-lane-amount caveat).
+
 ## Verification gate
 
 `verilator --lint-only -Wall` clean + testbench `PASS:`. All three modes run in one
