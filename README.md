@@ -75,6 +75,15 @@ ignored, as in x86/RISC-V masking). Each lane shifts within its own width — no
 Combinational, latency 0. Proves functional decomposition; a physically-shared segmented barrel
 network (per-stage lane blocking) is the area follow-up (the per-lane-amount caveat).
 
+## fu_fp_min_max_decomp
+
+IEEE-754 min/max (share group 12: `minimumf`/`maximumf`) that runs as 1×fp64, 2×fp32, or
+4×fp16 lanes via a runtime `mode`, with per-lane `op_sel` (min/max). IEEE-754-2019 semantics:
+NaN-propagating (NaN if either operand is NaN) and −0.0 < +0.0. Order is a sign+magnitude
+(monotonic-key) compare; the result is always exactly one input (no rounding). One shared
+format-parameterized comparator reused at all lane widths. Combinational, latency 0. DPI-C
+hardware golden (`double`/`float`/F16C), compiled with `-mf16c`.
+
 ## Verification gate
 
 `verilator --lint-only -Wall` clean + testbench `PASS:`. All three modes run in one
