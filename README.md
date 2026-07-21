@@ -112,6 +112,18 @@ overflow): NaN→0, ±Inf→saturate, out-of-range→clamp to int min/max, `|x|<
 + saturation logic reused at all widths; bias/significand-width/range switch per mode.
 Combinational, latency 0. DPI-C golden (C `trunc` + range clamp; fp16 via F16C), `-mf16c`.
 
+## fu_cmp_decomp
+
+Packed integer compare (`arith.cmpi`) that runs as 1×64, 2×32, or 4×16 lanes via a runtime
+`mode`, with a global `pred[3:0]` selecting one of the 10 MLIR predicates (`eq/ne/slt/sle/sgt/
+sge/ult/ule/ugt/uge`; signedness is part of the predicate). Per-lane output is a **mask**
+(all-ones/all-zeros over the lane width — SSE `PCMPGT`-style). Reuses the `min_max` segmented
+comparator: shared 16-bit block comparators, mode-gated lexicographic combine deriving per-lane
+`eq` / unsigned `a>b` / signed `a>b`, then a predicate mux broadcasts to the lane mask.
+Combinational, latency 0. Native-SV golden. (`arith.cmpi` is a singleton op — outside the
+share-group tables — the first decomposable FU built beyond the share-group scope; float
+compare `arith.cmpf` is the sibling follow-up.)
+
 ## Verification gate
 
 `verilator --lint-only -Wall` clean + testbench `PASS:`. All three modes run in one
