@@ -134,6 +134,14 @@ sign+magnitude trichotomy (`lt/eq/gt`, both-zero→equal), then a 16-way predica
 the lane mask. Combinational, latency 0. DPI-C golden (C NaN-aware relations on `double`/`float`/
 F16C), `-mf16c`. The float sibling of `fu_cmp_decomp`.
 
+## fu_abs_decomp
+
+Packed absolute value — `math.absf` (FP) and `math.absi` (integer) via a global `is_float` —
+running as 1×64, 2×32, or 4×16 lanes. **absf** clears each lane's sign bit (IEEE abs: −0→+0,
+−Inf→+Inf, NaN sign-cleared with payload preserved); **absi** conditionally two's-complement
+negates negative lanes with carries kept within each lane (`INT_MIN` wraps to itself). Unary,
+combinational, latency 0. Native-SV golden (exact bit/integer ops). The cheapest decomposable FU.
+
 ## Verification gate
 
 `verilator --lint-only -Wall` clean + testbench `PASS:`. All three modes run in one
