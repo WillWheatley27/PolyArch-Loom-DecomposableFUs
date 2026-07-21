@@ -124,6 +124,16 @@ Combinational, latency 0. Native-SV golden. (`arith.cmpi` is a singleton op — 
 share-group tables — the first decomposable FU built beyond the share-group scope; float
 compare `arith.cmpf` is the sibling follow-up.)
 
+## fu_fp_cmp_decomp
+
+Packed floating-point compare (`arith.cmpf`) that runs as 1×fp64, 2×fp32, or 4×fp16 lanes via a
+runtime `mode`, with a global `pred[3:0]` selecting one of the 16 MLIR float predicates
+(ordered/unordered × the relation; `−0 == +0`, NaN → unordered). Per-lane output is a **mask**
+(all-ones/all-zeros — SSE `CMPPS`-style). Per lane it computes `uno` (either NaN) and a
+sign+magnitude trichotomy (`lt/eq/gt`, both-zero→equal), then a 16-way predicate mux broadcasts to
+the lane mask. Combinational, latency 0. DPI-C golden (C NaN-aware relations on `double`/`float`/
+F16C), `-mf16c`. The float sibling of `fu_cmp_decomp`.
+
 ## Verification gate
 
 `verilator --lint-only -Wall` clean + testbench `PASS:`. All three modes run in one
