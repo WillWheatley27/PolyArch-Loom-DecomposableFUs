@@ -142,6 +142,23 @@ running as 1×64, 2×32, or 4×16 lanes. **absf** clears each lane's sign bit (I
 negates negative lanes with carries kept within each lane (`INT_MIN` wraps to itself). Unary,
 combinational, latency 0. Native-SV golden (exact bit/integer ops). The cheapest decomposable FU.
 
+## 64/32-only family (DesignWare-based)
+
+A second FU family decomposable at a **single** boundary (bit 32) → **1×64 or 2×32** lanes only (no
+16-bit), built on **Synopsys DesignWare Building Blocks** where a matching block exists. The narrower
+scope maps directly onto DesignWare's natively 2-way *duplex* datapath components (`DW_addsub_dx`,
+`DW_cmp_dx`, `DW_mult_dx`), so the vendor block *is* the shared, mode-split datapath. `run.sh`
+auto-detects a `DW_*` instantiation and adds the Synopsys `sim_ver` library (`-y … +libext+.v`) plus
+`tb/dw_waivers.vlt` (scopes `-Wall` to our RTL); synthesis maps the block from `dw_foundation.sldb`.
+
+### fu_add_sub_dx
+
+Integer add/sub (`arith.addi`/`arith.subi`) as 1×64 or 2×32 via `mode`, per-lane `op_sel` (add/sub).
+The datapath is a `DW_addsub_dx #(.width(64), .p1_width(32))` duplex adder-subtractor: `dplx=0` → one
+64-bit chain, `dplx=1` → two independent 32-bit chains (no manual carry-kill — the vendor block is the
+segmentation). It runs in add mode; per-lane subtract is `a + ~b + 1` via b-invert + the block's dual
+carry-ins (`ci1`/`ci2`). Combinational, latency 0. Native-SV golden.
+
 ## Verification gate
 
 `verilator --lint-only -Wall` clean + testbench `PASS:`. All three modes run in one
