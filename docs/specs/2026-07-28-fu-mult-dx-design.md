@@ -1,21 +1,34 @@
 # fu_mult_dx — Design Spec
 
 **Date:** 2026-07-28
-**Status:** Approved (design)
-**Op:** `arith.muli` (singleton — integer multiply, not a loom share group) — **duplex** decomposition.
-**Family:** *64/32-only decomposable* FUs. One split boundary at bit 32 → **1×64 or 2×32** lanes only.
-Built on the **DesignWare** duplex multiplier `DW_mult_dx`.
+**Status:** Approved (design). **Revised:** DesignWare dropped in favor of a hand-written datapath
+after synthesis showed `DW_mult_dx` costs ~2× the area and is slower (it computes the *full* 128-bit
+product; multiply-low needs only the low partial products, which a full-product block cannot skip).
+**Op:** `arith.muli` (singleton — integer multiply, not a loom share group).
+**Family:** *dual* (64/32-only) decomposable FUs — suffix `_dx`. One split boundary at bit 32 →
+**1×64 or 2×32** lanes only. DesignWare is used where it wins (`fu_add_sub_dx`); multiply is
+hand-written multiply-low.
 **Deliverable:** synthesizable RTL + self-checking Verilator testbench (native-SV golden).
 
-## 1. Approach
+## 1. Approach — hand-written segmented multiply-low
 
-`DW_mult_dx` is a natively 2-way duplex multiplier (`dplx` runtime knob, split point `p1_width`),
-which maps exactly onto 1×64 / 2×32. The FU **instantiates `DW_mult_dx` directly** (DWBB directive),
-so simulation (Verilator sim_ver model) and synthesis (`dw_foundation.sldb`) exercise the same block.
+**Multiply-low semantics** (matches `fu_mult_decomp`): each lane returns the low W bits of its W×W
+product (like `PMULLW`/`PMULLD`), sign-agnostic → no `op_sel`.
 
-**Multiply-low semantics (matches `fu_mult_decomp`):** each lane returns the low W bits of its W×W
-product (like `PMULLW`/`PMULLD`), which is **sign-agnostic** → no signed/unsigned `op_sel`, `tc=0`.
-`DW_mult_dx` outputs the *full* `2·width`-bit product; the FU **slices the low bits** per lane.
+Split operands into 32-bit halves `a = {a1,a0}`, `b = {b1,b0}`. With `Pij = ai·bj`:
+
+```
+low64(a·b) = P00 + (P10_lo + P01_lo)·2^32   (mod 2^64)     // the a1·b1·2^64 term vanishes
+```
+
+- **1×64** needs `P00` (full 64b) + cross terms `P01_lo`, `P10_lo` (low 32b). It does **not** need
+  `P11` (the high product) — that is the vanishing 2^64 term.
+- **2×32** needs `P00_lo` (lane 0) + `P11_lo` (lane 1), independent. It does **not** need the cross
+  terms.
+
+So the shared datapath is four 32×32 block products — only `P00` full-width, the rest low-32 — with a
+mode-routed high word. This builds only the low half of the partial-product array (why it beats the
+DesignWare full-product block for this op).
 
 ## 2. Modes & semantics
 
@@ -25,7 +38,7 @@ product (like `PMULLW`/`PMULLD`), which is **sign-agnostic** → no signed/unsig
 | `2'b01` | 2×32 | low 32 bits of each 32×32 |
 | `2'b10`,`2'b11` | reserved → 1×64 | — |
 
-Little-endian lanes (lane 0 = bits [31:0]). No `op_sel` (multiply-low is sign-agnostic).
+Little-endian lanes (lane 0 = bits [31:0]). No `op_sel`.
 
 ## 3. Interface (2-input join)
 
@@ -42,30 +55,22 @@ module fu_mult_dx (
 **2-input join** handshake: `out_valid = v0 & v1`, `in_ready_i = out_ready & out_valid`.
 Combinational, latency 0.
 
-## 4. Datapath — mapping onto `DW_mult_dx`
-
-`DW_mult_dx #(.width(64), .p1_width(32))`, `tc=0`. Duplex product packing (verified in a small-width
-probe): `dplx=0` → one 64×64 → 128-bit product; `dplx=1` → low 32×32 full product in `product[63:0]`,
-high 32×32 full product in `product[127:64]`. Multiply-low slice:
+## 4. Datapath
 
 ```
-dplx = (mode == 2'b01)
-DW_mult_dx(.a(a), .b(b), .tc(0), .dplx(dplx), .product(prod))       // prod is 128-bit
-out_data = dplx ? {prod[95:64], prod[31:0]}    // low 32 of high lane, low 32 of low lane
-                :  prod[63:0]                   // low 64 of the single lane
+a = {a1,a0}, b = {b1,b0}                      // 32-bit halves
+P00 = a0*b0 (full 64b) ; P01 = a0*b1, P10 = a1*b0, P11 = a1*b1 (low 32b each)
+out[31:0]  = P00[31:0]                        // low word: same in both modes
+out[63:32] = (mode==2x32) ? P11               // 2x32: high lane low product
+                          : P00[63:32] + P10 + P01   // 1x64: high word with carry from P00
 ```
-
-`tc=0` is correct despite discarding sign: the low W bits of a W×W product are identical for
-signed/unsigned (mod 2^W).
 
 ## 5. Verification
 
-Native-SV golden (per-lane multiply-low). Directed: mode isolation — `0xFFFFFFFF × 0xFFFFFFFF` gives a
-full-width low product in 1×64 vs an isolated low-32 lane in 2×32; independent 2×32 lanes; reserved
-mode → 1×64; low-bit truncation. Handshake corners. ~20k random over `(mode, a, b)`. Bit-exact;
-`$fatal(1)` on mismatch. `./run.sh fu_mult_dx`.
+Unchanged testbench (`tb/tb_fu_mult_dx.sv`) — native-SV multiply-low golden, mode isolation, handshake
+corners, ~20k random. Bit-exact; `$fatal(1)` on mismatch. `./run.sh fu_mult_dx`.
 
 ## 6. Out of scope / follow-ups
 
-- Physical shared-datapath / area for the 64/32 family — synthesis corners measure it directly.
-- Next in family: cmp (`DW_cmp_dx`), then FP ops (no DW duplex FP — hand-written) and conversions.
+- Synthesis corners quantify the hand-written vs DW gap for the record.
+- Next in family: cmp (`DW_cmp_dx` — expected a tie, like add_sub), then FP + conversions.
