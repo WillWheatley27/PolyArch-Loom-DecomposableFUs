@@ -159,6 +159,15 @@ The datapath is a `DW_addsub_dx #(.width(64), .p1_width(32))` duplex adder-subtr
 segmentation). It runs in add mode; per-lane subtract is `a + ~b + 1` via b-invert + the block's dual
 carry-ins (`ci1`/`ci2`). Combinational, latency 0. Native-SV golden.
 
+### fu_mult_dx
+
+Integer multiply-low (`arith.muli`) as 1×64 or 2×32 via `mode`. The datapath is a
+`DW_mult_dx #(.width(64), .p1_width(32))` duplex multiplier: `dplx=0` → one 64×64→128-bit product,
+`dplx=1` → two independent 32×32 products (low lane in `product[63:0]`, high lane in
+`product[127:64]`). Multiply-low is sign-agnostic (`tc=0`, no `op_sel`); the FU slices the low W bits
+per lane (`{prod[95:64], prod[31:0]}` for 2×32, `prod[63:0]` for 1×64). Combinational, latency 0.
+Native-SV golden.
+
 ## Verification gate
 
 `verilator --lint-only -Wall` clean + testbench `PASS:`. All three modes run in one
