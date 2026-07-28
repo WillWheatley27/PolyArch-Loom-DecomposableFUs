@@ -1,0 +1,4 @@
+`verilator_config
+// DesignWare sim_ver models are vendor code: scope -Wall to our own RTL by
+// silencing all lint on files under the DW sim_ver tree.
+lint_off -file "*dw/sim_ver*"

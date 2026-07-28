@@ -14,8 +14,18 @@ TB="tb/tb_${MOD}.sv"
 GOLDEN="tb/${MOD}_golden.c"
 mkdir -p build
 
+# DesignWare: if the RTL instantiates a DW_* cell, add the Synopsys sim_ver
+# library dir (on-demand DW model resolution) + a waiver that scopes -Wall to
+# our own RTL (DW models are vendor code, not linted here).
+DW_ARGS=()
+if grep -qE '\bDW_[A-Za-z0-9_]+\b' "$RTL"; then
+  SYN_DW="${SYN_DW:-/mnt/nas0/software/synopsys/syn/Y-2026.03-SP1/dw/sim_ver}"
+  echo "== designware : $SYN_DW =="
+  DW_ARGS+=(-y "$SYN_DW" +libext+.v tb/dw_waivers.vlt)
+fi
+
 echo "== lint (-Wall) : ${MOD} =="
-verilator --lint-only -Wall "$RTL"
+verilator --lint-only -Wall ${DW_ARGS[@]+"${DW_ARGS[@]}"} "$RTL"
 
 # Optional DPI-C golden (e.g. hardware-FP reference).
 EXTRA=()
@@ -29,6 +39,7 @@ verilator --binary --timing \
   -Wno-WIDTHTRUNC -Wno-WIDTHEXPAND -Wno-UNUSEDSIGNAL -Wno-TIMESCALEMOD \
   --top-module "tb_${MOD}" \
   --Mdir build/obj_dir \
+  ${DW_ARGS[@]+"${DW_ARGS[@]}"} \
   "$RTL" "$TB" ${EXTRA[@]+"${EXTRA[@]}"}
 
 "build/obj_dir/Vtb_${MOD}" | tee build/sim.log
