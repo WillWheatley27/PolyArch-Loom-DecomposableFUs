@@ -171,6 +171,17 @@ Fmax, with no low-only mode). Split operands into 32-bit halves and form four 32
 `P11_lo` (lane 1). Only the low half of the PP array is built. Sign-agnostic (no `op_sel`).
 Combinational, latency 0. Native-SV golden.
 
+### fu_fp_add_sub_dx
+
+IEEE-754 add/sub (`arith.addf`/`arith.subf`) as 1×fp64 or 2×fp32 via `mode`, per-lane `op_sel`
+(add/sub). **Hand-written — DesignWare is deliberately not used:** there is no `DW_fp_*_dx` duplex or
+multi-format FP block (every `DW_fp_*` fixes its format at elaboration), so a DW decomposable FP
+add/sub would be a *bank* (fp64 + 2×fp32), defeating the point of sharing. Instead the verified shared
+`fp_lane` core (full IEEE-754: RNE, subnormals, NaN/±Inf/signed-zero) from `fu_fp_add_sub_decomp` is
+reused at fp64/fp32 only. Combinational, latency 0. DPI-C hardware-FP golden (`double`/`float`; no
+F16C). This confirms the family rule: DW duplex helps only the **integer** ops with a native `_dx`
+block; **FP decomposition has no DesignWare support**.
+
 ## Verification gate
 
 `verilator --lint-only -Wall` clean + testbench `PASS:`. All three modes run in one
