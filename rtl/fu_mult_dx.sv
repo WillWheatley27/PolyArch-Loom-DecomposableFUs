@@ -1,15 +1,17 @@
-// fu_mult_dx.sv -- Decomposable (duplex) FU for integer multiply-low, built on DesignWare.
+// fu_mult_dx.sv -- Decomposable (dual, 64/32) FU for integer multiply-low, hand-written.
 // arith.muli (singleton). Decomposable at ONE boundary (bit 32):
 //
 //   mode = 2'b00 -> 1x64 : low 64 bits of a*b
 //   mode = 2'b01 -> 2x32 : low 32 bits of each 32x32
 //   mode = 2'b10/11 -> reserved, behaves as 1x64
 //
-// Multiply-low (like PMULLW/PMULLD) is sign-agnostic -> no op_sel, tc=0. The datapath IS the
-// Synopsys DesignWare duplex multiplier DW_mult_dx (width=64, p1_width=32): dplx=0 gives one
-// 64x64->128b product, dplx=1 two independent 32x32 products (low lane in product[63:0], high
-// lane in product[127:64]). We slice the low W bits per lane. Combinational, latency 0.
-// Simulated via the DW sim_ver model, synthesized from dw_foundation.sldb.
+// Multiply-low (like PMULLW/PMULLD) is sign-agnostic -> no op_sel. Split operands into 32-bit
+// halves a={a1,a0}, b={b1,b0}; with Pij = ai*bj and mod 2^64 (the a1*b1*2^64 term vanishes):
+//   low64(a*b) = P00 + (P10_lo + P01_lo)*2^32
+// so 1x64 uses P00(full)+P01_lo+P10_lo, 2x32 uses P00_lo(lane0)+P11_lo(lane1). Only the LOW half
+// of the partial-product array is built (why this beats a full-product block for multiply-low).
+// The vendor DesignWare duplex multiplier was evaluated and dropped: it emits the full 128-bit
+// product (~2x area, slower) with no low-only mode. Combinational, latency 0.
 module fu_mult_dx (
   // verilator lint_off UNUSEDSIGNAL
   input  logic        clk,
@@ -40,19 +42,23 @@ module fu_mult_dx (
   logic dplx;
   assign dplx = (mode == M_2X32);
 
-  // DesignWare duplex multiplier: the shared, mode-split datapath. Full 128-bit product.
-  // verilator lint_off UNUSEDSIGNAL
-  logic [127:0] prod;
-  // verilator lint_on UNUSEDSIGNAL
-  DW_mult_dx #(.width(64), .p1_width(32)) u_mult (
-    .a       (in_data_0),
-    .b       (in_data_1),
-    .tc      (1'b0),        // unsigned; low product bits are sign-agnostic
-    .dplx    (dplx),
-    .product (prod)
-  );
+  // 32-bit halves (little-endian: lane 0 = low).
+  logic [31:0] a0, a1, b0, b1;
+  assign {a1, a0} = in_data_0;
+  assign {b1, b0} = in_data_1;
 
-  // Multiply-low slice: 2x32 -> low 32 of each lane; 1x64 -> low 64.
-  assign out_data = dplx ? {prod[95:64], prod[31:0]} : prod[63:0];
+  // Block products: P00 full 64b; cross/high terms low 32b only.
+  logic [63:0] p00;
+  logic [31:0] p01, p10, p11;
+  assign p00 = a0 * b0;          // 64-bit context -> full product
+  assign p01 = 32'(a0 * b1);     // low 32
+  assign p10 = 32'(a1 * b0);     // low 32
+  assign p11 = 32'(a1 * b1);     // low 32
+
+  // Low word is P00[31:0] in both modes; high word is mode-selected.
+  logic [31:0] hi_1x64, hi_out;
+  assign hi_1x64 = p00[63:32] + p10 + p01;   // 1x64 multiply-low high word (carries >2^64 dropped)
+  assign hi_out  = dplx ? p11 : hi_1x64;
+  assign out_data = {hi_out, p00[31:0]};
 
 endmodule : fu_mult_dx
