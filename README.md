@@ -142,14 +142,16 @@ running as 1×64, 2×32, or 4×16 lanes. **absf** clears each lane's sign bit (I
 negates negative lanes with carries kept within each lane (`INT_MIN` wraps to itself). Unary,
 combinational, latency 0. Native-SV golden (exact bit/integer ops). The cheapest decomposable FU.
 
-## 64/32-only family (DesignWare-based)
+## Dual (64/32) family — suffix `_dx`
 
 A second FU family decomposable at a **single** boundary (bit 32) → **1×64 or 2×32** lanes only (no
-16-bit), built on **Synopsys DesignWare Building Blocks** where a matching block exists. The narrower
-scope maps directly onto DesignWare's natively 2-way *duplex* datapath components (`DW_addsub_dx`,
-`DW_cmp_dx`, `DW_mult_dx`), so the vendor block *is* the shared, mode-split datapath. `run.sh`
+16-bit). It evaluates **Synopsys DesignWare Building Blocks** against hand-written RTL per FU and keeps
+whichever wins: DesignWare's natively 2-way *duplex* components (`DW_addsub_dx`, `DW_cmp_dx`,
+`DW_mult_dx`) map directly onto 1×64/2×32, but only pay off when the block's native function *is* what
+the FU needs. When a DW block does more than required (e.g. `DW_mult_dx` emits the full product where
+we only want multiply-low), the hand-written version is smaller/faster and is used instead. `run.sh`
 auto-detects a `DW_*` instantiation and adds the Synopsys `sim_ver` library (`-y … +libext+.v`) plus
-`tb/dw_waivers.vlt` (scopes `-Wall` to our RTL); synthesis maps the block from `dw_foundation.sldb`.
+`tb/dw_waivers.vlt` (scopes `-Wall` to our RTL); synthesis maps DW blocks from `dw_foundation.sldb`.
 
 ### fu_add_sub_dx
 
@@ -161,12 +163,13 @@ carry-ins (`ci1`/`ci2`). Combinational, latency 0. Native-SV golden.
 
 ### fu_mult_dx
 
-Integer multiply-low (`arith.muli`) as 1×64 or 2×32 via `mode`. The datapath is a
-`DW_mult_dx #(.width(64), .p1_width(32))` duplex multiplier: `dplx=0` → one 64×64→128-bit product,
-`dplx=1` → two independent 32×32 products (low lane in `product[63:0]`, high lane in
-`product[127:64]`). Multiply-low is sign-agnostic (`tc=0`, no `op_sel`); the FU slices the low W bits
-per lane (`{prod[95:64], prod[31:0]}` for 2×32, `prod[63:0]` for 1×64). Combinational, latency 0.
-Native-SV golden.
+Integer multiply-low (`arith.muli`) as 1×64 or 2×32 via `mode` — **hand-written** (the DesignWare
+`DW_mult_dx` duplex was evaluated and dropped: it emits the full 128-bit product at ~2× area and lower
+Fmax, with no low-only mode). Split operands into 32-bit halves and form four 32×32 block products
+`Pij = ai·bj`, of which only `P00` needs full width; `low64(a·b) = P00 + (P10_lo + P01_lo)·2³²` (the
+`a1·b1·2⁶⁴` term vanishes). 1×64 uses `P00 + P01_lo + P10_lo`; 2×32 uses `P00_lo` (lane 0) and
+`P11_lo` (lane 1). Only the low half of the PP array is built. Sign-agnostic (no `op_sel`).
+Combinational, latency 0. Native-SV golden.
 
 ## Verification gate
 
