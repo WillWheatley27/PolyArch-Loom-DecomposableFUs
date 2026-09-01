@@ -44,6 +44,12 @@ MULT_STANDALONE_MODULES=(
   fu_mult_8x8
 )
 
+MIN_MAX_STANDALONE_MODULES=(
+  fu_min_max_32x2
+  fu_min_max_16x4
+  fu_min_max_8x8
+)
+
 run_one() {
   local mod="$1"
   local rtl="rtl/${mod}.sv"
@@ -150,6 +156,11 @@ elif [[ "$target" == "mult_standalones" ]]; then
     run_one "$module"
   done
   echo "run.sh: ALL MULT STANDALONES OK (${#MULT_STANDALONE_MODULES[@]} modules)"
+elif [[ "$target" == "min_max_standalones" ]]; then
+  for module in "${MIN_MAX_STANDALONE_MODULES[@]}"; do
+    run_one "$module"
+  done
+  echo "run.sh: ALL MIN/MAX STANDALONES OK (${#MIN_MAX_STANDALONE_MODULES[@]} modules)"
 else
   run_one "$target"
 fi
