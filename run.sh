@@ -38,6 +38,12 @@ STANDALONE_MODULES=(
   fu_add_sub_8x8
 )
 
+MULT_STANDALONE_MODULES=(
+  fu_mult_32x2
+  fu_mult_16x4
+  fu_mult_8x8
+)
+
 run_one() {
   local mod="$1"
   local rtl="rtl/${mod}.sv"
@@ -47,6 +53,14 @@ run_one() {
 
   if [[ ! -f "$rtl" && -f "rtl/standalone/${mod}.sv" ]]; then
     rtl="rtl/standalone/${mod}.sv"
+  fi
+  if [[ ! -f "$rtl" ]]; then
+    for candidate in rtl/standalone/*_standalones/${mod}.sv; do
+      if [[ -f "$candidate" ]]; then
+        rtl="$candidate"
+        break
+      fi
+    done
   fi
   if [[ ! -f "$rtl" ]]; then
     echo "run.sh: missing RTL: $rtl" >&2
@@ -63,6 +77,15 @@ run_one() {
     tb="rtl/standalone/tb_${mod}.sv"
     top="tb_${mod}"
   else
+    for candidate in rtl/standalone/*_standalones/tb_${mod}.sv; do
+      if [[ -f "$candidate" ]]; then
+        tb="$candidate"
+        top="tb_${mod}"
+        break
+      fi
+    done
+  fi
+  if [[ -z "${tb:-}" ]]; then
     echo "run.sh: missing testbench for $mod" >&2
     return 2
   fi
@@ -75,7 +98,7 @@ run_one() {
   fi
 
   # Resolve DesignWare simulation models only for RTL that instantiates a DW cell.
-  if rg -q '\b(DW_[A-Za-z0-9_]+|DW01_[A-Za-z0-9_]+)\b' "$rtl"; then
+  if rg -q '\b(DW_[A-Za-z0-9_]+|DW01_[A-Za-z0-9_]+|DW02_[A-Za-z0-9_]+)\b' "$rtl"; then
     local syn_dw="${SYN_DW:-/mnt/nas0/software/synopsys/syn/Y-2026.03-SP1/dw/sim_ver}"
     echo "== designware : $syn_dw =="
     dw_args+=(-y "$syn_dw" +libext+.v tb/dw_waivers.vlt)
@@ -122,6 +145,11 @@ elif [[ "$target" == "standalone" ]]; then
     run_one "$module"
   done
   echo "run.sh: ALL ADD/SUB STANDALONES OK (${#STANDALONE_MODULES[@]} modules)"
+elif [[ "$target" == "mult_standalones" ]]; then
+  for module in "${MULT_STANDALONE_MODULES[@]}"; do
+    run_one "$module"
+  done
+  echo "run.sh: ALL MULT STANDALONES OK (${#MULT_STANDALONE_MODULES[@]} modules)"
 else
   run_one "$target"
 fi
