@@ -50,6 +50,12 @@ MIN_MAX_STANDALONE_MODULES=(
   fu_min_max_8x8
 )
 
+FP_MIN_MAX_STANDALONE_MODULES=(
+  fu_fp_min_max_64
+  fu_fp_min_max_32x2
+  fu_fp_min_max_16x4
+)
+
 run_one() {
   local mod="$1"
   local rtl="rtl/${mod}.sv"
@@ -161,6 +167,11 @@ elif [[ "$target" == "min_max_standalones" ]]; then
     run_one "$module"
   done
   echo "run.sh: ALL MIN/MAX STANDALONES OK (${#MIN_MAX_STANDALONE_MODULES[@]} modules)"
+elif [[ "$target" == "fp_min_max_standalones" ]]; then
+  for module in "${FP_MIN_MAX_STANDALONE_MODULES[@]}"; do
+    run_one "$module"
+  done
+  echo "run.sh: ALL FP MIN/MAX STANDALONES OK (${#FP_MIN_MAX_STANDALONE_MODULES[@]} modules)"
 else
   run_one "$target"
 fi
