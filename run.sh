@@ -61,6 +61,11 @@ ROUNDING_STANDALONE_MODULES=(
   fu_rounding_16x4
 )
 
+BARREL_SHIFT_STANDALONE_MODULES=(
+  fu_barrel_shift_32x2
+  fu_barrel_shift_16x4
+)
+
 run_one() {
   local mod="$1"
   local rtl="rtl/${mod}.sv"
@@ -185,6 +190,11 @@ elif [[ "$target" == "rounding_standalones" ]]; then
     run_one "$module"
   done
   echo "run.sh: ALL ROUNDING STANDALONES OK (${#ROUNDING_STANDALONE_MODULES[@]} modules)"
+elif [[ "$target" == "barrel_shift_standalones" ]]; then
+  for module in "${BARREL_SHIFT_STANDALONE_MODULES[@]}"; do
+    run_one "$module"
+  done
+  echo "run.sh: ALL BARREL-SHIFT STANDALONES OK (${#BARREL_SHIFT_STANDALONE_MODULES[@]} modules)"
 else
   run_one "$target"
 fi
