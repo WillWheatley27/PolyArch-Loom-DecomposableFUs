@@ -66,6 +66,12 @@ BARREL_SHIFT_STANDALONE_MODULES=(
   fu_barrel_shift_16x4
 )
 
+CMP_STANDALONE_MODULES=(
+  fu_cmp_32x2
+  fu_cmp_16x4
+  fu_cmp_8x8
+)
+
 run_one() {
   local mod="$1"
   local rtl="rtl/${mod}.sv"
@@ -195,6 +201,11 @@ elif [[ "$target" == "barrel_shift_standalones" ]]; then
     run_one "$module"
   done
   echo "run.sh: ALL BARREL-SHIFT STANDALONES OK (${#BARREL_SHIFT_STANDALONE_MODULES[@]} modules)"
+elif [[ "$target" == "cmp_standalones" ]]; then
+  for module in "${CMP_STANDALONE_MODULES[@]}"; do
+    run_one "$module"
+  done
+  echo "run.sh: ALL CMP STANDALONES OK (${#CMP_STANDALONE_MODULES[@]} modules)"
 else
   run_one "$target"
 fi
