@@ -72,6 +72,12 @@ CMP_STANDALONE_MODULES=(
   fu_cmp_8x8
 )
 
+FP_CMP_STANDALONE_MODULES=(
+  fu_fp_cmp_64
+  fu_fp_cmp_32x2
+  fu_fp_cmp_16x4
+)
+
 run_one() {
   local mod="$1"
   local rtl="rtl/${mod}.sv"
@@ -206,6 +212,11 @@ elif [[ "$target" == "cmp_standalones" ]]; then
     run_one "$module"
   done
   echo "run.sh: ALL CMP STANDALONES OK (${#CMP_STANDALONE_MODULES[@]} modules)"
+elif [[ "$target" == "fp_cmp_standalones" ]]; then
+  for module in "${FP_CMP_STANDALONE_MODULES[@]}"; do
+    run_one "$module"
+  done
+  echo "run.sh: ALL FP CMP STANDALONES OK (${#FP_CMP_STANDALONE_MODULES[@]} modules)"
 else
   run_one "$target"
 fi
