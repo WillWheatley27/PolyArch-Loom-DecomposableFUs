@@ -56,6 +56,11 @@ FP_MIN_MAX_STANDALONE_MODULES=(
   fu_fp_min_max_16x4
 )
 
+ROUNDING_STANDALONE_MODULES=(
+  fu_rounding_32x2
+  fu_rounding_16x4
+)
+
 run_one() {
   local mod="$1"
   local rtl="rtl/${mod}.sv"
@@ -103,6 +108,9 @@ run_one() {
   fi
 
   golden="tb/${mod}_golden.c"
+  if [[ ! -f "$golden" && "$mod" == fu_rounding_* ]]; then
+    golden="tb/fu_rounding_decomp_golden.c"
+  fi
   core_top="$(sed -nE 's/^module[[:space:]]+([A-Za-z_][A-Za-z0-9_$]*).*/\1/p' "$rtl" | sed -n '1p')"
   if [[ -z "$core_top" ]]; then
     echo "run.sh: could not find a top-level module in $rtl" >&2
@@ -172,6 +180,11 @@ elif [[ "$target" == "fp_min_max_standalones" ]]; then
     run_one "$module"
   done
   echo "run.sh: ALL FP MIN/MAX STANDALONES OK (${#FP_MIN_MAX_STANDALONE_MODULES[@]} modules)"
+elif [[ "$target" == "rounding_standalones" ]]; then
+  for module in "${ROUNDING_STANDALONE_MODULES[@]}"; do
+    run_one "$module"
+  done
+  echo "run.sh: ALL ROUNDING STANDALONES OK (${#ROUNDING_STANDALONE_MODULES[@]} modules)"
 else
   run_one "$target"
 fi
