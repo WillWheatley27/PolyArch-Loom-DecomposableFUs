@@ -1,0 +1,58 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_barrel_shift_32x2
+Version: Y-2026.03-SP1
+Date   : Tue Sep  8 23:53:36 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: shift_op[1]
+              (input port)
+  Endpoint: out_data[58]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_barrel_shift_32x2
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 r
+  shift_op[1] (in)                         0.00       0.00 r
+  U1096/X (SAEDRVT14_EN2_4)                0.03       0.03 f
+  U1076/X (SAEDRVT14_INV_S_20)             0.01       0.04 r
+  U870/X (SAEDRVT14_AN2B_MM_16)            0.02       0.06 r
+  U371/X (SAEDRVT14_ND2_MM_10)             0.01       0.07 f
+  U955/X (SAEDRVT14_ND2_16)                0.01       0.08 r
+  U956/X (SAEDRVT14_INV_S_20)              0.01       0.09 f
+  U1124/X (SAEDRVT14_INV_S_20)             0.01       0.09 r
+  U1125/X (SAEDRVT14_BUF_20)               0.02       0.11 r
+  U1003/X (SAEDRVT14_MUX2_MM_4)            0.03       0.14 f
+  U964/X (SAEDRVT14_MUX2_MM_4)             0.02       0.17 f
+  U1156/X (SAEDRVT14_MUXI2_4)              0.04       0.20 r
+  U1187/X (SAEDRVT14_MUX2_MM_4)            0.02       0.22 r
+  U974/X (SAEDRVT14_OR2_MM_8)              0.01       0.23 r
+  U972/X (SAEDRVT14_OAI21_V1_8)            0.01       0.24 f
+  out_data[58] (out)                       0.00       0.24 f
+  data arrival time                                   0.24
+
+  max_delay                                0.01       0.01
+  output external delay                    0.00       0.01
+  data required time                                  0.01
+  -----------------------------------------------------------
+  data required time                                  0.01
+  data arrival time                                  -0.24
+  -----------------------------------------------------------
+  slack (VIOLATED)                                   -0.23
+
+
+1

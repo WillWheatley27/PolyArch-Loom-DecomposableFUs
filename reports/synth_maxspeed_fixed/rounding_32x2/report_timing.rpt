@@ -1,0 +1,62 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_rounding_32x2
+Version: Y-2026.03-SP1
+Date   : Tue Sep  8 23:50:22 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[58]
+              (input port)
+  Endpoint: out_data[56]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_rounding_32x2   8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 r
+  in_data_0[58] (in)                       0.00       0.00 r
+  U1719/X (SAEDRVT14_INV_S_20)             0.00       0.00 f
+  U1720/X (SAEDRVT14_ND3_8)                0.02       0.02 r
+  U1712/X (SAEDRVT14_ND2_MM_16)            0.01       0.03 f
+  U1393/X (SAEDRVT14_OR2_MM_8)             0.02       0.05 f
+  U1713/X (SAEDRVT14_NR2_MM_16)            0.01       0.06 r
+  U1459/X (SAEDRVT14_ND2_16)               0.01       0.07 f
+  U1632/X (SAEDRVT14_EN2_4)                0.03       0.10 r
+  U1721/X (SAEDRVT14_EN2_4)                0.03       0.13 f
+  U2057/X (SAEDRVT14_EN2_4)                0.03       0.16 r
+  U2056/X (SAEDRVT14_EN2_4)                0.03       0.19 f
+  U1979/X (SAEDRVT14_EN2_4)                0.03       0.22 r
+  U976/X (SAEDRVT14_NR2_MM_6)              0.02       0.24 f
+  U2106/X (SAEDRVT14_ND2_6)                0.02       0.25 r
+  U2322/X (SAEDRVT14_OAI21_V1_8)           0.02       0.28 f
+  U2055/X (SAEDRVT14_AOI21_8)              0.02       0.29 r
+  U1972/X (SAEDRVT14_OAI21_V1_8)           0.02       0.32 f
+  U1548/X (SAEDRVT14_AO21_4)               0.02       0.34 f
+  U1710/X (SAEDRVT14_EN2_4)                0.02       0.36 r
+  U1709/X (SAEDRVT14_OAI21_V1_8)           0.01       0.37 f
+  out_data[56] (out)                       0.00       0.37 f
+  data arrival time                                   0.37
+
+  max_delay                                0.01       0.01
+  output external delay                    0.00       0.01
+  data required time                                  0.01
+  -----------------------------------------------------------
+  data required time                                  0.01
+  data arrival time                                  -0.37
+  -----------------------------------------------------------
+  slack (VIOLATED)                                   -0.36
+
+
+1

@@ -1,0 +1,36 @@
+module,status,vector_count,log,notes
+fu_add_sub_gen,PASS,40000,build/fu_add_sub_gen.log,PASS all (unified tiers == golden); directed corners + 40000 randomized vectors (TB loop)
+fu_mult_decomp,PASS,20000,build/fu_mult_decomp.log,"PASS: fu_mult_decomp all modes, 20000 random vectors, 0 mismatches"
+fu_min_max_gen,PASS,40000,build/fu_min_max_gen.log,PASS all (unified tiers == golden); directed corners + 40000 randomized vectors (TB loop)
+fu_rounding_gen,PASS,40000,build/fu_rounding_gen.log,PASS all (genuine == golden); directed corners + 40000 randomized vectors (TB loop)
+fu_fp_cmp_gen,PASS,40000,build/fu_fp_cmp_gen.log,PASS all (genuine == golden); directed corners + 40000 randomized vectors (TB loop)
+fu_fp_min_max_gen,PASS,40000,build/fu_fp_min_max_gen.log,PASS all (genuine == golden); directed corners + 40000 randomized vectors (TB loop)
+fu_abs_gen,PASS,40000,build/fu_abs_gen.log,PASS all (genuine == golden); directed corners + 40000 randomized vectors (TB loop)
+fu_barrel_shift_gen,PASS,40000,build/fu_barrel_shift_gen.log,PASS all (genuine == golden); directed corners + 40000 randomized vectors (TB loop)
+fu_cmp_gen,PASS,40000,build/fu_cmp_gen.log,PASS all (genuine == golden); directed corners + 40000 randomized vectors (TB loop)
+fu_add_sub_32x2,PASS,20000,build/fu_add_sub_32x2.log,"PASS: fu_add_sub_32x2, 20000 random vectors"
+fu_add_sub_16x4,PASS,20000,build/fu_add_sub_16x4.log,"PASS: fu_add_sub_16x4, 20000 random vectors"
+fu_add_sub_8x8,PASS,20000,build/fu_add_sub_8x8.log,"PASS: fu_add_sub_8x8, 20000 random vectors"
+fu_mult_64,PASS,20000,build/fu_mult_64.log,"PASS: fu_mult_64, 20000 random vectors"
+fu_mult_32x2,PASS,20000,build/fu_mult_32x2.log,"PASS: fu_mult_32x2, 20000 random vectors"
+fu_mult_16x4,PASS,20000,build/fu_mult_16x4.log,"PASS: fu_mult_16x4, 20000 random vectors"
+fu_mult_8x8,PASS,20000,build/fu_mult_8x8.log,"PASS: fu_mult_8x8, 20000 random vectors"
+fu_min_max_32x2,PASS,20000,build/fu_min_max_32x2.log,"PASS: fu_min_max_32x2, 20000 random vectors"
+fu_min_max_16x4,PASS,20000,build/fu_min_max_16x4.log,"PASS: fu_min_max_16x4, 20000 random vectors"
+fu_min_max_8x8,PASS,20000,build/fu_min_max_8x8.log,"PASS: fu_min_max_8x8, 20000 random vectors"
+fu_fp_min_max_64,PASS,20000,build/fu_fp_min_max_64.log,"PASS: fu_fp_min_max_64, 20000 random vectors"
+fu_fp_min_max_32x2,PASS,20000,build/fu_fp_min_max_32x2.log,"PASS: fu_fp_min_max_32x2, 20000 random vectors"
+fu_fp_min_max_16x4,PASS,20000,build/fu_fp_min_max_16x4.log,"PASS: fu_fp_min_max_16x4, 20000 random vectors"
+fu_fp_cmp_64,PASS,20000,build/fu_fp_cmp_64.log,"PASS: fu_fp_cmp_64, 20000 random vectors"
+fu_fp_cmp_32x2,PASS,20000,build/fu_fp_cmp_32x2.log,"PASS: fu_fp_cmp_32x2, 20000 random vectors"
+fu_fp_cmp_16x4,PASS,20000,build/fu_fp_cmp_16x4.log,"PASS: fu_fp_cmp_16x4, 20000 random vectors"
+fu_rounding_32x2,PASS,20000,build/fu_rounding_32x2.log,"PASS: fu_rounding_32x2, 20000 random vectors"
+fu_rounding_16x4,PASS,20000,build/fu_rounding_16x4.log,"PASS: fu_rounding_16x4, 20000 random vectors"
+fu_barrel_shift_32x2,PASS,20000,build/fu_barrel_shift_32x2.log,"PASS: fu_barrel_shift_32x2, 20000 random vectors"
+fu_barrel_shift_16x4,PASS,20000,build/fu_barrel_shift_16x4.log,"PASS: fu_barrel_shift_16x4, 20000 random vectors"
+fu_cmp_32x2,PASS,20000,build/fu_cmp_32x2.log,"PASS: fu_cmp_32x2, 20000 random vectors"
+fu_cmp_16x4,PASS,20000,build/fu_cmp_16x4.log,"PASS: fu_cmp_16x4, 20000 random vectors"
+fu_cmp_8x8,PASS,20000,build/fu_cmp_8x8.log,"PASS: fu_cmp_8x8, 20000 random vectors"
+fu_abs_32x2,PASS,20000,build/fu_abs_32x2.log,"PASS: fu_abs_32x2, 20000 random vectors"
+fu_abs_16x4,PASS,20000,build/fu_abs_16x4.log,"PASS: fu_abs_16x4, 20000 random vectors"
+fu_mult_karatsuba_64_32,PASS,20000,build/fu_mult_karatsuba_64_32.log,"PASS: fu_mult_karatsuba_64_32, 20000 random vectors"

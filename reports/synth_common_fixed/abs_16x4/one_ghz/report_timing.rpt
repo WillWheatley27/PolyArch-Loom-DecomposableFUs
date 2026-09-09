@@ -1,0 +1,59 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_abs_16x4
+Version: Y-2026.03-SP1
+Date   : Tue Sep  8 22:31:49 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[15]
+              (input port)
+  Endpoint: out_data[14]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_abs_16x4        8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 r
+  in_data_0[15] (in)                       0.00       0.00 r
+  U359/X (SAEDRVT14_INV_3)                 0.01       0.01 f
+  U360/X (SAEDRVT14_OR4_1)                 0.05       0.06 f
+  U338/X (SAEDRVT14_NR2_1P5)               0.04       0.10 r
+  U379/X (SAEDRVT14_ND2B_U_0P5)            0.10       0.20 f
+  U380/X (SAEDRVT14_NR2_MM_1)              0.08       0.28 r
+  U385/X (SAEDRVT14_ND2B_U_0P5)            0.11       0.39 f
+  U386/X (SAEDRVT14_NR2_5)                 0.04       0.43 r
+  U471/X (SAEDRVT14_ND2B_U_0P5)            0.09       0.52 f
+  U472/X (SAEDRVT14_NR2_5)                 0.04       0.56 r
+  U478/X (SAEDRVT14_ND2B_U_0P5)            0.08       0.64 f
+  U339/X (SAEDRVT14_NR2_MM_1)              0.08       0.72 r
+  U493/X (SAEDRVT14_ND2B_U_0P5)            0.11       0.83 f
+  U499/X (SAEDRVT14_NR2_5)                 0.05       0.88 r
+  U500/X (SAEDRVT14_AOI21_0P5)             0.03       0.91 f
+  U501/X (SAEDRVT14_OAI21_0P5)             0.05       0.95 r
+  U502/X (SAEDRVT14_OAI21_0P5)             0.05       1.00 f
+  out_data[14] (out)                       0.00       1.00 f
+  data arrival time                                   1.00
+
+  max_delay                                1.00       1.00
+  output external delay                    0.00       1.00
+  data required time                                  1.00
+  -----------------------------------------------------------
+  data required time                                  1.00
+  data arrival time                                  -1.00
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+1

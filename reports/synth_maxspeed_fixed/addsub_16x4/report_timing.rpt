@@ -1,0 +1,52 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_16x4
+Version: Y-2026.03-SP1
+Date   : Tue Sep  8 23:33:01 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_1[18]
+              (input port)
+  Endpoint: out_data[29]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_16x4    8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 r
+  in_data_1[18] (in)                       0.00       0.00 r
+  U400/X (SAEDRVT14_EN2_4)                 0.03       0.03 f
+  U321/X (SAEDRVT14_NR2_MM_16)             0.01       0.04 r
+  U320/X (SAEDRVT14_OAI21_V1_8)            0.02       0.06 f
+  U270/X (SAEDRVT14_AOI21_8)               0.02       0.07 r
+  U234/X (SAEDRVT14_NR2_MM_8)              0.01       0.08 f
+  U360/X (SAEDRVT14_OR2_MM_20)             0.02       0.10 f
+  U312/X (SAEDRVT14_INV_S_20)              0.01       0.11 r
+  U757/X (SAEDRVT14_OAI21_V1_8)            0.01       0.12 f
+  U758/X (SAEDRVT14_EN2_4)                 0.02       0.15 r
+  out_data[29] (out)                       0.00       0.15 r
+  data arrival time                                   0.15
+
+  max_delay                                0.01       0.01
+  output external delay                    0.00       0.01
+  data required time                                  0.01
+  -----------------------------------------------------------
+  data required time                                  0.01
+  data arrival time                                  -0.15
+  -----------------------------------------------------------
+  slack (VIOLATED)                                   -0.14
+
+
+1

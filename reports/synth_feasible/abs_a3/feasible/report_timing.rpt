@@ -1,0 +1,87 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_abs_a3
+Version: Y-2026.03-SP1
+Date   : Tue Sep  8 23:24:33 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[31]
+              (input port)
+  Endpoint: out_data[62]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_abs_a3          8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 f
+  in_data_0[31] (in)                       0.00       0.00 f
+  core/in_data_0[31] (fu_abs_dec)          0.00       0.00 f
+  core/U293/X (SAEDRVT14_INV_S_0P5)        0.06       0.06 r
+  core/U42/X (SAEDRVT14_OAI21_V1_4)        0.03       0.09 f
+  core/U50/X (SAEDRVT14_BUF_8)             0.02       0.11 f
+  core/U236/X (SAEDRVT14_AOI21_8)          0.03       0.13 r
+  core/U295/X (SAEDRVT14_INV_S_20)         0.02       0.15 f
+  core/U296/X (SAEDRVT14_EO2_4)            0.04       0.19 r
+  core/U40/X (SAEDRVT14_ND2_6)             0.02       0.21 f
+  core/U39/X (SAEDRVT14_INV_S_8)           0.01       0.22 r
+  core/U79/X (SAEDRVT14_ND2_16)            0.01       0.23 f
+  core/U61/X (SAEDRVT14_NR2_MM_8)          0.02       0.24 r
+  core/U36/X (SAEDRVT14_ND2_16)            0.01       0.25 f
+  core/U301/X (SAEDRVT14_NR2_MM_16)        0.01       0.27 r
+  core/U304/X (SAEDRVT14_ND2_MM_16)        0.01       0.28 f
+  core/U306/X (SAEDRVT14_NR2_MM_16)        0.01       0.29 r
+  core/U309/X (SAEDRVT14_ND2_16)           0.01       0.30 f
+  core/U310/X (SAEDRVT14_INV_12)           0.01       0.30 r
+  core/U311/X (SAEDRVT14_ND2_MM_16)        0.01       0.31 f
+  core/U321/X (SAEDRVT14_NR2_MM_12)        0.01       0.32 r
+  core/U322/X (SAEDRVT14_MUX2_MM_4)        0.03       0.35 r
+  core/U22/X (SAEDRVT14_ND2_MM_12)         0.01       0.36 f
+  core/U335/X (SAEDRVT14_NR2_MM_16)        0.01       0.37 r
+  core/U336/X (SAEDRVT14_ND2_MM_10)        0.01       0.38 f
+  core/U339/X (SAEDRVT14_OAI21_V1_8)       0.02       0.41 r
+  core/U340/X (SAEDRVT14_ND2_16)           0.01       0.42 f
+  core/U341/X (SAEDRVT14_NR2_MM_16)        0.01       0.43 r
+  core/U342/X (SAEDRVT14_ND2_MM_10)        0.01       0.44 f
+  core/U343/X (SAEDRVT14_INV_12)           0.01       0.45 r
+  core/U57/X (SAEDRVT14_ND2_16)            0.01       0.46 f
+  core/U51/X (SAEDRVT14_INV_S_20)          0.01       0.47 r
+  core/U18/X (SAEDRVT14_INV_S_16)          0.00       0.47 f
+  core/U56/X (SAEDRVT14_NR2_MM_12)         0.00       0.48 r
+  core/U361/X (SAEDRVT14_MUX2_MM_4)        0.02       0.50 r
+  core/U362/X (SAEDRVT14_ND2_MM_8)         0.01       0.51 f
+  core/U52/X (SAEDRVT14_INV_S_20)          0.01       0.52 r
+  core/U53/X (SAEDRVT14_INV_S_20)          0.01       0.53 f
+  core/U389/X (SAEDRVT14_NR2_MM_16)        0.01       0.54 r
+  core/U390/X (SAEDRVT14_ND2_16)           0.01       0.55 f
+  core/U62/X (SAEDRVT14_INV_S_20)          0.01       0.56 r
+  core/U63/X (SAEDRVT14_INV_S_16)          0.01       0.56 f
+  core/U4/X (SAEDRVT14_NR2_MM_4)           0.01       0.57 r
+  core/U406/X (SAEDRVT14_EN2_4)            0.02       0.60 f
+  core/U407/X (SAEDRVT14_MUX2_MM_1)        0.03       0.62 f
+  core/out_data[62] (fu_abs_dec)           0.00       0.62 f
+  out_data[62] (out)                       0.00       0.62 f
+  data arrival time                                   0.62
+
+  max_delay                                0.62       0.62
+  output external delay                    0.00       0.62
+  data required time                                  0.62
+  -----------------------------------------------------------
+  data required time                                  0.62
+  data arrival time                                  -0.62
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+1

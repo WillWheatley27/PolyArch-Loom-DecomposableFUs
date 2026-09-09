@@ -1,0 +1,1 @@
+FU=fp_minmax_16x4 FAMILY=fp_minmax TOP=fu_fp_min_max_16x4 TARGET_PERIOD_NS=0.625 ARRIVAL_NS=0.624914 FMAX_GHZ=1.6002201903 ACTIVITY_SOURCE=uniform_synthetic FEASIBLE_TARGET_METHOD=0.80x_slowest_observed

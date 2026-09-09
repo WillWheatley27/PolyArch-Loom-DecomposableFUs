@@ -1,0 +1,54 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_barrel_shift_16x4
+Version: Y-2026.03-SP1
+Date   : Tue Sep  8 23:54:22 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: shift_op[1]
+              (input port)
+  Endpoint: out_data[11]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_barrel_shift_16x4
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 f
+  shift_op[1] (in)                         0.00       0.00 f
+  U553/X (SAEDRVT14_ND2_MM_16)             0.01       0.01 r
+  U334/X (SAEDRVT14_ND2_8)                 0.01       0.02 f
+  U476/X (SAEDRVT14_OAI21_V1_8)            0.01       0.04 r
+  U475/X (SAEDRVT14_OAI21_V1_8)            0.02       0.05 f
+  U413/X (SAEDRVT14_INV_S_20)              0.01       0.07 r
+  U855/X (SAEDRVT14_INV_S_20)              0.01       0.08 f
+  U822/X (SAEDRVT14_MUXI2_4)               0.04       0.11 f
+  U859/X (SAEDRVT14_MUXI2_4)               0.04       0.15 r
+  U656/X (SAEDRVT14_MUX2_MM_4)             0.02       0.17 r
+  U520/X (SAEDRVT14_MUXI2_ECO_2)           0.03       0.19 f
+  out_data[11] (out)                       0.00       0.19 f
+  data arrival time                                   0.19
+
+  max_delay                                0.01       0.01
+  output external delay                    0.00       0.01
+  data required time                                  0.01
+  -----------------------------------------------------------
+  data required time                                  0.01
+  data arrival time                                  -0.19
+  -----------------------------------------------------------
+  slack (VIOLATED)                                   -0.18
+
+
+1

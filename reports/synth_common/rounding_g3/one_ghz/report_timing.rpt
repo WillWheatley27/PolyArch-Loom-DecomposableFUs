@@ -1,0 +1,79 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_rounding_g3
+Version: Y-2026.03-SP1
+Date   : Tue Sep  8 21:31:53 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[54]
+              (input port)
+  Endpoint: out_data[45]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_rounding_g3     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_0[54] (in)                                      0.00       0.00 f
+  core/in_data_0[54] (fu_rounding_dec_EN321_EN161)        0.00       0.00 f
+  core/U389/X (SAEDRVT14_INV_3)                           0.03       0.03 r
+  core/U1089/X (SAEDRVT14_NR2_MM_10)                      0.03       0.06 f
+  core/U1526/X (SAEDRVT14_INV_S_0P5)                      0.04       0.10 r
+  core/U349/X (SAEDRVT14_OR2_MM_4)                        0.03       0.13 r
+  core/U344/X (SAEDRVT14_INV_6)                           0.01       0.14 f
+  core/U1527/X (SAEDRVT14_OR2_MM_4)                       0.02       0.16 f
+  core/U1529/X (SAEDRVT14_AN2_MM_0P5)                     0.06       0.22 f
+  core/U1530/X (SAEDRVT14_INV_4)                          0.02       0.23 r
+  core/U1536/CO (SAEDRVT14_ADDH_4)                        0.02       0.25 r
+  core/U1535/CO (SAEDRVT14_ADDH_4)                        0.02       0.27 r
+  core/U1533/CO (SAEDRVT14_ADDH_4)                        0.02       0.28 r
+  core/U1534/S (SAEDRVT14_ADDH_4)                         0.03       0.31 f
+  core/U403/X (SAEDRVT14_NR2_MM_8)                        0.01       0.32 r
+  core/U1538/X (SAEDRVT14_ND2_CDC_4)                      0.03       0.36 f
+  core/U251/X (SAEDRVT14_NR2_MM_6)                        0.04       0.40 r
+  core/U154/X (SAEDRVT14_INV_4)                           0.07       0.47 f
+  core/U608/X (SAEDRVT14_ND2_CDC_1)                       0.07       0.54 r
+  core/U669/X (SAEDRVT14_EN2_1)                           0.06       0.60 f
+  core/U880/X (SAEDRVT14_INV_S_0P5)                       0.04       0.64 r
+  core/U120/X (SAEDRVT14_EN2_V1_1P5)                      0.04       0.68 f
+  core/U2265/X (SAEDRVT14_AOI21_1P5)                      0.04       0.72 r
+  core/U2300/X (SAEDRVT14_ND2_CDC_4)                      0.04       0.75 f
+  core/U103/X (SAEDRVT14_INV_S_2)                         0.02       0.77 r
+  core/U2301/X (SAEDRVT14_AOI21_V1_4)                     0.03       0.80 f
+  core/U2304/X (SAEDRVT14_OAI21_V1_8)                     0.02       0.82 r
+  core/U2312/X (SAEDRVT14_AOI21_4)                        0.02       0.85 f
+  core/U2313/X (SAEDRVT14_OAI21_V1_8)                     0.02       0.86 r
+  core/U2316/X (SAEDRVT14_AO21_4)                         0.02       0.89 r
+  core/U544/X (SAEDRVT14_NR2_MM_12)                       0.01       0.90 f
+  core/U421/X (SAEDRVT14_INV_12)                          0.01       0.91 r
+  core/U420/X (SAEDRVT14_BUF_20)                          0.02       0.93 r
+  core/U1128/X (SAEDRVT14_AOI21_V1_4)                     0.02       0.94 f
+  core/U1121/X (SAEDRVT14_EO2_1P5)                        0.03       0.97 r
+  core/U2749/X (SAEDRVT14_AO21_1)                         0.03       1.00 r
+  core/out_data[45] (fu_rounding_dec_EN321_EN161)         0.00       1.00 r
+  out_data[45] (out)                                      0.00       1.00 r
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

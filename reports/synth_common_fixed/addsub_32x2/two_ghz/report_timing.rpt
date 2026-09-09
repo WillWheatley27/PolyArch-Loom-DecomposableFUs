@@ -1,0 +1,50 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_32x2
+Version: Y-2026.03-SP1
+Date   : Tue Sep  8 22:01:40 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: op_sel[1] (input port)
+  Endpoint: out_data[57]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_32x2    8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 r
+  op_sel[1] (in)                           0.00       0.00 r
+  U667/X (SAEDRVT14_EO2_1)                 0.08       0.08 f
+  U118/X (SAEDRVT14_NR2_MM_1)              0.08       0.16 r
+  U670/X (SAEDRVT14_MUXI2_1)               0.06       0.22 f
+  U679/X (SAEDRVT14_MUXI2_1)               0.05       0.27 r
+  U575/X (SAEDRVT14_MUX2_2)                0.10       0.37 r
+  U758/X (SAEDRVT14_MUXI2_1)               0.07       0.44 r
+  U203/X (SAEDRVT14_MUXI2_1)               0.04       0.48 f
+  U77/X (SAEDRVT14_MUX2_2)                 0.02       0.50 f
+  out_data[57] (out)                       0.00       0.50 f
+  data arrival time                                   0.50
+
+  max_delay                                0.50       0.50
+  output external delay                    0.00       0.50
+  data required time                                  0.50
+  -----------------------------------------------------------
+  data required time                                  0.50
+  data arrival time                                  -0.50
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+1

@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : fu_rounding_32x2
+Version: Y-2026.03-SP1
+Date   : Tue Sep  8 22:23:51 2026
+****************************************
+
+Library(s) Used:
+
+    saed14rvt_base_tt0p8v25c (File: /mnt/nas0/eda.libs/saed14/EDK_03_2025/SAED14nm_EDK_STD_RVT/liberty/nldm/base/saed14rvt_base_tt0p8v25c.db)
+
+Number of ports:                          137
+Number of nets:                          1340
+Number of cells:                         1268
+Number of combinational cells:           1268
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                        269
+Number of references:                     115
+
+Combinational area:                456.742800
+Buf/Inv area:                       64.024799
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:             482.630296
+
+Total cell area:                   456.742800
+Total area:                        939.373096
+1

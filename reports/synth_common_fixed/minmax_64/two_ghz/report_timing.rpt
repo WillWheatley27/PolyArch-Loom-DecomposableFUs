@@ -1,0 +1,63 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_min_max
+Version: Y-2026.03-SP1
+Date   : Tue Sep  8 22:09:36 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[11]
+              (input port)
+  Endpoint: out_data[4]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_min_max         8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 f
+  in_data_0[11] (in)                       0.00       0.00 f
+  U361/X (SAEDRVT14_INV_0P75)              0.03       0.03 r
+  U362/X (SAEDRVT14_NR2_MM_1)              0.05       0.09 f
+  U181/X (SAEDRVT14_NR2_MM_1)              0.06       0.15 r
+  U123/X (SAEDRVT14_AOI21_1)               0.05       0.20 f
+  U380/X (SAEDRVT14_NR2_MM_3)              0.03       0.23 r
+  U381/X (SAEDRVT14_NR2_MM_4)              0.02       0.24 f
+  U113/X (SAEDRVT14_AOI21_V1_4)            0.02       0.26 r
+  U384/X (SAEDRVT14_OAI21_V1_8)            0.01       0.28 f
+  U105/X (SAEDRVT14_AOI21_V1_6)            0.02       0.29 r
+  U392/X (SAEDRVT14_OAI21_V1_8)            0.01       0.31 f
+  U130/X (SAEDRVT14_AOI21_8)               0.01       0.32 r
+  U433/X (SAEDRVT14_OAI21_V1_8)            0.01       0.33 f
+  U153/X (SAEDRVT14_AOI21_V1_8)            0.01       0.35 r
+  U445/X (SAEDRVT14_OAI21_V1_8)            0.01       0.36 f
+  U449/X (SAEDRVT14_AOI21_8)               0.02       0.38 r
+  U458/X (SAEDRVT14_AOI21_6)               0.02       0.40 f
+  U129/X (SAEDRVT14_ND2_8)                 0.02       0.42 r
+  U128/X (SAEDRVT14_INV_S_16)              0.02       0.44 f
+  U79/X (SAEDRVT14_INV_S_16)               0.02       0.46 r
+  U466/X (SAEDRVT14_MUXI2_1)               0.04       0.50 r
+  out_data[4] (out)                        0.00       0.50 r
+  data arrival time                                   0.50
+
+  max_delay                                0.50       0.50
+  output external delay                    0.00       0.50
+  data required time                                  0.50
+  -----------------------------------------------------------
+  data required time                                  0.50
+  data arrival time                                  -0.50
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+1

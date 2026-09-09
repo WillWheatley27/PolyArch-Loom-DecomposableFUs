@@ -1,0 +1,55 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_min_max_32x2
+Version: Y-2026.03-SP1
+Date   : Tue Sep  8 22:10:37 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: is_signed (input port)
+  Endpoint: out_data[1]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_min_max_32x2    8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 r
+  is_signed (in)                           0.00       0.00 r
+  U441/X (SAEDRVT14_INV_S_2)               0.01       0.01 f
+  U359/X (SAEDRVT14_EO2_1)                 0.06       0.07 r
+  U182/X (SAEDRVT14_NR2_1P5)               0.04       0.11 f
+  U189/X (SAEDRVT14_NR2_MM_1)              0.06       0.17 r
+  U230/X (SAEDRVT14_ND2_CDC_1)             0.07       0.24 f
+  U111/X (SAEDRVT14_NR2_1P5)               0.05       0.30 r
+  U452/X (SAEDRVT14_AOI21_0P5)             0.04       0.34 f
+  U453/X (SAEDRVT14_OAI21_2)               0.03       0.37 r
+  U454/X (SAEDRVT14_OR2_2)                 0.02       0.39 r
+  U121/X (SAEDRVT14_EN2_4)                 0.02       0.41 f
+  U96/X (SAEDRVT14_BUF_16)                 0.02       0.43 f
+  U116/X (SAEDRVT14_BUF_10)                0.02       0.46 f
+  U88/X (SAEDRVT14_MUX2_MM_0P5)            0.04       0.50 r
+  out_data[1] (out)                        0.00       0.50 r
+  data arrival time                                   0.50
+
+  max_delay                                0.50       0.50
+  output external delay                    0.00       0.50
+  data required time                                  0.50
+  -----------------------------------------------------------
+  data required time                                  0.50
+  data arrival time                                  -0.50
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+1

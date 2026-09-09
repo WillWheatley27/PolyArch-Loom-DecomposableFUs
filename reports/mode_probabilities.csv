@@ -1,0 +1,10 @@
+FU,mode_64_probability,mode_32_probability,mode_16_probability,mode_8_probability,used_in_current_power_run,notes
+AddSub,0.25,0.50,0.25,0.00,false,Current run uses uniform input switching; apply these probabilities when generating SAIF/VCD
+IntegerMult,0.25,0.50,0.25,0.00,false,Current run uses uniform input switching; apply these probabilities when generating SAIF/VCD
+IntegerMinMax,0.25,0.50,0.25,0.00,false,Current run uses uniform input switching; apply these probabilities when generating SAIF/VCD
+FPMinMax,0.25,0.50,0.25,0.00,false,Current run uses uniform input switching; apply these probabilities when generating SAIF/VCD
+FPCmp,0.25,0.50,0.25,0.00,false,Current run uses uniform input switching; apply these probabilities when generating SAIF/VCD
+IntegerCmp,0.25,0.50,0.25,0.00,false,Current run uses uniform input switching; apply these probabilities when generating SAIF/VCD
+Rounding,0.25,0.50,0.25,0.00,false,Current run uses uniform input switching; apply these probabilities when generating SAIF/VCD
+BarrelShift,0.25,0.50,0.25,0.00,false,Current run uses uniform input switching; apply these probabilities when generating SAIF/VCD
+Abs,0.25,0.50,0.25,0.00,false,Current run uses uniform input switching; apply these probabilities when generating SAIF/VCD

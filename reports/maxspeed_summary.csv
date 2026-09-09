@@ -1,0 +1,10 @@
+FU,target_period_ns,achieved_delay_ns,fmax_ghz,cell_area_um2,total_area_um2,dynamic_power_mw,leakage_power_uw,timing_met,activity_source,notes
+abs_a3,0.010000,0.265824,3.761887565,441.868798,692.328110,0.510510,0.311546,false,uniform_synthetic,maximum-speed stress run; not primary equal-frequency comparison
+addsub_d4,0.010000,0.271003,3.689996052,667.287599,939.839838,1.089400,0.497998,false,uniform_synthetic,maximum-speed stress run; not primary equal-frequency comparison
+barrel_bs3,0.010000,0.279253,3.580982120,1713.129588,2533.532304,2.682500,1.311600,false,uniform_synthetic,maximum-speed stress run; not primary equal-frequency comparison
+cmp_c4,0.010000,0.208420,4.798004030,771.538793,1037.476900,0.728746,0.611021,false,uniform_synthetic,maximum-speed stress run; not primary equal-frequency comparison
+fp_cmp_g3,0.010000,0.300139,3.331789604,837.472795,1240.142392,1.193200,0.590929,false,uniform_synthetic,maximum-speed stress run; not primary equal-frequency comparison
+fp_minmax_m3,0.010000,0.320745,3.117741508,831.789598,1236.182209,1.341200,0.616012,false,uniform_synthetic,maximum-speed stress run; not primary equal-frequency comparison
+minmax_m4,0.010000,0.204588,4.887872211,450.881994,635.862928,0.566813,0.356725,false,uniform_synthetic,maximum-speed stress run; not primary equal-frequency comparison
+mult_decomp,0.010000,1.136190,0.880134485,5511.727178,9389.109027,23.361200,3.619200,false,uniform_synthetic,maximum-speed stress run; not primary equal-frequency comparison
+rounding_g3,0.010000,0.591651,1.690185599,1976.909989,3177.818295,1.694200,1.322100,false,uniform_synthetic,maximum-speed stress run; not primary equal-frequency comparison
