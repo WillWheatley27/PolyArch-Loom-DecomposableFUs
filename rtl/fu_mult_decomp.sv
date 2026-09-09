@@ -1,40 +1,34 @@
-// fu_mult_decomp.sv -- Decomposable (subword-SIMD) FU for integer multiply.
-// op: arith.muli, low-half (truncated) product, decomposed across subword lanes.
+// fu_mult_decomp.sv -- Decomposable integer multiply-low using Karatsuba.
 //
-//   mode = 2'b00 -> 1x64 : one 64-bit lane
-//   mode = 2'b01 -> 2x32 : two independent 32-bit lanes
-//   mode = 2'b10 -> 4x16 : four independent 16-bit lanes
+//   mode = 2'b00 -> 1x64 : low 64 bits of one product
+//   mode = 2'b01 -> 2x32 : low 32 bits of two independent products
+//   mode = 2'b10 -> 4x16 : low 16 bits of four independent products
 //   mode = 2'b11 -> reserved, behaves as 1x64
 //
-// Each lane returns the LOW w bits of its w x w product (multiply-low, like PMULLW).
-// This is sign-agnostic: the low w bits of a two's-complement product are identical
-// for signed and unsigned operands, so no signed/unsigned op_sel is needed.
-//
-// One shared block-product array (16-bit x 16-bit -> 32-bit) is reused across modes;
-// only the summation/alignment network and the final 64-bit output mux change per mode.
+// The low product is sign-agnostic, so operands are treated as unsigned.
+// Two shared 32x32 Karatsuba blocks form the low and high halves of the 64-bit
+// operation. Their diagonal 16x16 terms are also reused by 4x16 mode. The
+// 64-bit mode uses one additional Karatsuba cross product on the summed halves:
+//   A*B = z0 + ((z1-z0-z2) << 32) + (z2 << 64)
+// where z0=Alo*Blo and z2=Ahi*Bhi. The z2 term is dropped for multiply-low.
 // Combinational, intrinsic latency 0.
 module fu_mult_decomp (
   // verilator lint_off UNUSEDSIGNAL
-  input  logic        clk,
-  input  logic        rst_n,
+  input logic        clk,
+  input logic        rst_n,
   // verilator lint_on UNUSEDSIGNAL
 
-  input  logic [1:0]  mode,
-
-  input  logic [63:0] in_data_0,
-  input  logic        in_valid_0,
-  output logic        in_ready_0,
-
-  input  logic [63:0] in_data_1,
-  input  logic        in_valid_1,
-  output logic        in_ready_1,
-
+  input logic [1:0]  mode,
+  input logic [63:0] in_data_0,
+  input logic        in_valid_0,
+  output logic       in_ready_0,
+  input logic [63:0] in_data_1,
+  input logic        in_valid_1,
+  output logic       in_ready_1,
   output logic [63:0] out_data,
   output logic        out_valid,
-  input  logic        out_ready
+  input logic        out_ready
 );
-
-  // Handshake: 2-input join, combinational, lossless backpressure.
   assign out_valid  = in_valid_0 & in_valid_1;
   assign in_ready_0 = out_ready & out_valid;
   assign in_ready_1 = out_ready & out_valid;
@@ -42,64 +36,98 @@ module fu_mult_decomp (
   localparam logic [1:0] M_2X32 = 2'b01;
   localparam logic [1:0] M_4X16 = 2'b10;
 
-  // ---- Split operands into four 16-bit blocks (little-endian by lane) ----
-  logic [15:0] a0, a1, a2, a3;
-  logic [15:0] b0, b1, b2, b3;
-  assign {a3, a2, a1, a0} = in_data_0;
-  assign {b3, b2, b1, b0} = in_data_1;
+  logic [31:0] a_lo, a_hi, b_lo, b_hi;
+  assign a_lo = in_data_0[31:0];
+  assign a_hi = in_data_0[63:32];
+  assign b_lo = in_data_1[31:0];
+  assign b_hi = in_data_1[63:32];
 
-  // ---- Shared block-product array: pp_ij = a_i * b_j (16x16 -> 32-bit unsigned).
-  //      This is the 64x64 partial-product array at 16-bit granularity. A low-half
-  //      decomposable multiply needs 14 of the 16 products; the corner products
-  //      pp13, pp31 (weight 2^64) influence no lane's low bits and are not built.
-  //      pp33 is only ever needed at 16-bit precision (lane 3 of 4x16), so it is a
-  //      16-bit product; all others feed the wider 1x64 / 2x32 sums at 32-bit.
-  logic [31:0] pp00, pp01, pp02, pp03;
-  logic [31:0] pp10, pp11, pp12;
-  logic [31:0] pp20, pp21, pp22, pp23;
-  logic [31:0] pp30, pp32;
-  logic [15:0] pp33;
+  // Shared Karatsuba halves. In addition to the full 32x32 products, expose
+  // their diagonal 16x16 terms for the 4x16 low products.
+  logic [63:0] z0, z2;
+  logic [15:0] z0_lo16, z0_hi16, z2_lo16, z2_hi16;
+  fu_mult_karatsuba_32_full u_kar_lo (
+    .a(a_lo), .b(b_lo), .product(z0),
+    .low_diag(z0_lo16), .high_diag(z0_hi16)
+  );
+  fu_mult_karatsuba_32_full u_kar_hi (
+    .a(a_hi), .b(b_hi), .product(z2),
+    .low_diag(z2_lo16), .high_diag(z2_hi16)
+  );
 
-  assign pp00 = {16'b0, a0} * {16'b0, b0};
-  assign pp01 = {16'b0, a0} * {16'b0, b1};
-  assign pp02 = {16'b0, a0} * {16'b0, b2};
-  assign pp03 = {16'b0, a0} * {16'b0, b3};
-  assign pp10 = {16'b0, a1} * {16'b0, b0};
-  assign pp11 = {16'b0, a1} * {16'b0, b1};
-  assign pp12 = {16'b0, a1} * {16'b0, b2};
-  assign pp20 = {16'b0, a2} * {16'b0, b0};
-  assign pp21 = {16'b0, a2} * {16'b0, b1};
-  assign pp22 = {16'b0, a2} * {16'b0, b2};
-  assign pp23 = {16'b0, a2} * {16'b0, b3};
-  assign pp30 = {16'b0, a3} * {16'b0, b0};
-  assign pp32 = {16'b0, a3} * {16'b0, b2};
-  assign pp33 = a3 * b3;   // 16-bit context -> low 16 of a3*b3 (lane 3 only)
+  // 64-bit Karatsuba cross term. The 33-bit sums need a 33x33 product;
+  // only its low 32 bits affect the low 64-bit result after << 32.
+  logic [32:0] sum_a, sum_b;
+  logic [65:0] cross_product;
+  // Only the low 32 cross bits survive the <<32 low-product truncation.
+  // verilator lint_off UNUSEDSIGNAL
+  logic [65:0] cross_term;
+  // verilator lint_on UNUSEDSIGNAL
+  assign sum_a = {1'b0, a_lo} + {1'b0, a_hi};
+  assign sum_b = {1'b0, b_lo} + {1'b0, b_hi};
+  DW02_mult #(.A_width(33), .B_width(33)) u_kar_cross (
+    .A(sum_a), .B(sum_b), .TC(1'b0), .PRODUCT(cross_product)
+  );
+  assign cross_term = cross_product - {2'b0, z0} - {2'b0, z2};
 
-  // ---- 1x64: low 64 of the full product (sum mod 2^64) ----
+  // Low 64-bit product: z2 << 64 vanishes modulo 2^64.
   logic [63:0] p1;
-  assign p1 = {32'b0, pp00}
-            + (({32'b0, pp01} + {32'b0, pp10}) << 16)
-            + (({32'b0, pp02} + {32'b0, pp11} + {32'b0, pp20}) << 32)
-            + (({32'b0, pp03} + {32'b0, pp12} + {32'b0, pp21} + {32'b0, pp30}) << 48);
+  assign p1 = z0 + {cross_term[31:0], 32'b0};
 
-  // ---- 2x32: per-lane low 32 (sum mod 2^32; higher blocks drop out) ----
-  logic [31:0] lane0_32, lane1_32;
-  assign lane0_32 = pp00 + ((pp01 + pp10) << 16);   // a[31:0]  * b[31:0]
-  assign lane1_32 = pp22 + ((pp23 + pp32) << 16);   // a[63:32] * b[63:32]
+  // Two independent low 32-bit products reuse the Karatsuba halves.
   logic [63:0] p2;
-  assign p2 = {lane1_32, lane0_32};
+  assign p2 = {z2[31:0], z0[31:0]};
 
-  // ---- 4x16: per-lane low 16 (diagonal block products) ----
+  // Four independent low 16-bit products reuse the diagonal leaf products.
   logic [63:0] p4;
-  assign p4 = {pp33, pp22[15:0], pp11[15:0], pp00[15:0]};
+  assign p4 = {z2_hi16, z2_lo16, z0_hi16, z0_lo16};
 
-  // ---- Mode-select output ----
   always_comb begin : outmux
     case (mode)
       M_2X32:  out_data = p2;
       M_4X16:  out_data = p4;
-      default: out_data = p1;   // 1x64 and reserved 2'b11
+      default: out_data = p1;
     endcase
   end : outmux
-
 endmodule : fu_mult_decomp
+
+// One 32x32 full product using Karatsuba at a 16-bit split. The three leaf
+// multipliers are z0=x0*y0, z2=x1*y1, and (x0+x1)*(y0+y1); the cross term is
+// reconstructed with two subtractors. low_diag/high_diag are exposed so the
+// parent can reuse the same leaf products for 4x16 multiply-low mode.
+module fu_mult_karatsuba_32_full (
+  input logic [31:0] a,
+  input logic [31:0] b,
+  output logic [63:0] product,
+  output logic [15:0] low_diag,
+  output logic [15:0] high_diag
+);
+  logic [15:0] a0, a1, b0, b1;
+  logic [31:0] z0, z2;
+  logic [16:0] sum_a, sum_b;
+  logic [33:0] z1_sum, z1_cross;
+
+  assign a0 = a[15:0];
+  assign a1 = a[31:16];
+  assign b0 = b[15:0];
+  assign b1 = b[31:16];
+  assign sum_a = {1'b0, a0} + {1'b0, a1};
+  assign sum_b = {1'b0, b0} + {1'b0, b1};
+
+  DW02_mult #(.A_width(16), .B_width(16)) u_z0 (
+    .A(a0), .B(b0), .TC(1'b0), .PRODUCT(z0)
+  );
+  DW02_mult #(.A_width(16), .B_width(16)) u_z2 (
+    .A(a1), .B(b1), .TC(1'b0), .PRODUCT(z2)
+  );
+  DW02_mult #(.A_width(17), .B_width(17)) u_z1 (
+    .A(sum_a), .B(sum_b), .TC(1'b0), .PRODUCT(z1_sum)
+  );
+
+  assign z1_cross = z1_sum - {2'b0, z0} - {2'b0, z2};
+  assign product = {32'b0, z0}
+                 + ({30'b0, z1_cross} << 16)
+                 + ({32'b0, z2} << 32);
+  assign low_diag  = z0[15:0];
+  assign high_diag = z2[15:0];
+endmodule : fu_mult_karatsuba_32_full
