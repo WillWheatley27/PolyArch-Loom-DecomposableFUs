@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : fu_mult_decomp
+Version: Y-2026.03-SP1
+Date   : Fri Sep 11 12:22:05 2026
+****************************************
+
+Library(s) Used:
+
+    saed14rvt_base_tt0p8v25c (File: /mnt/nas0/eda.libs/saed14/EDK_03_2025/SAED14nm_EDK_STD_RVT/liberty/nldm/base/saed14rvt_base_tt0p8v25c.db)
+
+Number of ports:                          522
+Number of nets:                          9874
+Number of cells:                         8394
+Number of combinational cells:           8392
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                       1714
+Number of references:                     137
+
+Combinational area:               5206.965570
+Buf/Inv area:                      656.897992
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:            3781.851485
+
+Total cell area:                  5206.965570
+Total area:                       8988.817055
+1

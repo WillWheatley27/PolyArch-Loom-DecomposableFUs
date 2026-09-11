@@ -1,0 +1,1 @@
+FU=Mult NAME=karatsuba_fixed_64 IMPLEMENTATION=karatsuba_fixed CAPABILITY=64 TOP=fu_mult_karatsuba_64 CORNER=maxspeed TARGET_PERIOD_NS=0.010 ARRIVAL_NS=1.20907 FMAX_GHZ=0.827081972094 ACTIVITY_SOURCE=uniform_synthetic PVT=tt0p8v25c LIBRARY=saed14rvt_base_tt0p8v25c.db

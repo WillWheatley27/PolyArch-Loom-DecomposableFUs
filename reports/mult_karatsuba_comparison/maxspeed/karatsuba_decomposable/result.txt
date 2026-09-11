@@ -1,0 +1,1 @@
+FU=Mult NAME=karatsuba_decomposable IMPLEMENTATION=decomposable CAPABILITY=64/32x2/16x4 TOP=fu_mult_decomp CORNER=maxspeed TARGET_PERIOD_NS=0.010 ARRIVAL_NS=1.13619 FMAX_GHZ=0.880134484549 ACTIVITY_SOURCE=uniform_synthetic PVT=tt0p8v25c LIBRARY=saed14rvt_base_tt0p8v25c.db

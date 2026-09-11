@@ -68,6 +68,13 @@ Machine-readable outputs:
 - `power_mode_summary.csv`: all-active versus probability-weighted selected-only fixed-bank estimates.
 - `verification_summary.csv`: 35 Verilator PASS records.
 
+The controlled integer-multiply algorithm comparison is kept separate in
+`mult_karatsuba_ppa.csv` and `mult_karatsuba_savings.csv`. It compares the
+runtime-decomposable Karatsuba unit against both a matched fixed Karatsuba bank
+and the practical fixed DesignWare bank at 1 GHz, plus a secondary symmetric
+maximum-speed stress run. See `mult_karatsuba_comparison.md` for the bank
+definitions, verification evidence, results, and interpretation.
+
 DC also emitted VHD-300 array-index warnings for generated AddSub and FP
 MinMax expressions during elaboration. Verilator passes, but these warnings
 should be resolved before treating the synthesis results as sign-off quality.

@@ -22,6 +22,7 @@ mkdir -p build
 
 SHARED_MODULES=(
   fu_add_sub_gen
+  fu_add_sub_minmax_gen
   fu_mult_decomp
   fu_min_max_gen
   fu_rounding_gen
@@ -33,15 +34,23 @@ SHARED_MODULES=(
 )
 
 STANDALONE_MODULES=(
+  fu_add_sub_64
   fu_add_sub_32x2
   fu_add_sub_16x4
   fu_add_sub_8x8
 )
 
 MULT_STANDALONE_MODULES=(
+  fu_mult_64
   fu_mult_32x2
   fu_mult_16x4
   fu_mult_8x8
+)
+
+KARATSUBA_MULT_STANDALONE_MODULES=(
+  fu_mult_karatsuba_64
+  fu_mult_karatsuba_32x2
+  fu_mult_karatsuba_16x4
 )
 
 MIN_MAX_STANDALONE_MODULES=(
@@ -67,6 +76,7 @@ BARREL_SHIFT_STANDALONE_MODULES=(
 )
 
 CMP_STANDALONE_MODULES=(
+  fu_cmp_64
   fu_cmp_32x2
   fu_cmp_16x4
   fu_cmp_8x8
@@ -150,6 +160,7 @@ run_one() {
   # Generator-family files intentionally contain a core and several capability wrappers,
   # so the filename need not equal the core module name.
   verilator --lint-only -Wall -Wno-DECLFILENAME --top-module "$core_top" \
+    -Irtl \
     "${dw_args[@]}" "$rtl"
 
   if [[ -f "$golden" ]]; then
@@ -164,6 +175,7 @@ run_one() {
   verilator --binary --timing \
     -Wno-WIDTHTRUNC -Wno-WIDTHEXPAND -Wno-UNUSEDSIGNAL -Wno-TIMESCALEMOD \
     --top-module "$top" \
+    -Irtl \
     --Mdir "$obj_dir" \
     "${dw_args[@]}" \
     "$rtl" "$tb" "${extra[@]}"
@@ -192,6 +204,11 @@ elif [[ "$target" == "mult_standalones" ]]; then
     run_one "$module"
   done
   echo "run.sh: ALL MULT STANDALONES OK (${#MULT_STANDALONE_MODULES[@]} modules)"
+elif [[ "$target" == "karatsuba_mult_standalones" ]]; then
+  for module in "${KARATSUBA_MULT_STANDALONE_MODULES[@]}"; do
+    run_one "$module"
+  done
+  echo "run.sh: ALL KARATSUBA MULT STANDALONES OK (${#KARATSUBA_MULT_STANDALONE_MODULES[@]} modules)"
 elif [[ "$target" == "min_max_standalones" ]]; then
   for module in "${MIN_MAX_STANDALONE_MODULES[@]}"; do
     run_one "$module"

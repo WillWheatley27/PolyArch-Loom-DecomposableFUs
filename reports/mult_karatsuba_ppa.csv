@@ -1,0 +1,15 @@
+FU,name,implementation,capability,corner,target_period_ns,achieved_delay_ns,fmax_ghz,cell_area_um2,total_area_um2,dynamic_power_mw,leakage_power_uw,energy_per_operation_pj,timing_met,activity_source,notes
+Mult,designware_fixed_16x4,designware_fixed,16x4,maxspeed,0.010000,0.318865,3.136123438,1288.044002,2056.287535,3.360100,0.919739,1.071418,false,uniform_synthetic,0.010 ns timing stress; power is not equal-achieved-frequency
+Mult,designware_fixed_32x2,designware_fixed,32x2,maxspeed,0.010000,0.429687,2.327275435,2265.954005,3797.414643,7.050800,1.596600,3.029637,false,uniform_synthetic,0.010 ns timing stress; power is not equal-achieved-frequency
+Mult,designware_fixed_64,designware_fixed,64,maxspeed,0.010000,0.537735,1.859652059,3932.152814,7063.161256,13.159500,2.697600,7.076324,false,uniform_synthetic,0.010 ns timing stress; power is not equal-achieved-frequency
+Mult,karatsuba_decomposable,decomposable,64/32x2/16x4,maxspeed,0.010000,1.136190,0.880134485,5511.727178,9389.109027,23.361200,3.619200,26.542762,false,uniform_synthetic,0.010 ns timing stress; power is not equal-achieved-frequency
+Mult,karatsuba_fixed_16x4,karatsuba_fixed,16x4,maxspeed,0.010000,0.318865,3.136123438,1288.044002,2056.287535,3.360100,0.919739,1.071418,false,uniform_synthetic,0.010 ns timing stress; power is not equal-achieved-frequency
+Mult,karatsuba_fixed_32x2,karatsuba_fixed,32x2,maxspeed,0.010000,0.624631,1.600945198,2905.757994,4876.108098,10.168100,1.944500,6.351310,false,uniform_synthetic,0.010 ns timing stress; power is not equal-achieved-frequency
+Mult,karatsuba_fixed_64,karatsuba_fixed,64,maxspeed,0.010000,1.209070,0.827081972,5034.560378,8734.837902,20.933600,3.182800,25.310188,false,uniform_synthetic,0.010 ns timing stress; power is not equal-achieved-frequency
+Mult,designware_fixed_16x4,designware_fixed,16x4,one_ghz,1.000000,0.999969,1.000031001,600.021581,1151.137355,1.714100,0.252904,1.714047,true,uniform_synthetic,primary equal-target comparison
+Mult,designware_fixed_32x2,designware_fixed,32x2,one_ghz,1.000000,0.999997,1.000003000,1171.582780,2706.759031,4.582900,0.445226,4.582886,true,uniform_synthetic,primary equal-target comparison
+Mult,designware_fixed_64,designware_fixed,64,one_ghz,1.000000,0.999914,1.000086007,2256.940759,5240.186795,9.064500,1.060200,9.063720,true,uniform_synthetic,primary equal-target comparison
+Mult,karatsuba_decomposable,decomposable,64/32x2/16x4,one_ghz,1.000000,0.999940,1.000060004,5206.965570,8988.817055,21.373300,3.278900,21.372018,true,uniform_synthetic,primary equal-target comparison
+Mult,karatsuba_fixed_16x4,karatsuba_fixed,16x4,one_ghz,1.000000,0.999969,1.000031001,600.021581,1151.137355,1.714100,0.252904,1.714047,true,uniform_synthetic,primary equal-target comparison
+Mult,karatsuba_fixed_32x2,karatsuba_fixed,32x2,one_ghz,1.000000,0.999855,1.000145021,1704.160784,3391.511141,6.334200,0.850630,6.333282,true,uniform_synthetic,primary equal-target comparison
+Mult,karatsuba_fixed_64,karatsuba_fixed,64,one_ghz,1.000000,0.999995,1.000005000,4830.142764,8315.105507,20.602500,2.969400,20.602397,true,uniform_synthetic,primary equal-target comparison

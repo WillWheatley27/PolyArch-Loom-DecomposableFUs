@@ -1,0 +1,578 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -nworst 10
+        -max_paths 10
+Design : fu_mult_karatsuba_32x2
+Version: Y-2026.03-SP1
+Date   : Fri Sep 11 12:37:28 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[23]
+              (input port)
+  Endpoint: out_data[31]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_karatsuba_32x2
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_0[23] (in)                                      0.00       0.00 f
+  g_lane[0].u_lane/a[23] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       0.00 f
+  g_lane[0].u_lane/U164/X (SAEDRVT14_ND2_1)               0.02       0.02 r
+  g_lane[0].u_lane/U1540/X (SAEDRVT14_OAI21_0P5)          0.10       0.12 f
+  g_lane[0].u_lane/U1541/X (SAEDRVT14_NR2_1P5)            0.19       0.31 r
+  g_lane[0].u_lane/U427/X (SAEDRVT14_AO221_4)             0.06       0.37 r
+  g_lane[0].u_lane/U1605/X (SAEDRVT14_ND2_CDC_1)          0.05       0.43 f
+  g_lane[0].u_lane/U1606/X (SAEDRVT14_OAI21_0P5)          0.06       0.48 r
+  g_lane[0].u_lane/intadd_76/U3/S (SAEDRVT14_ADDF_V2_2)
+                                                          0.05       0.53 r
+  g_lane[0].u_lane/U1581/X (SAEDRVT14_OAI21_0P5)          0.04       0.57 f
+  g_lane[0].u_lane/U1582/X (SAEDRVT14_AO21B_0P5)          0.05       0.62 r
+  g_lane[0].u_lane/U1611/CO (SAEDRVT14_ADDF_V1_2)         0.04       0.66 r
+  g_lane[0].u_lane/intadd_55/U21/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.70 r
+  g_lane[0].u_lane/intadd_55/U20/CO (SAEDRVT14_ADDF_V1_2)
+                                                          0.04       0.73 r
+  g_lane[0].u_lane/intadd_55/U19/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.77 r
+  g_lane[0].u_lane/U1612/S (SAEDRVT14_ADDF_V1_2)          0.05       0.82 f
+  g_lane[0].u_lane/U1490/S (SAEDRVT14_ADDF_V1_1)          0.05       0.88 r
+  g_lane[0].u_lane/U1492/S (SAEDRVT14_ADDF_V1_2)          0.06       0.93 f
+  g_lane[0].u_lane/U1556/CO (SAEDRVT14_ADDF_V2_2)         0.04       0.98 f
+  g_lane[0].u_lane/U1495/X (SAEDRVT14_EN2_4)              0.02       1.00 r
+  g_lane[0].u_lane/product[31] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       1.00 r
+  out_data[31] (out)                                      0.00       1.00 r
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_0[23]
+              (input port)
+  Endpoint: out_data[31]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_karatsuba_32x2
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_0[23] (in)                                      0.00       0.00 f
+  g_lane[0].u_lane/a[23] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       0.00 f
+  g_lane[0].u_lane/U164/X (SAEDRVT14_ND2_1)               0.02       0.02 r
+  g_lane[0].u_lane/U1540/X (SAEDRVT14_OAI21_0P5)          0.10       0.12 f
+  g_lane[0].u_lane/U1541/X (SAEDRVT14_NR2_1P5)            0.19       0.31 r
+  g_lane[0].u_lane/U427/X (SAEDRVT14_AO221_4)             0.06       0.37 r
+  g_lane[0].u_lane/U1605/X (SAEDRVT14_ND2_CDC_1)          0.05       0.43 f
+  g_lane[0].u_lane/U1606/X (SAEDRVT14_OAI21_0P5)          0.06       0.48 r
+  g_lane[0].u_lane/intadd_76/U3/S (SAEDRVT14_ADDF_V2_2)
+                                                          0.05       0.53 r
+  g_lane[0].u_lane/U1581/X (SAEDRVT14_OAI21_0P5)          0.04       0.57 f
+  g_lane[0].u_lane/U1582/X (SAEDRVT14_AO21B_0P5)          0.05       0.62 r
+  g_lane[0].u_lane/U1611/CO (SAEDRVT14_ADDF_V1_2)         0.04       0.66 r
+  g_lane[0].u_lane/intadd_55/U21/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.70 r
+  g_lane[0].u_lane/intadd_55/U20/CO (SAEDRVT14_ADDF_V1_2)
+                                                          0.04       0.73 r
+  g_lane[0].u_lane/intadd_55/U19/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.77 r
+  g_lane[0].u_lane/U1612/S (SAEDRVT14_ADDF_V1_2)          0.05       0.82 f
+  g_lane[0].u_lane/U1490/S (SAEDRVT14_ADDF_V1_1)          0.05       0.88 r
+  g_lane[0].u_lane/U1492/S (SAEDRVT14_ADDF_V1_2)          0.06       0.93 f
+  g_lane[0].u_lane/U1556/CO (SAEDRVT14_ADDF_V2_2)         0.04       0.98 f
+  g_lane[0].u_lane/U1495/X (SAEDRVT14_EN2_4)              0.02       1.00 r
+  g_lane[0].u_lane/product[31] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       1.00 r
+  out_data[31] (out)                                      0.00       1.00 r
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_0[23]
+              (input port)
+  Endpoint: out_data[31]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_karatsuba_32x2
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_0[23] (in)                                      0.00       0.00 f
+  g_lane[0].u_lane/a[23] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       0.00 f
+  g_lane[0].u_lane/U164/X (SAEDRVT14_ND2_1)               0.02       0.02 r
+  g_lane[0].u_lane/U1540/X (SAEDRVT14_OAI21_0P5)          0.10       0.12 f
+  g_lane[0].u_lane/U1541/X (SAEDRVT14_NR2_1P5)            0.19       0.31 r
+  g_lane[0].u_lane/U427/X (SAEDRVT14_AO221_4)             0.06       0.37 r
+  g_lane[0].u_lane/U1605/X (SAEDRVT14_ND2_CDC_1)          0.05       0.43 f
+  g_lane[0].u_lane/U1606/X (SAEDRVT14_OAI21_0P5)          0.06       0.48 r
+  g_lane[0].u_lane/intadd_76/U3/S (SAEDRVT14_ADDF_V2_2)
+                                                          0.05       0.53 r
+  g_lane[0].u_lane/U1581/X (SAEDRVT14_OAI21_0P5)          0.04       0.57 f
+  g_lane[0].u_lane/U1582/X (SAEDRVT14_AO21B_0P5)          0.05       0.62 r
+  g_lane[0].u_lane/U1611/CO (SAEDRVT14_ADDF_V1_2)         0.04       0.66 r
+  g_lane[0].u_lane/intadd_55/U21/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.70 r
+  g_lane[0].u_lane/intadd_55/U20/CO (SAEDRVT14_ADDF_V1_2)
+                                                          0.04       0.73 r
+  g_lane[0].u_lane/intadd_55/U19/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.77 r
+  g_lane[0].u_lane/U1612/S (SAEDRVT14_ADDF_V1_2)          0.05       0.82 f
+  g_lane[0].u_lane/U1490/S (SAEDRVT14_ADDF_V1_1)          0.05       0.88 r
+  g_lane[0].u_lane/U1492/S (SAEDRVT14_ADDF_V1_2)          0.06       0.93 f
+  g_lane[0].u_lane/U1556/CO (SAEDRVT14_ADDF_V2_2)         0.04       0.98 f
+  g_lane[0].u_lane/U1495/X (SAEDRVT14_EN2_4)              0.02       1.00 r
+  g_lane[0].u_lane/product[31] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       1.00 r
+  out_data[31] (out)                                      0.00       1.00 r
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_0[23]
+              (input port)
+  Endpoint: out_data[31]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_karatsuba_32x2
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_0[23] (in)                                      0.00       0.00 f
+  g_lane[0].u_lane/a[23] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       0.00 f
+  g_lane[0].u_lane/U164/X (SAEDRVT14_ND2_1)               0.02       0.02 r
+  g_lane[0].u_lane/U1540/X (SAEDRVT14_OAI21_0P5)          0.10       0.12 f
+  g_lane[0].u_lane/U1541/X (SAEDRVT14_NR2_1P5)            0.19       0.31 r
+  g_lane[0].u_lane/U427/X (SAEDRVT14_AO221_4)             0.06       0.37 r
+  g_lane[0].u_lane/U1605/X (SAEDRVT14_ND2_CDC_1)          0.05       0.43 f
+  g_lane[0].u_lane/U1606/X (SAEDRVT14_OAI21_0P5)          0.06       0.48 r
+  g_lane[0].u_lane/intadd_76/U3/S (SAEDRVT14_ADDF_V2_2)
+                                                          0.05       0.53 r
+  g_lane[0].u_lane/U1581/X (SAEDRVT14_OAI21_0P5)          0.04       0.57 f
+  g_lane[0].u_lane/U1582/X (SAEDRVT14_AO21B_0P5)          0.05       0.62 r
+  g_lane[0].u_lane/U1611/CO (SAEDRVT14_ADDF_V1_2)         0.04       0.66 r
+  g_lane[0].u_lane/intadd_55/U21/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.70 r
+  g_lane[0].u_lane/intadd_55/U20/CO (SAEDRVT14_ADDF_V1_2)
+                                                          0.04       0.73 r
+  g_lane[0].u_lane/intadd_55/U19/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.77 r
+  g_lane[0].u_lane/U1612/S (SAEDRVT14_ADDF_V1_2)          0.05       0.82 f
+  g_lane[0].u_lane/U1490/S (SAEDRVT14_ADDF_V1_1)          0.05       0.88 r
+  g_lane[0].u_lane/U1492/S (SAEDRVT14_ADDF_V1_2)          0.06       0.93 f
+  g_lane[0].u_lane/U1556/CO (SAEDRVT14_ADDF_V2_2)         0.04       0.98 f
+  g_lane[0].u_lane/U1495/X (SAEDRVT14_EN2_4)              0.02       1.00 r
+  g_lane[0].u_lane/product[31] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       1.00 r
+  out_data[31] (out)                                      0.00       1.00 r
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_0[23]
+              (input port)
+  Endpoint: out_data[31]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_karatsuba_32x2
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_0[23] (in)                                      0.00       0.00 f
+  g_lane[0].u_lane/a[23] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       0.00 f
+  g_lane[0].u_lane/U164/X (SAEDRVT14_ND2_1)               0.02       0.02 r
+  g_lane[0].u_lane/U1540/X (SAEDRVT14_OAI21_0P5)          0.10       0.12 f
+  g_lane[0].u_lane/U1541/X (SAEDRVT14_NR2_1P5)            0.19       0.31 r
+  g_lane[0].u_lane/U427/X (SAEDRVT14_AO221_4)             0.06       0.37 r
+  g_lane[0].u_lane/U1605/X (SAEDRVT14_ND2_CDC_1)          0.05       0.43 f
+  g_lane[0].u_lane/U1606/X (SAEDRVT14_OAI21_0P5)          0.06       0.48 r
+  g_lane[0].u_lane/intadd_76/U3/S (SAEDRVT14_ADDF_V2_2)
+                                                          0.05       0.53 r
+  g_lane[0].u_lane/U1581/X (SAEDRVT14_OAI21_0P5)          0.04       0.57 f
+  g_lane[0].u_lane/U1582/X (SAEDRVT14_AO21B_0P5)          0.05       0.62 r
+  g_lane[0].u_lane/U1611/CO (SAEDRVT14_ADDF_V1_2)         0.04       0.66 r
+  g_lane[0].u_lane/intadd_55/U21/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.70 r
+  g_lane[0].u_lane/intadd_55/U20/CO (SAEDRVT14_ADDF_V1_2)
+                                                          0.04       0.73 r
+  g_lane[0].u_lane/intadd_55/U19/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.77 r
+  g_lane[0].u_lane/U1612/S (SAEDRVT14_ADDF_V1_2)          0.05       0.82 f
+  g_lane[0].u_lane/U1490/S (SAEDRVT14_ADDF_V1_1)          0.05       0.88 r
+  g_lane[0].u_lane/U1492/S (SAEDRVT14_ADDF_V1_2)          0.06       0.93 f
+  g_lane[0].u_lane/U1556/CO (SAEDRVT14_ADDF_V2_2)         0.04       0.98 f
+  g_lane[0].u_lane/U1495/X (SAEDRVT14_EN2_4)              0.02       1.00 r
+  g_lane[0].u_lane/product[31] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       1.00 r
+  out_data[31] (out)                                      0.00       1.00 r
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_0[23]
+              (input port)
+  Endpoint: out_data[31]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_karatsuba_32x2
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_0[23] (in)                                      0.00       0.00 f
+  g_lane[0].u_lane/a[23] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       0.00 f
+  g_lane[0].u_lane/U164/X (SAEDRVT14_ND2_1)               0.02       0.02 r
+  g_lane[0].u_lane/U1540/X (SAEDRVT14_OAI21_0P5)          0.10       0.12 f
+  g_lane[0].u_lane/U1541/X (SAEDRVT14_NR2_1P5)            0.19       0.31 r
+  g_lane[0].u_lane/U427/X (SAEDRVT14_AO221_4)             0.06       0.37 r
+  g_lane[0].u_lane/U1605/X (SAEDRVT14_ND2_CDC_1)          0.05       0.43 f
+  g_lane[0].u_lane/U1606/X (SAEDRVT14_OAI21_0P5)          0.06       0.48 r
+  g_lane[0].u_lane/intadd_76/U3/S (SAEDRVT14_ADDF_V2_2)
+                                                          0.05       0.53 r
+  g_lane[0].u_lane/U1581/X (SAEDRVT14_OAI21_0P5)          0.04       0.57 f
+  g_lane[0].u_lane/U1582/X (SAEDRVT14_AO21B_0P5)          0.05       0.62 r
+  g_lane[0].u_lane/U1611/CO (SAEDRVT14_ADDF_V1_2)         0.04       0.66 r
+  g_lane[0].u_lane/intadd_55/U21/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.70 r
+  g_lane[0].u_lane/intadd_55/U20/CO (SAEDRVT14_ADDF_V1_2)
+                                                          0.04       0.73 r
+  g_lane[0].u_lane/intadd_55/U19/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.77 r
+  g_lane[0].u_lane/U1612/S (SAEDRVT14_ADDF_V1_2)          0.05       0.82 f
+  g_lane[0].u_lane/U1490/S (SAEDRVT14_ADDF_V1_1)          0.05       0.88 r
+  g_lane[0].u_lane/U1492/S (SAEDRVT14_ADDF_V1_2)          0.06       0.93 f
+  g_lane[0].u_lane/U1556/CO (SAEDRVT14_ADDF_V2_2)         0.04       0.98 f
+  g_lane[0].u_lane/U1495/X (SAEDRVT14_EN2_4)              0.02       1.00 r
+  g_lane[0].u_lane/product[31] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       1.00 r
+  out_data[31] (out)                                      0.00       1.00 r
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_1[16]
+              (input port)
+  Endpoint: out_data[31]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_karatsuba_32x2
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_1[16] (in)                                      0.00       0.00 f
+  g_lane[0].u_lane/b[16] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       0.00 f
+  g_lane[0].u_lane/U1266/X (SAEDRVT14_INV_12)             0.04       0.04 r
+  g_lane[0].u_lane/U225/X (SAEDRVT14_NR2_4)               0.03       0.07 f
+  g_lane[0].u_lane/intadd_57/U16/CO (SAEDRVT14_ADDF_V1_2)
+                                                          0.04       0.10 f
+  g_lane[0].u_lane/intadd_57/U15/CO (SAEDRVT14_ADDF_V1_2)
+                                                          0.03       0.14 f
+  g_lane[0].u_lane/intadd_57/U14/S (SAEDRVT14_ADDF_V1_2)
+                                                          0.11       0.24 r
+  g_lane[0].u_lane/U732/X (SAEDRVT14_EN2_1)               0.07       0.31 f
+  g_lane[0].u_lane/U106/X (SAEDRVT14_OAI22_0P75)          0.05       0.36 r
+  g_lane[0].u_lane/U1401/CO (SAEDRVT14_ADDF_V2_2)         0.06       0.42 r
+  g_lane[0].u_lane/U1400/CO (SAEDRVT14_ADDF_V1_1)         0.04       0.46 r
+  g_lane[0].u_lane/U1399/CO (SAEDRVT14_ADDF_V1_1)         0.04       0.50 r
+  g_lane[0].u_lane/U1398/S (SAEDRVT14_ADDF_V1_1)          0.06       0.56 f
+  g_lane[0].u_lane/U1412/CO (SAEDRVT14_ADDF_V1_1)         0.04       0.60 f
+  g_lane[0].u_lane/U1411/S (SAEDRVT14_ADDF_V1_1)          0.06       0.66 r
+  g_lane[0].u_lane/U1428/S (SAEDRVT14_ADDF_V1_1)          0.06       0.72 f
+  g_lane[0].u_lane/U1439/CO (SAEDRVT14_ADDF_V1_2)         0.04       0.75 f
+  g_lane[0].u_lane/U1437/CO (SAEDRVT14_ADDF_V1_2)         0.03       0.78 f
+  g_lane[0].u_lane/U1434/CO (SAEDRVT14_ADDF_V1_2)         0.03       0.82 f
+  g_lane[0].u_lane/U1433/CO (SAEDRVT14_ADDF_V1_2)         0.03       0.85 f
+  g_lane[0].u_lane/U1432/CO (SAEDRVT14_ADDF_V1_2)         0.03       0.89 f
+  g_lane[0].u_lane/U1492/S (SAEDRVT14_ADDF_V1_2)          0.05       0.94 r
+  g_lane[0].u_lane/U1556/CO (SAEDRVT14_ADDF_V2_2)         0.04       0.98 r
+  g_lane[0].u_lane/U1495/X (SAEDRVT14_EN2_4)              0.02       1.00 f
+  g_lane[0].u_lane/product[31] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       1.00 f
+  out_data[31] (out)                                      0.00       1.00 f
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_0[57]
+              (input port)
+  Endpoint: out_data[63]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_karatsuba_32x2
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  in_data_0[57] (in)                                      0.00       0.00 r
+  g_lane[1].u_lane/a[25] (fu_mult_karatsuba_fixed32_full_x2_0)
+                                                          0.00       0.00 r
+  g_lane[1].u_lane/U629/X (SAEDRVT14_ND2_CDC_1)           0.04       0.04 f
+  g_lane[1].u_lane/U1432/X (SAEDRVT14_OAI21_1)            0.11       0.15 r
+  g_lane[1].u_lane/U867/X (SAEDRVT14_NR2_MM_1)            0.10       0.25 f
+  g_lane[1].u_lane/U868/X (SAEDRVT14_BUF_1)               0.07       0.32 f
+  g_lane[1].u_lane/U1470/X (SAEDRVT14_INV_S_1)            0.04       0.36 r
+  g_lane[1].u_lane/U1471/X (SAEDRVT14_OAI21_1)            0.06       0.42 f
+  g_lane[1].u_lane/U1472/X (SAEDRVT14_ND2_CDC_2)          0.05       0.47 r
+  g_lane[1].u_lane/U626/X (SAEDRVT14_OAI21_0P5)           0.05       0.52 f
+  g_lane[1].u_lane/intadd_96/U3/S (SAEDRVT14_ADDF_V1_1)
+                                                          0.06       0.59 r
+  g_lane[1].u_lane/intadd_97/U2/S (SAEDRVT14_ADDF_V1_1)
+                                                          0.06       0.64 f
+  g_lane[1].u_lane/intadd_77/U21/CO (SAEDRVT14_ADDF_V1_2)
+                                                          0.04       0.68 f
+  g_lane[1].u_lane/intadd_77/U20/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.72 f
+  g_lane[1].u_lane/intadd_77/U19/CO (SAEDRVT14_ADDF_V1_2)
+                                                          0.04       0.75 f
+  g_lane[1].u_lane/U1544/CO (SAEDRVT14_ADDF_V1_2)         0.03       0.79 f
+  g_lane[1].u_lane/U1543/S (SAEDRVT14_ADDF_V1_2)          0.05       0.84 r
+  g_lane[1].u_lane/U1373/S (SAEDRVT14_ADDF_V2_2)          0.05       0.89 f
+  g_lane[1].u_lane/U1375/X (SAEDRVT14_EN2_4)              0.02       0.92 r
+  g_lane[1].u_lane/U1376/X (SAEDRVT14_EN2_4)              0.03       0.94 f
+  g_lane[1].u_lane/U850/X (SAEDRVT14_EO2_2)               0.03       0.97 r
+  g_lane[1].u_lane/U1414/X (SAEDRVT14_EO2_V1_1P5)         0.03       1.00 r
+  g_lane[1].u_lane/product[31] (fu_mult_karatsuba_fixed32_full_x2_0)
+                                                          0.00       1.00 r
+  out_data[63] (out)                                      0.00       1.00 r
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_1[16]
+              (input port)
+  Endpoint: out_data[31]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_karatsuba_32x2
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_1[16] (in)                                      0.00       0.00 f
+  g_lane[0].u_lane/b[16] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       0.00 f
+  g_lane[0].u_lane/U1266/X (SAEDRVT14_INV_12)             0.04       0.04 r
+  g_lane[0].u_lane/U225/X (SAEDRVT14_NR2_4)               0.03       0.07 f
+  g_lane[0].u_lane/intadd_57/U16/CO (SAEDRVT14_ADDF_V1_2)
+                                                          0.04       0.10 f
+  g_lane[0].u_lane/intadd_57/U15/CO (SAEDRVT14_ADDF_V1_2)
+                                                          0.03       0.14 f
+  g_lane[0].u_lane/intadd_57/U14/S (SAEDRVT14_ADDF_V1_2)
+                                                          0.11       0.24 r
+  g_lane[0].u_lane/U732/X (SAEDRVT14_EN2_1)               0.07       0.31 f
+  g_lane[0].u_lane/U106/X (SAEDRVT14_OAI22_0P75)          0.05       0.36 r
+  g_lane[0].u_lane/U1401/CO (SAEDRVT14_ADDF_V2_2)         0.06       0.42 r
+  g_lane[0].u_lane/U1400/S (SAEDRVT14_ADDF_V1_1)          0.06       0.48 f
+  g_lane[0].u_lane/U1417/CO (SAEDRVT14_ADDF_V1_1)         0.04       0.52 f
+  g_lane[0].u_lane/U1414/CO (SAEDRVT14_ADDF_V1_1)         0.04       0.56 f
+  g_lane[0].u_lane/U1412/CO (SAEDRVT14_ADDF_V1_1)         0.04       0.60 f
+  g_lane[0].u_lane/U1411/S (SAEDRVT14_ADDF_V1_1)          0.06       0.66 r
+  g_lane[0].u_lane/U1428/S (SAEDRVT14_ADDF_V1_1)          0.06       0.72 f
+  g_lane[0].u_lane/U1439/CO (SAEDRVT14_ADDF_V1_2)         0.04       0.75 f
+  g_lane[0].u_lane/U1437/CO (SAEDRVT14_ADDF_V1_2)         0.03       0.78 f
+  g_lane[0].u_lane/U1434/CO (SAEDRVT14_ADDF_V1_2)         0.03       0.82 f
+  g_lane[0].u_lane/U1433/CO (SAEDRVT14_ADDF_V1_2)         0.03       0.85 f
+  g_lane[0].u_lane/U1432/CO (SAEDRVT14_ADDF_V1_2)         0.03       0.89 f
+  g_lane[0].u_lane/U1492/S (SAEDRVT14_ADDF_V1_2)          0.05       0.94 r
+  g_lane[0].u_lane/U1556/CO (SAEDRVT14_ADDF_V2_2)         0.04       0.98 r
+  g_lane[0].u_lane/U1495/X (SAEDRVT14_EN2_4)              0.02       1.00 f
+  g_lane[0].u_lane/product[31] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       1.00 f
+  out_data[31] (out)                                      0.00       1.00 f
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_1[16]
+              (input port)
+  Endpoint: out_data[31]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_karatsuba_32x2
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_1[16] (in)                                      0.00       0.00 f
+  g_lane[0].u_lane/b[16] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       0.00 f
+  g_lane[0].u_lane/U1266/X (SAEDRVT14_INV_12)             0.04       0.04 r
+  g_lane[0].u_lane/U225/X (SAEDRVT14_NR2_4)               0.03       0.07 f
+  g_lane[0].u_lane/intadd_57/U16/CO (SAEDRVT14_ADDF_V1_2)
+                                                          0.04       0.10 f
+  g_lane[0].u_lane/intadd_57/U15/CO (SAEDRVT14_ADDF_V1_2)
+                                                          0.03       0.14 f
+  g_lane[0].u_lane/intadd_57/U14/S (SAEDRVT14_ADDF_V1_2)
+                                                          0.11       0.24 r
+  g_lane[0].u_lane/U732/X (SAEDRVT14_EN2_1)               0.07       0.31 f
+  g_lane[0].u_lane/U106/X (SAEDRVT14_OAI22_0P75)          0.05       0.36 r
+  g_lane[0].u_lane/U1401/CO (SAEDRVT14_ADDF_V2_2)         0.06       0.42 r
+  g_lane[0].u_lane/U1400/CO (SAEDRVT14_ADDF_V1_1)         0.04       0.46 r
+  g_lane[0].u_lane/U1399/S (SAEDRVT14_ADDF_V1_1)          0.06       0.52 f
+  g_lane[0].u_lane/U1414/CO (SAEDRVT14_ADDF_V1_1)         0.04       0.56 f
+  g_lane[0].u_lane/U1412/CO (SAEDRVT14_ADDF_V1_1)         0.04       0.60 f
+  g_lane[0].u_lane/U1411/S (SAEDRVT14_ADDF_V1_1)          0.06       0.66 r
+  g_lane[0].u_lane/U1428/S (SAEDRVT14_ADDF_V1_1)          0.06       0.72 f
+  g_lane[0].u_lane/U1439/CO (SAEDRVT14_ADDF_V1_2)         0.04       0.75 f
+  g_lane[0].u_lane/U1437/CO (SAEDRVT14_ADDF_V1_2)         0.03       0.78 f
+  g_lane[0].u_lane/U1434/CO (SAEDRVT14_ADDF_V1_2)         0.03       0.82 f
+  g_lane[0].u_lane/U1433/CO (SAEDRVT14_ADDF_V1_2)         0.03       0.85 f
+  g_lane[0].u_lane/U1432/CO (SAEDRVT14_ADDF_V1_2)         0.03       0.89 f
+  g_lane[0].u_lane/U1492/S (SAEDRVT14_ADDF_V1_2)          0.05       0.94 r
+  g_lane[0].u_lane/U1556/CO (SAEDRVT14_ADDF_V2_2)         0.04       0.98 r
+  g_lane[0].u_lane/U1495/X (SAEDRVT14_EN2_4)              0.02       1.00 f
+  g_lane[0].u_lane/product[31] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       1.00 f
+  out_data[31] (out)                                      0.00       1.00 f
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

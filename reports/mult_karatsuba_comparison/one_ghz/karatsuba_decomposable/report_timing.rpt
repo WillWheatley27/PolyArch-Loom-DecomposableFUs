@@ -1,0 +1,824 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -nworst 10
+        -max_paths 10
+Design : fu_mult_decomp
+Version: Y-2026.03-SP1
+Date   : Fri Sep 11 12:22:07 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[1]
+              (input port)
+  Endpoint: out_data[54]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_decomp     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_0[1] (in)                                       0.00       0.00 f
+  u_kar_lo/a[1] (fu_mult_karatsuba_32_full_1)             0.00       0.00 f
+  u_kar_lo/U2142/X (SAEDRVT14_NR2_MM_16)                  0.01       0.01 r
+  u_kar_lo/U2280/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.03 f
+  u_kar_lo/U1798/X (SAEDRVT14_ND2_16)                     0.01       0.04 r
+  u_kar_lo/U1970/X (SAEDRVT14_ND2_MM_16)                  0.01       0.05 f
+  u_kar_lo/U1109/X (SAEDRVT14_INV_S_20)                   0.01       0.06 r
+  u_kar_lo/U1061/X (SAEDRVT14_INV_S_20)                   0.01       0.07 f
+  u_kar_lo/U908/X (SAEDRVT14_AOI21_6)                     0.01       0.08 r
+  u_kar_lo/U1207/X (SAEDRVT14_EO2_3)                      0.04       0.11 f
+  u_kar_lo/U2273/X (SAEDRVT14_EN2_4)                      0.04       0.16 r
+  u_kar_lo/U1901/X (SAEDRVT14_AN2_MM_20)                  0.02       0.18 r
+  u_kar_lo/U1055/X (SAEDRVT14_INV_S_16)                   0.01       0.19 f
+  u_kar_lo/U2485/X (SAEDRVT14_OAI22_4)                    0.01       0.21 r
+  u_kar_lo/U1949/CO (SAEDRVT14_ADDF_V2_2)                 0.04       0.25 r
+  u_kar_lo/U3135/S (SAEDRVT14_ADDF_V2_2)                  0.05       0.30 f
+  u_kar_lo/U1864/CO (SAEDRVT14_ADDF_V1_2)                 0.03       0.33 f
+  u_kar_lo/U3284/S (SAEDRVT14_ADDF_V2_2)                  0.06       0.40 f
+  u_kar_lo/U359/X (SAEDRVT14_ND2_5)                       0.02       0.42 r
+  u_kar_lo/U3288/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.44 f
+  u_kar_lo/U2335/X (SAEDRVT14_AO21_4)                     0.02       0.46 f
+  u_kar_lo/U1300/X (SAEDRVT14_OR2_MM_20)                  0.03       0.49 f
+  u_kar_lo/U1133/X (SAEDRVT14_INV_S_20)                   0.01       0.50 r
+  u_kar_lo/U1054/X (SAEDRVT14_INV_S_8)                    0.01       0.51 f
+  u_kar_lo/U190/X (SAEDRVT14_INV_12)                      0.01       0.51 r
+  u_kar_lo/U2261/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.52 f
+  u_kar_lo/U3564/X (SAEDRVT14_EN2_4)                      0.03       0.55 r
+  u_kar_lo/U1607/X (SAEDRVT14_EN3_3)                      0.04       0.59 f
+  u_kar_lo/U1418/X (SAEDRVT14_ND2_16)                     0.01       0.61 r
+  u_kar_lo/U1154/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.62 f
+  u_kar_lo/U1153/X (SAEDRVT14_AOI21_8)                    0.01       0.63 r
+  u_kar_lo/U3658/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.65 f
+  u_kar_lo/U1958/X (SAEDRVT14_NR2_MM_16)                  0.02       0.67 r
+  u_kar_lo/U2026/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.68 f
+  u_kar_lo/U1900/X (SAEDRVT14_EN2_4)                      0.04       0.71 r
+  u_kar_lo/U1780/X (SAEDRVT14_NR2_MM_16)                  0.01       0.73 f
+  u_kar_lo/U66/X (SAEDRVT14_BUF_8)                        0.01       0.74 f
+  u_kar_lo/U59/X (SAEDRVT14_INV_12)                       0.01       0.75 r
+  u_kar_lo/U57/X (SAEDRVT14_AN2_MM_8)                     0.02       0.77 r
+  u_kar_lo/U2202/X (SAEDRVT14_ND2_8)                      0.01       0.77 f
+  u_kar_lo/U2201/X (SAEDRVT14_NR2_MM_10)                  0.01       0.78 r
+  u_kar_lo/U2200/X (SAEDRVT14_INV_6)                      0.01       0.79 f
+  u_kar_lo/U1719/X (SAEDRVT14_ND2_5)                      0.01       0.80 r
+  u_kar_lo/U1718/X (SAEDRVT14_EN2_4)                      0.03       0.82 f
+  u_kar_lo/product[48] (fu_mult_karatsuba_32_full_1)      0.00       0.82 f
+  U723/X (SAEDRVT14_BUF_8)                                0.02       0.84 f
+  U2321/X (SAEDRVT14_ND2_MM_16)                           0.01       0.85 r
+  U1086/X (SAEDRVT14_OAI21_V1_8)                          0.02       0.87 f
+  U898/X (SAEDRVT14_NR2_MM_16)                            0.01       0.88 r
+  U896/X (SAEDRVT14_OAI21_V1_8)                           0.01       0.89 f
+  U897/X (SAEDRVT14_NR2_MM_16)                            0.01       0.90 r
+  U2588/X (SAEDRVT14_INV_S_8)                             0.02       0.92 f
+  U121/X (SAEDRVT14_AOI21_6)                              0.01       0.93 r
+  U91/X (SAEDRVT14_EO2_1P5)                               0.03       0.97 f
+  U2594/X (SAEDRVT14_AO222_4)                             0.03       1.00 f
+  out_data[54] (out)                                      0.00       1.00 f
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_0[16]
+              (input port)
+  Endpoint: out_data[54]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_decomp     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  in_data_0[16] (in)                                      0.00       0.00 r
+  u_kar_lo/a[16] (fu_mult_karatsuba_32_full_1)            0.00       0.00 r
+  u_kar_lo/U2274/X (SAEDRVT14_ND2_MM_16)                  0.01       0.01 f
+  u_kar_lo/U2280/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.03 r
+  u_kar_lo/U1798/X (SAEDRVT14_ND2_16)                     0.01       0.04 f
+  u_kar_lo/U1970/X (SAEDRVT14_ND2_MM_16)                  0.01       0.05 r
+  u_kar_lo/U1681/X (SAEDRVT14_ND2_16)                     0.01       0.06 f
+  u_kar_lo/U1680/X (SAEDRVT14_ND2_MM_16)                  0.01       0.07 r
+  u_kar_lo/U2170/X (SAEDRVT14_AOI21_V1_8)                 0.01       0.08 f
+  u_kar_lo/U2169/X (SAEDRVT14_EN2_4)                      0.03       0.11 r
+  u_kar_lo/U2292/X (SAEDRVT14_INV_S_20)                   0.01       0.13 f
+  u_kar_lo/U2310/X (SAEDRVT14_BUF_1)                      0.03       0.16 f
+  u_kar_lo/U1275/X (SAEDRVT14_EN2_3)                      0.04       0.20 r
+  u_kar_lo/U3523/X (SAEDRVT14_INV_0P75)                   0.02       0.22 f
+  u_kar_lo/U289/X (SAEDRVT14_AO2BB2_2)                    0.04       0.26 f
+  u_kar_lo/U1582/CO (SAEDRVT14_ADDF_V1_2)                 0.03       0.30 f
+  u_kar_lo/U1273/S (SAEDRVT14_ADDF_V2_2)                  0.03       0.33 r
+  u_kar_lo/U3617/S (SAEDRVT14_ADDF_V1_2)                  0.06       0.39 f
+  u_kar_lo/U2463/X (SAEDRVT14_OR2_MM_8)                   0.03       0.42 f
+  u_kar_lo/U1276/X (SAEDRVT14_INV_S_0P5)                  0.03       0.45 r
+  u_kar_lo/U3615/X (SAEDRVT14_OA21_4)                     0.03       0.48 r
+  u_kar_lo/U3616/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.50 f
+  u_kar_lo/U1274/X (SAEDRVT14_AOI21_V1_6)                 0.01       0.51 r
+  u_kar_lo/U2259/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.52 f
+  u_kar_lo/U3624/X (SAEDRVT14_EN2_4)                      0.03       0.55 r
+  u_kar_lo/U1518/X (SAEDRVT14_EN3_3)                      0.04       0.59 f
+  u_kar_lo/U1517/X (SAEDRVT14_ND2_6)                      0.02       0.61 r
+  u_kar_lo/U1154/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.62 f
+  u_kar_lo/U1153/X (SAEDRVT14_AOI21_8)                    0.01       0.63 r
+  u_kar_lo/U3658/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.65 f
+  u_kar_lo/U1958/X (SAEDRVT14_NR2_MM_16)                  0.02       0.67 r
+  u_kar_lo/U2026/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.68 f
+  u_kar_lo/U1900/X (SAEDRVT14_EN2_4)                      0.04       0.71 r
+  u_kar_lo/U1780/X (SAEDRVT14_NR2_MM_16)                  0.01       0.73 f
+  u_kar_lo/U66/X (SAEDRVT14_BUF_8)                        0.01       0.74 f
+  u_kar_lo/U59/X (SAEDRVT14_INV_12)                       0.01       0.75 r
+  u_kar_lo/U57/X (SAEDRVT14_AN2_MM_8)                     0.02       0.77 r
+  u_kar_lo/U2202/X (SAEDRVT14_ND2_8)                      0.01       0.77 f
+  u_kar_lo/U2201/X (SAEDRVT14_NR2_MM_10)                  0.01       0.78 r
+  u_kar_lo/U2200/X (SAEDRVT14_INV_6)                      0.01       0.79 f
+  u_kar_lo/U1719/X (SAEDRVT14_ND2_5)                      0.01       0.80 r
+  u_kar_lo/U1718/X (SAEDRVT14_EN2_4)                      0.03       0.82 f
+  u_kar_lo/product[48] (fu_mult_karatsuba_32_full_1)      0.00       0.82 f
+  U723/X (SAEDRVT14_BUF_8)                                0.02       0.84 f
+  U2321/X (SAEDRVT14_ND2_MM_16)                           0.01       0.85 r
+  U1086/X (SAEDRVT14_OAI21_V1_8)                          0.02       0.87 f
+  U898/X (SAEDRVT14_NR2_MM_16)                            0.01       0.88 r
+  U896/X (SAEDRVT14_OAI21_V1_8)                           0.01       0.89 f
+  U897/X (SAEDRVT14_NR2_MM_16)                            0.01       0.90 r
+  U2588/X (SAEDRVT14_INV_S_8)                             0.02       0.92 f
+  U121/X (SAEDRVT14_AOI21_6)                              0.01       0.93 r
+  U91/X (SAEDRVT14_EO2_1P5)                               0.03       0.97 f
+  U2594/X (SAEDRVT14_AO222_4)                             0.03       1.00 f
+  out_data[54] (out)                                      0.00       1.00 f
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_0[16]
+              (input port)
+  Endpoint: out_data[54]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_decomp     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  in_data_0[16] (in)                                      0.00       0.00 r
+  u_kar_lo/a[16] (fu_mult_karatsuba_32_full_1)            0.00       0.00 r
+  u_kar_lo/U2274/X (SAEDRVT14_ND2_MM_16)                  0.01       0.01 f
+  u_kar_lo/U2280/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.03 r
+  u_kar_lo/U1798/X (SAEDRVT14_ND2_16)                     0.01       0.04 f
+  u_kar_lo/U1970/X (SAEDRVT14_ND2_MM_16)                  0.01       0.05 r
+  u_kar_lo/U1681/X (SAEDRVT14_ND2_16)                     0.01       0.06 f
+  u_kar_lo/U1680/X (SAEDRVT14_ND2_MM_16)                  0.01       0.07 r
+  u_kar_lo/U2170/X (SAEDRVT14_AOI21_V1_8)                 0.01       0.08 f
+  u_kar_lo/U2169/X (SAEDRVT14_EN2_4)                      0.03       0.11 r
+  u_kar_lo/U2292/X (SAEDRVT14_INV_S_20)                   0.01       0.13 f
+  u_kar_lo/U2310/X (SAEDRVT14_BUF_1)                      0.03       0.16 f
+  u_kar_lo/U1275/X (SAEDRVT14_EN2_3)                      0.04       0.20 r
+  u_kar_lo/U3523/X (SAEDRVT14_INV_0P75)                   0.02       0.22 f
+  u_kar_lo/U289/X (SAEDRVT14_AO2BB2_2)                    0.04       0.26 f
+  u_kar_lo/U1582/CO (SAEDRVT14_ADDF_V1_2)                 0.03       0.30 f
+  u_kar_lo/U1273/S (SAEDRVT14_ADDF_V2_2)                  0.03       0.33 r
+  u_kar_lo/U3617/S (SAEDRVT14_ADDF_V1_2)                  0.06       0.39 f
+  u_kar_lo/U2463/X (SAEDRVT14_OR2_MM_8)                   0.03       0.42 f
+  u_kar_lo/U1276/X (SAEDRVT14_INV_S_0P5)                  0.03       0.45 r
+  u_kar_lo/U3615/X (SAEDRVT14_OA21_4)                     0.03       0.48 r
+  u_kar_lo/U3616/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.50 f
+  u_kar_lo/U1274/X (SAEDRVT14_AOI21_V1_6)                 0.01       0.51 r
+  u_kar_lo/U2259/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.52 f
+  u_kar_lo/U3624/X (SAEDRVT14_EN2_4)                      0.03       0.55 r
+  u_kar_lo/U1518/X (SAEDRVT14_EN3_3)                      0.04       0.59 f
+  u_kar_lo/U1517/X (SAEDRVT14_ND2_6)                      0.02       0.61 r
+  u_kar_lo/U1154/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.62 f
+  u_kar_lo/U1153/X (SAEDRVT14_AOI21_8)                    0.01       0.63 r
+  u_kar_lo/U3658/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.65 f
+  u_kar_lo/U1958/X (SAEDRVT14_NR2_MM_16)                  0.02       0.67 r
+  u_kar_lo/U2026/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.68 f
+  u_kar_lo/U1900/X (SAEDRVT14_EN2_4)                      0.04       0.71 r
+  u_kar_lo/U1780/X (SAEDRVT14_NR2_MM_16)                  0.01       0.73 f
+  u_kar_lo/U66/X (SAEDRVT14_BUF_8)                        0.01       0.74 f
+  u_kar_lo/U59/X (SAEDRVT14_INV_12)                       0.01       0.75 r
+  u_kar_lo/U57/X (SAEDRVT14_AN2_MM_8)                     0.02       0.77 r
+  u_kar_lo/U2202/X (SAEDRVT14_ND2_8)                      0.01       0.77 f
+  u_kar_lo/U2201/X (SAEDRVT14_NR2_MM_10)                  0.01       0.78 r
+  u_kar_lo/U2200/X (SAEDRVT14_INV_6)                      0.01       0.79 f
+  u_kar_lo/U1719/X (SAEDRVT14_ND2_5)                      0.01       0.80 r
+  u_kar_lo/U1718/X (SAEDRVT14_EN2_4)                      0.03       0.82 f
+  u_kar_lo/product[48] (fu_mult_karatsuba_32_full_1)      0.00       0.82 f
+  U723/X (SAEDRVT14_BUF_8)                                0.02       0.84 f
+  U2321/X (SAEDRVT14_ND2_MM_16)                           0.01       0.85 r
+  U1086/X (SAEDRVT14_OAI21_V1_8)                          0.02       0.87 f
+  U898/X (SAEDRVT14_NR2_MM_16)                            0.01       0.88 r
+  U896/X (SAEDRVT14_OAI21_V1_8)                           0.01       0.89 f
+  U897/X (SAEDRVT14_NR2_MM_16)                            0.01       0.90 r
+  U2588/X (SAEDRVT14_INV_S_8)                             0.02       0.92 f
+  U121/X (SAEDRVT14_AOI21_6)                              0.01       0.93 r
+  U91/X (SAEDRVT14_EO2_1P5)                               0.03       0.97 f
+  U2594/X (SAEDRVT14_AO222_4)                             0.03       1.00 f
+  out_data[54] (out)                                      0.00       1.00 f
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_0[1]
+              (input port)
+  Endpoint: out_data[53]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_decomp     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_0[1] (in)                                       0.00       0.00 f
+  u_kar_lo/a[1] (fu_mult_karatsuba_32_full_1)             0.00       0.00 f
+  u_kar_lo/U2142/X (SAEDRVT14_NR2_MM_16)                  0.01       0.01 r
+  u_kar_lo/U2280/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.03 f
+  u_kar_lo/U1798/X (SAEDRVT14_ND2_16)                     0.01       0.04 r
+  u_kar_lo/U1970/X (SAEDRVT14_ND2_MM_16)                  0.01       0.05 f
+  u_kar_lo/U1109/X (SAEDRVT14_INV_S_20)                   0.01       0.06 r
+  u_kar_lo/U1061/X (SAEDRVT14_INV_S_20)                   0.01       0.07 f
+  u_kar_lo/U908/X (SAEDRVT14_AOI21_6)                     0.01       0.08 r
+  u_kar_lo/U1207/X (SAEDRVT14_EO2_3)                      0.04       0.11 f
+  u_kar_lo/U2273/X (SAEDRVT14_EN2_4)                      0.04       0.16 r
+  u_kar_lo/U1901/X (SAEDRVT14_AN2_MM_20)                  0.02       0.18 r
+  u_kar_lo/U1055/X (SAEDRVT14_INV_S_16)                   0.01       0.19 f
+  u_kar_lo/U2485/X (SAEDRVT14_OAI22_4)                    0.01       0.21 r
+  u_kar_lo/U1949/CO (SAEDRVT14_ADDF_V2_2)                 0.04       0.25 r
+  u_kar_lo/U3135/S (SAEDRVT14_ADDF_V2_2)                  0.05       0.30 f
+  u_kar_lo/U1864/CO (SAEDRVT14_ADDF_V1_2)                 0.03       0.33 f
+  u_kar_lo/U3284/S (SAEDRVT14_ADDF_V2_2)                  0.06       0.40 f
+  u_kar_lo/U359/X (SAEDRVT14_ND2_5)                       0.02       0.42 r
+  u_kar_lo/U3288/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.44 f
+  u_kar_lo/U2335/X (SAEDRVT14_AO21_4)                     0.02       0.46 f
+  u_kar_lo/U1300/X (SAEDRVT14_OR2_MM_20)                  0.03       0.49 f
+  u_kar_lo/U1133/X (SAEDRVT14_INV_S_20)                   0.01       0.50 r
+  u_kar_lo/U1054/X (SAEDRVT14_INV_S_8)                    0.01       0.51 f
+  u_kar_lo/U190/X (SAEDRVT14_INV_12)                      0.01       0.51 r
+  u_kar_lo/U2261/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.52 f
+  u_kar_lo/U3564/X (SAEDRVT14_EN2_4)                      0.03       0.55 r
+  u_kar_lo/U1607/X (SAEDRVT14_EN3_3)                      0.04       0.59 f
+  u_kar_lo/U1418/X (SAEDRVT14_ND2_16)                     0.01       0.61 r
+  u_kar_lo/U1154/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.62 f
+  u_kar_lo/U1153/X (SAEDRVT14_AOI21_8)                    0.01       0.63 r
+  u_kar_lo/U3658/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.65 f
+  u_kar_lo/U1958/X (SAEDRVT14_NR2_MM_16)                  0.02       0.67 r
+  u_kar_lo/U2026/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.68 f
+  u_kar_lo/U1900/X (SAEDRVT14_EN2_4)                      0.04       0.71 r
+  u_kar_lo/U1780/X (SAEDRVT14_NR2_MM_16)                  0.01       0.73 f
+  u_kar_lo/U66/X (SAEDRVT14_BUF_8)                        0.01       0.74 f
+  u_kar_lo/U59/X (SAEDRVT14_INV_12)                       0.01       0.75 r
+  u_kar_lo/U57/X (SAEDRVT14_AN2_MM_8)                     0.02       0.77 r
+  u_kar_lo/U2202/X (SAEDRVT14_ND2_8)                      0.01       0.77 f
+  u_kar_lo/U2201/X (SAEDRVT14_NR2_MM_10)                  0.01       0.78 r
+  u_kar_lo/U2200/X (SAEDRVT14_INV_6)                      0.01       0.79 f
+  u_kar_lo/U1719/X (SAEDRVT14_ND2_5)                      0.01       0.80 r
+  u_kar_lo/U1718/X (SAEDRVT14_EN2_4)                      0.03       0.82 f
+  u_kar_lo/product[48] (fu_mult_karatsuba_32_full_1)      0.00       0.82 f
+  U723/X (SAEDRVT14_BUF_8)                                0.02       0.84 f
+  U2321/X (SAEDRVT14_ND2_MM_16)                           0.01       0.85 r
+  U1086/X (SAEDRVT14_OAI21_V1_8)                          0.02       0.87 f
+  U898/X (SAEDRVT14_NR2_MM_16)                            0.01       0.88 r
+  U896/X (SAEDRVT14_OAI21_V1_8)                           0.01       0.89 f
+  U897/X (SAEDRVT14_NR2_MM_16)                            0.01       0.90 r
+  U2588/X (SAEDRVT14_INV_S_8)                             0.02       0.92 f
+  U84/X (SAEDRVT14_AOI21_V1_8)                            0.01       0.93 r
+  U118/X (SAEDRVT14_EO2_1P5)                              0.03       0.96 f
+  U81/X (SAEDRVT14_AO222_2)                               0.04       1.00 f
+  out_data[53] (out)                                      0.00       1.00 f
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_0[16]
+              (input port)
+  Endpoint: out_data[53]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_decomp     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  in_data_0[16] (in)                                      0.00       0.00 r
+  u_kar_lo/a[16] (fu_mult_karatsuba_32_full_1)            0.00       0.00 r
+  u_kar_lo/U2274/X (SAEDRVT14_ND2_MM_16)                  0.01       0.01 f
+  u_kar_lo/U2280/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.03 r
+  u_kar_lo/U1798/X (SAEDRVT14_ND2_16)                     0.01       0.04 f
+  u_kar_lo/U1970/X (SAEDRVT14_ND2_MM_16)                  0.01       0.05 r
+  u_kar_lo/U1681/X (SAEDRVT14_ND2_16)                     0.01       0.06 f
+  u_kar_lo/U1680/X (SAEDRVT14_ND2_MM_16)                  0.01       0.07 r
+  u_kar_lo/U2170/X (SAEDRVT14_AOI21_V1_8)                 0.01       0.08 f
+  u_kar_lo/U2169/X (SAEDRVT14_EN2_4)                      0.03       0.11 r
+  u_kar_lo/U2292/X (SAEDRVT14_INV_S_20)                   0.01       0.13 f
+  u_kar_lo/U2310/X (SAEDRVT14_BUF_1)                      0.03       0.16 f
+  u_kar_lo/U1275/X (SAEDRVT14_EN2_3)                      0.04       0.20 r
+  u_kar_lo/U3523/X (SAEDRVT14_INV_0P75)                   0.02       0.22 f
+  u_kar_lo/U289/X (SAEDRVT14_AO2BB2_2)                    0.04       0.26 f
+  u_kar_lo/U1582/CO (SAEDRVT14_ADDF_V1_2)                 0.03       0.30 f
+  u_kar_lo/U1273/S (SAEDRVT14_ADDF_V2_2)                  0.03       0.33 r
+  u_kar_lo/U3617/S (SAEDRVT14_ADDF_V1_2)                  0.06       0.39 f
+  u_kar_lo/U2463/X (SAEDRVT14_OR2_MM_8)                   0.03       0.42 f
+  u_kar_lo/U1276/X (SAEDRVT14_INV_S_0P5)                  0.03       0.45 r
+  u_kar_lo/U3615/X (SAEDRVT14_OA21_4)                     0.03       0.48 r
+  u_kar_lo/U3616/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.50 f
+  u_kar_lo/U1274/X (SAEDRVT14_AOI21_V1_6)                 0.01       0.51 r
+  u_kar_lo/U2259/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.52 f
+  u_kar_lo/U3624/X (SAEDRVT14_EN2_4)                      0.03       0.55 r
+  u_kar_lo/U1518/X (SAEDRVT14_EN3_3)                      0.04       0.59 f
+  u_kar_lo/U1517/X (SAEDRVT14_ND2_6)                      0.02       0.61 r
+  u_kar_lo/U1154/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.62 f
+  u_kar_lo/U1153/X (SAEDRVT14_AOI21_8)                    0.01       0.63 r
+  u_kar_lo/U3658/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.65 f
+  u_kar_lo/U1958/X (SAEDRVT14_NR2_MM_16)                  0.02       0.67 r
+  u_kar_lo/U2026/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.68 f
+  u_kar_lo/U1900/X (SAEDRVT14_EN2_4)                      0.04       0.71 r
+  u_kar_lo/U1780/X (SAEDRVT14_NR2_MM_16)                  0.01       0.73 f
+  u_kar_lo/U66/X (SAEDRVT14_BUF_8)                        0.01       0.74 f
+  u_kar_lo/U59/X (SAEDRVT14_INV_12)                       0.01       0.75 r
+  u_kar_lo/U57/X (SAEDRVT14_AN2_MM_8)                     0.02       0.77 r
+  u_kar_lo/U2202/X (SAEDRVT14_ND2_8)                      0.01       0.77 f
+  u_kar_lo/U2201/X (SAEDRVT14_NR2_MM_10)                  0.01       0.78 r
+  u_kar_lo/U2200/X (SAEDRVT14_INV_6)                      0.01       0.79 f
+  u_kar_lo/U1719/X (SAEDRVT14_ND2_5)                      0.01       0.80 r
+  u_kar_lo/U1718/X (SAEDRVT14_EN2_4)                      0.03       0.82 f
+  u_kar_lo/product[48] (fu_mult_karatsuba_32_full_1)      0.00       0.82 f
+  U723/X (SAEDRVT14_BUF_8)                                0.02       0.84 f
+  U2321/X (SAEDRVT14_ND2_MM_16)                           0.01       0.85 r
+  U1086/X (SAEDRVT14_OAI21_V1_8)                          0.02       0.87 f
+  U898/X (SAEDRVT14_NR2_MM_16)                            0.01       0.88 r
+  U896/X (SAEDRVT14_OAI21_V1_8)                           0.01       0.89 f
+  U897/X (SAEDRVT14_NR2_MM_16)                            0.01       0.90 r
+  U2588/X (SAEDRVT14_INV_S_8)                             0.02       0.92 f
+  U84/X (SAEDRVT14_AOI21_V1_8)                            0.01       0.93 r
+  U118/X (SAEDRVT14_EO2_1P5)                              0.03       0.96 f
+  U81/X (SAEDRVT14_AO222_2)                               0.04       1.00 f
+  out_data[53] (out)                                      0.00       1.00 f
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_0[1]
+              (input port)
+  Endpoint: out_data[54]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_decomp     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_0[1] (in)                                       0.00       0.00 f
+  u_kar_lo/a[1] (fu_mult_karatsuba_32_full_1)             0.00       0.00 f
+  u_kar_lo/U2142/X (SAEDRVT14_NR2_MM_16)                  0.01       0.01 r
+  u_kar_lo/U2280/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.03 f
+  u_kar_lo/U1798/X (SAEDRVT14_ND2_16)                     0.01       0.04 r
+  u_kar_lo/U1970/X (SAEDRVT14_ND2_MM_16)                  0.01       0.05 f
+  u_kar_lo/U1109/X (SAEDRVT14_INV_S_20)                   0.01       0.06 r
+  u_kar_lo/U1061/X (SAEDRVT14_INV_S_20)                   0.01       0.07 f
+  u_kar_lo/U908/X (SAEDRVT14_AOI21_6)                     0.01       0.08 r
+  u_kar_lo/U1207/X (SAEDRVT14_EO2_3)                      0.04       0.11 f
+  u_kar_lo/U2273/X (SAEDRVT14_EN2_4)                      0.04       0.16 r
+  u_kar_lo/U1901/X (SAEDRVT14_AN2_MM_20)                  0.02       0.18 r
+  u_kar_lo/U1055/X (SAEDRVT14_INV_S_16)                   0.01       0.19 f
+  u_kar_lo/U2485/X (SAEDRVT14_OAI22_4)                    0.01       0.21 r
+  u_kar_lo/U1949/CO (SAEDRVT14_ADDF_V2_2)                 0.04       0.25 r
+  u_kar_lo/U3135/S (SAEDRVT14_ADDF_V2_2)                  0.05       0.30 f
+  u_kar_lo/U1864/CO (SAEDRVT14_ADDF_V1_2)                 0.03       0.33 f
+  u_kar_lo/U3284/S (SAEDRVT14_ADDF_V2_2)                  0.06       0.40 f
+  u_kar_lo/U359/X (SAEDRVT14_ND2_5)                       0.02       0.42 r
+  u_kar_lo/U3288/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.44 f
+  u_kar_lo/U2335/X (SAEDRVT14_AO21_4)                     0.02       0.46 f
+  u_kar_lo/U1300/X (SAEDRVT14_OR2_MM_20)                  0.03       0.49 f
+  u_kar_lo/U1133/X (SAEDRVT14_INV_S_20)                   0.01       0.50 r
+  u_kar_lo/U1054/X (SAEDRVT14_INV_S_8)                    0.01       0.51 f
+  u_kar_lo/U190/X (SAEDRVT14_INV_12)                      0.01       0.51 r
+  u_kar_lo/U2261/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.52 f
+  u_kar_lo/U3564/X (SAEDRVT14_EN2_4)                      0.03       0.55 r
+  u_kar_lo/U1607/X (SAEDRVT14_EN3_3)                      0.04       0.59 f
+  u_kar_lo/U1418/X (SAEDRVT14_ND2_16)                     0.01       0.61 r
+  u_kar_lo/U1154/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.62 f
+  u_kar_lo/U1153/X (SAEDRVT14_AOI21_8)                    0.01       0.63 r
+  u_kar_lo/U3658/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.65 f
+  u_kar_lo/U1958/X (SAEDRVT14_NR2_MM_16)                  0.02       0.67 r
+  u_kar_lo/U2026/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.68 f
+  u_kar_lo/U1900/X (SAEDRVT14_EN2_4)                      0.04       0.71 r
+  u_kar_lo/U1780/X (SAEDRVT14_NR2_MM_16)                  0.01       0.73 f
+  u_kar_lo/U66/X (SAEDRVT14_BUF_8)                        0.01       0.74 f
+  u_kar_lo/U59/X (SAEDRVT14_INV_12)                       0.01       0.75 r
+  u_kar_lo/U57/X (SAEDRVT14_AN2_MM_8)                     0.02       0.77 r
+  u_kar_lo/U2202/X (SAEDRVT14_ND2_8)                      0.01       0.77 f
+  u_kar_lo/U2201/X (SAEDRVT14_NR2_MM_10)                  0.01       0.78 r
+  u_kar_lo/U2200/X (SAEDRVT14_INV_6)                      0.01       0.79 f
+  u_kar_lo/U1719/X (SAEDRVT14_ND2_5)                      0.01       0.80 r
+  u_kar_lo/U1718/X (SAEDRVT14_EN2_4)                      0.03       0.82 f
+  u_kar_lo/product[48] (fu_mult_karatsuba_32_full_1)      0.00       0.82 f
+  U723/X (SAEDRVT14_BUF_8)                                0.02       0.84 f
+  U2321/X (SAEDRVT14_ND2_MM_16)                           0.01       0.85 r
+  U1086/X (SAEDRVT14_OAI21_V1_8)                          0.02       0.87 f
+  U898/X (SAEDRVT14_NR2_MM_16)                            0.01       0.88 r
+  U896/X (SAEDRVT14_OAI21_V1_8)                           0.01       0.89 f
+  U897/X (SAEDRVT14_NR2_MM_16)                            0.01       0.90 r
+  U2588/X (SAEDRVT14_INV_S_8)                             0.02       0.92 f
+  U121/X (SAEDRVT14_AOI21_6)                              0.01       0.93 r
+  U91/X (SAEDRVT14_EO2_1P5)                               0.03       0.97 f
+  U2594/X (SAEDRVT14_AO222_4)                             0.03       1.00 f
+  out_data[54] (out)                                      0.00       1.00 f
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_0[16]
+              (input port)
+  Endpoint: out_data[54]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_decomp     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  in_data_0[16] (in)                                      0.00       0.00 r
+  u_kar_lo/a[16] (fu_mult_karatsuba_32_full_1)            0.00       0.00 r
+  u_kar_lo/U2274/X (SAEDRVT14_ND2_MM_16)                  0.01       0.01 f
+  u_kar_lo/U2280/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.03 r
+  u_kar_lo/U1798/X (SAEDRVT14_ND2_16)                     0.01       0.04 f
+  u_kar_lo/U1970/X (SAEDRVT14_ND2_MM_16)                  0.01       0.05 r
+  u_kar_lo/U1681/X (SAEDRVT14_ND2_16)                     0.01       0.06 f
+  u_kar_lo/U1680/X (SAEDRVT14_ND2_MM_16)                  0.01       0.07 r
+  u_kar_lo/U2170/X (SAEDRVT14_AOI21_V1_8)                 0.01       0.08 f
+  u_kar_lo/U2169/X (SAEDRVT14_EN2_4)                      0.03       0.11 r
+  u_kar_lo/U2292/X (SAEDRVT14_INV_S_20)                   0.01       0.13 f
+  u_kar_lo/U2310/X (SAEDRVT14_BUF_1)                      0.03       0.16 f
+  u_kar_lo/U1275/X (SAEDRVT14_EN2_3)                      0.04       0.20 r
+  u_kar_lo/U3523/X (SAEDRVT14_INV_0P75)                   0.02       0.22 f
+  u_kar_lo/U289/X (SAEDRVT14_AO2BB2_2)                    0.04       0.26 f
+  u_kar_lo/U1582/CO (SAEDRVT14_ADDF_V1_2)                 0.03       0.30 f
+  u_kar_lo/U1273/S (SAEDRVT14_ADDF_V2_2)                  0.03       0.33 r
+  u_kar_lo/U3617/S (SAEDRVT14_ADDF_V1_2)                  0.06       0.39 f
+  u_kar_lo/U2463/X (SAEDRVT14_OR2_MM_8)                   0.03       0.42 f
+  u_kar_lo/U1276/X (SAEDRVT14_INV_S_0P5)                  0.03       0.45 r
+  u_kar_lo/U3615/X (SAEDRVT14_OA21_4)                     0.03       0.48 r
+  u_kar_lo/U3616/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.50 f
+  u_kar_lo/U1274/X (SAEDRVT14_AOI21_V1_6)                 0.01       0.51 r
+  u_kar_lo/U2259/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.52 f
+  u_kar_lo/U3624/X (SAEDRVT14_EN2_4)                      0.03       0.55 r
+  u_kar_lo/U1518/X (SAEDRVT14_EN3_3)                      0.04       0.59 f
+  u_kar_lo/U1517/X (SAEDRVT14_ND2_6)                      0.02       0.61 r
+  u_kar_lo/U1154/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.62 f
+  u_kar_lo/U1153/X (SAEDRVT14_AOI21_8)                    0.01       0.63 r
+  u_kar_lo/U3658/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.65 f
+  u_kar_lo/U1958/X (SAEDRVT14_NR2_MM_16)                  0.02       0.67 r
+  u_kar_lo/U2026/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.68 f
+  u_kar_lo/U1900/X (SAEDRVT14_EN2_4)                      0.04       0.71 r
+  u_kar_lo/U1780/X (SAEDRVT14_NR2_MM_16)                  0.01       0.73 f
+  u_kar_lo/U66/X (SAEDRVT14_BUF_8)                        0.01       0.74 f
+  u_kar_lo/U59/X (SAEDRVT14_INV_12)                       0.01       0.75 r
+  u_kar_lo/U57/X (SAEDRVT14_AN2_MM_8)                     0.02       0.77 r
+  u_kar_lo/U2202/X (SAEDRVT14_ND2_8)                      0.01       0.77 f
+  u_kar_lo/U2201/X (SAEDRVT14_NR2_MM_10)                  0.01       0.78 r
+  u_kar_lo/U2200/X (SAEDRVT14_INV_6)                      0.01       0.79 f
+  u_kar_lo/U1719/X (SAEDRVT14_ND2_5)                      0.01       0.80 r
+  u_kar_lo/U1718/X (SAEDRVT14_EN2_4)                      0.03       0.82 f
+  u_kar_lo/product[48] (fu_mult_karatsuba_32_full_1)      0.00       0.82 f
+  U723/X (SAEDRVT14_BUF_8)                                0.02       0.84 f
+  U2321/X (SAEDRVT14_ND2_MM_16)                           0.01       0.85 r
+  U1086/X (SAEDRVT14_OAI21_V1_8)                          0.02       0.87 f
+  U898/X (SAEDRVT14_NR2_MM_16)                            0.01       0.88 r
+  U896/X (SAEDRVT14_OAI21_V1_8)                           0.01       0.89 f
+  U897/X (SAEDRVT14_NR2_MM_16)                            0.01       0.90 r
+  U2588/X (SAEDRVT14_INV_S_8)                             0.02       0.92 f
+  U121/X (SAEDRVT14_AOI21_6)                              0.01       0.93 r
+  U91/X (SAEDRVT14_EO2_1P5)                               0.03       0.97 f
+  U2594/X (SAEDRVT14_AO222_4)                             0.03       1.00 f
+  out_data[54] (out)                                      0.00       1.00 f
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_0[16]
+              (input port)
+  Endpoint: out_data[53]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_decomp     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  in_data_0[16] (in)                                      0.00       0.00 r
+  u_kar_lo/a[16] (fu_mult_karatsuba_32_full_1)            0.00       0.00 r
+  u_kar_lo/U2274/X (SAEDRVT14_ND2_MM_16)                  0.01       0.01 f
+  u_kar_lo/U2280/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.03 r
+  u_kar_lo/U1798/X (SAEDRVT14_ND2_16)                     0.01       0.04 f
+  u_kar_lo/U1970/X (SAEDRVT14_ND2_MM_16)                  0.01       0.05 r
+  u_kar_lo/U1681/X (SAEDRVT14_ND2_16)                     0.01       0.06 f
+  u_kar_lo/U1680/X (SAEDRVT14_ND2_MM_16)                  0.01       0.07 r
+  u_kar_lo/U2170/X (SAEDRVT14_AOI21_V1_8)                 0.01       0.08 f
+  u_kar_lo/U2169/X (SAEDRVT14_EN2_4)                      0.03       0.11 r
+  u_kar_lo/U2292/X (SAEDRVT14_INV_S_20)                   0.01       0.13 f
+  u_kar_lo/U2310/X (SAEDRVT14_BUF_1)                      0.03       0.16 f
+  u_kar_lo/U1275/X (SAEDRVT14_EN2_3)                      0.04       0.20 r
+  u_kar_lo/U3523/X (SAEDRVT14_INV_0P75)                   0.02       0.22 f
+  u_kar_lo/U289/X (SAEDRVT14_AO2BB2_2)                    0.04       0.26 f
+  u_kar_lo/U1582/CO (SAEDRVT14_ADDF_V1_2)                 0.03       0.30 f
+  u_kar_lo/U1273/S (SAEDRVT14_ADDF_V2_2)                  0.03       0.33 r
+  u_kar_lo/U3617/S (SAEDRVT14_ADDF_V1_2)                  0.06       0.39 f
+  u_kar_lo/U2463/X (SAEDRVT14_OR2_MM_8)                   0.03       0.42 f
+  u_kar_lo/U1276/X (SAEDRVT14_INV_S_0P5)                  0.03       0.45 r
+  u_kar_lo/U3615/X (SAEDRVT14_OA21_4)                     0.03       0.48 r
+  u_kar_lo/U3616/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.50 f
+  u_kar_lo/U1274/X (SAEDRVT14_AOI21_V1_6)                 0.01       0.51 r
+  u_kar_lo/U2259/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.52 f
+  u_kar_lo/U3624/X (SAEDRVT14_EN2_4)                      0.03       0.55 r
+  u_kar_lo/U1518/X (SAEDRVT14_EN3_3)                      0.04       0.59 f
+  u_kar_lo/U1517/X (SAEDRVT14_ND2_6)                      0.02       0.61 r
+  u_kar_lo/U1154/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.62 f
+  u_kar_lo/U1153/X (SAEDRVT14_AOI21_8)                    0.01       0.63 r
+  u_kar_lo/U3658/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.65 f
+  u_kar_lo/U1958/X (SAEDRVT14_NR2_MM_16)                  0.02       0.67 r
+  u_kar_lo/U2026/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.68 f
+  u_kar_lo/U1900/X (SAEDRVT14_EN2_4)                      0.04       0.71 r
+  u_kar_lo/U1780/X (SAEDRVT14_NR2_MM_16)                  0.01       0.73 f
+  u_kar_lo/U66/X (SAEDRVT14_BUF_8)                        0.01       0.74 f
+  u_kar_lo/U59/X (SAEDRVT14_INV_12)                       0.01       0.75 r
+  u_kar_lo/U57/X (SAEDRVT14_AN2_MM_8)                     0.02       0.77 r
+  u_kar_lo/U2202/X (SAEDRVT14_ND2_8)                      0.01       0.77 f
+  u_kar_lo/U2201/X (SAEDRVT14_NR2_MM_10)                  0.01       0.78 r
+  u_kar_lo/U2200/X (SAEDRVT14_INV_6)                      0.01       0.79 f
+  u_kar_lo/U1719/X (SAEDRVT14_ND2_5)                      0.01       0.80 r
+  u_kar_lo/U1718/X (SAEDRVT14_EN2_4)                      0.03       0.82 f
+  u_kar_lo/product[48] (fu_mult_karatsuba_32_full_1)      0.00       0.82 f
+  U723/X (SAEDRVT14_BUF_8)                                0.02       0.84 f
+  U2321/X (SAEDRVT14_ND2_MM_16)                           0.01       0.85 r
+  U1086/X (SAEDRVT14_OAI21_V1_8)                          0.02       0.87 f
+  U898/X (SAEDRVT14_NR2_MM_16)                            0.01       0.88 r
+  U896/X (SAEDRVT14_OAI21_V1_8)                           0.01       0.89 f
+  U897/X (SAEDRVT14_NR2_MM_16)                            0.01       0.90 r
+  U2588/X (SAEDRVT14_INV_S_8)                             0.02       0.92 f
+  U84/X (SAEDRVT14_AOI21_V1_8)                            0.01       0.93 r
+  U118/X (SAEDRVT14_EO2_1P5)                              0.03       0.96 f
+  U81/X (SAEDRVT14_AO222_2)                               0.04       1.00 f
+  out_data[53] (out)                                      0.00       1.00 f
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_0[16]
+              (input port)
+  Endpoint: out_data[54]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_decomp     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  in_data_0[16] (in)                                      0.00       0.00 r
+  u_kar_lo/a[16] (fu_mult_karatsuba_32_full_1)            0.00       0.00 r
+  u_kar_lo/U2274/X (SAEDRVT14_ND2_MM_16)                  0.01       0.01 f
+  u_kar_lo/U2280/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.03 r
+  u_kar_lo/U1798/X (SAEDRVT14_ND2_16)                     0.01       0.04 f
+  u_kar_lo/U1970/X (SAEDRVT14_ND2_MM_16)                  0.01       0.05 r
+  u_kar_lo/U1681/X (SAEDRVT14_ND2_16)                     0.01       0.06 f
+  u_kar_lo/U1680/X (SAEDRVT14_ND2_MM_16)                  0.01       0.07 r
+  u_kar_lo/U2170/X (SAEDRVT14_AOI21_V1_8)                 0.01       0.08 f
+  u_kar_lo/U2169/X (SAEDRVT14_EN2_4)                      0.03       0.11 r
+  u_kar_lo/U2292/X (SAEDRVT14_INV_S_20)                   0.01       0.13 f
+  u_kar_lo/U2310/X (SAEDRVT14_BUF_1)                      0.03       0.16 f
+  u_kar_lo/U1275/X (SAEDRVT14_EN2_3)                      0.04       0.20 r
+  u_kar_lo/U3523/X (SAEDRVT14_INV_0P75)                   0.02       0.22 f
+  u_kar_lo/U289/X (SAEDRVT14_AO2BB2_2)                    0.04       0.26 f
+  u_kar_lo/U1582/CO (SAEDRVT14_ADDF_V1_2)                 0.03       0.30 f
+  u_kar_lo/U1273/S (SAEDRVT14_ADDF_V2_2)                  0.03       0.33 r
+  u_kar_lo/U3617/S (SAEDRVT14_ADDF_V1_2)                  0.06       0.39 f
+  u_kar_lo/U2463/X (SAEDRVT14_OR2_MM_8)                   0.03       0.42 f
+  u_kar_lo/U1276/X (SAEDRVT14_INV_S_0P5)                  0.03       0.45 r
+  u_kar_lo/U3615/X (SAEDRVT14_OA21_4)                     0.03       0.48 r
+  u_kar_lo/U3616/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.50 f
+  u_kar_lo/U1274/X (SAEDRVT14_AOI21_V1_6)                 0.01       0.51 r
+  u_kar_lo/U2259/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.52 f
+  u_kar_lo/U3624/X (SAEDRVT14_EN2_4)                      0.03       0.55 r
+  u_kar_lo/U1518/X (SAEDRVT14_EN3_3)                      0.04       0.59 f
+  u_kar_lo/U1517/X (SAEDRVT14_ND2_6)                      0.02       0.61 r
+  u_kar_lo/U1154/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.62 f
+  u_kar_lo/U1153/X (SAEDRVT14_AOI21_8)                    0.01       0.63 r
+  u_kar_lo/U3658/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.65 f
+  u_kar_lo/U1958/X (SAEDRVT14_NR2_MM_16)                  0.02       0.67 r
+  u_kar_lo/U2026/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.68 f
+  u_kar_lo/U1900/X (SAEDRVT14_EN2_4)                      0.04       0.71 r
+  u_kar_lo/U1780/X (SAEDRVT14_NR2_MM_16)                  0.01       0.73 f
+  u_kar_lo/U66/X (SAEDRVT14_BUF_8)                        0.01       0.74 f
+  u_kar_lo/U59/X (SAEDRVT14_INV_12)                       0.01       0.75 r
+  u_kar_lo/U57/X (SAEDRVT14_AN2_MM_8)                     0.02       0.77 r
+  u_kar_lo/U2202/X (SAEDRVT14_ND2_8)                      0.01       0.77 f
+  u_kar_lo/U2201/X (SAEDRVT14_NR2_MM_10)                  0.01       0.78 r
+  u_kar_lo/U2200/X (SAEDRVT14_INV_6)                      0.01       0.79 f
+  u_kar_lo/U1719/X (SAEDRVT14_ND2_5)                      0.01       0.80 r
+  u_kar_lo/U1718/X (SAEDRVT14_EN2_4)                      0.03       0.82 f
+  u_kar_lo/product[48] (fu_mult_karatsuba_32_full_1)      0.00       0.82 f
+  U723/X (SAEDRVT14_BUF_8)                                0.02       0.84 f
+  U2321/X (SAEDRVT14_ND2_MM_16)                           0.01       0.85 r
+  U1086/X (SAEDRVT14_OAI21_V1_8)                          0.02       0.87 f
+  U898/X (SAEDRVT14_NR2_MM_16)                            0.01       0.88 r
+  U896/X (SAEDRVT14_OAI21_V1_8)                           0.01       0.89 f
+  U897/X (SAEDRVT14_NR2_MM_16)                            0.01       0.90 r
+  U2588/X (SAEDRVT14_INV_S_8)                             0.02       0.92 f
+  U121/X (SAEDRVT14_AOI21_6)                              0.01       0.93 r
+  U91/X (SAEDRVT14_EO2_1P5)                               0.03       0.97 f
+  U2594/X (SAEDRVT14_AO222_4)                             0.03       1.00 f
+  out_data[54] (out)                                      0.00       1.00 f
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: in_data_0[1]
+              (input port)
+  Endpoint: out_data[53]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_decomp     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_0[1] (in)                                       0.00       0.00 f
+  u_kar_lo/a[1] (fu_mult_karatsuba_32_full_1)             0.00       0.00 f
+  u_kar_lo/U2142/X (SAEDRVT14_NR2_MM_16)                  0.01       0.01 r
+  u_kar_lo/U2280/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.03 f
+  u_kar_lo/U1798/X (SAEDRVT14_ND2_16)                     0.01       0.04 r
+  u_kar_lo/U1970/X (SAEDRVT14_ND2_MM_16)                  0.01       0.05 f
+  u_kar_lo/U1109/X (SAEDRVT14_INV_S_20)                   0.01       0.06 r
+  u_kar_lo/U1061/X (SAEDRVT14_INV_S_20)                   0.01       0.07 f
+  u_kar_lo/U908/X (SAEDRVT14_AOI21_6)                     0.01       0.08 r
+  u_kar_lo/U1207/X (SAEDRVT14_EO2_3)                      0.04       0.11 f
+  u_kar_lo/U2273/X (SAEDRVT14_EN2_4)                      0.04       0.16 r
+  u_kar_lo/U1901/X (SAEDRVT14_AN2_MM_20)                  0.02       0.18 r
+  u_kar_lo/U1055/X (SAEDRVT14_INV_S_16)                   0.01       0.19 f
+  u_kar_lo/U2485/X (SAEDRVT14_OAI22_4)                    0.01       0.21 r
+  u_kar_lo/U1949/CO (SAEDRVT14_ADDF_V2_2)                 0.04       0.25 r
+  u_kar_lo/U3135/S (SAEDRVT14_ADDF_V2_2)                  0.05       0.30 f
+  u_kar_lo/U1864/CO (SAEDRVT14_ADDF_V1_2)                 0.03       0.33 f
+  u_kar_lo/U3284/S (SAEDRVT14_ADDF_V2_2)                  0.06       0.40 f
+  u_kar_lo/U359/X (SAEDRVT14_ND2_5)                       0.02       0.42 r
+  u_kar_lo/U3288/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.44 f
+  u_kar_lo/U2335/X (SAEDRVT14_AO21_4)                     0.02       0.46 f
+  u_kar_lo/U1300/X (SAEDRVT14_OR2_MM_20)                  0.03       0.49 f
+  u_kar_lo/U1133/X (SAEDRVT14_INV_S_20)                   0.01       0.50 r
+  u_kar_lo/U1054/X (SAEDRVT14_INV_S_8)                    0.01       0.51 f
+  u_kar_lo/U190/X (SAEDRVT14_INV_12)                      0.01       0.51 r
+  u_kar_lo/U2261/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.52 f
+  u_kar_lo/U3564/X (SAEDRVT14_EN2_4)                      0.03       0.55 r
+  u_kar_lo/U1607/X (SAEDRVT14_EN3_3)                      0.04       0.59 f
+  u_kar_lo/U1418/X (SAEDRVT14_ND2_16)                     0.01       0.61 r
+  u_kar_lo/U1154/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.62 f
+  u_kar_lo/U1153/X (SAEDRVT14_AOI21_8)                    0.01       0.63 r
+  u_kar_lo/U3658/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.65 f
+  u_kar_lo/U1958/X (SAEDRVT14_NR2_MM_16)                  0.02       0.67 r
+  u_kar_lo/U2026/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.68 f
+  u_kar_lo/U1900/X (SAEDRVT14_EN2_4)                      0.04       0.71 r
+  u_kar_lo/U1780/X (SAEDRVT14_NR2_MM_16)                  0.01       0.73 f
+  u_kar_lo/U66/X (SAEDRVT14_BUF_8)                        0.01       0.74 f
+  u_kar_lo/U59/X (SAEDRVT14_INV_12)                       0.01       0.75 r
+  u_kar_lo/U57/X (SAEDRVT14_AN2_MM_8)                     0.02       0.77 r
+  u_kar_lo/U2202/X (SAEDRVT14_ND2_8)                      0.01       0.77 f
+  u_kar_lo/U2201/X (SAEDRVT14_NR2_MM_10)                  0.01       0.78 r
+  u_kar_lo/U2200/X (SAEDRVT14_INV_6)                      0.01       0.79 f
+  u_kar_lo/U1719/X (SAEDRVT14_ND2_5)                      0.01       0.80 r
+  u_kar_lo/U1718/X (SAEDRVT14_EN2_4)                      0.03       0.82 f
+  u_kar_lo/product[48] (fu_mult_karatsuba_32_full_1)      0.00       0.82 f
+  U723/X (SAEDRVT14_BUF_8)                                0.02       0.84 f
+  U2321/X (SAEDRVT14_ND2_MM_16)                           0.01       0.85 r
+  U1086/X (SAEDRVT14_OAI21_V1_8)                          0.02       0.87 f
+  U898/X (SAEDRVT14_NR2_MM_16)                            0.01       0.88 r
+  U896/X (SAEDRVT14_OAI21_V1_8)                           0.01       0.89 f
+  U897/X (SAEDRVT14_NR2_MM_16)                            0.01       0.90 r
+  U2588/X (SAEDRVT14_INV_S_8)                             0.02       0.92 f
+  U84/X (SAEDRVT14_AOI21_V1_8)                            0.01       0.93 r
+  U118/X (SAEDRVT14_EO2_1P5)                              0.03       0.96 f
+  U81/X (SAEDRVT14_AO222_2)                               0.04       1.00 f
+  out_data[53] (out)                                      0.00       1.00 f
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
