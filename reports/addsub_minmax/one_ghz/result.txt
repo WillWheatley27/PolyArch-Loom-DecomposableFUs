@@ -1,0 +1,1 @@
+FU=addsub_minmax_d4 TOP=fu_add_sub_minmax_d4 TARGET_PERIOD_NS=1.000 ARRIVAL_NS=0.999828 FMAX_GHZ=1.00017202959 ACTIVITY_SOURCE=uniform_synthetic

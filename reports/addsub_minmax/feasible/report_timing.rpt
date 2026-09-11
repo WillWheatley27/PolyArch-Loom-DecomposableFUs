@@ -1,0 +1,76 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_minmax_d4
+Version: Y-2026.03-SP1
+Date   : Thu Sep 10 20:38:38 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: mode[1] (input port)
+  Endpoint: out_data[48]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_minmax_d4
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  mode[1] (in)                                            0.00       0.00 r
+  core/mode[1] (fu_add_sub_minmax_dec_EN321_EN161_EN80)
+                                                          0.00       0.00 r
+  core/segmented/mode[1] (fu_add_sub_segmented_1_1_0)     0.00       0.00 r
+  core/segmented/U455/X (SAEDRVT14_EN2_4)                 0.03       0.03 f
+  core/segmented/U454/X (SAEDRVT14_MUX2_MM_4)             0.04       0.06 r
+  core/segmented/U442/X (SAEDRVT14_ND2_8)                 0.01       0.08 f
+  core/segmented/U417/X (SAEDRVT14_ND2_16)                0.02       0.10 r
+  core/segmented/U397/X (SAEDRVT14_OR2_MM_12)             0.02       0.12 r
+  core/segmented/U157/X (SAEDRVT14_INV_S_20)              0.01       0.12 f
+  core/segmented/U50/X (SAEDRVT14_INV_S_16)               0.01       0.14 r
+  core/segmented/U272/X (SAEDRVT14_EO2_1)                 0.06       0.19 f
+  core/segmented/U36/X (SAEDRVT14_ND2_1P5)                0.04       0.23 r
+  core/segmented/U650/X (SAEDRVT14_OAI21_2)               0.05       0.28 f
+  core/segmented/U297/X (SAEDRVT14_INV_S_0P5)             0.05       0.33 r
+  core/segmented/U651/X (SAEDRVT14_OAI21_1)               0.05       0.37 f
+  core/segmented/U134/X (SAEDRVT14_AOI21_V1_6)            0.02       0.39 r
+  core/segmented/U652/X (SAEDRVT14_EO2_3)                 0.04       0.43 f
+  core/segmented/sum_out[54] (fu_add_sub_segmented_1_1_0)
+                                                          0.00       0.43 f
+  core/U52/X (SAEDRVT14_OR2_MM_6)                         0.02       0.45 f
+  core/U225/X (SAEDRVT14_NR2_MM_10)                       0.01       0.45 r
+  core/U198/X (SAEDRVT14_AN2_8)                           0.01       0.47 r
+  core/U193/X (SAEDRVT14_ND2_8)                           0.01       0.48 f
+  core/U192/X (SAEDRVT14_NR2_MM_10)                       0.01       0.48 r
+  core/U205/X (SAEDRVT14_AN2_MM_20)                       0.02       0.51 r
+  core/U220/X (SAEDRVT14_NR2_MM_12)                       0.01       0.51 f
+  core/U408/X (SAEDRVT14_EN2_4)                           0.03       0.54 f
+  core/U409/X (SAEDRVT14_NR2_MM_8)                        0.02       0.56 r
+  core/U34/X (SAEDRVT14_BUF_16)                           0.03       0.59 r
+  core/U232/X (SAEDRVT14_AN2_8)                           0.02       0.61 r
+  core/U231/X (SAEDRVT14_OR2_MM_2)                        0.02       0.62 r
+  core/out_data[48] (fu_add_sub_minmax_dec_EN321_EN161_EN80)
+                                                          0.00       0.62 r
+  out_data[48] (out)                                      0.00       0.62 r
+  data arrival time                                                  0.62
+
+  max_delay                                               0.62       0.62
+  output external delay                                   0.00       0.62
+  data required time                                                 0.62
+  --------------------------------------------------------------------------
+  data required time                                                 0.62
+  data arrival time                                                 -0.62
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
