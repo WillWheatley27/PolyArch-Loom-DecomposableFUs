@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : fu_mult_karatsuba_32x2
+Version: Y-2026.03-SP1
+Date   : Fri Sep 11 16:24:36 2026
+****************************************
+
+Library(s) Used:
+
+    saed14rvt_base_tt0p8v25c (File: /mnt/nas0/eda.libs/saed14/EDK_03_2025/SAED14nm_EDK_STD_RVT/liberty/nldm/base/saed14rvt_base_tt0p8v25c.db)
+
+Number of ports:                          456
+Number of nets:                          5449
+Number of cells:                         4535
+Number of combinational cells:           4533
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                        839
+Number of references:                       3
+
+Combinational area:               3260.469585
+Buf/Inv area:                      407.680794
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:            1820.760189
+
+Total cell area:                  3260.469585
+Total area:                       5081.229774
+1

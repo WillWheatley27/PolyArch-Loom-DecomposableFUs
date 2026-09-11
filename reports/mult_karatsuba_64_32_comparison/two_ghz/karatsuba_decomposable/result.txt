@@ -1,0 +1,1 @@
+FU=Mult64_32 NAME=karatsuba_decomposable KIND=decomposable CAPABILITY=64_32 TOP=fu_mult_karatsuba_64_32 CORNER=two_ghz TARGET_PERIOD_NS=0.500 ARRIVAL_NS=0.745928 FMAX_GHZ=1.34061196255 ACTIVITY_SOURCE=uniform_synthetic PVT=tt0p8v25c LIBRARY=saed14rvt_base_tt0p8v25c.db

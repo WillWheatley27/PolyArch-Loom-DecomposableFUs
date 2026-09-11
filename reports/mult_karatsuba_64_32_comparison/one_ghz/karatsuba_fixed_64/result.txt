@@ -1,0 +1,1 @@
+FU=Mult64_32 NAME=karatsuba_fixed_64 KIND=fixed_karatsuba CAPABILITY=64 TOP=fu_mult_karatsuba_64 CORNER=one_ghz TARGET_PERIOD_NS=1.000 ARRIVAL_NS=0.999995 FMAX_GHZ=1.00000500003 ACTIVITY_SOURCE=uniform_synthetic PVT=tt0p8v25c LIBRARY=saed14rvt_base_tt0p8v25c.db

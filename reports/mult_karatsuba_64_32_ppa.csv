@@ -1,0 +1,11 @@
+name,kind,capability,corner,target_period_ns,achieved_delay_ns,fmax_ghz,cell_area_um2,total_area_um2,dynamic_power_mw,leakage_power_uw,energy_per_operation_pj,timing_met,activity_source
+designware_fixed_32x2,fixed_designware,32x2,one_ghz,1.000000,0.999997,1.000003000,1171.582780,2706.759031,4.582900,0.445226,4.582886,true,uniform_synthetic
+designware_fixed_64,fixed_designware,64,one_ghz,1.000000,0.999914,1.000086007,2256.940759,5240.186795,9.064500,1.060200,9.063720,true,uniform_synthetic
+karatsuba_decomposable,decomposable,64_32,one_ghz,1.000000,0.999689,1.000311097,3525.448789,7025.544564,14.015000,1.892000,14.010641,true,uniform_synthetic
+karatsuba_fixed_32x2,fixed_karatsuba,32x2,one_ghz,1.000000,0.999855,1.000145021,1704.160784,3391.511141,6.334200,0.850630,6.333282,true,uniform_synthetic
+karatsuba_fixed_64,fixed_karatsuba,64,one_ghz,1.000000,0.999995,1.000005000,4830.142764,8315.105507,20.602500,2.969400,20.602397,true,uniform_synthetic
+designware_fixed_32x2,fixed_designware,32x2,two_ghz,0.500000,0.499983,2.000068002,1827.592795,2955.782746,5.190400,1.184800,2.595112,true,uniform_synthetic
+designware_fixed_64,fixed_designware,64,two_ghz,0.500000,0.522399,1.914245625,3708.199196,6581.115608,11.944200,2.551600,6.239638,false,uniform_synthetic
+karatsuba_decomposable,decomposable,64_32,two_ghz,0.500000,0.745928,1.340611963,4725.447595,8051.668155,17.569300,3.208300,13.105433,false,uniform_synthetic
+karatsuba_fixed_32x2,fixed_karatsuba,32x2,two_ghz,0.500000,0.579319,1.726164686,3260.469585,5081.229774,10.960900,2.266300,6.349858,false,uniform_synthetic
+karatsuba_fixed_64,fixed_karatsuba,64,two_ghz,0.500000,0.931239,1.073838188,5403.701959,8873.923731,21.346700,3.542200,19.878880,false,uniform_synthetic
