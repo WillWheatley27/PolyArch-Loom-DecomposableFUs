@@ -1,0 +1,1 @@
+FU=fp_minmax_rev64_32 TOP=fu_fp_minmax_revised_shared64_32 TARGET_PERIOD_NS=0.500 ARRIVAL_NS=0.499884 FMAX_GHZ=2.00046410767 ACTIVITY_SOURCE=uniform_synthetic

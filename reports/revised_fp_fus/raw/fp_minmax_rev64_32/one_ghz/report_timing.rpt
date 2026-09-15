@@ -1,0 +1,74 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_fp_minmax_revised_shared64_32
+Version: Y-2026.03-SP1
+Date   : Mon Sep 14 22:52:50 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[63]
+              (input port)
+  Endpoint: out_data[47]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_fp_minmax_revised_shared64_32
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  in_data_0[63] (in)                                      0.00       0.00 r
+  core_inst/in_data_0[63] (revised_fp_minmax_shared_core_SUPPORT_321_SUPPORT_160)
+                                                          0.00       0.00 r
+  core_inst/U358/X (SAEDRVT14_INV_S_2)                    0.12       0.12 f
+  core_inst/U395/X (SAEDRVT14_OAI22_1P5)                  0.08       0.20 r
+  core_inst/U128/X (SAEDRVT14_OA2BB2_V1_0P5)              0.07       0.27 r
+  core_inst/U396/X (SAEDRVT14_OA21B_1)                    0.04       0.31 r
+  core_inst/U126/X (SAEDRVT14_OA2BB2_V1_0P5)              0.06       0.37 r
+  core_inst/U148/X (SAEDRVT14_OA21_1)                     0.04       0.40 r
+  core_inst/U147/X (SAEDRVT14_OAI22_1)                    0.03       0.44 f
+  core_inst/U146/X (SAEDRVT14_AOI21_0P5)                  0.05       0.49 r
+  core_inst/U399/X (SAEDRVT14_OAI22_2)                    0.05       0.54 f
+  core_inst/U400/X (SAEDRVT14_OAI21_1)                    0.04       0.58 r
+  core_inst/U401/X (SAEDRVT14_AO21B_0P5)                  0.05       0.62 f
+  core_inst/U402/X (SAEDRVT14_AOI21_0P5)                  0.05       0.67 r
+  core_inst/U527/X (SAEDRVT14_OA21_4)                     0.04       0.71 r
+  core_inst/U530/X (SAEDRVT14_NR2_MM_10)                  0.01       0.72 f
+  core_inst/U26/X (SAEDRVT14_AOI21_V1_4)                  0.02       0.73 r
+  core_inst/U533/X (SAEDRVT14_OAI21_3)                    0.02       0.76 f
+  core_inst/U540/X (SAEDRVT14_AOI21_1P5)                  0.03       0.79 r
+  core_inst/U541/X (SAEDRVT14_OAI21_V1_8)                 0.03       0.82 f
+  core_inst/U550/X (SAEDRVT14_EN2_4)                      0.04       0.86 f
+  core_inst/U562/X (SAEDRVT14_INV_S_8)                    0.01       0.87 r
+  core_inst/U563/X (SAEDRVT14_ND2_8)                      0.01       0.88 f
+  core_inst/U24/X (SAEDRVT14_INV_6)                       0.02       0.90 r
+  core_inst/U652/X (SAEDRVT14_AOI21_8)                    0.02       0.92 f
+  core_inst/U76/X (SAEDRVT14_INV_S_20)                    0.01       0.94 r
+  core_inst/U653/X (SAEDRVT14_INV_S_20)                   0.01       0.95 f
+  core_inst/U291/X (SAEDRVT14_OAI22_0P5)                  0.05       1.00 r
+  core_inst/out_data[47] (revised_fp_minmax_shared_core_SUPPORT_321_SUPPORT_160)
+                                                          0.00       1.00 r
+  out_data[47] (out)                                      0.00       1.00 r
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

@@ -1,0 +1,1 @@
+FU=fp_cmp_rev64 TOP=fu_fp_cmp_revised_shared64 TARGET_PERIOD_NS=0.500 ARRIVAL_NS=0.499737 FMAX_GHZ=2.00105255364 ACTIVITY_SOURCE=uniform_synthetic

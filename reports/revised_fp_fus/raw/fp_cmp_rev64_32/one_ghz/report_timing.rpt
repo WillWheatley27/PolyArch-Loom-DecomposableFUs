@@ -1,0 +1,72 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_fp_cmp_revised_shared64_32
+Version: Y-2026.03-SP1
+Date   : Mon Sep 14 22:46:38 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[63]
+              (input port)
+  Endpoint: out_data[27]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_fp_cmp_revised_shared64_32
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_0[63] (in)                                      0.00       0.00 f
+  core_inst/in_data_0[63] (revised_fp_cmp_shared_core_SUPPORT_321_SUPPORT_160)
+                                                          0.00       0.00 f
+  core_inst/U368/X (SAEDRVT14_INV_S_16)                   0.05       0.05 r
+  core_inst/U369/X (SAEDRVT14_ND2_8)                      0.02       0.08 f
+  core_inst/U90/X (SAEDRVT14_OAI21_V1_8)                  0.02       0.10 r
+  core_inst/U75/X (SAEDRVT14_INV_6)                       0.02       0.12 f
+  core_inst/U87/CKOUTB (SAEDRVT14_CLKSPLT_1)              0.09       0.21 r
+  core_inst/U108/X (SAEDRVT14_OAI22_1)                    0.09       0.29 f
+  core_inst/U391/X (SAEDRVT14_ND2_0P5)                    0.05       0.34 r
+  core_inst/U392/X (SAEDRVT14_AO21B_0P5)                  0.05       0.39 f
+  core_inst/U38/X (SAEDRVT14_BUF_S_2)                     0.03       0.42 f
+  core_inst/U398/X (SAEDRVT14_NR2_MM_3)                   0.02       0.44 r
+  core_inst/U399/X (SAEDRVT14_AO21B_0P5)                  0.06       0.50 f
+  core_inst/U95/X (SAEDRVT14_OR4_2)                       0.04       0.54 f
+  core_inst/U447/X (SAEDRVT14_OR4_1)                      0.04       0.58 f
+  core_inst/U463/X (SAEDRVT14_OR4_1)                      0.04       0.62 f
+  core_inst/U464/X (SAEDRVT14_OR4_1)                      0.05       0.67 f
+  core_inst/U532/X (SAEDRVT14_AOI21_V1_4)                 0.05       0.72 r
+  core_inst/U542/X (SAEDRVT14_NR2_1P5)                    0.05       0.76 f
+  core_inst/U543/X (SAEDRVT14_AO21_4)                     0.03       0.79 f
+  core_inst/U545/X (SAEDRVT14_AOI21_1)                    0.03       0.82 r
+  core_inst/U546/X (SAEDRVT14_OA31_1)                     0.04       0.87 r
+  core_inst/U547/X (SAEDRVT14_OAI22_4)                    0.02       0.89 f
+  core_inst/U551/X (SAEDRVT14_OAI21_V1_4)                 0.04       0.93 r
+  core_inst/U552/X (SAEDRVT14_OAI21_V1_8)                 0.03       0.96 f
+  core_inst/U3/X (SAEDRVT14_BUF_3)                        0.04       1.00 f
+  core_inst/out_data[27] (revised_fp_cmp_shared_core_SUPPORT_321_SUPPORT_160)
+                                                          0.00       1.00 f
+  out_data[27] (out)                                      0.00       1.00 f
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

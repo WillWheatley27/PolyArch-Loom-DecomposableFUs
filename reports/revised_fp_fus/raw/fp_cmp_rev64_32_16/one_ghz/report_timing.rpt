@@ -1,0 +1,75 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_fp_cmp_revised_shared64_32_16
+Version: Y-2026.03-SP1
+Date   : Mon Sep 14 22:48:41 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[63]
+              (input port)
+  Endpoint: out_data[32]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_fp_cmp_revised_shared64_32_16
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  in_data_0[63] (in)                                      0.00       0.00 r
+  core_inst/in_data_0[63] (revised_fp_cmp_shared_core_SUPPORT_321_SUPPORT_161)
+                                                          0.00       0.00 r
+  core_inst/U428/X (SAEDRVT14_INV_6)                      0.05       0.05 f
+  core_inst/U433/X (SAEDRVT14_OAI22_1)                    0.05       0.10 r
+  core_inst/U481/X (SAEDRVT14_AOI21_3)                    0.03       0.13 f
+  core_inst/U482/X (SAEDRVT14_BUF_16)                     0.03       0.16 f
+  core_inst/U101/X (SAEDRVT14_INV_S_5)                    0.03       0.19 r
+  core_inst/U231/X (SAEDRVT14_OAI22_2)                    0.05       0.24 f
+  core_inst/U105/X (SAEDRVT14_NR2_1)                      0.08       0.32 r
+  core_inst/U432/X (SAEDRVT14_AOI21_0P5)                  0.06       0.38 f
+  core_inst/U509/X (SAEDRVT14_ND2_CDC_1)                  0.04       0.42 r
+  core_inst/U511/X (SAEDRVT14_AOI21_1P5)                  0.03       0.44 f
+  core_inst/U512/X (SAEDRVT14_AO21_2)                     0.03       0.47 f
+  core_inst/U513/X (SAEDRVT14_AO21_2)                     0.02       0.49 f
+  core_inst/U514/X (SAEDRVT14_AOI21_1P5)                  0.03       0.52 r
+  core_inst/U515/X (SAEDRVT14_OAI21_V1_8)                 0.04       0.56 f
+  core_inst/U561/X (SAEDRVT14_OA31_4)                     0.05       0.61 f
+  core_inst/U576/X (SAEDRVT14_INV_12)                     0.02       0.62 r
+  core_inst/U16/X (SAEDRVT14_ND2_1P5)                     0.02       0.64 f
+  core_inst/U661/X (SAEDRVT14_OAI22_4)                    0.04       0.68 r
+  core_inst/U691/X (SAEDRVT14_NR2_5)                      0.03       0.71 f
+  core_inst/U694/X (SAEDRVT14_AOI21_1P5)                  0.02       0.74 r
+  core_inst/U8/X (SAEDRVT14_OAI21_V1_4)                   0.03       0.76 f
+  core_inst/U695/X (SAEDRVT14_AOI21_0P5)                  0.04       0.80 r
+  core_inst/U700/X (SAEDRVT14_OAI21_0P5)                  0.04       0.85 f
+  core_inst/U701/X (SAEDRVT14_AOI21_0P5)                  0.05       0.89 r
+  core_inst/U702/X (SAEDRVT14_OA31_1)                     0.04       0.94 r
+  core_inst/U4/X (SAEDRVT14_OAI21_V1_4)                   0.03       0.97 f
+  core_inst/U714/X (SAEDRVT14_BUF_10)                     0.03       1.00 f
+  core_inst/out_data[32] (revised_fp_cmp_shared_core_SUPPORT_321_SUPPORT_161)
+                                                          0.00       1.00 f
+  out_data[32] (out)                                      0.00       1.00 f
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
