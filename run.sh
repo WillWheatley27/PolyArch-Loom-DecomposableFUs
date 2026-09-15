@@ -244,6 +244,28 @@ elif [[ "$target" == "abs_standalones" ]]; then
     run_one "$module"
   done
   echo "run.sh: ALL ABS STANDALONES OK (${#ABS_STANDALONE_MODULES[@]} modules)"
+elif [[ "$target" == "revised_fp_fus" ]]; then
+  revised_cmp="rtl/revised_fp_fus/fu_fp_cmp_revised_shared.sv"
+  revised_mm="rtl/revised_fp_fus/fu_fp_minmax_revised_shared.sv"
+  revised_tb="rtl/revised_fp_fus/tb_revised_fp_fus.sv"
+  echo "== lint (-Wall) : revised FP compare/minmax tiers =="
+  verilator --lint-only -Wall -Wno-DECLFILENAME -Wno-UNUSEDSIGNAL \
+    --top-module fu_fp_cmp_revised_shared64 "$revised_cmp"
+  verilator --lint-only -Wall -Wno-DECLFILENAME -Wno-UNUSEDSIGNAL \
+    --top-module fu_fp_minmax_revised_shared64 "$revised_mm"
+  revised_obj="build/obj_revised_fp_fus"
+  revised_log="build/revised_fp_fus.log"
+  echo "== build + sim : revised FP compare/minmax tiers =="
+  verilator --binary --timing \
+    -Wno-WIDTHTRUNC -Wno-WIDTHEXPAND -Wno-UNUSEDSIGNAL -Wno-TIMESCALEMOD \
+    --top-module tb_revised_fp_fus --Mdir "$revised_obj" \
+    "$revised_cmp" "$revised_mm" "$revised_tb"
+  "$revised_obj/Vtb_revised_fp_fus" | tee "$revised_log"
+  if ! rg -q '^PASS([:[:space:]])' "$revised_log"; then
+    echo "run.sh: FAIL (revised_fp_fus)" >&2
+    exit 1
+  fi
+  echo "run.sh: OK (revised_fp_fus)"
 else
   run_one "$target"
 fi

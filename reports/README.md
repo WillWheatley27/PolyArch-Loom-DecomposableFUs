@@ -75,6 +75,17 @@ and the practical fixed DesignWare bank at 1 GHz, plus a secondary symmetric
 maximum-speed stress run. See `mult_karatsuba_comparison.md` for the bank
 definitions, verification evidence, results, and interpretation.
 
+The revised FP compare/min/max experiment is in `revised_fp_fus/`. It uses a
+single 16-bit segmented ordering chain and compile-time capability tiers:
+FP64-only (`rev64`), FP64+FP32 (`rev64_32`), and FP64+FP32+FP16
+(`rev64_32_16`). `ppa.csv` contains the 12 final SAED14nm/DC rows,
+`savings.csv` compares each tier with the matching fixed bank, and
+`marginal.csv` records the measured overhead of adding each capability. Raw DC
+area/power/timing reports are under `revised_fp_fus/raw/`; the synthesis entry
+point is `synth/run_revised_fp_fus.sh`. These rows use the same uniform
+synthetic activity assumptions as the normalized tables and are not workload
+power claims.
+
 DC also emitted VHD-300 array-index warnings for generated AddSub and FP
 MinMax expressions during elaboration. Verilator passes, but these warnings
 should be resolved before treating the synthesis results as sign-off quality.
