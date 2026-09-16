@@ -1,0 +1,77 @@
+# Capability Tier Ladders
+
+Synopsys DC Y-2026.03-SP1, SAED14nm RVT TT/0.8 V/25 C, identical `compile_ultra -area_high_effort_script -no_autoungroup` flow, 1.000 ns and 0.500 ns max-delay targets, and uniform synthetic activity (static probability 0.5, toggle rate 0.2). Area is total cell area; energy/op is dynamic power divided by achieved Fmax.
+
+Each row is a capability wrapper synthesized independently. Marginal overhead is measured against the preceding rung in the same family and corner.
+
+## abs
+
+| Tier | Capability | Corner | Area (um2) | Power (mW) | Leakage (uW) | Delay (ns) | Fmax (GHz) | Energy/op (pJ) |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| a1 | 64 | one_ghz | 133.466 | 0.215481 | 0.052010 | 0.995457 | 1.004564 | 0.214502 |
+| a1 | 64 | two_ghz | 174.270 | 0.220780 | 0.082706 | 0.499731 | 2.001077 | 0.110331 |
+| a2 | 64/32x2 | one_ghz | 141.325 | 0.220840 | 0.055420 | 0.999863 | 1.000137 | 0.220810 |
+| a2 | 64/32x2 | two_ghz | 175.691 | 0.247035 | 0.085916 | 0.499997 | 2.000012 | 0.123517 |
+| a3 | 64/32x2/16x4 | one_ghz | 155.134 | 0.268606 | 0.065369 | 0.999996 | 1.000004 | 0.268605 |
+| a3 | 64/32x2/16x4 | two_ghz | 201.443 | 0.301127 | 0.105446 | 0.499909 | 2.000364 | 0.150536 |
+
+## cmp
+
+| Tier | Capability | Corner | Area (um2) | Power (mW) | Leakage (uW) | Delay (ns) | Fmax (GHz) | Energy/op (pJ) |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| c1 | 64 | one_ghz | 83.250 | 0.202380 | 0.023742 | 0.997995 | 1.002009 | 0.201974 |
+| c1 | 64 | two_ghz | 117.038 | 0.240319 | 0.045501 | 0.499846 | 2.000616 | 0.120122 |
+| c2 | 64/32x2 | one_ghz | 88.223 | 0.222309 | 0.025416 | 0.998771 | 1.001231 | 0.222036 |
+| c2 | 64/32x2 | two_ghz | 119.392 | 0.244183 | 0.047004 | 0.499929 | 2.000284 | 0.122074 |
+| c4 | 64/32x2/16x4 | one_ghz | 144.122 | 0.305136 | 0.055501 | 0.999158 | 1.000843 | 0.304879 |
+| c4 | 64/32x2/16x4 | two_ghz | 222.133 | 0.356930 | 0.106841 | 0.499709 | 2.001165 | 0.178361 |
+| c8 | 64/32x2/16x4/8x8 | one_ghz | 145.854 | 0.326448 | 0.057404 | 0.999377 | 1.000623 | 0.326245 |
+| c8 | 64/32x2/16x4/8x8 | two_ghz | 244.555 | 0.383492 | 0.124740 | 0.499972 | 2.000112 | 0.191735 |
+
+## barrel_shift
+
+| Tier | Capability | Corner | Area (um2) | Power (mW) | Leakage (uW) | Delay (ns) | Fmax (GHz) | Energy/op (pJ) |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| bs1 | 64 | one_ghz | 315.240 | 1.222300 | 0.119859 | 0.999814 | 1.000186 | 1.222073 |
+| bs1 | 64 | two_ghz | 643.978 | 1.511600 | 0.341512 | 0.499981 | 2.000076 | 0.755771 |
+| bs2 | 64/32x2 | one_ghz | 368.831 | 1.304400 | 0.154621 | 0.999940 | 1.000060 | 1.304322 |
+| bs2 | 64/32x2 | two_ghz | 607.703 | 1.444300 | 0.318039 | 0.499953 | 2.000188 | 0.722082 |
+| bs3 | 64/32x2/16x4 | one_ghz | 404.351 | 1.436800 | 0.162481 | 0.999865 | 1.000135 | 1.436606 |
+| bs3 | 64/32x2/16x4 | two_ghz | 762.259 | 1.710900 | 0.417944 | 0.499985 | 2.000060 | 0.855424 |
+
+## rounding
+
+| Tier | Capability | Corner | Area (um2) | Power (mW) | Leakage (uW) | Delay (ns) | Fmax (GHz) | Energy/op (pJ) |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| g1 | FP64 | one_ghz | 613.253 | 0.493619 | 0.302167 | 0.999956 | 1.000044 | 0.493597 |
+| g1 | FP64 | two_ghz | 1384.126 | 0.894544 | 0.965000 | 0.597832 | 1.672711 | 0.534787 |
+| g2 | FP64/FP32x2 | one_ghz | 1028.482 | 0.883716 | 0.531672 | 0.999729 | 1.000271 | 0.883477 |
+| g2 | FP64/FP32x2 | two_ghz | 1805.260 | 1.339600 | 1.216400 | 0.551408 | 1.813539 | 0.738666 |
+| g3 | FP64/FP32x2/FP16x4 | one_ghz | 1256.786 | 1.324400 | 0.650348 | 0.999835 | 1.000165 | 1.324181 |
+| g3 | FP64/FP32x2/FP16x4 | two_ghz | 2156.686 | 1.645500 | 1.454600 | 0.550626 | 1.816115 | 0.906055 |
+
+## fp_cmp
+
+| Tier | Capability | Corner | Area (um2) | Power (mW) | Leakage (uW) | Delay (ns) | Fmax (GHz) | Energy/op (pJ) |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| g1 | FP64 | one_ghz | 168.320 | 0.598208 | 0.061444 | 0.999613 | 1.000387 | 0.597977 |
+| g1 | FP64 | two_ghz | 221.600 | 0.461653 | 0.097988 | 0.499950 | 2.000200 | 0.230803 |
+| g2 | FP64/FP32x2 | one_ghz | 205.350 | 0.653018 | 0.081155 | 0.999994 | 1.000006 | 0.653014 |
+| g2 | FP64/FP32x2 | two_ghz | 350.094 | 0.644073 | 0.183810 | 0.499465 | 2.002142 | 0.321692 |
+| g3 | FP64/FP32x2/FP16x4 | one_ghz | 257.742 | 0.726758 | 0.112752 | 0.999435 | 1.000565 | 0.726347 |
+| g3 | FP64/FP32x2/FP16x4 | two_ghz | 410.078 | 0.758126 | 0.227659 | 0.499982 | 2.000072 | 0.379050 |
+
+## fp_minmax
+
+| Tier | Capability | Corner | Area (um2) | Power (mW) | Leakage (uW) | Delay (ns) | Fmax (GHz) | Energy/op (pJ) |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| m1 | FP64 | one_ghz | 230.836 | 0.668037 | 0.106196 | 0.998874 | 1.001127 | 0.667285 |
+| m1 | FP64 | two_ghz | 301.032 | 0.700670 | 0.146198 | 0.499998 | 2.000008 | 0.350333 |
+| m2 | FP64/FP32x2 | one_ghz | 253.568 | 0.622330 | 0.101655 | 0.999696 | 1.000304 | 0.622140 |
+| m2 | FP64/FP32x2 | two_ghz | 346.453 | 0.719543 | 0.177031 | 0.499995 | 2.000020 | 0.359768 |
+| m3 | FP64/FP32x2/FP16x4 | one_ghz | 304.451 | 0.755852 | 0.130502 | 0.999942 | 1.000058 | 0.755808 |
+| m3 | FP64/FP32x2/FP16x4 | two_ghz | 461.405 | 0.960188 | 0.264507 | 0.499914 | 2.000344 | 0.480012 |
+
+## MinMax constraint anomaly
+
+The integer fixed `minmax_32x2` and `minmax_64` rows in `reports/synth_common_fixed` were produced by separate `compile_ultra -area_high_effort_script` runs at 1.000 ns and 0.500 ns. The tighter constraint can select a different mapped implementation and cell sizing; area is not mathematically monotonic with timing pressure. Therefore `minmax_32x2` shrinking from 138.128398 to 111.088801 um2 while `minmax_64` grows from 103.407600 to 130.491600 um2 is a synthesis result, not evidence of a physical law. Compare each corner using its own report set and do not mix 1 GHz and 2 GHz bank baselines.

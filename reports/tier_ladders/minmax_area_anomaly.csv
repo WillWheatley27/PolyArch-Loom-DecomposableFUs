@@ -1,0 +1,5 @@
+design,corner,cell_area_um2,total_area_um2,combinational_cells,buf_inv_cells,reference_count,net_interconnect_area_um2,achieved_delay_ns,fmax_ghz
+minmax_32x2,one_ghz,138.128398,301.769498,392,156,56,163.641099,0.999315,1.000685470
+minmax_32x2,two_ghz,111.088801,258.318871,394,72,25,147.230070,0.499239,2.003048640
+minmax_64,one_ghz,103.407600,237.779038,316,104,34,134.371438,0.999309,1.000691478
+minmax_64,two_ghz,130.491600,278.557137,401,134,48,148.065537,0.498328,2.006710440
