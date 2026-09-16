@@ -266,6 +266,24 @@ elif [[ "$target" == "revised_fp_fus" ]]; then
     exit 1
   fi
   echo "run.sh: OK (revised_fp_fus)"
+elif [[ "$target" == "fp_minmax_two_level" ]]; then
+  rtl="rtl/revised_fp_fus/fu_fp_minmax_32_16.sv"
+  tb="rtl/revised_fp_fus/tb_fu_fp_minmax_32_16.sv"
+  echo "== lint (-Wall) : FP min/max 32->16 two-level tier =="
+  verilator --lint-only -Wall -Wno-DECLFILENAME -Wno-UNUSEDSIGNAL \
+    --top-module fu_fp_minmax_revised_32_16 "$rtl"
+  obj_dir="build/obj_fp_minmax_32_16"
+  log="build/fp_minmax_two_level.log"
+  echo "== build + sim : FP min/max 32->16 two-level tier =="
+  verilator --binary --timing \
+    -Wno-WIDTHTRUNC -Wno-WIDTHEXPAND -Wno-UNUSEDSIGNAL -Wno-TIMESCALEMOD \
+    --top-module tb_fu_fp_minmax_32_16 --Mdir "$obj_dir" "$rtl" "$tb"
+  "$obj_dir/Vtb_fu_fp_minmax_32_16" | tee "$log"
+  if ! rg -q '^PASS([:[:space:]])' "$log"; then
+    echo "run.sh: FAIL (fp_minmax_two_level)" >&2
+    exit 1
+  fi
+  echo "run.sh: OK (fp_minmax_two_level)"
 else
   run_one "$target"
 fi

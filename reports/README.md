@@ -86,6 +86,13 @@ point is `synth/run_revised_fp_fus.sh`. These rows use the same uniform
 synthetic activity assumptions as the normalized tables and are not workload
 power claims.
 
+The two-level FP min/max speed-corner experiment is in
+`revised_fp_fus/two_level_speed.csv` and `two_level_speed.md`. It compares
+FP64->FP32x2 and FP32->FP16x2 at the 0.010 ns maximum-speed stress target.
+The FP64 and packed FP32 fixed speed reports reuse the existing
+`synth_maxspeed_fixed` data; the FP32 scalar, FP16x2, and both new
+decomposable reports are under `revised_fp_fus/two_level_speed/raw`.
+
 DC also emitted VHD-300 array-index warnings for generated AddSub and FP
 MinMax expressions during elaboration. Verilator passes, but these warnings
 should be resolved before treating the synthesis results as sign-off quality.
