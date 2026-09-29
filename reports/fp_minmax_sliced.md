@@ -38,7 +38,7 @@ m1 has no mode input: at 1 GHz, buffer and AO221 cells go from 0 to 7.6 and
 4.4 um2 at m2, and m3 reuses them. Tier steps are therefore roughly constant
 rather than proportional to lane count.
 
-`check_fp_minmax_ladder.py` gates on this: monotonic area, power, and leakage,
+`check_tier_ladder.py fp_minmax` gates on this: monotonic area, power, and leakage,
 m1->m2 and m2->m3 steps within 2x of each other, and timing met. The canonical
 new ladder passes 5 of 6 metric/corner checks and the old ladder fails all 6
 (power and leakage fell from m1 to m2 at 1 GHz, and the 2 GHz power step grew
@@ -82,7 +82,7 @@ script cannot measure uncertainty. The trials therefore vary what should not
 matter: `t1_repeat` reruns the canonical flow, `t2_reverse` reverses the job
 order inside one session, and `t3_fresh` compiles every design in a fresh
 session (`synth/syn_tier_ladders.tcl` with `OUTROOT`, `JOB_REVERSE`, `JOB_FILTER`).
-`collect_fp_minmax_trials.py` writes every row plus min / median / max / spread
+`collect_ladder_trials.py` writes every row plus min / median / max / spread
 to `tier_ladders/trials.csv`; statistics use the three distinct configurations
 (canonical, t2, t3), because t1 reproduces the canonical run bit-for-bit.
 

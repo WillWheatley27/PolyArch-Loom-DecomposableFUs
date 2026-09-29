@@ -6,7 +6,7 @@ Report : power
         -analysis_effort low
 Design : fu_fp_cmp_revised_shared64_32
 Version: Y-2026.03-SP1
-Date   : Mon Sep 14 22:47:38 2026
+Date   : Tue Sep 29 15:17:37 2026
 ****************************************
 
 
@@ -38,12 +38,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =  92.5678 uW   (15%)
-  Net Switching Power  = 530.1682 uW   (85%)
+  Cell Internal Power  =  24.6444 uW   (10%)
+  Net Switching Power  = 225.5538 uW   (90%)
                          ---------
-Total Dynamic Power    = 622.7360 uW  (100%)
+Total Dynamic Power    = 250.1983 uW  (100%)
 
-Cell Leakage Power     = 186.5441 nW
+Cell Leakage Power     =  50.6573 nW
 
 Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
@@ -56,7 +56,7 @@ black_box          0.0000            0.0000            0.0000            0.0000 
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
 register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational  9.2568e-02            0.5302        1.8654e+05            0.6229  ( 100.00%)
+combinational  2.4644e-02            0.2256        5.0657e+04            0.2502  ( 100.00%)
 --------------------------------------------------------------------------------------------------
-Total          9.2568e-02 mW         0.5302 mW     1.8654e+05 pW         0.6229 mW
+Total          2.4644e-02 mW         0.2256 mW     5.0657e+04 pW         0.2502 mW
 1

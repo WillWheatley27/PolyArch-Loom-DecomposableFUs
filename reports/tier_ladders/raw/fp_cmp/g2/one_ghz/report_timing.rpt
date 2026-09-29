@@ -6,15 +6,15 @@ Report : timing
         -max_paths 1
 Design : fu_fp_cmp_g2
 Version: Y-2026.03-SP1
-Date   : Wed Sep 16 01:12:05 2026
+Date   : Tue Sep 29 15:12:24 2026
 ****************************************
 
 Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
 Wire Load Model Mode: top
 
-  Startpoint: in_data_0[63]
+  Startpoint: in_data_1[11]
               (input port)
-  Endpoint: out_data[0]
+  Endpoint: out_data[27]
             (output port)
   Path Group: default
   Path Type: max
@@ -23,42 +23,39 @@ Wire Load Model Mode: top
   ------------------------------------------------
   fu_fp_cmp_g2       8000                  saed14rvt_base_tt0p8v25c
 
-  Point                                    Incr       Path
-  -----------------------------------------------------------
-  input external delay                     0.00       0.00 f
-  in_data_0[63] (in)                       0.00       0.00 f
-  core/in_data_0[63] (fu_fp_cmp_dec)       0.00       0.00 f
-  core/U80/X (SAEDRVT14_INV_S_20)          0.10       0.10 r
-  core/U384/X (SAEDRVT14_OA2BB2_V1_1)      0.11       0.21 r
-  core/U264/X (SAEDRVT14_INV_S_0P5)        0.10       0.31 f
-  core/U262/X (SAEDRVT14_OAI22_0P75)       0.06       0.37 r
-  core/U352/X (SAEDRVT14_OAI22_1)          0.07       0.44 f
-  core/U297/X (SAEDRVT14_ND2_CDC_1)        0.05       0.49 r
-  core/U294/X (SAEDRVT14_OR4_1)            0.05       0.54 r
-  core/U494/X (SAEDRVT14_INV_0P75)         0.03       0.57 f
-  core/U495/X (SAEDRVT14_OAI21_0P5)        0.04       0.60 r
-  core/U496/X (SAEDRVT14_OR4_2)            0.05       0.65 r
-  core/U511/X (SAEDRVT14_INV_6)            0.01       0.66 f
-  core/U513/X (SAEDRVT14_NR2_MM_1)         0.05       0.71 r
-  core/U514/X (SAEDRVT14_ND2_1P5)          0.04       0.76 f
-  core/U521/X (SAEDRVT14_OAI22_3)          0.03       0.78 r
-  core/U522/X (SAEDRVT14_OAI21_2)          0.03       0.81 f
-  core/U337/X (SAEDRVT14_OAI21_3)          0.02       0.84 r
-  core/U371/X (SAEDRVT14_OAI21_2)          0.05       0.89 f
-  core/U544/X (SAEDRVT14_OAI21_V1_8)       0.04       0.93 r
-  core/U545/X (SAEDRVT14_BUF_3)            0.07       1.00 r
-  core/out_data[0] (fu_fp_cmp_dec)         0.00       1.00 r
-  out_data[0] (out)                        0.00       1.00 r
-  data arrival time                                   1.00
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_1[11] (in)                                      0.00       0.00 f
+  core/in_data_1[11] (fu_fp_cmp_dec_W64_MIN_LANE_W32)     0.00       0.00 f
+  core/U53/X (SAEDRVT14_INV_S_0P5)                        0.11       0.11 r
+  core/U54/X (SAEDRVT14_AOI21_0P5)                        0.10       0.22 f
+  core/U330/X (SAEDRVT14_AOI21_0P5)                       0.06       0.27 r
+  core/U172/X (SAEDRVT14_OAI22_1)                         0.04       0.32 f
+  core/U171/X (SAEDRVT14_NR2_MM_1)                        0.04       0.35 r
+  core/U74/X (SAEDRVT14_OAI22_0P5)                        0.06       0.41 f
+  core/U331/X (SAEDRVT14_OA22_2)                          0.05       0.46 f
+  core/U347/X (SAEDRVT14_OAI22_2)                         0.03       0.49 r
+  core/U348/X (SAEDRVT14_AOI21_1)                         0.04       0.53 f
+  core/U349/X (SAEDRVT14_MUX2_MM_1)                       0.04       0.57 r
+  core/U350/X (SAEDRVT14_MUXI2_1)                         0.04       0.61 r
+  core/U352/X (SAEDRVT14_MUXI2_B_1)                       0.03       0.64 f
+  core/U7/X (SAEDRVT14_MUXI2_2)                           0.07       0.71 r
+  core/U6/X (SAEDRVT14_INV_4)                             0.01       0.73 f
+  core/U327/X (SAEDRVT14_OAI22_1)                         0.11       0.83 r
+  core/U8/X (SAEDRVT14_BUF_S_0P5)                         0.17       1.00 r
+  core/out_data[27] (fu_fp_cmp_dec_W64_MIN_LANE_W32)      0.00       1.00 r
+  out_data[27] (out)                                      0.00       1.00 r
+  data arrival time                                                  1.00
 
-  max_delay                                1.00       1.00
-  output external delay                    0.00       1.00
-  data required time                                  1.00
-  -----------------------------------------------------------
-  data required time                                  1.00
-  data arrival time                                  -1.00
-  -----------------------------------------------------------
-  slack (MET)                                         0.00
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
 
 
 1

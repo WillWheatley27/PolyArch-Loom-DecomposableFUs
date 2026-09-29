@@ -84,6 +84,14 @@ module tb;
       chk(2'b01, p[3:0], 64'h7FC00000_00000000, 64'h3F800000_80000000); // fp32: (NaN,+0) vs (1,-0)
       chk(2'b10, p[3:0], 64'h3C00_C000_7E00_0000, 64'h4000_BC00_3C00_8000); // fp16 four lanes
       chk(2'b10, p[3:0], 64'h7C00_FC00_0000_8000, 64'h7C00_FC00_8000_0000); // +-Inf, +-0
+      // NaN and zero detection span slices but never cross a lane boundary
+      chk(2'b00, p[3:0], 64'h7FF0_0000_0000_0001, 64'h3FF0_0000_0000_0000); // fp64 NaN, only mantissa bit 0
+      chk(2'b00, p[3:0], 64'h0000_0000_0000_0001, 64'h8000_0000_0000_0000); // fp64 min subnormal vs -0
+      chk(2'b00, p[3:0], 64'h4000_7C01_7C01_7C01, 64'h4000_0000_0000_0000); // fp16-NaN-shaped slices in one fp64
+      chk(2'b01, p[3:0], 64'h0000_0000_0000_0001, 64'h8000_0000_0000_0000); // fp32: (+0 vs -0, subnormal vs +0)
+      chk(2'b01, p[3:0], 64'h4000_0000_7F80_0001, 64'h3F80_0000_3F80_0000); // fp32 NaN, only mantissa bit 0
+      chk(2'b10, p[3:0], 64'h7C01_0001_8000_7C00, 64'h3C00_0000_0000_0001); // fp16: NaN, subnormal, -0, +Inf
+      chk(2'b11, p[3:0], 64'h3C00_4000_BC00_C000, 64'h4000_3C00_C000_BC00); // reserved mode -> fp64
     end
 
     // randomized across all modes / predicates (LFSR operands hit NaN/Inf/denormal patterns)

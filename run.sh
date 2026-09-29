@@ -250,7 +250,7 @@ elif [[ "$target" == "revised_fp_fus" ]]; then
   revised_tb="rtl/revised_fp_fus/tb_revised_fp_fus.sv"
   echo "== lint (-Wall) : revised FP compare/minmax tiers =="
   verilator --lint-only -Wall -Wno-DECLFILENAME -Wno-UNUSEDSIGNAL \
-    --top-module fu_fp_cmp_revised_shared64 "$revised_cmp"
+    -Irtl --top-module fu_fp_cmp_revised_shared64 "$revised_cmp"
   verilator --lint-only -Wall -Wno-DECLFILENAME -Wno-UNUSEDSIGNAL \
     -Irtl --top-module fu_fp_minmax_revised_shared64 "$revised_mm"
   revised_obj="build/obj_revised_fp_fus"

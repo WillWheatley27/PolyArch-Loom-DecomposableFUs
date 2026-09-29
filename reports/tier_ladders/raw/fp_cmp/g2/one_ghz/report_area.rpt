@@ -3,7 +3,7 @@
 Report : area
 Design : fu_fp_cmp_g2
 Version: Y-2026.03-SP1
-Date   : Wed Sep 16 01:12:05 2026
+Date   : Tue Sep 29 15:12:24 2026
 ****************************************
 
 Library(s) Used:
@@ -11,20 +11,20 @@ Library(s) Used:
     saed14rvt_base_tt0p8v25c (File: /mnt/nas0/eda.libs/saed14/EDK_03_2025/SAED14nm_EDK_STD_RVT/liberty/nldm/base/saed14rvt_base_tt0p8v25c.db)
 
 Number of ports:                          411
-Number of nets:                           890
-Number of cells:                          547
-Number of combinational cells:            546
+Number of nets:                           704
+Number of cells:                          366
+Number of combinational cells:            365
 Number of sequential cells:                 0
 Number of macros/black boxes:               0
-Number of buf/inv:                        112
+Number of buf/inv:                        113
 Number of references:                       1
 
-Combinational area:                205.349999
-Buf/Inv area:                       33.655199
+Combinational area:                107.181599
+Buf/Inv area:                       21.045600
 Noncombinational area:               0.000000
 Macro/Black Box area:                0.000000
-Net Interconnect area:             336.160835
+Net Interconnect area:             171.691106
 
-Total cell area:                   205.349999
-Total area:                        541.510835
+Total cell area:                   107.181599
+Total area:                        278.872705
 1

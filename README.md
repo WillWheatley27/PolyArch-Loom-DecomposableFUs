@@ -194,8 +194,8 @@ tiers: `rev64` (FP64), `rev64_32` (FP64 + FP32x2), and `rev64_32_16`
 family is linted and randomized-tested with `./run.sh revised_fp_fus`.
 
 The revised min/max tiers (and the 32-bit `fu_fp_minmax_revised_32_16` FP32 / 2xFP16
-unit) are thin wrappers over the one sliced core in `rtl/fu_fp_min_max_gen.sv` below;
-only the revised compare keeps its own core.
+unit) are thin wrappers over the one sliced core in `rtl/fu_fp_min_max_gen.sv`, and the
+revised compare tiers over the one in `rtl/fu_fp_cmp_gen.sv` (both below).
 
 SAED14nm/DC results (Y-2026.03-SP1, TT/0.8 V/25 C, 1 GHz) are in
 [`reports/revised_fp_fus/comparison.md`](reports/revised_fp_fus/comparison.md),
@@ -226,9 +226,28 @@ Per supported level the only format-specific logic is a lane evaluator (sign fix
 and NaN combine) and one more input on each slice's level select. `MIN_LANE_W` sets
 the capability tier (`m1` = 64, `m2` = 32, `m3` = 16); each tier is a strict logic
 subset of the next. The same core, at `W=32`, implements the two-level FP32 / 2xFP16
-unit. `reports/check_fp_minmax_ladder.py` checks the synthesized ladder (monotonic
+unit. `reports/check_tier_ladder.py fp_minmax` checks the synthesized ladder (monotonic
 area, power and leakage, steady per-tier step, timing met); results and
 repeatability trials are in `reports/fp_minmax_sliced.md`.
+
+## fu_fp_cmp_gen (sliced FP compare)
+
+Packed `arith.cmpf` as 1xfp64, 2xfp32 or 4xfp16 with a per-lane all-ones / all-zeros
+mask, on the same slice-and-tree datapath as `fu_fp_min_max_gen`: 16-bit slices, a
+radix-2 tree whose nodes are the fp32 and fp64 lanes, and a per-slice level select.
+What compare adds:
+
+- **Equality** is raw-bit equality or both operands zero (-0 == +0). A lane's
+  magnitude is bits 14:0 of its top slice plus its lower slices in every format, so
+  the zero test is one 15-bit OR per slice plus the tree's lower-slice OR.
+- **Order** is the min/max sign-magnitude rule with ties forced to equal.
+- **Predicate**: each of the 16 MLIR predicates is an enable pattern over
+  {unordered, lt, eq, gt}, decoded once for the whole word; each lane ANDs it with
+  its relation and each slice broadcasts its lane's 1-bit result.
+
+Tiers `g1` / `g2` / `g3` (FP64 / +2xFP32 / +4xFP16) are strict logic subsets of one
+another; `reports/check_tier_ladder.py fp_cmp` checks the synthesized ladder, and
+results are in `reports/fp_cmp_sliced.md`.
 
 ## Verification gate
 

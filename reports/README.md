@@ -75,10 +75,10 @@ and the practical fixed DesignWare bank at 1 GHz, plus a secondary symmetric
 maximum-speed stress run. See `mult_karatsuba_comparison.md` for the bank
 definitions, verification evidence, results, and interpretation.
 
-The revised FP compare/min/max experiment is in `revised_fp_fus/`. It uses a
-single 16-bit segmented ordering chain and compile-time capability tiers:
-FP64-only (`rev64`), FP64+FP32 (`rev64_32`), and FP64+FP32+FP16
-(`rev64_32_16`). `ppa.csv` contains the 12 final SAED14nm/DC rows,
+The revised FP compare/min/max experiment is in `revised_fp_fus/`. Its tiers are
+thin wrappers over the sliced cores in `rtl/fu_fp_cmp_gen.sv` and
+`rtl/fu_fp_min_max_gen.sv` with compile-time capability tiers: FP64-only
+(`rev64`), FP64+FP32 (`rev64_32`), and FP64+FP32+FP16 (`rev64_32_16`). `ppa.csv` contains the 12 final SAED14nm/DC rows,
 `savings.csv` compares each tier with the matching fixed bank, and
 `marginal.csv` records the measured overhead of adding each capability. Raw DC
 area/power/timing reports are under `revised_fp_fus/raw/`; the synthesis entry
@@ -93,11 +93,13 @@ The FP64 and packed FP32 fixed speed reports reuse the existing
 `synth_maxspeed_fixed` data; the FP32 scalar, FP16x2, and both new
 decomposable reports are under `revised_fp_fus/two_level_speed/raw`.
 
+`fp_cmp_sliced.md` does the same for the sliced FP compare core in
+`rtl/fu_fp_cmp_gen.sv`.
 `fp_minmax_sliced.md` compares the sliced FP min/max core in
 `rtl/fu_fp_min_max_gen.sv` with the previous per-format implementation, and
-`check_fp_minmax_ladder.py` checks its ladder (monotonic, steady per-tier step,
-timing met; `--trials` checks every repeatability trial). The trials are in
-`tier_ladders/trials/` and `tier_ladders/trials.csv` (`collect_fp_minmax_trials.py`).
+`check_tier_ladder.py <family>` checks a ladder (monotonic, steady per-tier
+step, timing met; `--trials` checks every repeatability trial). The trials are in
+`tier_ladders/trials/` and `tier_ladders/trials.csv` (`collect_ladder_trials.py`).
 `collect_two_level_speed.py` regenerates `two_level_speed.csv`.
 The synthesis scripts accept `JOB_FILTER=<regexp>` to rerun a subset of jobs.
 

@@ -11,9 +11,9 @@ barrel_bs3,two_ghz,0.25,0.50,0.25,3.322901,1.071242,1.710900,fixed selected-only
 cmp_c4,feasible,0.25,0.50,0.25,0.747820,0.245792,0.328567,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
 cmp_c4,one_ghz,0.25,0.50,0.25,0.706240,0.234894,0.305136,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
 cmp_c4,two_ghz,0.25,0.50,0.25,0.785833,0.258028,0.356930,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
-fp_cmp_g3,feasible,0.25,0.50,0.25,0.813761,0.273210,0.719405,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
-fp_cmp_g3,one_ghz,0.25,0.50,0.25,0.731091,0.245919,0.726758,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
-fp_cmp_g3,two_ghz,0.25,0.50,0.25,0.877977,0.289533,0.758126,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
+fp_cmp_g3,feasible,0.25,0.50,0.25,0.813761,0.273210,0.296705,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
+fp_cmp_g3,one_ghz,0.25,0.50,0.25,0.731091,0.245919,0.281443,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
+fp_cmp_g3,two_ghz,0.25,0.50,0.25,0.877977,0.289533,0.294370,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
 fp_minmax_m3,feasible,0.25,0.50,0.25,1.036374,0.350930,0.435450,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
 fp_minmax_m3,one_ghz,0.25,0.50,0.25,0.972664,0.324798,0.445921,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
 fp_minmax_m3,two_ghz,0.25,0.50,0.25,1.063931,0.358751,0.467891,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
