@@ -34,3 +34,4 @@ fu_cmp_8x8,PASS,20000,build/fu_cmp_8x8.log,"PASS: fu_cmp_8x8, 20000 random vecto
 fu_abs_32x2,PASS,20000,build/fu_abs_32x2.log,"PASS: fu_abs_32x2, 20000 random vectors"
 fu_abs_16x4,PASS,20000,build/fu_abs_16x4.log,"PASS: fu_abs_16x4, 20000 random vectors"
 fu_mult_karatsuba_64_32,PASS,20000,build/fu_mult_karatsuba_64_32.log,"PASS: fu_mult_karatsuba_64_32, 20000 random vectors"
+revised_fp_fus,PASS,20000,build/revised_fp_fus.log,"PASS revised FP compare/minmax; all capability tiers, directed IEEE corners, and randomized vectors"

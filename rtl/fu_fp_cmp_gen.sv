@@ -78,12 +78,12 @@ module fu_fp_cmp_dec (
     assign gtu[i] = ka[i*8 +: 8] > kb[i*8 +: 8];
     assign eqb[i] = ka[i*8 +: 8] == kb[i*8 +: 8];
   end
-  logic [7:0] brk;
+  logic [7:1] brk;
   always_comb begin : masks
     unique case (mode)
-      M_4X16:  brk = 8'b0101_0100;
-      M_2X32:  brk = 8'b0001_0000;
-      default: brk = 8'b0000_0000;
+      M_4X16:  brk = 7'b010_1010;
+      M_2X32:  brk = 7'b000_1000;
+      default: brk = 7'b000_0000;
     endcase
   end
   logic ru [0:7]; logic re [0:7];
@@ -171,4 +171,3 @@ module fu_fp_cmp_g3 (                                   // fp64 + 2x fp32 + 4x f
     .in_data_1(in_data_1), .in_valid_1(in_valid_1), .in_ready_1(in_ready_1),
     .out_data(out_data), .out_valid(out_valid), .out_ready(out_ready));
 endmodule
-

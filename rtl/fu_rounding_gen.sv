@@ -116,7 +116,7 @@ module fu_rounding_dec #(
   logic [63:0] fm16, iv16, om16, ov16;
 
   logic [63:0] fmask, incv, omask, oval, masked, summed;
-  logic c0, c1, c2, c3, cin1, cin2, cin3, brk16, brk32;
+  logic c0, c1, c2, cin1, cin2, cin3, brk16, brk32;
   logic [15:0] r0, r1, r2, r3;
 
   always_comb begin : ctrl
@@ -171,7 +171,7 @@ module fu_rounding_dec #(
     cin2     = brk32 ? 1'b0 : c1;
     {c2, r2} = {1'b0, masked[47:32]} + {1'b0, incv[47:32]} + {16'b0, cin2};
     cin3     = brk16 ? 1'b0 : c2;
-    {c3, r3} = {1'b0, masked[63:48]} + {1'b0, incv[63:48]} + {16'b0, cin3};
+    r3 = masked[63:48] + incv[63:48] + 16'(cin3);
   end : segadd
   assign summed = {r3, r2, r1, r0};
 

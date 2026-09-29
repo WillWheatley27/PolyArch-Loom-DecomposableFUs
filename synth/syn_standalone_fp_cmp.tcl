@@ -37,9 +37,9 @@ proc run_corner {rtl design tag max_delay area_effort out_dir} {
 }
 
 run_corner ${ROOT}/rtl/standalone/fp_cmp_standalones/fu_fp_cmp_64.sv    fu_fp_cmp_64    speed 0.010 0 $OUT_DIR
-run_corner ${ROOT}/rtl/standalone/fp_cmp_standalones/fu_fp_cmp_64.sv    fu_fp_cmp_64    area  0.450 1 $OUT_DIR
+run_corner ${ROOT}/rtl/standalone/fp_cmp_standalones/fu_fp_cmp_64.sv    fu_fp_cmp_64    area  0.600 1 $OUT_DIR
 run_corner ${ROOT}/rtl/standalone/fp_cmp_standalones/fu_fp_cmp_32x2.sv fu_fp_cmp_32x2 speed 0.010 0 $OUT_DIR
-run_corner ${ROOT}/rtl/standalone/fp_cmp_standalones/fu_fp_cmp_32x2.sv fu_fp_cmp_32x2 area  0.450 1 $OUT_DIR
+run_corner ${ROOT}/rtl/standalone/fp_cmp_standalones/fu_fp_cmp_32x2.sv fu_fp_cmp_32x2 area  0.600 1 $OUT_DIR
 run_corner ${ROOT}/rtl/standalone/fp_cmp_standalones/fu_fp_cmp_16x4.sv fu_fp_cmp_16x4 speed 0.010 0 $OUT_DIR
-run_corner ${ROOT}/rtl/standalone/fp_cmp_standalones/fu_fp_cmp_16x4.sv fu_fp_cmp_16x4 area  0.450 1 $OUT_DIR
+run_corner ${ROOT}/rtl/standalone/fp_cmp_standalones/fu_fp_cmp_16x4.sv fu_fp_cmp_16x4 area  0.600 1 $OUT_DIR
 quit

@@ -27,25 +27,25 @@ module fu_abs_dec (
   // ---- Per-byte negate flag (lane sign, for absi) + lane-LSB flag, from mode ----
   // brk[i]=1 marks byte i as the low byte of a new lane -> carry break + fresh +1 seed.
   logic       negb [0:7];   // negate this byte's lane (absi only)
-  logic [7:0] brk;
+  logic [7:1] brk;
   always_comb begin : lanes
     unique case (mode)
       M_4X16: begin
-        brk = 8'b0101_0100;
+        brk = 7'b010_1010;
         negb[0]=in_data_0[15]; negb[1]=in_data_0[15];
         negb[2]=in_data_0[31]; negb[3]=in_data_0[31];
         negb[4]=in_data_0[47]; negb[5]=in_data_0[47];
         negb[6]=in_data_0[63]; negb[7]=in_data_0[63];
       end
       M_2X32: begin
-        brk = 8'b0001_0000;
+        brk = 7'b000_1000;
         negb[0]=in_data_0[31]; negb[1]=in_data_0[31];
         negb[2]=in_data_0[31]; negb[3]=in_data_0[31];
         negb[4]=in_data_0[63]; negb[5]=in_data_0[63];
         negb[6]=in_data_0[63]; negb[7]=in_data_0[63];
       end
       default: begin
-        brk = 8'b0000_0000;
+        brk = 7'b000_0000;
         for (int i=0;i<8;i++) negb[i]=in_data_0[63];
       end
     endcase
