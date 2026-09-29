@@ -7,7 +7,7 @@ set ROOT    /edata1/will/Decomposable_FU
 set OUTROOT ${ROOT}/reports/revised_fp_fus/raw
 
 file mkdir $OUTROOT
-set search_path    [concat $search_path $LIB_DIR]
+set search_path    [concat $search_path $LIB_DIR ${ROOT}/rtl]
 set link_library   [list * $LIB]
 set target_library [list $LIB]
 set_app_var hdlin_sverilog_std 2017
@@ -50,6 +50,8 @@ proc run_one {name rtl_rel top corner period area_effort} {
   echo "RESULT ${name} ${corner} arrival_ns=${arr_ns} fmax_ghz=${fmax_ghz}"
 }
 
+# Optional: JOB_FILTER=<regexp> reruns only the matching jobs.
+if {[info exists ::env(JOB_FILTER)]} { set jobs [lsearch -all -inline -regexp $jobs $::env(JOB_FILTER)] }
 foreach job $jobs {
   lassign $job name rtl top
   run_one $name $rtl $top one_ghz 1.000 1

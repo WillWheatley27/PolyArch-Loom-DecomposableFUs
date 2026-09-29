@@ -14,9 +14,9 @@ cmp_c4,two_ghz,0.25,0.50,0.25,0.785833,0.258028,0.356930,fixed selected-only is 
 fp_cmp_g3,feasible,0.25,0.50,0.25,0.813761,0.273210,0.719405,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
 fp_cmp_g3,one_ghz,0.25,0.50,0.25,0.731091,0.245919,0.726758,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
 fp_cmp_g3,two_ghz,0.25,0.50,0.25,0.877977,0.289533,0.758126,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
-fp_minmax_m3,feasible,0.25,0.50,0.25,1.036374,0.350930,0.874528,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
-fp_minmax_m3,one_ghz,0.25,0.50,0.25,0.972664,0.324798,0.755852,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
-fp_minmax_m3,two_ghz,0.25,0.50,0.25,1.063931,0.358751,0.960188,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
+fp_minmax_m3,feasible,0.25,0.50,0.25,1.036374,0.350930,0.435450,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
+fp_minmax_m3,one_ghz,0.25,0.50,0.25,0.972664,0.324798,0.445921,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
+fp_minmax_m3,two_ghz,0.25,0.50,0.25,1.063931,0.358751,0.467891,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
 minmax_m4,feasible,0.25,0.50,0.25,0.949941,0.309251,0.310101,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
 minmax_m4,one_ghz,0.25,0.50,0.25,0.961559,0.332444,0.431539,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic
 minmax_m4,two_ghz,0.25,0.50,0.25,0.840757,0.282514,0.334106,fixed selected-only is probability-weighted synthetic estimate; decomposable remains uniform synthetic

@@ -3,7 +3,7 @@ set LIB saed14rvt_base_tt0p8v25c.db
 set ROOT /edata1/will/Decomposable_FU
 set OUTROOT ${ROOT}/reports/revised_fp_fus/two_level_speed/raw
 file mkdir $OUTROOT
-set search_path [concat $search_path $LIB_DIR]
+set search_path [concat $search_path $LIB_DIR ${ROOT}/rtl]
 set link_library [list * $LIB]
 set target_library [list $LIB]
 set_app_var hdlin_sverilog_std 2017
@@ -12,6 +12,8 @@ set jobs {
   {fp_minmax_fixed_32 rtl/standalone/fp_min_max_standalones/fu_fp_min_max_32.sv fu_fp_min_max_32}
   {fp_minmax_fixed_16x2 rtl/standalone/fp_min_max_standalones/fu_fp_min_max_16x2.sv fu_fp_min_max_16x2}
 }
+# Optional: JOB_FILTER=<regexp> reruns only the matching jobs.
+if {[info exists ::env(JOB_FILTER)]} { set jobs [lsearch -all -inline -regexp $jobs $::env(JOB_FILTER)] }
 foreach j $jobs {
   lassign $j name rtl_rel top
   remove_design -all

@@ -93,6 +93,14 @@ The FP64 and packed FP32 fixed speed reports reuse the existing
 `synth_maxspeed_fixed` data; the FP32 scalar, FP16x2, and both new
 decomposable reports are under `revised_fp_fus/two_level_speed/raw`.
 
+`fp_minmax_sliced.md` compares the sliced FP min/max core in
+`rtl/fu_fp_min_max_gen.sv` with the previous per-format implementation, and
+`check_fp_minmax_ladder.py` checks its ladder (monotonic, steady per-tier step,
+timing met; `--trials` checks every repeatability trial). The trials are in
+`tier_ladders/trials/` and `tier_ladders/trials.csv` (`collect_fp_minmax_trials.py`).
+`collect_two_level_speed.py` regenerates `two_level_speed.csv`.
+The synthesis scripts accept `JOB_FILTER=<regexp>` to rerun a subset of jobs.
+
 The complete capability-ladder sweep is in `tier_ladders/`. It synthesizes the
 ABS (`a1/a2/a3`), integer Compare (`c1/c2/c4/c8`), Barrel Shift
 (`bs1/bs2/bs3`), Rounding (`g1/g2/g3`), original FP Compare (`g1/g2/g3`),
@@ -101,6 +109,6 @@ Use `tier_ladders/ppa.csv` for raw PPA rows, `tier_ladders/marginal.csv` for
 adjacent-rung overhead, and `tier_ladders/comparison.md` for formatted tables.
 The integer MinMax area reversal audit is in `tier_ladders/minmax_area_anomaly.md`.
 
-DC also emitted VHD-300 array-index warnings for generated AddSub and FP
-MinMax expressions during elaboration. Verilator passes, but these warnings
+DC also emitted VHD-300 array-index warnings for generated AddSub expressions
+during elaboration (the sliced FP MinMax core elaborates without them). Verilator passes, but these warnings
 should be resolved before treating the synthesis results as sign-off quality.

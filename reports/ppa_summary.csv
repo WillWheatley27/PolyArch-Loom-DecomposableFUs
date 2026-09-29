@@ -9,8 +9,8 @@ cmp_c4,64/32x2/16x4,decomposable,one_ghz,1.000000,0.999158,1.000842710,144.12239
 cmp_c4,64/32x2/16x4,decomposable,two_ghz,0.500000,0.499709,2.001164678,222.133198,432.110780,0.356930,0.106841,0.178361,true,uniform_synthetic,pending_normalized_fixed_bank
 fp_cmp_g3,FP64/FP32x2/FP16x4,decomposable,one_ghz,1.000000,0.999435,1.000565319,257.741999,636.240615,0.726758,0.112752,0.726347,true,uniform_synthetic,pending_normalized_fixed_bank
 fp_cmp_g3,FP64/FP32x2/FP16x4,decomposable,two_ghz,0.500000,0.499982,2.000072003,410.078399,753.517790,0.758126,0.227659,0.379050,true,uniform_synthetic,pending_normalized_fixed_bank
-fp_minmax_m3,FP64/FP32x2/FP16x4,decomposable,one_ghz,1.000000,0.999942,1.000058003,304.450800,663.435335,0.755852,0.130502,0.755808,true,uniform_synthetic,pending_normalized_fixed_bank
-fp_minmax_m3,FP64/FP32x2/FP16x4,decomposable,two_ghz,0.500000,0.499914,2.000344059,461.404798,830.390990,0.960188,0.264507,0.480012,true,uniform_synthetic,pending_normalized_fixed_bank
+fp_minmax_m3,FP64/FP32x2/FP16x4,decomposable,one_ghz,1.000000,0.999402,1.000598358,163.036799,410.919669,0.445921,0.058549,0.445655,true,uniform_synthetic,pending_normalized_fixed_bank
+fp_minmax_m3,FP64/FP32x2/FP16x4,decomposable,two_ghz,0.500000,0.499587,2.001653366,215.650798,472.064870,0.467891,0.097747,0.233752,true,uniform_synthetic,pending_normalized_fixed_bank
 minmax_m4,64/32x2/16x4,decomposable,one_ghz,1.000000,0.999591,1.000409167,120.190798,296.912739,0.431539,0.046315,0.431363,true,uniform_synthetic,pending_normalized_fixed_bank
 minmax_m4,64/32x2/16x4,decomposable,two_ghz,0.500000,0.499787,2.000852363,141.902400,299.616549,0.334106,0.059265,0.166982,true,uniform_synthetic,pending_normalized_fixed_bank
 mult_decomp,64/32x2/16x4,decomposable,one_ghz,1.000000,0.999871,1.000129017,4982.701168,8613.639064,21.118900,3.098700,21.116176,true,uniform_synthetic,pending_normalized_fixed_bank
@@ -94,7 +94,7 @@ fp_cmp_g3,FP64/FP32x2/FP16x4,decomposable,feasible,0.625000,0.624956,1.600112648
 fp_minmax_16x4,FP16x4,fixed,feasible,0.625000,0.624914,1.600220190,118.991999,303.860083,0.309373,0.041773,0.193332,true,uniform_synthetic,feasible_family_target
 fp_minmax_32x2,FP32x2,fixed,feasible,0.625000,0.624914,1.600220190,155.000398,369.636968,0.367346,0.058481,0.229560,true,uniform_synthetic,feasible_family_target
 fp_minmax_64,FP64,fixed,feasible,0.625000,0.624948,1.600133131,151.403998,363.147525,0.359655,0.058661,0.224766,true,uniform_synthetic,feasible_family_target
-fp_minmax_m3,FP64/FP32x2/FP16x4,decomposable,feasible,0.625000,0.624870,1.600332869,397.735198,761.604438,0.874528,0.207804,0.546466,true,uniform_synthetic,feasible_family_target
+fp_minmax_m3,FP64/FP32x2/FP16x4,decomposable,feasible,0.625000,0.624783,1.600555713,198.068399,444.447108,0.435450,0.085150,0.272062,true,uniform_synthetic,feasible_family_target
 minmax_16x4,16x4,fixed,feasible,0.625000,0.624530,1.601204105,135.375598,268.766610,0.373838,0.069020,0.233473,true,uniform_synthetic,feasible_family_target
 minmax_32x2,32x2,fixed,feasible,0.625000,0.624399,1.601540041,106.293601,254.908895,0.287062,0.033831,0.179241,true,uniform_synthetic,feasible_family_target
 minmax_64,64,fixed,feasible,0.625000,0.624871,1.600330308,127.117200,270.673894,0.289041,0.054175,0.180614,true,uniform_synthetic,feasible_family_target

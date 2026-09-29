@@ -5,6 +5,8 @@ set LIB_DIR /mnt/nas0/eda.libs/saed14/EDK_03_2025/SAED14nm_EDK_STD_RVT/liberty/n
 set LIB saed14rvt_base_tt0p8v25c.db
 set ROOT /edata1/will/Decomposable_FU
 set OUTROOT ${ROOT}/reports/tier_ladders/raw
+# Optional: OUTROOT=<dir> redirects reports (e.g. for repeat trials).
+if {[info exists ::env(OUTROOT)]} { set OUTROOT $::env(OUTROOT) }
 file mkdir $OUTROOT
 set search_path [concat $search_path $LIB_DIR]
 set link_library [list * $LIB]
@@ -58,6 +60,10 @@ proc run_one {family tier cap rtl_rel top corner period} {
   echo "RESULT ${family} ${tier} ${corner} arrival_ns=${arr} fmax_ghz=${fmax}"
 }
 
+# Optional: JOB_FILTER=<regexp> reruns only the matching jobs.
+if {[info exists ::env(JOB_FILTER)]} { set jobs [lsearch -all -inline -regexp $jobs $::env(JOB_FILTER)] }
+# Optional: JOB_REVERSE=1 runs the selected jobs in reverse order.
+if {[info exists ::env(JOB_REVERSE)]} { set jobs [lreverse $jobs] }
 foreach j $jobs {
   lassign $j family tier cap rtl top
   run_one $family $tier $cap $rtl $top one_ghz 1.000

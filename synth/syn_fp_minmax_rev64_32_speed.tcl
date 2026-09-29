@@ -3,7 +3,7 @@ set LIB saed14rvt_base_tt0p8v25c.db
 set ROOT /edata1/will/Decomposable_FU
 set OUT ${ROOT}/reports/revised_fp_fus/two_level_speed/raw/fp_minmax_rev64_32
 file mkdir $OUT
-set search_path [concat $search_path $LIB_DIR]
+set search_path [concat $search_path $LIB_DIR ${ROOT}/rtl]
 set link_library [list * $LIB]
 set target_library [list $LIB]
 set_app_var hdlin_sverilog_std 2017

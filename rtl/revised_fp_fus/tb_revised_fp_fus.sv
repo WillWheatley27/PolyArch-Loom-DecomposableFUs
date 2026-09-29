@@ -63,6 +63,9 @@ module tb_revised_fp_fus;
     if(m3216!==gm) begin $display("FAIL mm rev64_32_16 m=%b",md); errors++; end
     if(md==2'b00 && (c64!==gc || m64!==gm)) begin $display("FAIL scalar tier"); errors++; end
     if(md!=2'b10 && (c32!==gc || m32!==gm)) begin $display("FAIL 64/32 tier"); errors++; end
+    // Unsupported modes fall back to FP64.
+    if(c64!==gold_cmp(2'b00,p,x,y) || m64!==gold_mm(2'b00,op,x,y)) begin $display("FAIL scalar tier fallback m=%b",md); errors++; end
+    if(md==2'b10 && (c32!==gold_cmp(2'b00,p,x,y) || m32!==gold_mm(2'b00,op,x,y))) begin $display("FAIL 64/32 tier fallback"); errors++; end
   endtask
 
   initial begin

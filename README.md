@@ -10,7 +10,7 @@ runtime, so one unit replaces a bank of fixed-width units.
 - `docs/specs/` — per-FU design specs.
 - `docs/plans/` — per-FU implementation plans.
 - `rtl/` — synthesizable SystemVerilog modules.
-- `tb/` — self-checking Verilator testbenches.
+- `tb/` and `rtl/tb_*_gen.sv` — self-checking Verilator testbenches.
 
 ## fu_add_sub_decomp
 
@@ -20,7 +20,9 @@ with a per-lane `op_sel` (add/sub) bit. One shared adder segmented at the
 
 ```bash
 ./run.sh                  # fu_add_sub_decomp (default): lint -Wall, then build + sim
-./run.sh fu_mult_decomp   # any module: rtl/<name>.sv + tb/tb_<name>.sv
+./run.sh fu_mult_decomp   # one legacy-layout module
+./run.sh fu_add_sub_gen    # one shared-core generator family
+./run.sh all              # all nine physically shared families
 ```
 
 ## fu_mult_decomp
@@ -182,11 +184,59 @@ reused at fp64/fp32 only. Combinational, latency 0. DPI-C hardware-FP golden (`d
 F16C). This confirms the family rule: DW duplex helps only the **integer** ops with a native `_dx`
 block; **FP decomposition has no DesignWare support**.
 
+## Revised FP compare/min/max
+
+`rtl/revised_fp_fus/` contains a revised shared-chain implementation of packed
+IEEE-754 compare and min/max. A 16-bit segmented ordering chain is reused by
+all modes, while compile-time capability wrappers provide three explicit
+tiers: `rev64` (FP64), `rev64_32` (FP64 + FP32x2), and `rev64_32_16`
+(FP64 + FP32x2 + FP16x4). Unsupported mode encodings fall back to FP64. The
+family is linted and randomized-tested with `./run.sh revised_fp_fus`.
+
+The revised min/max tiers (and the 32-bit `fu_fp_minmax_revised_32_16` FP32 / 2xFP16
+unit) are thin wrappers over the one sliced core in `rtl/fu_fp_min_max_gen.sv` below;
+only the revised compare keeps its own core.
+
+SAED14nm/DC results (Y-2026.03-SP1, TT/0.8 V/25 C, 1 GHz) are in
+[`reports/revised_fp_fus/comparison.md`](reports/revised_fp_fus/comparison.md),
+with machine-readable [`ppa.csv`](reports/revised_fp_fus/ppa.csv),
+[`savings.csv`](reports/revised_fp_fus/savings.csv), and
+[`marginal.csv`](reports/revised_fp_fus/marginal.csv). The synthesis command is
+`synth/run_revised_fp_fus.sh`. Power uses the project-wide uniform synthetic
+activity assumption and is not a workload-trace claim.
+
+## fu_fp_min_max_gen (sliced FP min/max)
+
+IEEE-754-2019 min/max as 1xfp64, 2xfp32 or 4xfp16. The word is split into four
+16-bit slices (the fp16 lanes) and a radix-2 tree combines two slices into an fp32
+lane and two fp32 lanes into the fp64 lane. The tree is mode-independent: it is the
+fp64 datapath, and the narrower formats are its intermediate nodes. `mode` only
+chooses, per slice, which tree level its lane decision is read from.
+
+- **Order** is decided on the raw bits: equal signs use the unsigned order of the
+  node (high half first, low half on a tie), reversed when negative; differing signs
+  pick the negative operand (-0 < +0). No float-to-integer key transform is needed.
+- **NaN**: a lane's exponent always sits in its top slice, and the fp16/fp32/fp64
+  exponent fields are nested prefixes of that slice (bits 14:10 / 14:7 / 14:4) while
+  their top-slice mantissas are nested suffixes (9:0 / 6:0 / 3:0), so one AND chain
+  and one OR chain per slice serve every format; the rest of the mantissa is the OR
+  of the lane's lower slices, another tree node.
+
+Per supported level the only format-specific logic is a lane evaluator (sign fixup
+and NaN combine) and one more input on each slice's level select. `MIN_LANE_W` sets
+the capability tier (`m1` = 64, `m2` = 32, `m3` = 16); each tier is a strict logic
+subset of the next. The same core, at `W=32`, implements the two-level FP32 / 2xFP16
+unit. `reports/check_fp_minmax_ladder.py` checks the synthesized ladder (monotonic
+area, power and leakage, steady per-tier step, timing met); results and
+repeatability trials are in `reports/fp_minmax_sliced.md`.
+
 ## Verification gate
 
-`verilator --lint-only -Wall` clean + testbench `PASS:`. All three modes run in one
-simulation (mode is a runtime input), covering carry/borrow isolation, mode
-equivalence, mixed per-lane ops, handshake corners, and ~20k random vectors.
+`verilator --lint-only -Wall` clean + a testbench line beginning with `PASS`. Run
+`./run.sh all` to verify the nine physically shared families in one gate; the runner
+supports both testbench layouts and keeps per-family build logs under `build/`.
+All supported modes run in each simulation (mode is a runtime input), covering lane
+isolation, mode equivalence, mixed per-lane controls, and randomized vectors.
 
 ## Follow-up: area validation
 

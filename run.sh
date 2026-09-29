@@ -252,13 +252,13 @@ elif [[ "$target" == "revised_fp_fus" ]]; then
   verilator --lint-only -Wall -Wno-DECLFILENAME -Wno-UNUSEDSIGNAL \
     --top-module fu_fp_cmp_revised_shared64 "$revised_cmp"
   verilator --lint-only -Wall -Wno-DECLFILENAME -Wno-UNUSEDSIGNAL \
-    --top-module fu_fp_minmax_revised_shared64 "$revised_mm"
+    -Irtl --top-module fu_fp_minmax_revised_shared64 "$revised_mm"
   revised_obj="build/obj_revised_fp_fus"
   revised_log="build/revised_fp_fus.log"
   echo "== build + sim : revised FP compare/minmax tiers =="
   verilator --binary --timing \
     -Wno-WIDTHTRUNC -Wno-WIDTHEXPAND -Wno-UNUSEDSIGNAL -Wno-TIMESCALEMOD \
-    --top-module tb_revised_fp_fus --Mdir "$revised_obj" \
+    --top-module tb_revised_fp_fus -Irtl --Mdir "$revised_obj" \
     "$revised_cmp" "$revised_mm" "$revised_tb"
   "$revised_obj/Vtb_revised_fp_fus" | tee "$revised_log"
   if ! rg -q '^PASS([:[:space:]])' "$revised_log"; then
@@ -271,13 +271,13 @@ elif [[ "$target" == "fp_minmax_two_level" ]]; then
   tb="rtl/revised_fp_fus/tb_fu_fp_minmax_32_16.sv"
   echo "== lint (-Wall) : FP min/max 32->16 two-level tier =="
   verilator --lint-only -Wall -Wno-DECLFILENAME -Wno-UNUSEDSIGNAL \
-    --top-module fu_fp_minmax_revised_32_16 "$rtl"
+    -Irtl --top-module fu_fp_minmax_revised_32_16 "$rtl"
   obj_dir="build/obj_fp_minmax_32_16"
   log="build/fp_minmax_two_level.log"
   echo "== build + sim : FP min/max 32->16 two-level tier =="
   verilator --binary --timing \
     -Wno-WIDTHTRUNC -Wno-WIDTHEXPAND -Wno-UNUSEDSIGNAL -Wno-TIMESCALEMOD \
-    --top-module tb_fu_fp_minmax_32_16 --Mdir "$obj_dir" "$rtl" "$tb"
+    --top-module tb_fu_fp_minmax_32_16 -Irtl --Mdir "$obj_dir" "$rtl" "$tb"
   "$obj_dir/Vtb_fu_fp_minmax_32_16" | tee "$log"
   if ! rg -q '^PASS([:[:space:]])' "$log"; then
     echo "run.sh: FAIL (fp_minmax_two_level)" >&2

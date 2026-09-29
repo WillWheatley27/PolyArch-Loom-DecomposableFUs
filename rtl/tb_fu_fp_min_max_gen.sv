@@ -82,6 +82,15 @@ module tb;
     chk(2'b10, 4'h6, 64'h3C00_C000_7E00_0000, 64'h4000_BC00_3C00_8000); // fp16 four lanes
     chk(2'b10, 4'h0, 64'h7C00_FC00_0000_8000, 64'h7C00_FC00_8000_0000); // fp16 +-Inf,+-0
 
+    // directed: NaN detection spans slices (mantissa) but never crosses a lane boundary
+    chk(2'b00, 4'h0, 64'h7FF0_0000_0000_0001, 64'h3FF0_0000_0000_0000); // fp64 NaN, only mantissa bit 0 set
+    chk(2'b00, 4'h1, 64'h7FF0_0000_0000_0000, 64'h3FF0_0000_0000_0000); // fp64 +Inf is not NaN
+    chk(2'b00, 4'h0, 64'h4000_7C01_7C01_7C01, 64'h3FF0_0000_0000_0000); // fp16-NaN-shaped slices inside one fp64
+    chk(2'b01, 4'h5, 64'h7F80_0000_0000_0001, 64'h3F80_0000_0000_0000); // fp32 +Inf above a nonzero lane: not NaN
+    chk(2'b01, 4'h0, 64'h4000_0000_7F80_0001, 64'h3F80_0000_3F80_0000); // fp32 NaN, only mantissa bit 0 set
+    chk(2'b10, 4'hA, 64'h7C01_3C00_7C00_0001, 64'h3C00_4000_3C00_0001); // fp16 NaN / +Inf / normal per lane
+    chk(2'b11, 4'h0, 64'h3C00_4000_BC00_C000, 64'h4000_3C00_C000_BC00); // reserved mode -> fp64
+
     // randomized across modes / per-lane op (LFSR hits NaN/Inf/denormal patterns)
     xa = 64'h1234_5678_9ABC_DEF0; xb = 64'h0FED_CBA9_8765_4321;
     for (i=0;i<60000;i++) begin
