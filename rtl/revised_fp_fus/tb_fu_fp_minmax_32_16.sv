@@ -56,11 +56,14 @@ module tb_fu_fp_minmax_32_16;
     check(0,2'b00,64'h0000_0000_8000_0000,64'h0000_0000_0000_0000); // min(-0,+0)
     check(1,2'b10,64'h0000_0000_3C00_C000,64'h0000_0000_4000_BC00); // max/min mixed
     check(1,2'b01,64'h0000_0000_7E00_8000,64'h0000_0000_3C00_0000); // NaN, signed zero
-    x=64'h0000_0000_1234_5678; z=64'h0000_0000_89AB_CDEF;
+    check(0,2'b00,64'h0000_0000_7F80_0001,64'h0000_0000_3F80_0000); // fp32 NaN, payload only in low slice
+    check(0,2'b01,64'h0000_0000_3F80_0000,64'h0000_0000_FFC0_1234); // fp32 NaN in b, nonzero low slice
+    check(0,2'b00,64'h0000_0000_7F80_0000,64'h0000_0000_0000_0001); // fp32 +Inf vs min subnormal
+    check(1,2'b00,64'h0000_0000_7C00_0001,64'h0000_0000_3C00_0000); // fp16: +Inf lane above subnormal lane
+    check(1,2'b11,64'h0000_0000_0001_7C01,64'h0000_0000_8000_3C00); // fp16: subnormal vs -0, NaN via bit 0
     for(int i=0;i<20000;i++) begin
-      x={32'd0,x[62:0],x[63]^x[60]^x[7]^x[0]};
-      z={32'd0,z[62:0],z[63]^z[59]^z[4]^z[1]};
-      check(z[0],x[1:0],x,z);
+      x={$random,$random}; z={$random,$random};   // upper halves must be ignored
+      check(z[33],x[33:32],x,z);
     end
     if(errors==0) $display("PASS fp_minmax_32_16 20000 randomized vectors");
     else $display("FAILURES %0d",errors);

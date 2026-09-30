@@ -63,6 +63,8 @@ FP_MIN_MAX_STANDALONE_MODULES=(
   fu_fp_min_max_64
   fu_fp_min_max_32x2
   fu_fp_min_max_16x4
+  fu_fp_min_max_32
+  fu_fp_min_max_16x2
 )
 
 ROUNDING_STANDALONE_MODULES=(

@@ -222,11 +222,13 @@ chooses, per slice, which tree level its lane decision is read from.
   and one OR chain per slice serve every format; the rest of the mantissa is the OR
   of the lane's lower slices, another tree node.
 
-Per supported level the only format-specific logic is a lane evaluator (sign fixup
-and NaN combine) and one more input on each slice's level select. `MIN_LANE_W` sets
-the capability tier (`m1` = 64, `m2` = 32, `m3` = 16); each tier is a strict logic
-subset of the next. The same core, at `W=32`, implements the two-level FP32 / 2xFP16
-unit. `reports/check_tier_ladder.py fp_minmax` checks the synthesized ladder (monotonic
+Lane evaluators (sign fixup and NaN combine) sit one per slice, since a slice tops at
+most one lane in any mode: `mode` selects which tree level feeds each evaluator, so
+evaluator count follows the finest supported mode (1 / 2 / 4). `MIN_LANE_W` sets the
+capability tier (`m1` = 64, `m2` = 32, `m3` = 16); each tier is a strict logic subset
+of the next. The same core, at `W=32`, implements the two-level FP32 / 2xFP16 unit
+(`reports/fp_minmax_two_level.md` compares it with FP64 / 2xFP32).
+`reports/check_tier_ladder.py fp_minmax` checks the synthesized ladder (monotonic
 area, power and leakage, steady per-tier step, timing met); results and
 repeatability trials are in `reports/fp_minmax_sliced.md`.
 

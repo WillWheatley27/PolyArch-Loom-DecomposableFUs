@@ -14,10 +14,11 @@
 //     14:4) while their top-slice mantissas are nested suffixes (9:0, 6:0, 3:0). One AND chain
 //     and one OR chain per slice therefore serve every format; the rest of a lane's mantissa
 //     is the OR of its lower slices, again a tree node.
-// Per level, the only format-specific logic is a lane evaluator (sign fixup + NaN combine,
-// a few gates per lane) and one more input on each slice's level select. Capability tiers
-// (MIN_LANE_W) drop the evaluators and select inputs of unsupported levels, so each tier is a
-// strict logic subset of the next and cost grows by a fixed amount per added lane.
+// Lane evaluators (sign fixup + NaN combine) sit one per slice, not one per tree node: a slice
+// is the top of at most one lane in any mode, so `mode` selects which tree level feeds its
+// evaluator. Hardware therefore follows the finest supported mode and nothing is built per
+// format. Capability tiers (MIN_LANE_W) drop the evaluators and select inputs of unsupported
+// levels, so each tier is a strict logic subset of the next.
 //
 //   lane width = W >> mode (mode 00 -> 1x fp64, 01 -> 2x fp32, 10 -> 4x fp16 for W=64);
 //   a mode narrower than MIN_LANE_W (incl. reserved 11) falls back to one full-width lane.
@@ -90,7 +91,6 @@ module fu_fp_min_max_dec #(
   logic ta_n [2*NS-1] /*verilator split_var*/;  // top slice: this level's mantissa of a nonzero
   logic tb_n [2*NS-1] /*verilator split_var*/;
   // verilator lint_on UNUSEDSIGNAL
-  logic lane_gt [2*NS-1], lane_nan [2*NS-1];
 
   // ---- Slices: raw compare leaf + nested IEEE field chains ----
   for (genvar j = 0; j < NS; j++) begin : slice
@@ -147,32 +147,52 @@ module fu_fp_min_max_dec #(
     end : pair
   end : level
 
-  // ---- Lane evaluators: one per node of every supported level ----
-  for (genvar l = L_MIN; l <= L; l++) begin : lane_level
-    for (genvar i = 0; i < (NS >> l); i++) begin : lane
-      localparam int N  = node(l, i);
-      localparam int SB = 16*((i + 1) << l) - 1;   // lane sign bit
+  // ---- Lane evaluators: one per slice that can top a lane in this tier ----
+  // A slice is the top of at most one lane in any mode, so each slice holds one evaluator and
+  // `mode` selects which tree level feeds it; the sign bits are the slice's own bit 15.
+  // Evaluators therefore follow the finest supported mode's lane count.
+  logic gt_s [NS], nan_s [NS];
+  for (genvar j = 0; j < NS; j++) begin : lane_eval
+    localparam int TL = top_level(j);
+    if (TL >= L_MIN) begin : evaluator
+      // Candidate inputs {gt, oa, ob, ta, tb, la, lb} of each level this slice tops.
+      logic [6:0] cand [L_MIN:TL];
+      for (genvar l = L_MIN; l <= TL; l++) begin : level_in
+        localparam int N = node(l, j >> l);
+        assign cand[l] = {gt_n[N], oa_n[N], ob_n[N], ta_n[N], tb_n[N], la_n[N], lb_n[N]};
+      end : level_in
+      logic gt_r, oa, ob, ta, tb, la, lb;
+      always_comb begin : level_inputs
+        // Widest level this slice tops; also covers modes where it tops no lane (unused).
+        {gt_r, oa, ob, ta, tb, la, lb} = cand[TL];
+        for (int kk = 1; kk <= L - L_MIN; kk++)
+          if (k == 2'(kk) && L - kk < TL)
+            {gt_r, oa, ob, ta, tb, la, lb} = cand[L - kk];
+      end : level_inputs
       logic sa, sb;
-      assign sa = in_data_0[SB];
-      assign sb = in_data_1[SB];
-      assign lane_gt[N]  = (sa ^ sb) ? sb : (sa ^ gt_n[N]);
-      assign lane_nan[N] = (oa_n[N] & (ta_n[N] | la_n[N])) | (ob_n[N] & (tb_n[N] | lb_n[N]));
-    end : lane
-  end : lane_level
+      assign sa = in_data_0[16*j + 15];
+      assign sb = in_data_1[16*j + 15];
+      assign gt_s[j]  = (sa ^ sb) ? sb : (sa ^ gt_r);
+      assign nan_s[j] = (oa & (ta | la)) | (ob & (tb | lb));
+    end : evaluator
+  end : lane_eval
 
-  // ---- Per slice: read the decision of its lane at the selected level, then select ----
+  // ---- Per slice: read its lane's top-slice decision at the selected level, then select ----
+  function automatic int lane_top(input int j, input int l);   // top slice of j's level-l lane
+    return (((j >> l) + 1) << l) - 1;
+  endfunction
   for (genvar j = 0; j < NS; j++) begin : out_slice
     logic gt, nan, op;
     logic [15:0] q;
     always_comb begin : level_select
-      gt  = lane_gt[node(L, 0)];
-      nan = lane_nan[node(L, 0)];
+      gt  = gt_s[lane_top(j, L)];
+      nan = nan_s[lane_top(j, L)];
       op  = op_sel[0];
       q   = (j == NS - 1) ? qnan_mask(L) : 16'h0000;
       for (int kk = 1; kk <= L - L_MIN; kk++)
         if (k == 2'(kk)) begin
-          gt  = lane_gt[node(L - kk, j >> (L - kk))];
-          nan = lane_nan[node(L - kk, j >> (L - kk))];
+          gt  = gt_s[lane_top(j, L - kk)];
+          nan = nan_s[lane_top(j, L - kk)];
           op  = op_sel[(j >> (L - kk)) << (L - kk)];
           q   = (((j + 1) % (1 << (L - kk))) == 0) ? qnan_mask(L - kk) : 16'h0000;
         end

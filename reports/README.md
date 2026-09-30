@@ -86,21 +86,20 @@ point is `synth/run_revised_fp_fus.sh`. These rows use the same uniform
 synthetic activity assumptions as the normalized tables and are not workload
 power claims.
 
-The two-level FP min/max speed-corner experiment is in
-`revised_fp_fus/two_level_speed.csv` and `two_level_speed.md`. It compares
-FP64->FP32x2 and FP32->FP16x2 at the 0.010 ns maximum-speed stress target.
-The FP64 and packed FP32 fixed speed reports reuse the existing
-`synth_maxspeed_fixed` data; the FP32 scalar, FP16x2, and both new
-decomposable reports are under `revised_fp_fus/two_level_speed/raw`.
+The two-level FP min/max experiment is in `fp_minmax_two_level/` (analysis in
+`fp_minmax_two_level.md`). It compares FP64 -> 2xFP32 and FP32 -> 2xFP16, both the
+same sliced core with a 1-bit mode port, against the fixed banks covering the same
+formats, at 1.000 ns and 0.500 ns (three configurations each) plus the 0.010 ns
+stress corner. Synthesis: `synth/syn_fp_minmax_two_level.tcl`; collector:
+`collect_fp_minmax_two_level.py`.
 
-`fp_cmp_sliced.md` does the same for the sliced FP compare core in
-`rtl/fu_fp_cmp_gen.sv`.
 `fp_minmax_sliced.md` compares the sliced FP min/max core in
 `rtl/fu_fp_min_max_gen.sv` with the previous per-format implementation, and
-`check_tier_ladder.py <family>` checks a ladder (monotonic, steady per-tier
-step, timing met; `--trials` checks every repeatability trial). The trials are in
-`tier_ladders/trials/` and `tier_ladders/trials.csv` (`collect_ladder_trials.py`).
-`collect_two_level_speed.py` regenerates `two_level_speed.csv`.
+`fp_cmp_sliced.md` does the same for the sliced FP compare core in
+`rtl/fu_fp_cmp_gen.sv`. `check_tier_ladder.py <family>` checks a ladder
+(monotonic, steady per-tier step, timing met; `--trials` checks every
+repeatability trial). The trials are in `tier_ladders/trials/` and
+`tier_ladders/trials.csv` (`collect_ladder_trials.py`).
 The synthesis scripts accept `JOB_FILTER=<regexp>` to rerun a subset of jobs.
 
 The complete capability-ladder sweep is in `tier_ladders/`. It synthesizes the

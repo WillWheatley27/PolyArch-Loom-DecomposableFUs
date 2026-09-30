@@ -16,10 +16,10 @@ The revised wrappers elaborate only the advertised capability. `rev64` is FP64-o
 | fp_cmp_rev64_32_16 | two_ghz | 161.394 | 0.294370 | 0.061669 | 2.000108 | 449.150 | 64.07% | 66.47% | 63.71% | true |
 | fp_minmax_rev64 | one_ghz | 116.772 | 0.327904 | 0.037837 | 1.001512 | 133.644 | 12.62% | 7.49% | 24.50% | true |
 | fp_minmax_rev64 | two_ghz | 147.985 | 0.338439 | 0.063124 | 2.003968 | 159.929 | 7.47% | 7.56% | 8.31% | true |
-| fp_minmax_rev64_32 | one_ghz | 137.329 | 0.368360 | 0.052769 | 1.001386 | 261.516 | 47.49% | 45.91% | 44.25% | true |
-| fp_minmax_rev64_32 | two_ghz | 170.008 | 0.380035 | 0.075092 | 2.002247 | 336.685 | 49.51% | 48.45% | 48.66% | true |
-| fp_minmax_rev64_32_16 | one_ghz | 163.570 | 0.427995 | 0.059992 | 1.001070 | 368.254 | 55.58% | 56.00% | 52.04% | true |
-| fp_minmax_rev64_32_16 | two_ghz | 215.651 | 0.467891 | 0.097747 | 2.001653 | 472.682 | 54.38% | 56.02% | 52.43% | true |
+| fp_minmax_rev64_32 | one_ghz | 132.179 | 0.374005 | 0.048227 | 1.000258 | 261.516 | 49.46% | 45.08% | 49.04% | true |
+| fp_minmax_rev64_32 | two_ghz | 191.231 | 0.425269 | 0.087496 | 2.000800 | 336.685 | 43.20% | 42.31% | 40.18% | true |
+| fp_minmax_rev64_32_16 | one_ghz | 161.039 | 0.427467 | 0.063666 | 1.000595 | 368.254 | 56.27% | 56.05% | 49.10% | true |
+| fp_minmax_rev64_32_16 | two_ghz | 201.754 | 0.422023 | 0.095383 | 2.000392 | 472.682 | 57.32% | 60.33% | 53.58% | true |
 
 ## Marginal capability overhead
 
@@ -29,9 +29,9 @@ The revised wrappers elaborate only the advertised capability. `rev64` is FP64-o
 | fp_cmp_rev64_32_16 | one_ghz | rev64_32 -> rev64_32_16 | 14.76% | 21.12% | 31.24% | -0.04% |
 | fp_cmp_rev64_32 | two_ghz | rev64 -> rev64_32 | 6.51% | 2.54% | -6.63% | -0.07% |
 | fp_cmp_rev64_32_16 | two_ghz | rev64_32 -> rev64_32_16 | 16.99% | 17.65% | 21.74% | -0.00% |
-| fp_minmax_rev64_32 | one_ghz | rev64 -> rev64_32 | 17.60% | 12.34% | 39.46% | -0.01% |
-| fp_minmax_rev64_32_16 | one_ghz | rev64_32 -> rev64_32_16 | 19.11% | 16.19% | 13.69% | -0.03% |
-| fp_minmax_rev64_32 | two_ghz | rev64 -> rev64_32 | 14.88% | 12.29% | 18.96% | -0.09% |
-| fp_minmax_rev64_32_16 | two_ghz | rev64_32 -> rev64_32_16 | 26.85% | 23.12% | 30.17% | -0.03% |
+| fp_minmax_rev64_32 | one_ghz | rev64 -> rev64_32 | 13.19% | 14.06% | 27.46% | -0.13% |
+| fp_minmax_rev64_32_16 | one_ghz | rev64_32 -> rev64_32_16 | 21.83% | 14.29% | 32.01% | 0.03% |
+| fp_minmax_rev64_32 | two_ghz | rev64 -> rev64_32 | 29.22% | 25.66% | 38.61% | -0.16% |
+| fp_minmax_rev64_32_16 | two_ghz | rev64_32 -> rev64_32_16 | 5.50% | -0.76% | 9.01% | -0.02% |
 
 Negative savings are penalties. These are pre-layout synthetic DC estimates, not workload-based power claims. Raw reports are under `raw/`; CSV data are in `ppa.csv`, `savings.csv`, and `marginal.csv`.
