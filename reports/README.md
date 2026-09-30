@@ -100,6 +100,9 @@ stress corner. Synthesis: `synth/syn_fp_minmax_two_level.tcl`; collector:
 (monotonic, steady per-tier step, timing met; `--trials` checks every
 repeatability trial). The trials are in `tier_ladders/trials/` and
 `tier_ladders/trials.csv` (`collect_ladder_trials.py`).
+`rerun_analysis.md` verifies all of the above against a full SAED14nm rerun of every
+tier and bank component (`PPA_rerun.csv`, `rerun_overhead.csv`, `rerun_savings.csv`;
+`synth/syn_rerun.tcl`, `collect_rerun.py`).
 The synthesis scripts accept `JOB_FILTER=<regexp>` to rerun a subset of jobs.
 
 The complete capability-ladder sweep is in `tier_ladders/`. It synthesizes the
