@@ -1,0 +1,32 @@
+****************************************
+Report : Averaged Power
+Design : fu_fp_min_max_m3
+Version: Y-2026.03-SP1
+Date   : Wed Sep 30 18:51:24 2026
+****************************************
+
+
+
+  Attributes
+  ----------
+      i  -  Including register clock pin internal power
+      u  -  User defined power group
+
+                        Internal  Switching  Leakage    Total
+Power Group             Power     Power      Power      Power   (     %)  Attrs
+--------------------------------------------------------------------------------
+clock_network              0.0000    0.0000    0.0000    0.0000 ( 0.00%)  i
+register                   0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+combinational           1.012e-04 1.023e-03 6.209e-08 1.125e-03 (100.00%) 
+sequential                 0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+memory                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+io_pad                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+black_box                  0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+
+  Net Switching Power  = 1.023e-03   (91.00%)
+  Cell Internal Power  = 1.012e-04   ( 9.00%)
+  Cell Leakage Power   = 6.209e-08   ( 0.01%)
+                         ---------
+Total Power            = 1.125e-03  (100.00%)
+
+1

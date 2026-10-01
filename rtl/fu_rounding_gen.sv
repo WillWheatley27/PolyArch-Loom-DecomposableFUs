@@ -43,6 +43,15 @@ module fu_rounding_dec #(
   localparam logic [1:0] M_2X32 = 2'b01;
   localparam logic [1:0] M_4X16 = 2'b10;
 
+  // ---- Mode decode (left edge): one-hot lane width; nothing else reads `mode` ----
+  // An encoding the tier does not support (EN32/EN16) selects one fp64 lane.
+  logic l64, l32, l16;
+  always_comb begin : mode_decode
+    l32 = EN32 && (mode == M_2X32);
+    l16 = EN16 && (mode == M_4X16);
+    l64 = ~(l32 | l16);
+  end : mode_decode
+
   // Increment decision: should the integer-part magnitude round up by 1?
   function automatic logic round_inc(input logic [2:0] rm, input logic s,
                                      input logic guard, input logic sticky, input logic int_lsb);
@@ -150,19 +159,18 @@ module fu_rounding_dec #(
       ov16 = h0[63:0]    | h1[63:0]    | h2[63:0]    | h3[63:0];
     end
 
-    // ---- mode-mux the CONTROL (one datapath below, not one per mode) ----
-    unique case (mode)
-      M_2X32:  begin fmask = fm32; incv = iv32; omask = om32; oval = ov32; end
-      M_4X16:  begin fmask = fm16; incv = iv16; omask = om16; oval = ov16; end
-      default: begin fmask = fm64; incv = iv64; omask = om64; oval = ov64; end
-    endcase
+    // ---- lane-width-select the CONTROL (one datapath below, not one per mode) ----
+    fmask = ({64{l64}} & fm64) | ({64{l32}} & fm32) | ({64{l16}} & fm16);
+    incv  = ({64{l64}} & iv64) | ({64{l32}} & iv32) | ({64{l16}} & iv16);
+    omask = ({64{l64}} & om64) | ({64{l32}} & om32) | ({64{l16}} & om16);
+    oval  = ({64{l64}} & ov64) | ({64{l32}} & ov32) | ({64{l16}} & ov16);
   end : ctrl
 
   // ---- SHARED datapath: one 64-bit mask-AND + one segmented incrementer ----
   assign masked = in_data_0 & ~fmask;
 
-  assign brk16 = (mode == M_4X16);                 // break carry at 16 & 48
-  assign brk32 = (mode == M_2X32) || (mode == M_4X16);  // break carry at 32
+  assign brk16 = l16;                              // break carry at 16 & 48
+  assign brk32 = l32 | l16;                        // break carry at 32
 
   always_comb begin : segadd
     {c0, r0} = {1'b0, masked[15:0]}  + {1'b0, incv[15:0]};

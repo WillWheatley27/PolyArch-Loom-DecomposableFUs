@@ -103,6 +103,7 @@ repeatability trial). The trials are in `tier_ladders/trials/` and
 `rerun_analysis.md` verifies all of the above against a full SAED14nm rerun of every
 tier and bank component (`PPA_rerun.csv`, `rerun_overhead.csv`, `rerun_savings.csv`;
 `synth/syn_rerun.tcl`, `collect_rerun.py`).
+`3rd_run/` (README) reruns every design after moving mode selection to the left edge, with timing closure and PrimePower simulation power per mode (`PPA_mode_left.csv`, `mode_left_overhead.csv`, `mode_left_savings.csv`, `mode_left_primepower.csv`, `mode_left_power_savings.csv`; `synth/run_primepower.py`, `collect_mode_left.py`).
 The synthesis scripts accept `JOB_FILTER=<regexp>` to rerun a subset of jobs.
 
 The complete capability-ladder sweep is in `tier_ladders/`. It synthesizes the

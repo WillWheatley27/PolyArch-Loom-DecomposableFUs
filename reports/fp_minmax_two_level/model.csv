@@ -1,4 +1,4 @@
-split,corner,config,wide_area_um2,narrow_area_um2,dec_area_um2,r_narrow_over_wide,ovh_dec_over_wide_percent,predicted_saving_percent,hand_area_um2,split_cost_area_percent,hand_vs_dw_area_percent,split_cost_power_percent,hand_vs_dw_power_percent,split_cost_leakage_percent,hand_vs_dw_leakage_percent
+split,corner,config,wide_area_um2,narrow_area_um2,dec_area_um2,r_narrow_over_wide,ovh_dec_over_wide_percent,predicted_saving_percent,hand_area_um2,overhead_area_percent,wide_tier_vs_dw_area_percent,overhead_power_percent,wide_tier_vs_dw_power_percent,overhead_leakage_percent,wide_tier_vs_dw_leakage_percent
 fp64_to_2xfp32,one_ghz,canonical,133.644,127.872,131.868,0.9568,-1.33,49.58,116.062,13.62,-13.16,13.79,-6.25,8.78,-18.80
 fp64_to_2xfp32,one_ghz,reverse,133.644,127.872,133.156,0.9568,-0.37,49.08,116.062,14.73,-13.16,14.35,-6.25,7.99,-18.80
 fp64_to_2xfp32,one_ghz,fresh,138.883,127.739,131.868,0.9198,-5.05,50.54,116.772,12.93,-15.92,15.33,-3.79,17.00,-19.47

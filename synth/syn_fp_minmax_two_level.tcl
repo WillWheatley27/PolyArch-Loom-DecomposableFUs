@@ -16,7 +16,7 @@ set target_library [list $LIB]
 set_app_var hdlin_sverilog_std 2017
 
 # name | RTL | top | optional elaboration parameters
-# hand_* are controls: the same sliced core with no split (FP64-only, FP32-only).
+# hand_* are the wide-only tiers of the same sliced core (FP64-only, FP32-only).
 set jobs {
   {dec_64_32 rtl/fu_fp_min_max_gen.sv fu_fp_min_max_m2}
   {fix_64 rtl/standalone/fp_min_max_standalones/fu_fp_min_max_64.sv fu_fp_min_max_64}

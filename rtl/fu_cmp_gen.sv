@@ -29,6 +29,15 @@ module fu_cmp_dec (
   localparam logic [1:0] M_4X16 = 2'b10;
   localparam logic [1:0] M_8X8  = 2'b11;
 
+  // ---- Mode decode (left edge): one-hot lane width; nothing else reads `mode` ----
+  logic l64, l32, l16, l8;
+  always_comb begin : mode_decode
+    l32 = (mode == M_2X32);
+    l16 = (mode == M_4X16);
+    l8  = (mode == M_8X8);
+    l64 = ~(l32 | l16 | l8);
+  end : mode_decode
+
   function automatic logic pred_eval(input logic [3:0] p, input logic ugt,
                                      input logic sgt, input logic eq);
     case (p)
@@ -53,17 +62,12 @@ module fu_cmp_dec (
     assign eqb[i] = a[i] == b[i];
   end
 
-  // ---- Per-mode masks: brk[i]=cut chain entering block i; top[i]=block i is a lane MSB ----
+  // ---- Per-lane-width masks: brk[i]=cut chain entering block i; top[i]=block i is a lane MSB ----
   logic [7:1] brk;
   logic [7:0] top;
-  always_comb begin : masks
-    unique case (mode)
-      M_8X8:   begin brk = 7'b111_1111; top = 8'b1111_1111; end
-      M_4X16:  begin brk = 7'b010_1010; top = 8'b1010_1010; end
-      M_2X32:  begin brk = 7'b000_1000; top = 8'b1000_1000; end
-      default: begin brk = 7'b000_0000; top = 8'b1000_0000; end
-    endcase
-  end : masks
+  assign brk = ({7{l8}} & 7'b111_1111) | ({7{l16}} & 7'b010_1010) | ({7{l32}} & 7'b000_1000);
+  assign top = ({8{l8}} & 8'b1111_1111) | ({8{l16}} & 8'b1010_1010) | ({8{l32}} & 8'b1000_1000)
+             | ({8{l64}} & 8'b1000_0000);
   // ---- Signed-adjusted a>b at lane-MSB blocks (differing sign bits flip magnitude order) ----
   logic gts [0:7];
   for (genvar i = 0; i < 8; i++) begin : sgn
@@ -91,20 +95,9 @@ module fu_cmp_dec (
 
   // ---- Route each block to its lane's MSB result, broadcast to an 8-bit mask ----
   logic [7:0] m;
-  always_comb begin : route
-    for (int i = 0; i < 8; i++) m[i] = res[7];        // 1x64 (and 2'b?? default)
-    unique case (mode)
-      M_2X32: begin
-        m[0]=res[3]; m[1]=res[3]; m[2]=res[3]; m[3]=res[3];
-        m[4]=res[7]; m[5]=res[7]; m[6]=res[7]; m[7]=res[7];
-      end
-      M_4X16: begin
-        m[0]=res[1]; m[1]=res[1]; m[2]=res[3]; m[3]=res[3];
-        m[4]=res[5]; m[5]=res[5]; m[6]=res[7]; m[7]=res[7];
-      end
-      M_8X8: for (int i = 0; i < 8; i++) m[i] = res[i];
-      default: ;
-    endcase
+  for (genvar i = 0; i < 8; i++) begin : route
+    assign m[i] = (l64 & res[7]) | (l32 & res[(i / 4) * 4 + 3]) | (l16 & res[(i / 2) * 2 + 1])
+                | (l8 & res[i]);
   end : route
 
   assign out_data = {{8{m[7]}}, {8{m[6]}}, {8{m[5]}}, {8{m[4]}},

@@ -26,11 +26,11 @@ Fixed-frequency rows show the median configuration (range in parentheses); maxsp
 | fp32_to_2xfp16 | two_ghz | 87.646 | 66.866 | 84.271 | 0.7629 | -3.85% | 45.46% |
 | fp32_to_2xfp16 | maxspeed | 350.405 | 380.419 | 494.527 | 1.0857 | 41.13% | 32.33% |
 
-## Split cost versus the no-split control
+## Overhead of adding the narrow lanes
 
-D/H - 1 is the cost of adding the split to the same sliced core; H/W - 1 is the hand-written core against the DesignWare scalar unit. Range over the configurations that include the control.
+Overhead = D/H - 1, from the wide-only tier of the same sliced core to the decomposable unit (the metric of `tier_ladders/marginal.csv`). The last three columns compare that wide-only tier with the DesignWare wide unit. Range over the three configurations.
 
-| Split | Corner | Split cost: area | power | leakage | Hand vs DW: area | power | leakage |
+| Split | Corner | Overhead: area | power | leakage | Wide-only tier vs DW: area | power | leakage |
 |---|---|---:|---:|---:|---:|---:|---:|
 | fp64_to_2xfp32 | one_ghz | +12.9..+14.7% | +13.8..+15.3% | +8.0..+17.0% | -15.9..-13.2% | -6.2..-3.8% | -19.5..-18.8% |
 | fp64_to_2xfp32 | two_ghz | +15.7% | +14.2% | +20.9% | -7.5% | -7.6% | -8.3% |

@@ -43,16 +43,20 @@ module fu_barrel_shift_dec (
     mkKeepR = m;
   endfunction
 
-  // ---- Per-mode arithmetic-fill sign broadcast (each lane's original MSB across the lane) ----
+  // ---- Mode decode (left edge): one-hot lane width; nothing else reads `mode` ----
+  logic l64, l32, l16;
+  always_comb begin : mode_decode
+    l32 = (mode == M_2X32);
+    l16 = (mode == M_4X16);
+    l64 = ~(l32 | l16);                // 1x64, also for reserved encodings
+  end : mode_decode
+
+  // ---- Arithmetic-fill sign broadcast (each lane's original MSB across the lane) ----
   logic [63:0] sgn;
-  always_comb begin : signb
-    unique case (mode)
-      M_2X32:  sgn = {{32{in_data_0[63]}}, {32{in_data_0[31]}}};
-      M_4X16:  sgn = {{16{in_data_0[63]}}, {16{in_data_0[47]}},
-                      {16{in_data_0[31]}}, {16{in_data_0[15]}}};
-      default: sgn = {64{in_data_0[63]}};
-    endcase
-  end : signb
+  assign sgn = ({64{l64}} & {64{in_data_0[63]}})
+             | ({64{l32}} & {{32{in_data_0[63]}}, {32{in_data_0[31]}}})
+             | ({64{l16}} & {{16{in_data_0[63]}}, {16{in_data_0[47]}},
+                             {16{in_data_0[31]}}, {16{in_data_0[15]}}});
   // ---- Shared 6-stage log-shifter. lvl[0]=data; stage k shifts magnitude 2^k, per-lane
   //      enabled by that lane's amt bit k, lane-blocked by keepL/keepR. ----
   logic [63:0] lvl [0:6];
@@ -60,34 +64,16 @@ module fu_barrel_shift_dec (
   for (genvar k=0;k<6;k++) begin : stg
     localparam int S = (1 << k);
     logic [63:0] keepL, keepR, en;
-    // Lane-blocking masks: pick by mode (constants -> pruned to one when mode tied).
-    always_comb begin : msk
-      unique case (mode)
-        M_2X32:  begin keepL = mkKeepL(32,S); keepR = mkKeepR(32,S); end
-        M_4X16:  begin keepL = mkKeepL(16,S); keepR = mkKeepR(16,S); end
-        default: begin keepL = mkKeepL(64,S); keepR = mkKeepR(64,S); end
-      endcase
-    end : msk
+    // Lane-blocking masks: constants selected by the decoded lane width.
+    assign keepL = ({64{l64}} & mkKeepL(64,S)) | ({64{l32}} & mkKeepL(32,S)) | ({64{l16}} & mkKeepL(16,S));
+    assign keepR = ({64{l64}} & mkKeepR(64,S)) | ({64{l32}} & mkKeepR(32,S)) | ({64{l16}} & mkKeepR(16,S));
     // Per-lane stage enable = that lane's shift-amount bit k, broadcast across the lane.
     // Narrow lanes expose only low log2(W) bits, so high stages self-disable.
-    always_comb begin : ena
-      logic l0, l1, l2, l3;
-      unique case (mode)
-        M_2X32: begin
-          l0 = (k < 5) ? in_data_1[k]      : 1'b0;
-          l1 = (k < 5) ? in_data_1[32 + k] : 1'b0;
-          en = {{32{l1}}, {32{l0}}};
-        end
-        M_4X16: begin
-          l0 = (k < 4) ? in_data_1[k]      : 1'b0;
-          l1 = (k < 4) ? in_data_1[16 + k] : 1'b0;
-          l2 = (k < 4) ? in_data_1[32 + k] : 1'b0;
-          l3 = (k < 4) ? in_data_1[48 + k] : 1'b0;
-          en = {{16{l3}}, {16{l2}}, {16{l1}}, {16{l0}}};
-        end
-        default: en = {64{in_data_1[k]}};
-      endcase
-    end : ena
+    logic [63:0] en32, en16;
+    assign en32 = (k < 5) ? {{32{in_data_1[32 + k]}}, {32{in_data_1[k]}}} : 64'd0;
+    assign en16 = (k < 4) ? {{16{in_data_1[48 + k]}}, {16{in_data_1[32 + k]}},
+                             {16{in_data_1[16 + k]}}, {16{in_data_1[k]}}} : 64'd0;
+    assign en = ({64{l64}} & {64{in_data_1[k]}}) | ({64{l32}} & en32) | ({64{l16}} & en16);
     logic [63:0] shl, shrl, shra, sel;
     assign shl  = (lvl[k] << S) & keepL;              // SLL: zero-fill low bits
     assign shrl = (lvl[k] >> S) & keepR;              // SRL: zero-fill high bits

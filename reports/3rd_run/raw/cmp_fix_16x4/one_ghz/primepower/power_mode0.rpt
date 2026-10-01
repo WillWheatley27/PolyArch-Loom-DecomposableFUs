@@ -1,0 +1,32 @@
+****************************************
+Report : Averaged Power
+Design : fu_cmp_16x4
+Version: Y-2026.03-SP1
+Date   : Wed Sep 30 18:48:11 2026
+****************************************
+
+
+
+  Attributes
+  ----------
+      i  -  Including register clock pin internal power
+      u  -  User defined power group
+
+                        Internal  Switching  Leakage    Total
+Power Group             Power     Power      Power      Power   (     %)  Attrs
+--------------------------------------------------------------------------------
+clock_network              0.0000    0.0000    0.0000    0.0000 ( 0.00%)  i
+register                   0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+combinational           4.282e-05 6.024e-04 2.628e-08 6.452e-04 (100.00%) 
+sequential                 0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+memory                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+io_pad                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+black_box                  0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+
+  Net Switching Power  = 6.024e-04   (93.36%)
+  Cell Internal Power  = 4.282e-05   ( 6.64%)
+  Cell Leakage Power   = 2.628e-08   ( 0.00%)
+                         ---------
+Total Power            = 6.452e-04  (100.00%)
+
+1

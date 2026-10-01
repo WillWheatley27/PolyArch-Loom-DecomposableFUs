@@ -10,9 +10,9 @@ order, reversed order, fresh session per design); maxspeed is canonical only.
 
 The cost model: with W = wide scalar unit, N = packed narrow unit, D = decomposable unit,
 r = N/W and ovh = D/W - 1, the saving is 1 - D/(W + N) = 1 - (1 + ovh)/(1 + r).
-The no-split control H (the same sliced core supporting only the wide format) splits
-ovh into the cost of adding the split, D/H - 1, and the implementation-style gap between
-the hand-written core and the DesignWare scalar unit, H/W - 1.
+H is the wide-only tier of the same sliced core. D/H - 1 is the overhead of adding the
+narrow lanes (the same metric as tier_ladders/marginal.csv), and H/W - 1 compares that
+wide-only tier with the DesignWare wide unit, so 1 + ovh = (D/H) * (H/W).
 Writes fp_minmax_two_level/{ppa,savings,model}.csv, comparison.md, and ppa_summary.md.
 """
 from __future__ import annotations
@@ -27,7 +27,7 @@ ROOT = Path(__file__).resolve().parent / "fp_minmax_two_level"
 RAW = ROOT / "raw"
 PERIOD = {"one_ghz": 1.0, "two_ghz": 0.5, "maxspeed": 0.010}
 CONFIGS = ["canonical", "reverse", "fresh"]
-SPLITS = {  # name -> (decomposable, wide fixed, packed narrow fixed, no-split control)
+SPLITS = {  # name -> (decomposable, wide fixed, packed narrow fixed, wide-only tier)
     "fp64_to_2xfp32": ("dec_64_32", "fix_64", "fix_32x2", "hand_64"),
     "fp32_to_2xfp16": ("dec_32_16", "fix_32", "fix_16x2", "hand_32"),
 }
@@ -90,8 +90,8 @@ def main() -> None:
                     H = data[(cfg, hand, corner)]
                     m["hand_area_um2"] = f"{float(H['cell_area_um2']):.3f}"
                     for mt, f in METRICS.items():
-                        m[f"split_cost_{mt}_percent"] = f"{100 * (float(D[f]) / float(H[f]) - 1):.2f}"
-                        m[f"hand_vs_dw_{mt}_percent"] = f"{100 * (float(H[f]) / float(Wd[f]) - 1):.2f}"
+                        m[f"overhead_{mt}_percent"] = f"{100 * (float(D[f]) / float(H[f]) - 1):.2f}"
+                        m[f"wide_tier_vs_dw_{mt}_percent"] = f"{100 * (float(H[f]) / float(Wd[f]) - 1):.2f}"
                 model.append(m)
             sav += per_cfg.values()
             if len(per_cfg) > 1:
@@ -144,10 +144,11 @@ def main() -> None:
                         f"{m['dec_area_um2']} | {m['r_narrow_over_wide']} | {m['ovh_dec_over_wide_percent']}% | "
                         f"{m['predicted_saving_percent']}% |\n")
     with (ROOT / "comparison.md").open("a") as f:
-        f.write("\n## Split cost versus the no-split control\n\nD/H - 1 is the cost of adding the "
-                "split to the same sliced core; H/W - 1 is the hand-written core against the "
-                "DesignWare scalar unit. Range over the configurations that include the control.\n\n"
-                "| Split | Corner | Split cost: area | power | leakage | Hand vs DW: area | power | leakage |\n"
+        f.write("\n## Overhead of adding the narrow lanes\n\nOverhead = D/H - 1, from the wide-only tier "
+                "of the same sliced core to the decomposable unit (the metric of `tier_ladders/marginal.csv`). "
+                "The last three columns compare that wide-only tier with the DesignWare wide unit. Range over "
+                "the three configurations.\n\n"
+                "| Split | Corner | Overhead: area | power | leakage | Wide-only tier vs DW: area | power | leakage |\n"
                 "|---|---|---:|---:|---:|---:|---:|---:|\n")
         for split in SPLITS:
             for corner in PERIOD:
@@ -157,16 +158,16 @@ def main() -> None:
                 def rng(k):
                     v = sorted(float(m[k]) for m in ms)
                     return f"{v[0]:+.1f}%" if len(v) == 1 or v[0] == v[-1] else f"{v[0]:+.1f}..{v[-1]:+.1f}%"
-                f.write(f"| {split} | {corner} | " + " | ".join(rng(f"split_cost_{mt}_percent") for mt in METRICS)
-                        + " | " + " | ".join(rng(f"hand_vs_dw_{mt}_percent") for mt in METRICS) + " |\n")
+                f.write(f"| {split} | {corner} | " + " | ".join(rng(f"overhead_{mt}_percent") for mt in METRICS)
+                        + " | " + " | ".join(rng(f"wide_tier_vs_dw_{mt}_percent") for mt in METRICS) + " |\n")
     roles = {"dec_64_32": ("FP64 -> 2xFP32", "decomposable (fu_fp_min_max_m2)"),
              "fix_64": ("FP64 -> 2xFP32", "fixed FP64 (DesignWare)"),
              "fix_32x2": ("FP64 -> 2xFP32", "fixed packed 2xFP32 (DesignWare)"),
-             "hand_64": ("FP64 -> 2xFP32", "no-split control, FP64 only (fu_fp_min_max_m1)"),
+             "hand_64": ("FP64 -> 2xFP32", "wide-only tier, FP64 only (fu_fp_min_max_m1)"),
              "dec_32_16": ("FP32 -> 2xFP16", "decomposable (fu_fp_minmax_revised_32_16)"),
              "fix_32": ("FP32 -> 2xFP16", "fixed FP32 (DesignWare)"),
              "fix_16x2": ("FP32 -> 2xFP16", "fixed packed 2xFP16 (DesignWare)"),
-             "hand_32": ("FP32 -> 2xFP16", "no-split control, FP32 only (core W=32)")}
+             "hand_32": ("FP32 -> 2xFP16", "wide-only tier, FP32 only (core W=32)")}
     with (ROOT / "ppa_summary.md").open("w") as f:
         f.write("# FP Min/Max Two-Level Experiment: PPA Data\n\n"
                 "Generated by `reports/collect_fp_minmax_two_level.py` from `raw/`; analysis in "
@@ -193,8 +194,8 @@ def main() -> None:
                         f"{cell('leakage_power_uw', '{:.4f}')} | {float(can['fmax_ghz']):.3f} | {energy:.4f} | "
                         f"{'yes' if can['timing_met'] else 'no'} |\n")
             f.write("\n")
-        f.write("## Bank savings and split cost\n\nSavings, cost model, and the split cost relative to the "
-                "no-split control are tabulated in `comparison.md`; machine-readable rows are in `ppa.csv`, "
+        f.write("## Bank savings and overhead\n\nSavings, the cost model, and the overhead of adding the "
+                "narrow lanes are tabulated in `comparison.md`; machine-readable rows are in `ppa.csv`, "
                 "`savings.csv`, and `model.csv`.\n")
     print(f"wrote {len(ppa)} ppa rows, {len(sav)} savings rows, {len(model)} model rows")
 

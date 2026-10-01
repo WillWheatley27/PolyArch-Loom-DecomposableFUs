@@ -46,9 +46,15 @@ module fu_fp_min_max_dec #(
   localparam int L     = $clog2(NS);              // tree levels: level l holds (16 << l)-bit lanes
   localparam int L_MIN = $clog2(MIN_LANE_W / 16); // narrowest supported level
 
-  // Effective split: lane width = W >> k; unsupported encodings fall back to one full lane.
-  logic [1:0] k;
-  assign k = (mode <= 2'(L - L_MIN)) ? mode : 2'd0;
+  // ---- Mode decode (left edge): one-hot lane level shared by every slice ----
+  // lvl[l] = 1 when lanes are (16 << l) bits wide (mode = L - l). Encodings the tier does
+  // not support, including reserved ones, select the full-width lane (level L).
+  logic [L:0] lvl;
+  always_comb begin : mode_decode
+    lvl = '0;
+    for (int l = L_MIN; l < L; l++) lvl[l] = (mode == 2'(L - l));
+    lvl[L] = (lvl == '0);
+  end : mode_decode
 
   // ---- Format of a level-l lane, as seen by its top slice (elaboration-time constants) ----
   function automatic int exp_w(input int l);
@@ -163,11 +169,10 @@ module fu_fp_min_max_dec #(
       end : level_in
       logic gt_r, oa, ob, ta, tb, la, lb;
       always_comb begin : level_inputs
-        // Widest level this slice tops; also covers modes where it tops no lane (unused).
-        {gt_r, oa, ob, ta, tb, la, lb} = cand[TL];
-        for (int kk = 1; kk <= L - L_MIN; kk++)
-          if (k == 2'(kk) && L - kk < TL)
-            {gt_r, oa, ob, ta, tb, la, lb} = cand[L - kk];
+        // One-hot AND-OR over the levels this slice tops (zero when it tops no lane: unused).
+        {gt_r, oa, ob, ta, tb, la, lb} = '0;
+        for (int l = L_MIN; l <= TL; l++)
+          {gt_r, oa, ob, ta, tb, la, lb} = {gt_r, oa, ob, ta, tb, la, lb} | ({7{lvl[l]}} & cand[l]);
       end : level_inputs
       logic sa, sb;
       assign sa = in_data_0[16*j + 15];
@@ -185,17 +190,13 @@ module fu_fp_min_max_dec #(
     logic gt, nan, op;
     logic [15:0] q;
     always_comb begin : level_select
-      gt  = gt_s[lane_top(j, L)];
-      nan = nan_s[lane_top(j, L)];
-      op  = op_sel[0];
-      q   = (j == NS - 1) ? qnan_mask(L) : 16'h0000;
-      for (int kk = 1; kk <= L - L_MIN; kk++)
-        if (k == 2'(kk)) begin
-          gt  = gt_s[lane_top(j, L - kk)];
-          nan = nan_s[lane_top(j, L - kk)];
-          op  = op_sel[(j >> (L - kk)) << (L - kk)];
-          q   = (((j + 1) % (1 << (L - kk))) == 0) ? qnan_mask(L - kk) : 16'h0000;
-        end
+      gt = 1'b0; nan = 1'b0; op = 1'b0; q = '0;
+      for (int l = L_MIN; l <= L; l++) begin   // one-hot AND-OR over the supported levels
+        gt  = gt  | (lvl[l] & gt_s[lane_top(j, l)]);
+        nan = nan | (lvl[l] & nan_s[lane_top(j, l)]);
+        op  = op  | (lvl[l] & op_sel[(j >> l) << l]);
+        q   = q   | ({16{lvl[l]}} & ((((j + 1) % (1 << l)) == 0) ? qnan_mask(l) : 16'h0000));
+      end
     end : level_select
     // min picks b when a > b; max picks b when a <= b (ties are bit-identical).
     logic choose_b;

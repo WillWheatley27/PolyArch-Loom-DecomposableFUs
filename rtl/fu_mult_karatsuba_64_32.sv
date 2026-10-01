@@ -28,6 +28,10 @@ module fu_mult_karatsuba_64_32 (
   assign in_ready_0 = out_ready & out_valid;
   assign in_ready_1 = out_ready & out_valid;
 
+  // ---- Mode decode (left edge): 2x32 lanes; every other encoding is one 64-bit lane ----
+  logic l32;
+  assign l32 = (mode == 2'b01);
+
   logic [31:0] alo, ahi, blo, bhi;
   assign alo = in_data_0[31:0]; assign ahi = in_data_0[63:32];
   assign blo = in_data_1[31:0]; assign bhi = in_data_1[63:32];
@@ -55,5 +59,5 @@ module fu_mult_karatsuba_64_32 (
   assign cross_lo = z1[31:0] - z0[31:0] - z2[31:0];
   assign p64 = z0 + {cross_lo, 32'b0};
   assign p32 = {z2[31:0], z0[31:0]};
-  assign out_data = (mode == 2'b01) ? p32 : p64;
+  assign out_data = l32 ? p32 : p64;
 endmodule : fu_mult_karatsuba_64_32

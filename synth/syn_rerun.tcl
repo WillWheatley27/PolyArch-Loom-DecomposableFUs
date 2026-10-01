@@ -3,6 +3,10 @@
 # compile_ultra -area_high_effort_script -no_autoungroup, 1.000 ns and 0.500 ns max-delay
 # targets, uniform synthetic activity. Run one design per dc_shell session (JOB_FILTER) so no
 # result depends on what was compiled before it. Reports go to reports/rerun/raw.
+# Optional: NETLIST=1 also writes the gate netlist, SDF, and SDC for PrimePower.
+# Optional: CLOSURE=1 retries a design that misses its target with the max-delay constraint
+# tightened to 90%, 80%, then 70% of the period, keeping the first result that meets the
+# real target (CLOSURE_FACTOR in result.txt; 1.0 = met on the first compile).
 set LIB_DIR /mnt/nas0/eda.libs/saed14/EDK_03_2025/SAED14nm_EDK_STD_RVT/liberty/nldm/base
 set LIB saed14rvt_base_tt0p8v25c.db
 set ROOT /edata1/will/Decomposable_FU
@@ -77,29 +81,47 @@ set jobs {
 set PERIOD(one_ghz) 1.000
 set PERIOD(two_ghz) 0.500
 
-proc run_one {name rtl_rel top corner} {
-  global ROOT OUTROOT PERIOD
-  set period $PERIOD($corner)
+proc compile_at {rtl_rel top constraint} {
+  global ROOT
   remove_design -all
   if {[analyze -format sverilog ${ROOT}/${rtl_rel}] == 0} { error "analyze failed: $rtl_rel" }
   elaborate $top
   link
-  set_max_delay $period -from [all_inputs] -to [all_outputs]
+  set_max_delay $constraint -from [all_inputs] -to [all_outputs]
   compile_ultra -area_high_effort_script -no_autoungroup
-  catch {set_switching_activity -static_probability 0.5 -toggle_rate 0.2 -period 1.0 [all_inputs]}
-  set paths [get_timing_paths -delay_type max -max_paths 1 -nworst 1]
   set arr 0.0
-  foreach_in_collection p $paths {set arr [get_attribute $p arrival]}
+  foreach_in_collection p [get_timing_paths -delay_type max -max_paths 1 -nworst 1] {
+    set arr [get_attribute $p arrival]
+  }
+  return $arr
+}
+
+proc run_one {name rtl_rel top corner} {
+  global OUTROOT PERIOD
+  set period $PERIOD($corner)
+  set factors {1.0}
+  if {[info exists ::env(CLOSURE)]} { set factors {1.0 0.9 0.8 0.7} }
+  foreach f $factors {
+    set arr [compile_at $rtl_rel $top [expr {$period * $f}]]
+    if {$arr <= $period + 1e-6} { break }
+  }
+  catch {set_switching_activity -static_probability 0.5 -toggle_rate 0.2 -period 1.0 [all_inputs]}
   set fmax [expr {$arr > 0 ? 1.0/$arr : 0.0}]
   set out ${OUTROOT}/${name}/${corner}
   file mkdir $out
   report_area > ${out}/report_area.rpt
   report_power -analysis_effort low > ${out}/report_power.rpt
   report_timing -delay_type max -nworst 1 > ${out}/report_timing.rpt
+  if {[info exists ::env(NETLIST)]} {
+    change_names -rules verilog -hierarchy
+    write -format verilog -hierarchy -output ${out}/netlist.v
+    write_sdf ${out}/netlist.sdf
+    write_sdc ${out}/netlist.sdc
+  }
   set fh [open ${out}/result.txt w]
-  puts $fh "FU=${name} TOP=${top} TARGET_PERIOD_NS=${period} ARRIVAL_NS=${arr} FMAX_GHZ=${fmax} ACTIVITY_SOURCE=uniform_synthetic"
+  puts $fh "FU=${name} TOP=${top} TARGET_PERIOD_NS=${period} ARRIVAL_NS=${arr} FMAX_GHZ=${fmax} CLOSURE_FACTOR=${f} ACTIVITY_SOURCE=uniform_synthetic"
   close $fh
-  echo "RESULT ${name} ${corner} arrival_ns=${arr} fmax_ghz=${fmax}"
+  echo "RESULT ${name} ${corner} arrival_ns=${arr} fmax_ghz=${fmax} closure_factor=${f}"
 }
 
 # Optional: JOB_FILTER=<regexp> selects the jobs to run.

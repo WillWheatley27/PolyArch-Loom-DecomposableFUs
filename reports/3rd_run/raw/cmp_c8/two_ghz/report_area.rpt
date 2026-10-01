@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : fu_cmp_c8
+Version: Y-2026.03-SP1
+Date   : Wed Sep 30 18:21:06 2026
+****************************************
+
+Library(s) Used:
+
+    saed14rvt_base_tt0p8v25c (File: /mnt/nas0/eda.libs/saed14/EDK_03_2025/SAED14nm_EDK_STD_RVT/liberty/nldm/base/saed14rvt_base_tt0p8v25c.db)
+
+Number of ports:                          412
+Number of nets:                           963
+Number of cells:                          623
+Number of combinational cells:            622
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                        194
+Number of references:                       1
+
+Combinational area:                241.136398
+Buf/Inv area:                       47.641199
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:             217.219401
+
+Total cell area:                   241.136398
+Total area:                        458.355799
+1

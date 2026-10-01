@@ -1,0 +1,104 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_mult_decomp
+Version: Y-2026.03-SP1
+Date   : Wed Sep 30 18:15:01 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[4]
+              (input port)
+  Endpoint: out_data[63]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_decomp     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  in_data_0[4] (in)                                       0.00       0.00 r
+  u_kar_lo/a[4] (fu_mult_karatsuba_32_full_1)             0.00       0.00 r
+  u_kar_lo/U2517/X (SAEDRVT14_ND2_MM_16)                  0.01       0.01 f
+  u_kar_lo/U2490/X (SAEDRVT14_NR2_MM_16)                  0.01       0.02 r
+  u_kar_lo/U2489/X (SAEDRVT14_NR2_MM_16)                  0.01       0.03 f
+  u_kar_lo/U2476/X (SAEDRVT14_OAI21_V1_8)                 0.02       0.05 r
+  u_kar_lo/U2325/X (SAEDRVT14_NR2_MM_16)                  0.01       0.07 f
+  u_kar_lo/U2324/X (SAEDRVT14_INV_S_20)                   0.01       0.08 r
+  u_kar_lo/U2127/X (SAEDRVT14_AOI21_V1_8)                 0.01       0.09 f
+  u_kar_lo/U2577/X (SAEDRVT14_EN2_4)                      0.03       0.12 r
+  u_kar_lo/U1246/X (SAEDRVT14_EO2_2)                      0.04       0.16 f
+  u_kar_lo/U2571/X (SAEDRVT14_NR2_MM_10)                  0.01       0.17 r
+  u_kar_lo/U1131/X (SAEDRVT14_INV_12)                     0.01       0.19 f
+  u_kar_lo/U1212/X (SAEDRVT14_BUF_10)                     0.03       0.22 f
+  u_kar_lo/U1721/X (SAEDRVT14_OAI22_1P5)                  0.03       0.24 r
+  u_kar_lo/U3024/CO (SAEDRVT14_ADDF_V1_2)                 0.04       0.28 r
+  u_kar_lo/U2219/S (SAEDRVT14_ADDF_V2_2)                  0.05       0.34 f
+  u_kar_lo/U1867/S (SAEDRVT14_ADDF_V2_2)                  0.05       0.38 r
+  u_kar_lo/U3651/S (SAEDRVT14_ADDF_V2_2)                  0.06       0.45 f
+  u_kar_lo/U470/X (SAEDRVT14_ND2_8)                       0.03       0.48 r
+  u_kar_lo/U1863/X (SAEDRVT14_NR2_MM_10)                  0.01       0.49 f
+  u_kar_lo/U2902/X (SAEDRVT14_AN2_4)                      0.01       0.50 f
+  u_kar_lo/U2590/X (SAEDRVT14_OR2_MM_20)                  0.03       0.53 f
+  u_kar_lo/U287/X (SAEDRVT14_AOI21_V1_6)                  0.02       0.54 r
+  u_kar_lo/U2589/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.56 f
+  u_kar_lo/U2588/X (SAEDRVT14_AOI21_8)                    0.01       0.57 r
+  u_kar_lo/U2676/X (SAEDRVT14_EO2_3)                      0.04       0.61 f
+  u_kar_lo/U228/X (SAEDRVT14_ND2_CDC_4)                   0.02       0.63 r
+  u_kar_lo/U191/X (SAEDRVT14_INV_6)                       0.01       0.64 f
+  u_kar_lo/U1962/X (SAEDRVT14_NR2_MM_16)                  0.01       0.66 r
+  u_kar_lo/U1914/X (SAEDRVT14_OAI21_V1_8)                 0.01       0.67 f
+  u_kar_lo/U175/X (SAEDRVT14_INV_S_8)                     0.01       0.68 r
+  u_kar_lo/U2010/X (SAEDRVT14_NR2_MM_10)                  0.01       0.69 f
+  u_kar_lo/U2008/X (SAEDRVT14_NR2_MM_10)                  0.01       0.70 r
+  u_kar_lo/U1864/X (SAEDRVT14_ND2_16)                     0.01       0.71 f
+  u_kar_lo/U2222/X (SAEDRVT14_ND2_MM_8)                   0.01       0.72 r
+  u_kar_lo/U2487/X (SAEDRVT14_INV_S_8)                    0.01       0.73 f
+  u_kar_lo/U1865/X (SAEDRVT14_NR2_MM_16)                  0.01       0.74 r
+  u_kar_lo/U90/X (SAEDRVT14_ND2_MM_10)                    0.01       0.75 f
+  u_kar_lo/U83/X (SAEDRVT14_ND2_MM_8)                     0.01       0.76 r
+  u_kar_lo/U2312/X (SAEDRVT14_ND2_MM_16)                  0.01       0.77 f
+  u_kar_lo/U1724/X (SAEDRVT14_ND2_MM_16)                  0.01       0.77 r
+  u_kar_lo/U2318/X (SAEDRVT14_ND2_16)                     0.01       0.78 f
+  u_kar_lo/U1723/X (SAEDRVT14_ND2_MM_16)                  0.01       0.79 r
+  u_kar_lo/U2374/X (SAEDRVT14_ND2_MM_16)                  0.01       0.80 f
+  u_kar_lo/U32/X (SAEDRVT14_ND2_6)                        0.01       0.81 r
+  u_kar_lo/U2562/X (SAEDRVT14_EN2_4)                      0.02       0.83 f
+  u_kar_lo/product[56] (fu_mult_karatsuba_32_full_1)      0.00       0.83 f
+  U1608/X (SAEDRVT14_BUF_16)                              0.01       0.84 f
+  U1642/X (SAEDRVT14_OAI21_V1_8)                          0.01       0.85 r
+  U977/X (SAEDRVT14_ND2_MM_8)                             0.01       0.86 f
+  U2219/S (SAEDRVT14_ADDF_V2_2)                           0.04       0.90 r
+  U185/X (SAEDRVT14_BUF_4)                                0.02       0.92 r
+  U1683/X (SAEDRVT14_NR2_MM_10)                           0.01       0.93 f
+  U1104/X (SAEDRVT14_AO31_4)                              0.02       0.95 f
+  U1274/X (SAEDRVT14_OAI21_V1_8)                          0.01       0.96 r
+  U2329/CO (SAEDRVT14_ADDF_V2_2)                          0.02       0.99 r
+  U2391/CO (SAEDRVT14_ADDF_V2_2)                          0.04       1.02 r
+  U1051/X (SAEDRVT14_OAI21_V1_8)                          0.02       1.04 f
+  U1221/X (SAEDRVT14_OAI21_V1_8)                          0.01       1.06 r
+  U1575/X (SAEDRVT14_EN2_4)                               0.02       1.08 f
+  U1419/X (SAEDRVT14_OAI21_V1_8)                          0.01       1.09 r
+  out_data[63] (out)                                      0.00       1.09 r
+  data arrival time                                                  1.09
+
+  max_delay                                               0.35       0.35
+  output external delay                                   0.00       0.35
+  data required time                                                 0.35
+  --------------------------------------------------------------------------
+  data required time                                                 0.35
+  data arrival time                                                 -1.09
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.74
+
+
+1

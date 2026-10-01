@@ -36,6 +36,14 @@ module fu_mult_decomp (
   localparam logic [1:0] M_2X32 = 2'b01;
   localparam logic [1:0] M_4X16 = 2'b10;
 
+  // ---- Mode decode (left edge): one-hot lane width; nothing else reads `mode` ----
+  logic l64, l32, l16;
+  always_comb begin : mode_decode
+    l32 = (mode == M_2X32);
+    l16 = (mode == M_4X16);
+    l64 = ~(l32 | l16);                // 1x64, also for reserved encodings
+  end : mode_decode
+
   logic [31:0] a_lo, a_hi, b_lo, b_hi;
   assign a_lo = in_data_0[31:0];
   assign a_hi = in_data_0[63:32];
@@ -82,13 +90,7 @@ module fu_mult_decomp (
   logic [63:0] p4;
   assign p4 = {z2_hi16, z2_lo16, z0_hi16, z0_lo16};
 
-  always_comb begin : outmux
-    case (mode)
-      M_2X32:  out_data = p2;
-      M_4X16:  out_data = p4;
-      default: out_data = p1;
-    endcase
-  end : outmux
+  assign out_data = ({64{l64}} & p1) | ({64{l32}} & p2) | ({64{l16}} & p4);
 endmodule : fu_mult_decomp
 
 // One 32x32 full product using Karatsuba at a 16-bit split. The three leaf

@@ -1,0 +1,73 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_mult_karatsuba_32x2
+Version: Y-2026.03-SP1
+Date   : Wed Sep 30 17:58:11 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[20]
+              (input port)
+  Endpoint: out_data[31]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_karatsuba_32x2
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  in_data_0[20] (in)                                      0.00       0.00 r
+  g_lane[0].u_lane/a[20] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       0.00 r
+  g_lane[0].u_lane/U938/X (SAEDRVT14_ND2_CDC_2)           0.04       0.04 f
+  g_lane[0].u_lane/U666/X (SAEDRVT14_OAI21_V1_4)          0.04       0.08 r
+  g_lane[0].u_lane/U1213/X (SAEDRVT14_AOI21_8)            0.02       0.09 f
+  g_lane[0].u_lane/U1214/X (SAEDRVT14_OAI21_V1_8)         0.02       0.11 r
+  g_lane[0].u_lane/U1216/X (SAEDRVT14_AOI21_8)            0.02       0.13 f
+  g_lane[0].u_lane/U1218/X (SAEDRVT14_OAI21_V1_8)         0.02       0.15 r
+  g_lane[0].u_lane/U1225/X (SAEDRVT14_AOI21_8)            0.02       0.18 f
+  g_lane[0].u_lane/U1227/X (SAEDRVT14_OAI21_V1_8)         0.02       0.20 r
+  g_lane[0].u_lane/U922/X (SAEDRVT14_EO2_2)               0.06       0.25 f
+  g_lane[0].u_lane/U268/X (SAEDRVT14_INV_S_2)             0.05       0.30 r
+  g_lane[0].u_lane/U329/X (SAEDRVT14_ND2B_U_0P5)          0.07       0.37 f
+  g_lane[0].u_lane/U1248/X (SAEDRVT14_OAI22_4)            0.03       0.40 r
+  g_lane[0].u_lane/U1250/CO (SAEDRVT14_ADDH_2)            0.02       0.42 r
+  g_lane[0].u_lane/U1249/S (SAEDRVT14_ADDF_V1_1)          0.06       0.48 f
+  g_lane[0].u_lane/U1265/S (SAEDRVT14_ADDF_V1_1)          0.05       0.53 r
+  g_lane[0].u_lane/U1282/CO (SAEDRVT14_ADDF_V1_1)         0.04       0.57 r
+  g_lane[0].u_lane/U1280/S (SAEDRVT14_ADDF_V1_2)          0.06       0.63 f
+  g_lane[0].u_lane/U1297/CO (SAEDRVT14_ADDF_V1_2)         0.03       0.67 f
+  g_lane[0].u_lane/U1418/S (SAEDRVT14_ADDF_V1_1)          0.06       0.72 r
+  g_lane[0].u_lane/U1422/S (SAEDRVT14_ADDF_V1_2)          0.06       0.78 f
+  g_lane[0].u_lane/U1424/S (SAEDRVT14_ADDF_V1_2)          0.05       0.83 r
+  g_lane[0].u_lane/U1385/S (SAEDRVT14_ADDF_V1_1)          0.05       0.88 f
+  g_lane[0].u_lane/U1386/S (SAEDRVT14_ADDF_V1_2)          0.05       0.94 r
+  g_lane[0].u_lane/U1508/CO (SAEDRVT14_ADDF_V2_2)         0.04       0.98 r
+  g_lane[0].u_lane/U1435/X (SAEDRVT14_EN2_4)              0.02       1.00 f
+  g_lane[0].u_lane/product[31] (fu_mult_karatsuba_fixed32_full_x2_1)
+                                                          0.00       1.00 f
+  out_data[31] (out)                                      0.00       1.00 f
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

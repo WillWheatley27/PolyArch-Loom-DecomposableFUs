@@ -52,9 +52,15 @@ module fu_fp_cmp_dec #(
   localparam int L     = $clog2(NS);              // tree levels: level l holds (16 << l)-bit lanes
   localparam int L_MIN = $clog2(MIN_LANE_W / 16); // narrowest supported level
 
-  // Effective split: lane width = W >> k; unsupported encodings fall back to one full lane.
-  logic [1:0] k;
-  assign k = (mode <= 2'(L - L_MIN)) ? mode : 2'd0;
+  // ---- Mode decode (left edge): one-hot lane level shared by every slice ----
+  // lvl[l] = 1 when lanes are (16 << l) bits wide (mode = L - l). Encodings the tier does
+  // not support, including reserved ones, select the full-width lane (level L).
+  logic [L:0] lvl;
+  always_comb begin : mode_decode
+    lvl = '0;
+    for (int l = L_MIN; l < L; l++) lvl[l] = (mode == 2'(L - l));
+    lvl[L] = (lvl == '0);
+  end : mode_decode
 
   // ---- Format of a level-l lane, as seen by its top slice (elaboration-time constants) ----
   function automatic int exp_w(input int l);
@@ -193,11 +199,10 @@ module fu_fp_cmp_dec #(
       end : level_in
       logic gt_r, eq_r, oa, ob, ta, tb, la, lb;
       always_comb begin : level_inputs
-        // Widest level this slice tops; also covers modes where it tops no lane (unused).
-        {gt_r, eq_r, oa, ob, ta, tb, la, lb} = cand[TL];
-        for (int kk = 1; kk <= L - L_MIN; kk++)
-          if (k == 2'(kk) && L - kk < TL)
-            {gt_r, eq_r, oa, ob, ta, tb, la, lb} = cand[L - kk];
+        // One-hot AND-OR over the levels this slice tops (zero when it tops no lane: unused).
+        {gt_r, eq_r, oa, ob, ta, tb, la, lb} = '0;
+        for (int l = L_MIN; l <= TL; l++)
+          {gt_r, eq_r, oa, ob, ta, tb, la, lb} = {gt_r, eq_r, oa, ob, ta, tb, la, lb} | ({8{lvl[l]}} & cand[l]);
       end : level_inputs
       logic sa, sb, uno, zero, eq, gt, lt;
       assign sa   = in_data_0[16*j + 15];
@@ -218,9 +223,9 @@ module fu_fp_cmp_dec #(
   for (genvar j = 0; j < NS; j++) begin : out_slice
     logic r;
     always_comb begin : level_select
-      r = res_s[lane_top(j, L)];
-      for (int kk = 1; kk <= L - L_MIN; kk++)
-        if (k == 2'(kk)) r = res_s[lane_top(j, L - kk)];
+      r = 1'b0;
+      for (int l = L_MIN; l <= L; l++)         // one-hot AND-OR over the supported levels
+        r = r | (lvl[l] & res_s[lane_top(j, l)]);
     end : level_select
     assign out_data[16*j +: 16] = {16{r}};
   end : out_slice

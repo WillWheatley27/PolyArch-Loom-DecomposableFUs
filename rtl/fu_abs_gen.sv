@@ -24,32 +24,23 @@ module fu_abs_dec (
   localparam logic [1:0] M_2X32 = 2'b01;
   localparam logic [1:0] M_4X16 = 2'b10;
 
-  // ---- Per-byte negate flag (lane sign, for absi) + lane-LSB flag, from mode ----
+  // ---- Mode decode (left edge): one-hot lane width; nothing else reads `mode` ----
+  logic l64, l32, l16;
+  always_comb begin : mode_decode
+    l32 = (mode == M_2X32);
+    l16 = (mode == M_4X16);
+    l64 = ~(l32 | l16);                // 1x64, also for reserved encodings
+  end : mode_decode
+
+  // ---- Per-byte negate flag (lane sign, for absi) + lane-LSB flag, from the lane width ----
   // brk[i]=1 marks byte i as the low byte of a new lane -> carry break + fresh +1 seed.
   logic       negb [0:7];   // negate this byte's lane (absi only)
   logic [7:1] brk;
-  always_comb begin : lanes
-    unique case (mode)
-      M_4X16: begin
-        brk = 7'b010_1010;
-        negb[0]=in_data_0[15]; negb[1]=in_data_0[15];
-        negb[2]=in_data_0[31]; negb[3]=in_data_0[31];
-        negb[4]=in_data_0[47]; negb[5]=in_data_0[47];
-        negb[6]=in_data_0[63]; negb[7]=in_data_0[63];
-      end
-      M_2X32: begin
-        brk = 7'b000_1000;
-        negb[0]=in_data_0[31]; negb[1]=in_data_0[31];
-        negb[2]=in_data_0[31]; negb[3]=in_data_0[31];
-        negb[4]=in_data_0[63]; negb[5]=in_data_0[63];
-        negb[6]=in_data_0[63]; negb[7]=in_data_0[63];
-      end
-      default: begin
-        brk = 7'b000_0000;
-        for (int i=0;i<8;i++) negb[i]=in_data_0[63];
-      end
-    endcase
-  end : lanes
+  assign brk = ({7{l16}} & 7'b010_1010) | ({7{l32}} & 7'b000_1000);
+  for (genvar i = 0; i < 8; i++) begin : lane_sign
+    assign negb[i] = (l64 & in_data_0[63]) | (l32 & in_data_0[(i / 4) * 32 + 31])
+                   | (l16 & in_data_0[(i / 2) * 16 + 15]);
+  end : lane_sign
 
   // ---- Shared byte-ripple negate chain: xb = invert-if-negating; carry-in at each lane LSB
   //      is the negate flag (the two's-complement +1); carry broken at lane boundaries. ----
@@ -74,15 +65,10 @@ module fu_abs_dec (
     assign absi_res[i*8 +: 8] = sm[i][7:0];
   end
 
-  // ---- FP abs: clear per-lane sign bit (mode-selected mask) ----
+  // ---- FP abs: clear per-lane sign bit (lane-width mask) ----
   logic [63:0] sign_mask;
-  always_comb begin : fmask
-    unique case (mode)
-      M_2X32:  sign_mask = 64'h8000_0000_8000_0000;
-      M_4X16:  sign_mask = 64'h8000_8000_8000_8000;
-      default: sign_mask = 64'h8000_0000_0000_0000;
-    endcase
-  end : fmask
+  assign sign_mask = ({64{l64}} & 64'h8000_0000_0000_0000) | ({64{l32}} & 64'h8000_0000_8000_0000)
+                   | ({64{l16}} & 64'h8000_8000_8000_8000);
 
   assign out_data = is_float ? (in_data_0 & ~sign_mask) : absi_res;
 endmodule : fu_abs_dec
