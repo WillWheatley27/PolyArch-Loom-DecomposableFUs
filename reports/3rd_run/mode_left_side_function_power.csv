@@ -1,0 +1,51 @@
+decomposable,separate_units,corner,function,mode,lane_width,lanes,dec_total_mw,dec_dynamic_mw,dec_leakage_uw,active_unit,active_total_mw,idle_unit,idle_leakage_uw,gated_pair_total_mw,both_active_total_mw,dec_energy_per_op_pj,gated_pair_energy_per_op_pj,total_saving_vs_gated_percent,total_saving_vs_both_active_percent,comparable
+addsub_minmax_d1,AddSub d1 + MinMax m1,one_ghz,addsub,0,64,1,2.653000,2.652500,0.152600,addsub_d1,1.479000,minmax_m1,0.057920,1.479058,2.729000,2.653000,1.479058,-79.371,2.785,true
+addsub_minmax_d1,AddSub d1 + MinMax m1,one_ghz,minmax,0,64,1,2.493000,2.493300,0.152100,minmax_m1,1.250000,addsub_d1,0.070760,1.250071,2.729000,2.493000,1.250071,-99.429,8.648,true
+addsub_minmax_d1,AddSub d1 + MinMax m1,two_ghz,addsub,0,64,1,7.039000,7.038000,0.396500,addsub_d1,2.456000,minmax_m1,0.047860,2.456048,4.216000,3.519500,1.228024,-186.599,-66.959,true
+addsub_minmax_d1,AddSub d1 + MinMax m1,two_ghz,minmax,0,64,1,6.604000,6.604000,0.412500,minmax_m1,1.760000,addsub_d1,0.104200,1.760104,4.216000,3.302000,0.880052,-275.205,-56.641,true
+addsub_minmax_d2,AddSub d2 + MinMax m2,one_ghz,addsub,0,64,1,2.837000,2.836200,0.174600,addsub_d2,1.529000,minmax_m2,0.041400,1.529041,2.531000,2.837000,1.529041,-85.541,-12.090,true
+addsub_minmax_d2,AddSub d2 + MinMax m2,one_ghz,addsub,1,32,2,2.818000,2.818500,0.174700,addsub_d2,1.518000,minmax_m2,0.041400,1.518041,2.557000,2.818000,1.518041,-85.634,-10.207,true
+addsub_minmax_d2,AddSub d2 + MinMax m2,one_ghz,addsub,weighted,mode probabilities,,2.824333,,,,,,,1.521708,2.548333,2.824333,1.521708,-85.603,-10.831,true
+addsub_minmax_d2,AddSub d2 + MinMax m2,one_ghz,minmax,0,64,1,2.479000,2.478100,0.174700,minmax_m2,1.002000,addsub_d2,0.067200,1.002067,2.531000,2.479000,1.002067,-147.389,2.055,true
+addsub_minmax_d2,AddSub d2 + MinMax m2,one_ghz,minmax,1,32,2,2.554000,2.553700,0.174300,minmax_m2,1.039000,addsub_d2,0.067200,1.039067,2.557000,2.554000,1.039067,-145.797,0.117,true
+addsub_minmax_d2,AddSub d2 + MinMax m2,one_ghz,minmax,weighted,mode probabilities,,2.529000,,,,,,,1.026734,2.548333,2.529000,1.026734,-146.315,0.759,true
+addsub_minmax_d2,AddSub d2 + MinMax m2,two_ghz,addsub,0,64,1,7.908000,7.908000,0.462700,addsub_d2,3.156000,minmax_m2,0.047980,3.156048,4.981000,3.954000,1.578024,-150.567,-58.763,true
+addsub_minmax_d2,AddSub d2 + MinMax m2,two_ghz,addsub,1,32,2,7.542000,7.542000,0.461700,addsub_d2,3.195000,minmax_m2,0.047980,3.195048,5.013000,3.771000,1.597524,-136.053,-50.449,true
+addsub_minmax_d2,AddSub d2 + MinMax m2,two_ghz,addsub,weighted,mode probabilities,,7.664000,,,,,,,3.182048,5.002333,3.832000,1.591024,-140.851,-53.209,true
+addsub_minmax_d2,AddSub d2 + MinMax m2,two_ghz,minmax,0,64,1,7.244000,7.244000,0.470900,minmax_m2,1.825000,addsub_d2,0.123900,1.825124,4.981000,3.622000,0.912562,-296.905,-45.433,true
+addsub_minmax_d2,AddSub d2 + MinMax m2,two_ghz,minmax,1,32,2,7.409000,7.409000,0.469700,minmax_m2,1.818000,addsub_d2,0.123900,1.818124,5.013000,3.704500,0.909062,-307.508,-47.796,true
+addsub_minmax_d2,AddSub d2 + MinMax m2,two_ghz,minmax,weighted,mode probabilities,,7.354000,,,,,,,1.820457,5.002333,3.677000,0.910229,-303.964,-47.011,true
+addsub_minmax_d4,AddSub d4 + MinMax m4,one_ghz,addsub,0,64,1,3.345000,3.344700,0.228100,addsub_d4,1.587000,minmax_m4,0.044630,1.587045,2.865000,3.345000,1.587045,-110.769,-16.754,true
+addsub_minmax_d4,AddSub d4 + MinMax m4,one_ghz,addsub,1,32,2,3.312000,3.311000,0.227700,addsub_d4,1.567000,minmax_m4,0.044630,1.567045,2.843000,3.312000,1.567045,-111.353,-16.497,true
+addsub_minmax_d4,AddSub d4 + MinMax m4,one_ghz,addsub,2,16,4,3.276000,3.275500,0.228900,addsub_d4,1.548000,minmax_m4,0.044630,1.548045,2.803000,3.276000,1.548045,-111.622,-16.875,true
+addsub_minmax_d4,AddSub d4 + MinMax m4,one_ghz,addsub,weighted,mode probabilities,,3.311250,,,,,,,1.567295,2.838500,3.311250,1.567295,-111.272,-16.655,true
+addsub_minmax_d4,AddSub d4 + MinMax m4,one_ghz,minmax,0,64,1,2.815000,2.814800,0.228600,minmax_m4,1.278000,addsub_d4,0.071970,1.278072,2.865000,2.815000,1.278072,-120.254,1.745,true
+addsub_minmax_d4,AddSub d4 + MinMax m4,one_ghz,minmax,1,32,2,2.779000,2.778200,0.228300,minmax_m4,1.276000,addsub_d4,0.071970,1.276072,2.843000,2.779000,1.276072,-117.778,2.251,true
+addsub_minmax_d4,AddSub d4 + MinMax m4,one_ghz,minmax,2,16,4,2.780000,2.779200,0.228900,minmax_m4,1.255000,addsub_d4,0.071970,1.255072,2.803000,2.780000,1.255072,-121.501,0.821,true
+addsub_minmax_d4,AddSub d4 + MinMax m4,one_ghz,minmax,weighted,mode probabilities,,2.788250,,,,,,,1.271322,2.838500,2.788250,1.271322,-119.319,1.770,true
+addsub_minmax_d4,AddSub d4 + MinMax m4,two_ghz,addsub,0,64,1,8.196000,8.195000,0.530800,addsub_d4,3.775000,minmax_m4,0.059590,3.775060,5.380000,4.098000,1.887530,-117.109,-52.342,true
+addsub_minmax_d4,AddSub d4 + MinMax m4,two_ghz,addsub,1,32,2,7.896000,7.895000,0.528300,addsub_d4,3.592000,minmax_m4,0.059590,3.592060,5.319000,3.948000,1.796030,-119.818,-48.449,true
+addsub_minmax_d4,AddSub d4 + MinMax m4,two_ghz,addsub,2,16,4,7.933000,7.933000,0.530400,addsub_d4,3.402000,minmax_m4,0.059590,3.402060,5.238000,3.966500,1.701030,-133.182,-51.451,true
+addsub_minmax_d4,AddSub d4 + MinMax m4,two_ghz,addsub,weighted,mode probabilities,,7.980250,,,,,,,3.590310,5.314000,3.990125,1.795155,-122.272,-50.174,true
+addsub_minmax_d4,AddSub d4 + MinMax m4,two_ghz,minmax,0,64,1,8.245000,8.245000,0.544600,minmax_m4,1.605000,addsub_d4,0.144200,1.605144,5.380000,4.122500,0.802572,-413.661,-53.253,true
+addsub_minmax_d4,AddSub d4 + MinMax m4,two_ghz,minmax,1,32,2,8.070000,8.070000,0.543900,minmax_m4,1.727000,addsub_d4,0.144200,1.727144,5.319000,4.035000,0.863572,-367.245,-51.720,true
+addsub_minmax_d4,AddSub d4 + MinMax m4,two_ghz,minmax,2,16,4,8.047000,8.047000,0.545300,minmax_m4,1.836000,addsub_d4,0.144200,1.836144,5.238000,4.023500,0.918072,-338.255,-53.627,true
+addsub_minmax_d4,AddSub d4 + MinMax m4,two_ghz,minmax,weighted,mode probabilities,,8.108000,,,,,,,1.723894,5.314000,4.054000,0.861947,-370.330,-52.578,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,one_ghz,addsub,0,64,1,3.204000,3.203900,0.214900,addsub_d8,1.849000,minmax_m4,0.044630,1.849045,3.127000,3.204000,1.849045,-73.279,-2.462,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,one_ghz,addsub,1,32,2,3.164000,3.164100,0.214800,addsub_d8,1.828000,minmax_m4,0.044630,1.828045,3.104000,3.164000,1.828045,-73.081,-1.933,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,one_ghz,addsub,2,16,4,3.103000,3.102200,0.214400,addsub_d8,1.804000,minmax_m4,0.044630,1.804045,3.059000,3.103000,1.804045,-72.002,-1.438,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,one_ghz,addsub,3,8,8,3.029000,3.029000,0.214500,addsub_d8,1.755000,minmax_m4,0.044630,1.755045,,3.029000,1.755045,-72.588,,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,one_ghz,addsub,weighted,mode probabilities,,3.158750,,,,,,,1.827295,3.098500,3.158750,1.827295,-72.865,-1.944,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,one_ghz,minmax,0,64,1,2.618000,2.618500,0.218700,minmax_m4,1.278000,addsub_d8,0.116000,1.278116,3.127000,2.618000,1.278116,-104.833,16.278,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,one_ghz,minmax,1,32,2,2.591000,2.589900,0.218900,minmax_m4,1.276000,addsub_d8,0.116000,1.276116,3.104000,2.591000,1.276116,-103.038,16.527,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,one_ghz,minmax,2,16,4,2.540000,2.539500,0.219000,minmax_m4,1.255000,addsub_d8,0.116000,1.255116,3.059000,2.540000,1.255116,-102.372,16.966,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,one_ghz,minmax,weighted,mode probabilities,,2.585000,,,,,,,1.271366,3.098500,2.585000,1.271366,-103.325,16.573,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,two_ghz,addsub,0,64,1,10.700000,10.658000,0.763100,addsub_d8,4.068000,minmax_m4,0.059590,4.068060,5.673000,5.350000,2.034030,-163.025,-88.613,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,two_ghz,addsub,1,32,2,10.400000,10.387000,0.764100,addsub_d8,3.965000,minmax_m4,0.059590,3.965060,5.692000,5.200000,1.982530,-162.291,-82.713,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,two_ghz,addsub,2,16,4,10.500000,10.534000,0.760100,addsub_d8,3.877000,minmax_m4,0.059590,3.877060,5.713000,5.250000,1.938530,-170.824,-83.791,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,two_ghz,addsub,3,8,8,9.815000,9.814000,0.757300,addsub_d8,3.699000,minmax_m4,0.059590,3.699060,,4.907500,1.849530,-165.338,,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,two_ghz,addsub,weighted,mode probabilities,,10.500000,,,,,,,3.968810,5.692500,5.250000,1.984405,-164.563,-84.453,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,two_ghz,minmax,0,64,1,10.000000,10.015000,0.777000,minmax_m4,1.605000,addsub_d8,0.163000,1.605163,5.673000,5.000000,0.802581,-522.990,-76.274,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,two_ghz,minmax,1,32,2,10.200000,10.171000,0.775900,minmax_m4,1.727000,addsub_d8,0.163000,1.727163,5.692000,5.100000,0.863582,-490.564,-79.199,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,two_ghz,minmax,2,16,4,10.100000,10.049000,0.773700,minmax_m4,1.836000,addsub_d8,0.163000,1.836163,5.713000,5.050000,0.918081,-450.060,-76.790,true
+addsub_minmax_d8,AddSub d8 + MinMax m4,two_ghz,minmax,weighted,mode probabilities,,10.125000,,,,,,,1.723913,5.692500,5.062500,0.861957,-487.327,-77.866,true

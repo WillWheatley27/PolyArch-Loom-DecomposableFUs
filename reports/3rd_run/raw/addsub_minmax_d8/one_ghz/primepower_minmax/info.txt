@@ -1,0 +1,1 @@
+TOP=fu_add_sub_minmax_d8 MODES=0,1,2,3 LANES=1,2,4,8 NVEC=20000 PERIOD_NS=1.0 SEED=20260930 is_min_max=1

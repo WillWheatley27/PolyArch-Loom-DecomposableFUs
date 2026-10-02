@@ -123,3 +123,17 @@ fp_minmax,fp_minmax_m1,DW FP64,fp_minmax_fix_64,one_ghz,mode0,64,1,0.995100,0.99
 fp_minmax,fp_minmax_m1,DW FP64,fp_minmax_fix_64,two_ghz,mode0,64,1,1.796000,1.795900,2.212000,2.211500,2.212000,0.898000,1.106000,18.807,18.793,18.807,true
 mult,mult_k64,DW 64,mult_dwfix_64,one_ghz,mode0,64,1,36.000000,35.957000,22.500000,22.527000,22.500000,36.000000,22.500000,-60.000,-59.617,-60.000,true
 mult,mult_k64,DW 64,mult_dwfix_64,two_ghz,mode0,64,1,84.500000,84.500000,30.600000,30.629000,30.600000,42.250000,15.300000,-176.144,-175.882,-176.144,false
+fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,one_ghz,mode0,64,1,1.007000,1.006750,0.887443,0.887360,1.844700,1.007000,0.887443,-13.472,-13.455,45.411,true
+fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,one_ghz,mode1,32,2,1.069000,1.069200,0.957347,0.957320,1.844700,1.069000,0.957347,-11.663,-11.687,42.050,true
+fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,one_ghz,weighted,64:0.333 32:0.667,,1.048333,1.048383,0.934046,0.934000,1.844700,1.048333,0.934046,-12.236,-12.247,43.171,true
+fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,two_ghz,mode0,64,1,2.138000,2.137800,2.212078,2.211500,4.618000,1.069000,1.106039,3.349,3.333,53.703,true
+fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,two_ghz,mode1,32,2,2.148000,2.147100,2.406069,2.405900,4.618000,1.074000,1.203034,10.726,10.757,53.486,true
+fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,two_ghz,weighted,64:0.333 32:0.667,,2.144667,2.144000,2.341405,2.341100,4.618000,1.072333,1.170703,8.403,8.419,53.559,true
+fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,one_ghz,mode0,32,1,0.514000,0.513960,0.454116,0.454080,0.847100,0.514000,0.454116,-13.187,-13.187,39.322,true
+fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,one_ghz,mode1,16,2,0.512300,0.512240,0.393021,0.392940,0.847100,0.512300,0.393021,-30.349,-30.361,39.523,true
+fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,one_ghz,weighted,32:0.667 16:0.333,,0.513433,0.513387,0.433751,0.433700,0.847100,0.513433,0.433751,-18.371,-18.374,39.389,true
+fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,two_ghz,mode0,32,1,1.070000,1.069600,1.196026,1.195600,2.054300,0.535000,0.598013,10.537,10.539,47.914,true
+fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,two_ghz,mode1,16,2,1.083000,1.083400,0.858338,0.858270,2.054300,0.541500,0.429169,-26.174,-26.231,47.281,true
+fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,two_ghz,weighted,32:0.667 16:0.333,,1.074333,1.074200,1.083463,1.083157,2.054300,0.537167,0.541732,0.843,0.827,47.703,true
+fp_minmax,fp_minmax_w32_m1,DW FP32,fp_minmax_fix_32,one_ghz,mode0,32,1,0.511900,0.511790,0.454100,0.454080,0.454100,0.511900,0.454100,-12.728,-12.709,-12.728,true
+fp_minmax,fp_minmax_w32_m1,DW FP32,fp_minmax_fix_32,two_ghz,mode0,32,1,1.029000,1.029190,1.196000,1.195600,1.196000,0.514500,0.598000,13.963,13.919,13.963,true

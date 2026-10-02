@@ -58,6 +58,13 @@ DESIGNS = {
     "mult_kfix_32x2": ("mult", "fixed_karatsuba", "32x2"), "mult_kfix_16x4": ("mult", "fixed_karatsuba", "16x4"),
     "mult_dwfix_64": ("mult", "fixed_designware", "64"), "mult_dwfix_32x2": ("mult", "fixed_designware", "32x2"),
     "mult_dwfix_16x4": ("mult", "fixed_designware", "16x4"),
+    # AddSub with Min/Max as a side function of its carry chain (fu_add_sub_minmax_gen.sv)
+    "addsub_minmax_d1": ("addsub_minmax", "tier", "64"), "addsub_minmax_d2": ("addsub_minmax", "tier", "64/32x2"),
+    "addsub_minmax_d4": ("addsub_minmax", "tier", "64/32x2/16x4"),
+    "addsub_minmax_d8": ("addsub_minmax", "tier", "64/32x2/16x4/8x8"),
+    # FP32 -> 2xFP16 split of the FP min/max two-level experiment (the same sliced core at W=32)
+    "fp_minmax_w32_m1": ("fp_minmax", "tier", "FP32"), "fp_minmax_w32_m2": ("fp_minmax", "tier", "FP32/FP16x2"),
+    "fp_minmax_fix_32": ("fp_minmax", "fixed", "FP32"), "fp_minmax_fix_16x2": ("fp_minmax", "fixed", "FP16x2"),
 }
 TIERS = {  # family -> ordered capability ladder
     "addsub": ["addsub_d1", "addsub_d2", "addsub_d4", "addsub_d8"],
@@ -69,6 +76,8 @@ TIERS = {  # family -> ordered capability ladder
     "fp_minmax": ["fp_minmax_m1", "fp_minmax_m2", "fp_minmax_m3"],
     "rounding": ["rounding_g1", "rounding_g2", "rounding_g3"],
     "mult": ["mult_k64", "mult_k64_32", "mult_k64_32_16"],
+    "addsub_minmax": ["addsub_minmax_d1", "addsub_minmax_d2", "addsub_minmax_d4", "addsub_minmax_d8"],
+    "fp_minmax_w32": ["fp_minmax_w32_m1", "fp_minmax_w32_m2"],
 }
 # savings rows: (family, decomposable, bank components, bank label, original savings key)
 SAVINGS = [
@@ -93,6 +102,16 @@ SAVINGS = [
     ("fp_cmp", "fp_cmp_g1", ["fp_cmp_fix_64"], "DW FP64", ("revised", "fp_cmp_rev64")),
     ("fp_minmax", "fp_minmax_m1", ["fp_minmax_fix_64"], "DW FP64", ("revised", "fp_minmax_rev64")),
     ("mult", "mult_k64", ["mult_dwfix_64"], "DW 64", None),
+    # FP min/max two-level experiment: one split at each width, and each wide-only tier
+    ("fp_minmax", "fp_minmax_m2", ["fp_minmax_fix_64", "fp_minmax_fix_32x2"], "DW FP64 + FP32x2", None),
+    ("fp_minmax", "fp_minmax_w32_m2", ["fp_minmax_fix_32", "fp_minmax_fix_16x2"], "DW FP32 + FP16x2", None),
+    ("fp_minmax", "fp_minmax_w32_m1", ["fp_minmax_fix_32"], "DW FP32", None),
+    # AddSub with a Min/Max side function versus separate AddSub and Min/Max units
+    # (Min/Max has no 8x8 tier, so d8 pairs with m4)
+    ("addsub_minmax", "addsub_minmax_d1", ["addsub_d1", "minmax_m1"], "AddSub d1 + MinMax m1", None),
+    ("addsub_minmax", "addsub_minmax_d2", ["addsub_d2", "minmax_m2"], "AddSub d2 + MinMax m2", None),
+    ("addsub_minmax", "addsub_minmax_d4", ["addsub_d4", "minmax_m4"], "AddSub d4 + MinMax m4", None),
+    ("addsub_minmax", "addsub_minmax_d8", ["addsub_d8", "minmax_m4"], "AddSub d8 + MinMax m4", None),
 ]
 
 

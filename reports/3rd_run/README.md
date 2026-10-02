@@ -41,12 +41,16 @@ With equal frequency on both sides, power savings equal energy-per-operation sav
 
 | File | Contents |
 |---|---|
-| `PPA_mode_left.csv` | DC area, static and dynamic power, timing and closure factor per design and corner, with the change against `reports/PPA_rerun.csv` |
-| `mode_left_overhead.csv` | adjacent-tier overhead (DC area, static, dynamic, and the PrimePower overhead of the same 64-bit operation), against `reports/rerun_overhead.csv` |
-| `mode_left_savings.csv` | DC savings against the fixed banks, against `reports/rerun_savings.csv` |
-| `mode_left_primepower.csv` | PrimePower switching, internal, leakage and total power, energy per operation and per lane result, per design, corner and mode |
+| `PPA_mode_left.csv` | DC area, static and dynamic power, timing and closure factor per design and corner, with the change against `reports/PPA_rerun.csv`; PrimePower power in the widest-format mode and mode-weighted (`mode_probabilities.csv`, renormalized over the supported modes), with the weighted energy per operation |
+| `mode_left_overhead.csv` | adjacent-tier overhead (DC area, static, dynamic, and the PrimePower dynamic and total overhead of the same widest-format operation), against `reports/rerun_overhead.csv` |
+| `mode_left_savings.csv` | DC savings against the fixed banks, against `reports/rerun_savings.csv`, with the PrimePower savings of the same comparison against a gated and an all-active bank (mode-weighted; the only mode for single-mode units) |
+| `mode_left_primepower.csv` | PrimePower switching, internal, leakage and total power, energy per operation and per lane result, per design, corner, function (AddSub+MinMax only) and mode |
 | `mode_left_power_savings.csv` | PrimePower savings per mode and weighted by `reports/mode_probabilities.csv` (64/32/16 = 25/50/25%, renormalized over the supported modes), against a gated bank and an all-active bank |
+| `mode_left_side_function_power.csv` | PrimePower of AddSub with a Min/Max side function, per function and mode plus mode-weighted, against separate AddSub and Min/Max units (Section 5) |
 | `raw/` | DC reports, `result.txt` and PrimePower reports for every design |
+
+The AddSub+MinMax unit has one row per function in every table (`function` = `addsub` or
+`minmax`, meaning `is_min_max` held at 0 or 1); `function` is empty for every other design.
 
 Gate netlists and SDFs are not kept (125 MB). To reproduce, from the repository root:
 
@@ -238,6 +242,91 @@ energy except FP Compare. FP Min/Max and AddSub come closest at 2 GHz.
 - **Identical fixed 16x4 multipliers.** `mult_kfix_16x4` and `mult_dwfix_16x4` report identical
   numbers because both are four DesignWare `DW02_mult` 16x16 leaves.
 
+## 5. AddSub with a Min/Max side function
+
+`rtl/fu_add_sub_minmax_gen.sv` computes Min/Max through the AddSub carry chain: it forces
+A - B in every lane and reads equal, unsigned-greater and signed-greater from the zero, carry
+and sign/overflow of the difference. Its four tiers (d1, d2, d4, d8) were synthesized on the
+same flow and simulated twice per mode, with `is_min_max` held at 0 (AddSub) and at 1
+(Min/Max). Operands are the shared stimulus; control bits are random. The comparison is with
+separate AddSub and Min/Max units of the same capability (d8 pairs with m4, as Min/Max has no
+8x8 tier). Every design meets 1 GHz and 2 GHz on the first compile.
+
+DC, decomposable side-function unit vs the separate pair (`mode_left_savings.csv`;
+negative = the side-function unit is worse):
+
+| Tier | Corner | Side-function area (um2) | Separate pair (um2) | Area | Static | Dynamic |
+|---|---|---:|---:|---:|---:|---:|
+| d1 | 1 GHz / 2 GHz | 337.1 / 641.3 | 301.0 / 344.4 | -12.0% / -86.2% | -17.9% / -165.5% | -0.5% / -50.0% |
+| d2 | 1 GHz / 2 GHz | 370.0 / 711.2 | 292.3 / 375.6 | -26.6% / -89.3% | -60.7% / -172.4% | -7.6% / -51.9% |
+| d4 | 1 GHz / 2 GHz | 440.2 / 805.1 | 303.9 / 418.0 | -44.9% / -92.6% | -95.8% / -164.5% | -12.7% / -60.4% |
+| d8 | 1 GHz / 2 GHz | 426.5 / 1114.8 | 355.8 / 441.7 | -19.9% / -152.4% | -34.6% / -247.3% | -11.8% / -86.3% |
+
+PrimePower (`mode_left_side_function_power.csv`), total power per operation:
+
+| Tier | Corner | vs the active separate unit alone (gated pair) | vs both separate units switching |
+|---|---|---:|---:|
+| d4 | 1 GHz | -111% (AddSub), -118..-122% (Min/Max) | -17% (AddSub), +1..+2% (Min/Max) |
+| d4 | 2 GHz | -117..-133% (AddSub), -338..-414% (Min/Max) | -48..-54% |
+| d8 | 1 GHz | -72..-73% (AddSub), -102..-105% (Min/Max) | -1..-2% (AddSub), +16..+17% (Min/Max) |
+| d8 | 2 GHz | -162..-171% (AddSub), -450..-523% (Min/Max) | -76..-89% |
+
+The idle unit's leakage is below 0.2 uW, so the gated pair is effectively the active unit.
+
+- **Sharing the carry chain does not pay.** The side-function unit is larger than a separate
+  AddSub plus a separate Min/Max at every tier and both corners, and uses 2-6x the power of the
+  unit that is actually working. Only against a pair whose idle unit keeps switching does it
+  break even, and only for Min/Max at 1 GHz.
+- **Why.** Min/Max becomes serial: the full-width subtraction, then the zero chain, then the
+  lane-top compare, then the select chain and the 64-bit byte muxes. A standalone Min/Max
+  compares blocks in parallel and needs no carry-propagate result. To meet the target on the
+  longer path DC upsizes the shared adder, which also makes AddSub mode slower and hungrier; the
+  Min/Max logic keeps switching in AddSub mode (no operand isolation). The penalty grows sharply
+  at 2 GHz, where the d8 unit is 2.5x the separate pair.
+- **Reproducibility.** The d4 tier at 1 GHz is 440.18 um2, identical to the earlier
+  `reports/addsub_minmax_savings.csv` run (the RTL is unchanged); the separate pair moved from
+  308.3 to 303.9 um2 with the 3rd-run AddSub and Min/Max results.
+
+## 6. FP min/max two-level experiment, rerun with PrimePower
+
+The FP64 -> 2xFP32 split reuses the 3rd-run designs (m1, m2, DesignWare FP64 and FP32x2), which
+are the same RTL and flow as the experiment's fresh-session configuration. The FP32 -> 2xFP16
+split was synthesized here: `fp_minmax_w32_m1` (the sliced core at W=32 with MIN_LANE_W=32,
+FP32 only), `fp_minmax_w32_m2` (`fu_fp_minmax_revised_32_16`, FP32/2xFP16), and the DesignWare
+FP32 and FP16x2 units. All meet both targets on the first compile.
+
+| Split | Corner | Area saving | Static | Dynamic (DC) | PrimePower vs all-active bank (weighted) | PrimePower vs gated bank (weighted) |
+|---|---|---:|---:|---:|---:|---:|
+| FP64 -> 2xFP32 | 1 GHz | 52.2% | 52.5% | 45.4% | +43.2% | -12.2% |
+| FP64 -> 2xFP32 | 2 GHz | 49.9% | 49.4% | 48.8% | +53.6% | +8.4% |
+| FP32 -> 2xFP16 | 1 GHz | 37.9% | 27.7% | 40.3% | +39.4% | -18.4% |
+| FP32 -> 2xFP16 | 2 GHz | 42.3% | 38.5% | 44.1% | +47.7% | +0.8% |
+
+Weights are the FP min/max mode probabilities renormalized over the two formats (wide 1/3,
+narrow 2/3 for FP64/FP32; 2/3 and 1/3 for FP32/FP16). Overhead of adding the narrow lanes
+(`mode_left_overhead.csv`):
+
+| Split | Corner | Area | Static | Dynamic (DC) | PrimePower, wide-format operation |
+|---|---|---:|---:|---:|---:|
+| FP64 -> +2xFP32 (m1 -> m2) | 1 GHz / 2 GHz | +0.1% / +8.9% | -15.6% / +14.3% | +15.4% / +7.8% | +1.2% / +19.0% |
+| FP32 -> +2xFP16 (w32_m1 -> w32_m2) | 1 GHz / 2 GHz | +15.1% / +10.3% | +10.8% / +19.4% | +6.7% / -0.8% | +0.4% / +4.0% |
+
+- **Both splits still pay** against a bank whose components all switch: 39-54% power with
+  simulated activity, in line with the DC estimates. Against a gated DesignWare bank, a single
+  split loses 12-18% at 1 GHz and breaks even or wins at 2 GHz (+0.8% and +8.4%), because the
+  DesignWare units grow more than the sliced core under the 0.5 ns target.
+- **Deviation from the earlier experiment.** The DesignWare units reproduce the earlier
+  fresh-session results exactly (FP32 63.0 / 87.6 um2, FP16x2 53.9 / 66.9 um2, FP64 138.9 /
+  159.9 um2, FP32x2 127.7 / 176.8 um2), so the flow is identical. The hand-written units moved
+  with the left-edge rewrite, as in Section 1. The FP32-only tier grew from 68.1 to 80.9 um2 at
+  2 GHz with logic that did not change (one level, constant level bus), which lowers the FP32 ->
+  +2xFP16 overhead at 2 GHz from +23.7% to +10.3%. The earlier conclusion that the narrow
+  split's overhead rises at 2 GHz rested on the FP32-only tier barely growing between the
+  corners (66.9 to 68.1 um2); with a normal timing-driven growth that rise is gone, and both
+  splits cost about 10-15% area where the step is resolved. Area savings agree with the earlier
+  ranges within 2-3 pp (FP64 split 49.1-50.5% / 49.2% before; FP32 split 35.2-36.1% / 45.5%
+  before).
+
 ## Conclusions
 
 1. Moving mode selection to the left edge does not change PPA beyond DC's run-to-run structural
@@ -251,3 +340,9 @@ energy except FP Compare. FP Min/Max and AddSub come closest at 2 GHz.
    whose components all switch. Against a bank that isolates its idle components, every
    decomposable unit except FP Compare uses more energy per operation. The area and leakage
    savings are robust; the dynamic savings depend on whether the alternative is operand-gated.
+4. Building Min/Max as a side function of the AddSub carry chain costs more area and power than
+   separate AddSub and Min/Max units at every tier and both corners; the serial
+   subtract-then-select path is the cause.
+5. In the FP min/max two-level experiment both single splits save 38-52% area; with simulated
+   activity they save 39-54% power against an all-active bank, and break even with a gated
+   DesignWare bank at 2 GHz.

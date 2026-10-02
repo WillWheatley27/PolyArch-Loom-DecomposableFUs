@@ -1,5 +1,6 @@
 # Full PPA rerun of every decomposable FU family, its capability tiers, and its fixed-bank
-# components, on the normalized flow used for the original data: SAED14nm RVT TT/0.8 V/25 C,
+# components (plus the AddSub+MinMax side-function tiers and the FP32 -> 2xFP16 split of the
+# FP min/max two-level experiment), on the normalized flow used for the original data: SAED14nm RVT TT/0.8 V/25 C,
 # compile_ultra -area_high_effort_script -no_autoungroup, 1.000 ns and 0.500 ns max-delay
 # targets, uniform synthetic activity. Run one design per dc_shell session (JOB_FILTER) so no
 # result depends on what was compiled before it. Reports go to reports/rerun/raw.
@@ -18,7 +19,7 @@ set link_library [list * $LIB]
 set target_library [list $LIB]
 set_app_var hdlin_sverilog_std 2017
 
-# name | RTL | top
+# name | RTL | top | optional elaboration parameters
 set jobs {
   {addsub_d1 rtl/fu_add_sub_gen.sv fu_add_sub_d1}
   {addsub_d2 rtl/fu_add_sub_gen.sv fu_add_sub_d2}
@@ -77,15 +78,23 @@ set jobs {
   {mult_dwfix_64 rtl/standalone/mult_standalones/fu_mult_64.sv fu_mult_64}
   {mult_dwfix_32x2 rtl/standalone/mult_standalones/fu_mult_32x2.sv fu_mult_32x2}
   {mult_dwfix_16x4 rtl/standalone/mult_standalones/fu_mult_16x4.sv fu_mult_16x4}
+  {addsub_minmax_d1 rtl/fu_add_sub_minmax_gen.sv fu_add_sub_minmax_d1}
+  {addsub_minmax_d2 rtl/fu_add_sub_minmax_gen.sv fu_add_sub_minmax_d2}
+  {addsub_minmax_d4 rtl/fu_add_sub_minmax_gen.sv fu_add_sub_minmax_d4}
+  {addsub_minmax_d8 rtl/fu_add_sub_minmax_gen.sv fu_add_sub_minmax_d8}
+  {fp_minmax_w32_m1 rtl/fu_fp_min_max_gen.sv fu_fp_min_max_dec {W=32,MIN_LANE_W=32}}
+  {fp_minmax_w32_m2 rtl/revised_fp_fus/fu_fp_minmax_32_16.sv fu_fp_minmax_revised_32_16}
+  {fp_minmax_fix_32 rtl/standalone/fp_min_max_standalones/fu_fp_min_max_32.sv fu_fp_min_max_32}
+  {fp_minmax_fix_16x2 rtl/standalone/fp_min_max_standalones/fu_fp_min_max_16x2.sv fu_fp_min_max_16x2}
 }
 set PERIOD(one_ghz) 1.000
 set PERIOD(two_ghz) 0.500
 
-proc compile_at {rtl_rel top constraint} {
+proc compile_at {rtl_rel top params constraint} {
   global ROOT
   remove_design -all
   if {[analyze -format sverilog ${ROOT}/${rtl_rel}] == 0} { error "analyze failed: $rtl_rel" }
-  elaborate $top
+  if {$params eq ""} { elaborate $top } else { elaborate $top -parameters $params }
   link
   set_max_delay $constraint -from [all_inputs] -to [all_outputs]
   compile_ultra -area_high_effort_script -no_autoungroup
@@ -96,13 +105,13 @@ proc compile_at {rtl_rel top constraint} {
   return $arr
 }
 
-proc run_one {name rtl_rel top corner} {
+proc run_one {name rtl_rel top params corner} {
   global OUTROOT PERIOD
   set period $PERIOD($corner)
   set factors {1.0}
   if {[info exists ::env(CLOSURE)]} { set factors {1.0 0.9 0.8 0.7} }
   foreach f $factors {
-    set arr [compile_at $rtl_rel $top [expr {$period * $f}]]
+    set arr [compile_at $rtl_rel $top $params [expr {$period * $f}]]
     if {$arr <= $period + 1e-6} { break }
   }
   catch {set_switching_activity -static_probability 0.5 -toggle_rate 0.2 -period 1.0 [all_inputs]}
@@ -119,7 +128,8 @@ proc run_one {name rtl_rel top corner} {
     write_sdc ${out}/netlist.sdc
   }
   set fh [open ${out}/result.txt w]
-  puts $fh "FU=${name} TOP=${top} TARGET_PERIOD_NS=${period} ARRIVAL_NS=${arr} FMAX_GHZ=${fmax} CLOSURE_FACTOR=${f} ACTIVITY_SOURCE=uniform_synthetic"
+  # TOP is the elaborated design name (parameterized tops get a suffixed name).
+  puts $fh "FU=${name} TOP=[get_object_name [current_design]] TARGET_PERIOD_NS=${period} ARRIVAL_NS=${arr} FMAX_GHZ=${fmax} CLOSURE_FACTOR=${f} ACTIVITY_SOURCE=uniform_synthetic"
   close $fh
   echo "RESULT ${name} ${corner} arrival_ns=${arr} fmax_ghz=${fmax} closure_factor=${f}"
 }
@@ -127,8 +137,8 @@ proc run_one {name rtl_rel top corner} {
 # Optional: JOB_FILTER=<regexp> selects the jobs to run.
 if {[info exists ::env(JOB_FILTER)]} { set jobs [lsearch -all -inline -regexp $jobs $::env(JOB_FILTER)] }
 foreach j $jobs {
-  lassign $j name rtl top
-  run_one $name $rtl $top one_ghz
-  run_one $name $rtl $top two_ghz
+  lassign $j name rtl top params
+  run_one $name $rtl $top $params one_ghz
+  run_one $name $rtl $top $params two_ghz
 }
 quit
