@@ -1,9 +1,11 @@
 # Full PPA rerun of every decomposable FU family, its capability tiers, and its fixed-bank
 # components (plus the AddSub+MinMax side-function tiers and the FP32 -> 2xFP16 split of the
 # FP min/max two-level experiment), on the normalized flow used for the original data: SAED14nm RVT TT/0.8 V/25 C,
-# compile_ultra -area_high_effort_script -no_autoungroup, 1.000 ns and 0.500 ns max-delay
-# targets, uniform synthetic activity. Run one design per dc_shell session (JOB_FILTER) so no
-# result depends on what was compiled before it. Reports go to reports/rerun/raw.
+# compile_ultra -area_high_effort_script -no_autoungroup, max-delay targets of 10 ns (100 MHz),
+# 2 ns (500 MHz), 1 ns (1 GHz), 0.667 ns (1.5 GHz) and 0.5 ns (2 GHz), uniform synthetic
+# activity. Run one design per dc_shell session (JOB_FILTER) so no result depends on what was
+# compiled before it. Reports go to reports/rerun/raw.
+# Optional: CORNERS=<list> selects the targets (default: one_ghz two_ghz, run in that order).
 # Optional: NETLIST=1 also writes the gate netlist, SDF, and SDC for PrimePower.
 # Optional: CLOSURE=1 retries a design that misses its target with the max-delay constraint
 # tightened to 90%, 80%, then 70% of the period, keeping the first result that meets the
@@ -87,8 +89,13 @@ set jobs {
   {fp_minmax_fix_32 rtl/standalone/fp_min_max_standalones/fu_fp_min_max_32.sv fu_fp_min_max_32}
   {fp_minmax_fix_16x2 rtl/standalone/fp_min_max_standalones/fu_fp_min_max_16x2.sv fu_fp_min_max_16x2}
 }
+set PERIOD(100_mhz) 10.000
+set PERIOD(500_mhz) 2.000
 set PERIOD(one_ghz) 1.000
+set PERIOD(1p5_ghz) [expr {2.0 / 3.0}]
 set PERIOD(two_ghz) 0.500
+set corners {one_ghz two_ghz}
+if {[info exists ::env(CORNERS)]} { set corners $::env(CORNERS) }
 
 proc compile_at {rtl_rel top params constraint} {
   global ROOT
@@ -138,7 +145,6 @@ proc run_one {name rtl_rel top params corner} {
 if {[info exists ::env(JOB_FILTER)]} { set jobs [lsearch -all -inline -regexp $jobs $::env(JOB_FILTER)] }
 foreach j $jobs {
   lassign $j name rtl top params
-  run_one $name $rtl $top $params one_ghz
-  run_one $name $rtl $top $params two_ghz
+  foreach corner $corners { run_one $name $rtl $top $params $corner }
 }
 quit

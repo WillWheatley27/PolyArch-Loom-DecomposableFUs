@@ -1,0 +1,84 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_mult_karatsuba_64_32
+Version: Y-2026.03-SP1
+Date   : Tue Oct  6 14:43:59 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[32]
+              (input port)
+  Endpoint: out_data[63]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_karatsuba_64_32
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_0[32] (in)                                      0.00       0.00 f
+  U1561/X (SAEDRVT14_INV_12)                              0.02       0.02 r
+  U1563/X (SAEDRVT14_NR2_MM_6)                            0.02       0.04 f
+  U4301/CO (SAEDRVT14_ADDF_V1_2)                          0.03       0.08 f
+  U4302/CO (SAEDRVT14_ADDF_V1_2)                          0.03       0.11 f
+  U4282/S (SAEDRVT14_ADDF_V1_2)                           0.08       0.19 r
+  U2228/X (SAEDRVT14_INV_S_0P5)                           0.07       0.25 f
+  U3772/X (SAEDRVT14_OAI21_0P5)                           0.08       0.34 r
+  U3867/X (SAEDRVT14_BUF_S_2)                             0.39       0.73 r
+  u_z1/U896/X (SAEDRVT14_MUXI2_U_0P5)                     0.17       0.90 f
+  intadd_53/U4/CO (SAEDRVT14_ADDF_V2_2)                   0.06       0.96 f
+  U4290/S (SAEDRVT14_ADDF_V2_2)                           0.06       1.02 f
+  U3924/X (SAEDRVT14_EN3_1)                               0.06       1.08 f
+  U4228/CO (SAEDRVT14_ADDF_V1_2)                          0.04       1.11 f
+  U4308/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.15 f
+  U4314/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.18 f
+  U4312/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.22 f
+  U4315/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.25 f
+  U4270/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.28 f
+  U4307/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.32 f
+  U4300/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.35 f
+  U4273/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.39 f
+  U4271/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.42 f
+  U4272/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.45 f
+  U4296/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.49 f
+  U4274/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.52 f
+  U4275/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.55 f
+  intadd_2/U9/CO (SAEDRVT14_ADDF_V1_2)                    0.03       1.59 f
+  U4278/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.62 f
+  U4317/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.66 f
+  U4281/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.69 f
+  U4293/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.73 f
+  U4311/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.76 f
+  U4310/CO (SAEDRVT14_ADDF_V1_2)                          0.03       1.79 f
+  U4309/S (SAEDRVT14_ADDF_V1_2)                           0.05       1.84 r
+  U4050/CO (SAEDRVT14_ADDF_V2_2)                          0.04       1.88 r
+  U4051/S (SAEDRVT14_ADDF_V2_2)                           0.04       1.92 f
+  U4061/X (SAEDRVT14_OR2_4)                               0.02       1.94 f
+  U4062/X (SAEDRVT14_ND2_5)                               0.01       1.95 r
+  U4063/X (SAEDRVT14_EO2_2)                               0.03       1.98 f
+  U4064/X (SAEDRVT14_MUX2_MM_4)                           0.02       2.00 f
+  out_data[63] (out)                                      0.00       2.00 f
+  data arrival time                                                  2.00
+
+  max_delay                                               2.00       2.00
+  output external delay                                   0.00       2.00
+  data required time                                                 2.00
+  --------------------------------------------------------------------------
+  data required time                                                 2.00
+  data arrival time                                                 -2.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

@@ -1,0 +1,117 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_mult_karatsuba_64
+Version: Y-2026.03-SP1
+Date   : Tue Oct  6 15:05:16 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[16]
+              (input port)
+  Endpoint: out_data[63]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_karatsuba_64
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_0[16] (in)                                      0.00       0.00 f
+  u_z0/a[16] (fu_mult_karatsuba_fixed32_full_64_1)        0.00       0.00 f
+  u_z0/U61/X (SAEDRVT14_INV_S_0P5)                        0.23       0.23 r
+  u_z0/U762/X (SAEDRVT14_NR2_MM_1)                        0.10       0.33 f
+  u_z0/intadd_38/U16/CO (SAEDRVT14_ADDF_V1_1)             0.06       0.39 f
+  u_z0/U10/S (SAEDRVT14_ADDF_V1_1)                        0.65       1.04 f
+  u_z0/U42/X (SAEDRVT14_INV_S_2)                          0.98       2.01 r
+  u_z0/U417/X (SAEDRVT14_OAI22_1)                         0.20       2.22 f
+  u_z0/U418/X (SAEDRVT14_NR2_MM_1)                        0.77       2.99 r
+  u_z0/U419/X (SAEDRVT14_INV_S_0P5)                       0.43       3.41 f
+  u_z0/U708/X (SAEDRVT14_OAI22_1)                         0.09       3.50 r
+  u_z0/U710/X (SAEDRVT14_NR2_MM_1)                        0.06       3.56 f
+  u_z0/U711/X (SAEDRVT14_MUXI2_U_0P5)                     0.11       3.67 r
+  u_z0/U716/X (SAEDRVT14_NR2_MM_1)                        0.12       3.80 f
+  u_z0/U717/X (SAEDRVT14_AOI21_0P5)                       0.10       3.89 r
+  u_z0/U718/X (SAEDRVT14_NR2_MM_1)                        0.10       3.99 f
+  u_z0/U719/X (SAEDRVT14_AOI21_0P5)                       0.07       4.06 r
+  u_z0/U747/S (SAEDRVT14_ADDF_V1_1)                       0.07       4.13 f
+  u_z0/U748/X (SAEDRVT14_INV_S_0P5)                       0.04       4.17 r
+  u_z0/intadd_43/U7/S (SAEDRVT14_ADDF_V1_1)               0.06       4.22 f
+  u_z0/U730/X (SAEDRVT14_INV_S_0P5)                       0.03       4.26 r
+  u_z0/intadd_32/U32/CO (SAEDRVT14_ADDF_V1_1)             0.05       4.31 r
+  u_z0/intadd_32/U31/CO (SAEDRVT14_ADDF_V1_1)             0.04       4.35 r
+  u_z0/intadd_32/U30/CO (SAEDRVT14_ADDF_V1_1)             0.04       4.39 r
+  u_z0/intadd_32/U29/CO (SAEDRVT14_ADDF_V1_1)             0.04       4.43 r
+  u_z0/intadd_32/U28/CO (SAEDRVT14_ADDF_V1_1)             0.04       4.47 r
+  u_z0/intadd_32/U27/CO (SAEDRVT14_ADDF_V1_1)             0.04       4.52 r
+  u_z0/intadd_32/U26/CO (SAEDRVT14_ADDF_V1_1)             0.04       4.56 r
+  u_z0/intadd_32/U25/CO (SAEDRVT14_ADDF_V1_1)             0.04       4.60 r
+  u_z0/intadd_32/U24/CO (SAEDRVT14_ADDF_V1_1)             0.04       4.64 r
+  u_z0/intadd_32/U23/CO (SAEDRVT14_ADDF_V1_1)             0.04       4.68 r
+  u_z0/intadd_32/U22/CO (SAEDRVT14_ADDF_V1_1)             0.04       4.73 r
+  u_z0/intadd_32/U21/CO (SAEDRVT14_ADDF_V1_1)             0.04       4.77 r
+  u_z0/intadd_32/U20/CO (SAEDRVT14_ADDF_V1_1)             0.04       4.81 r
+  u_z0/intadd_32/U19/CO (SAEDRVT14_ADDF_V1_1)             0.04       4.85 r
+  u_z0/intadd_32/U18/CO (SAEDRVT14_ADDF_V1_1)             0.04       4.89 r
+  u_z0/intadd_32/U17/CO (SAEDRVT14_ADDF_V1_1)             0.04       4.94 r
+  u_z0/intadd_32/U16/CO (SAEDRVT14_ADDF_V1_1)             0.04       4.98 r
+  u_z0/intadd_32/U15/CO (SAEDRVT14_ADDF_V1_1)             0.04       5.02 r
+  u_z0/intadd_32/U14/CO (SAEDRVT14_ADDF_V1_1)             0.04       5.06 r
+  u_z0/intadd_32/U13/CO (SAEDRVT14_ADDF_V1_1)             0.04       5.10 r
+  u_z0/intadd_32/U12/CO (SAEDRVT14_ADDF_V1_1)             0.04       5.15 r
+  u_z0/intadd_32/U11/CO (SAEDRVT14_ADDF_V1_1)             0.04       5.19 r
+  u_z0/intadd_32/U10/CO (SAEDRVT14_ADDF_V1_1)             0.04       5.23 r
+  u_z0/intadd_32/U9/CO (SAEDRVT14_ADDF_V1_1)              0.04       5.27 r
+  u_z0/intadd_32/U8/CO (SAEDRVT14_ADDF_V1_1)              0.04       5.31 r
+  u_z0/intadd_32/U7/CO (SAEDRVT14_ADDF_V1_1)              0.04       5.36 r
+  u_z0/intadd_32/U6/CO (SAEDRVT14_ADDF_V1_1)              0.04       5.40 r
+  u_z0/intadd_32/U5/CO (SAEDRVT14_ADDF_V1_1)              0.04       5.44 r
+  u_z0/intadd_32/U4/CO (SAEDRVT14_ADDF_V1_1)              0.04       5.48 r
+  u_z0/intadd_32/U3/CO (SAEDRVT14_ADDF_V1_1)              0.04       5.52 r
+  u_z0/intadd_32/U2/CO (SAEDRVT14_ADDF_V1_1)              0.04       5.56 r
+  u_z0/U97/X (SAEDRVT14_INV_S_0P5)                        0.05       5.62 f
+  u_z0/U98/X (SAEDRVT14_NR2_1)                            0.12       5.73 r
+  u_z0/U100/X (SAEDRVT14_ND2_CDC_1)                       0.11       5.85 f
+  u_z0/U102/X (SAEDRVT14_NR2_1)                           0.13       5.98 r
+  u_z0/U104/X (SAEDRVT14_ND2_CDC_1)                       0.11       6.09 f
+  u_z0/U106/X (SAEDRVT14_NR2_1)                           0.13       6.23 r
+  u_z0/U108/X (SAEDRVT14_ND2_CDC_1)                       0.11       6.34 f
+  u_z0/U110/X (SAEDRVT14_NR2_1)                           0.13       6.47 r
+  u_z0/U112/X (SAEDRVT14_ND2_CDC_1)                       0.11       6.58 f
+  u_z0/U114/X (SAEDRVT14_NR2_1)                           0.13       6.72 r
+  u_z0/U116/X (SAEDRVT14_ND2_CDC_1)                       0.11       6.83 f
+  u_z0/U118/X (SAEDRVT14_NR2_1)                           0.13       6.96 r
+  u_z0/U120/X (SAEDRVT14_ND2_CDC_1)                       0.11       7.08 f
+  u_z0/U122/X (SAEDRVT14_NR2_1)                           0.10       7.18 r
+  u_z0/U123/X (SAEDRVT14_AOI21_0P5)                       0.07       7.24 f
+  u_z0/product[62] (fu_mult_karatsuba_fixed32_full_64_1)
+                                                          0.00       7.24 f
+  intadd_2/U2/CO (SAEDRVT14_ADDF_V1_1)                    0.05       7.29 f
+  U700/X (SAEDRVT14_EO4_1)                                0.05       7.34 f
+  U709/X (SAEDRVT14_EN4_M_1)                              0.06       7.40 f
+  U710/X (SAEDRVT14_EN3_U_0P5)                            0.06       7.46 f
+  U711/X (SAEDRVT14_EN3_U_0P5)                            0.06       7.52 r
+  out_data[63] (out)                                      0.00       7.52 r
+  data arrival time                                                  7.52
+
+  max_delay                                              10.00      10.00
+  output external delay                                   0.00      10.00
+  data required time                                                10.00
+  --------------------------------------------------------------------------
+  data required time                                                10.00
+  data arrival time                                                 -7.52
+  --------------------------------------------------------------------------
+  slack (MET)                                                        2.48
+
+
+1

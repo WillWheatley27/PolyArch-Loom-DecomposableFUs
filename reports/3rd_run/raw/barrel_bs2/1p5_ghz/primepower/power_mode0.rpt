@@ -1,0 +1,32 @@
+****************************************
+Report : Averaged Power
+Design : fu_bshift_bs2
+Version: Y-2026.03-SP1
+Date   : Tue Oct  6 15:33:45 2026
+****************************************
+
+
+
+  Attributes
+  ----------
+      i  -  Including register clock pin internal power
+      u  -  User defined power group
+
+                        Internal  Switching  Leakage    Total
+Power Group             Power     Power      Power      Power   (     %)  Attrs
+--------------------------------------------------------------------------------
+clock_network              0.0000    0.0000    0.0000    0.0000 ( 0.00%)  i
+register                   0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+combinational           5.229e-04 5.545e-03 2.210e-07 6.068e-03 (100.00%) 
+sequential                 0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+memory                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+io_pad                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+black_box                  0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+
+  Net Switching Power  = 5.545e-03   (91.38%)
+  Cell Internal Power  = 5.229e-04   ( 8.62%)
+  Cell Leakage Power   = 2.210e-07   ( 0.00%)
+                         ---------
+Total Power            = 6.068e-03  (100.00%)
+
+1

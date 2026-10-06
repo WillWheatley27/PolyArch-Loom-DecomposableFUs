@@ -1,0 +1,81 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_mult_karatsuba_32x2
+Version: Y-2026.03-SP1
+Date   : Tue Oct  6 14:12:47 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[34]
+              (input port)
+  Endpoint: out_data[63]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_mult_karatsuba_32x2
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  in_data_0[34] (in)                                      0.00       0.00 f
+  g_lane[1].u_lane/a[2] (fu_mult_karatsuba_fixed32_full_x2_0)
+                                                          0.00       0.00 f
+  g_lane[1].u_lane/U845/X (SAEDRVT14_EN2_4)               0.04       0.04 r
+  g_lane[1].u_lane/U844/X (SAEDRVT14_AN2_8)               0.03       0.06 r
+  g_lane[1].u_lane/U1035/X (SAEDRVT14_INV_S_20)           0.02       0.08 f
+  g_lane[1].u_lane/U1689/X (SAEDRVT14_OAI22_2)            0.03       0.11 r
+  g_lane[1].u_lane/U1713/S (SAEDRVT14_ADDF_V1_1)          0.06       0.17 f
+  g_lane[1].u_lane/U1717/S (SAEDRVT14_ADDF_V1_1)          0.06       0.22 r
+  g_lane[1].u_lane/U1720/CO (SAEDRVT14_ADDF_V2_2)         0.03       0.25 r
+  g_lane[1].u_lane/U1724/S (SAEDRVT14_ADDF_V2_2)          0.07       0.32 f
+  g_lane[1].u_lane/U871/X (SAEDRVT14_NR2_MM_16)           0.02       0.34 r
+  g_lane[1].u_lane/U929/X (SAEDRVT14_NR2_MM_12)           0.01       0.35 f
+  g_lane[1].u_lane/U870/X (SAEDRVT14_AN2_MM_4)            0.02       0.37 f
+  g_lane[1].u_lane/U638/X (SAEDRVT14_ND2_5)               0.01       0.38 r
+  g_lane[1].u_lane/U868/X (SAEDRVT14_ND2_8)               0.01       0.39 f
+  g_lane[1].u_lane/U867/X (SAEDRVT14_EN2_4)               0.03       0.42 r
+  g_lane[1].u_lane/U637/X (SAEDRVT14_NR2_MM_10)           0.02       0.43 f
+  g_lane[1].u_lane/U730/X (SAEDRVT14_INV_6)               0.01       0.44 r
+  g_lane[1].u_lane/U729/X (SAEDRVT14_AOI21_8)             0.01       0.46 f
+  g_lane[1].u_lane/U664/X (SAEDRVT14_ND2_16)              0.01       0.47 r
+  g_lane[1].u_lane/U1770/X (SAEDRVT14_AOI21_V1_8)         0.02       0.49 f
+  g_lane[1].u_lane/U1775/X (SAEDRVT14_OAI21_V1_8)         0.02       0.50 r
+  g_lane[1].u_lane/U1777/X (SAEDRVT14_AOI21_8)            0.02       0.52 f
+  g_lane[1].u_lane/U854/X (SAEDRVT14_OAI21_V1_8)          0.02       0.54 r
+  g_lane[1].u_lane/U805/X (SAEDRVT14_ND2_MM_10)           0.01       0.56 f
+  g_lane[1].u_lane/U804/X (SAEDRVT14_ND2_16)              0.01       0.57 r
+  g_lane[1].u_lane/U847/X (SAEDRVT14_ND2_16)              0.01       0.57 f
+  g_lane[1].u_lane/U802/X (SAEDRVT14_ND2_MM_16)           0.01       0.58 r
+  g_lane[1].u_lane/U801/X (SAEDRVT14_ND2_MM_16)           0.01       0.59 f
+  g_lane[1].u_lane/U819/X (SAEDRVT14_ND2_16)              0.01       0.59 r
+  g_lane[1].u_lane/U818/X (SAEDRVT14_AOI21_V1_8)          0.02       0.61 f
+  g_lane[1].u_lane/U815/X (SAEDRVT14_OAI21_V1_8)          0.02       0.63 r
+  g_lane[1].u_lane/U820/X (SAEDRVT14_ND2_8)               0.01       0.64 f
+  g_lane[1].u_lane/U696/X (SAEDRVT14_ND2_MM_10)           0.01       0.65 r
+  g_lane[1].u_lane/U840/X (SAEDRVT14_EN2_4)               0.02       0.67 f
+  g_lane[1].u_lane/product[31] (fu_mult_karatsuba_fixed32_full_x2_0)
+                                                          0.00       0.67 f
+  out_data[63] (out)                                      0.00       0.67 f
+  data arrival time                                                  0.67
+
+  max_delay                                               0.67       0.67
+  output external delay                                   0.00       0.67
+  data required time                                                 0.67
+  --------------------------------------------------------------------------
+  data required time                                                 0.67
+  data arrival time                                                 -0.67
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

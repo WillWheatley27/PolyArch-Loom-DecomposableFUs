@@ -1,4 +1,4 @@
-# 3rd Run: Left-Edge Mode Decode, DC PPA and PrimePower Dynamic Power
+# 3rd Run: Left-Edge Mode Decode, DC PPA and PrimePower Dynamic Power, 100 MHz to 2 GHz
 
 ## What changed
 
@@ -24,13 +24,13 @@ the FP two-level tests pass.
 | Setting | Value |
 |---|---|
 | Library and corner | SAED14nm RVT, TT, 0.8 V, 25 C |
-| Synthesis | DC Y-2026.03-SP1, `compile_ultra -area_high_effort_script -no_autoungroup`, one fresh `dc_shell` per design (`synth/syn_rerun.tcl`) |
-| Targets | 1.000 ns and 0.500 ns max-delay, inputs to outputs |
+| Synthesis | DC Y-2026.03-SP1, `compile_ultra -area_high_effort_script -no_autoungroup`, a fresh `dc_shell` per design (`synth/syn_rerun.tcl`): 1 GHz then 2 GHz in one session (the original runs), and one session per design and target for 100 MHz, 500 MHz and 1.5 GHz |
+| Targets | max-delay inputs to outputs: 10 ns (100 MHz, `100_mhz`), 2 ns (500 MHz, `500_mhz`), 1 ns (1 GHz, `one_ghz`), 0.667 ns (1.5 GHz, `1p5_ghz`), 0.5 ns (2 GHz, `two_ghz`) |
 | Timing closure | `CLOSURE=1`: if the first compile misses, retry with the constraint at 90%, 80%, then 70% of the period; keep the first result that meets the real target (`closure_factor` column) |
-| DC power | uniform synthetic activity (static probability 0.5, toggle rate 0.2 per ns), as in every earlier run |
+| DC power | uniform synthetic activity (static probability 0.5, toggle rate 0.2 per ns), as in every earlier run. The rate is per ns, not per cycle, so DC's dynamic estimate does not scale with the clock; use PrimePower to compare power across frequencies |
 | Simulation power | gate netlist + SDF from the same compile, VCS gate simulation, PrimePower averaged mode (`synth/run_primepower.py`) |
-| Stimulus | one shared file for every design: 20,000 random 64-bit operand pairs plus 32 random control bits, seed 20260930; one new operation per clock period; `mode` held for the whole run; one warm-up operation excluded |
-| Activity scope | SAIF of the design only; 100% of nets annotated in all 180 runs |
+| Stimulus | one shared file for every design: 20,000 random 64-bit operand pairs plus 32 random control bits, seed 20260930; one new operation per clock period of the target frequency; `mode` held for the whole run; one warm-up operation excluded |
+| Activity scope | SAIF of the design only; 100% of nets annotated in every run |
 | Wire load | the model DC chose for the same design (`set_wire_load_mode top`) |
 | Modes | every supported mode of each decomposable unit; each fixed component in its only mode |
 
@@ -56,6 +56,7 @@ Gate netlists and SDFs are not kept (125 MB). To reproduce, from the repository 
 
 ```
 OUTROOT=$PWD/reports/3rd_run/raw NETLIST=1 CLOSURE=1 JOB_FILTER='^<design> ' dc_shell -f synth/syn_rerun.tcl
+OUTROOT=$PWD/reports/3rd_run/raw NETLIST=1 CLOSURE=1 CORNERS=<100_mhz|500_mhz|1p5_ghz> JOB_FILTER='^<design> ' dc_shell -f synth/syn_rerun.tcl
 python3 synth/run_primepower.py reports/3rd_run/raw <work_dir> [design ...]
 cd reports && python3 collect_mode_left.py
 ```
@@ -147,6 +148,11 @@ not be used for conclusions:
 
 Making 2 GHz comparable for these two families needs a pipeline register, which changes the
 designs (latency 1). That is outside this rerun.
+
+At the 1.5 GHz target added in Section 7, only the three Karatsuba tiers miss (k64 1.06 GHz,
+k64_32 1.35 GHz, k64_32_16 1.03 GHz, after the 70% retry); Rounding, the DesignWare 64-bit
+multiplier and the Karatsuba fixed 32x2 meet it. Every design meets 100 MHz and 500 MHz, and every
+design other than those three meets 1.5 GHz on the first compile.
 
 ## 3. PrimePower: what the simulation shows
 
@@ -327,6 +333,130 @@ narrow 2/3 for FP64/FP32; 2/3 and 1/3 for FP32/FP16). Overhead of adding the nar
   ranges within 2-3 pp (FP64 split 49.1-50.5% / 49.2% before; FP32 split 35.2-36.1% / 45.5%
   before).
 
+## 7. Frequency sweep: 100 MHz, 500 MHz and 1.5 GHz
+
+All 65 designs (every tier, every fixed bank unit, the AddSub+MinMax side function and the FP
+min/max two-level experiment) were also synthesized at 10 ns, 2 ns and 0.667 ns, one fresh
+`dc_shell` per design and target, and simulated in PrimePower with one operation per clock period
+of that target. Every table in this folder now has rows for `100_mhz`, `500_mhz`, `one_ghz`,
+`1p5_ghz` and `two_ghz`; the 1 GHz and 2 GHz rows are unchanged. 100% of nets are annotated in all
+195 new PrimePower runs.
+
+### DC savings against the fixed bank, by target (`mode_left_savings.csv`)
+
+Area saving (static saving in brackets); `*` = a design misses the target, not comparable.
+
+| Comparison | 100 MHz | 500 MHz | 1 GHz | 1.5 GHz | 2 GHz |
+|---|---:|---:|---:|---:|---:|
+| AddSub d4 vs 64 + 32x2 + 16x4 | 69.8 (67.6) | 57.8 (59.4) | 66.3 (62.0) | 62.6 (54.7) | 59.9 (48.6) |
+| AddSub d8 vs + 8x8 | 76.5 (75.0) | 65.7 (67.4) | 63.8 (48.3) | 65.9 (56.7) | 62.3 (48.9) |
+| MinMax m4 | 62.0 (61.8) | 62.7 (67.8) | 64.7 (66.2) | 64.0 (65.1) | 58.4 (53.6) |
+| Compare c4 | 59.3 (67.2) | 60.3 (66.1) | 56.7 (52.8) | 39.9 (31.0) | 32.9 (17.7) |
+| Compare c8 | 70.0 (74.7) | 70.4 (73.7) | 66.5 (60.7) | 54.3 (46.4) | 49.1 (35.8) |
+| Abs a3 | 60.9 (60.9) | 54.0 (47.8) | 52.5 (46.9) | 53.6 (44.4) | 49.3 (35.5) |
+| Barrel Shift bs3 | 56.8 (57.0) | 53.2 (49.4) | 50.9 (46.1) | 45.8 (40.7) | 42.1 (37.8) |
+| FP Compare g3 (DW bank) | 61.8 (66.1) | 61.2 (61.8) | 63.1 (65.9) | 64.3 (64.5) | 62.8 (59.3) |
+| FP Min/Max m3 (DW bank) | 58.2 (55.9) | 59.1 (59.2) | 55.6 (48.6) | 52.9 (45.5) | 56.2 (52.8) |
+| Rounding g3 | 21.7 (8.9) | 27.2 (31.2) | 13.4 (1.6) | 17.7 (13.5) | 20.3* |
+| Mult k64_32_16 vs DW bank | **35.2** (37.0) | **28.6** (21.9) | -26.9 (-78.3) | -18.3* | 11.1* |
+| Mult k64_32_16 vs Karatsuba bank | 43.9 (48.5) | 41.7 (38.6) | 28.0 (21.2) | 35.6* | 42.8* |
+| FP min/max FP64 -> 2xFP32 | 50.3 (50.9) | 46.0 (40.3) | 52.2 (52.5) | 51.9 (53.5) | 49.9 (49.4) |
+| FP min/max FP32 -> 2xFP16 | 44.5 (41.7) | 43.7 (41.6) | 37.9 (27.7) | 44.2 (44.4) | 42.3 (38.5) |
+| AddSub+MinMax d4 vs separate pair | **12.1** (4.3) | -8.8 (-23.4) | -44.9 (-95.8) | -53.8 (-115.1) | -92.6 (-164.5) |
+
+### PrimePower savings, mode-weighted (all-active bank / gated bank)
+
+| Comparison | 100 MHz | 500 MHz | 1 GHz | 1.5 GHz | 2 GHz |
+|---|---:|---:|---:|---:|---:|
+| AddSub d4 | 59 / -22 | 35 / -95 | 57 / -14 | 54 / -19 | 55 / -21 |
+| MinMax m4 | 63 / -10 | 60 / -18 | 54 / -30 | 66 / -6 | 64 / -9 |
+| Compare c4 | 58 / -31 | 58 / -29 | 56 / -30 | 56 / -34 | 51 / -49 |
+| Abs a3 | 61 / -14 | 53 / -42 | 42 / -53 | 32 / -104 | 28 / -111 |
+| Barrel Shift bs3 | 56 / -34 | 57 / -32 | 58 / -32 | 53 / -47 | 55 / -44 |
+| FP Compare g3 | 67 / **+4** | 66 / -1 | 67 / **0** | 64 / -8 | 68 / **+4** |
+| FP Min/Max m3 | 61 / -15 | 62 / -13 | 57 / -26 | 59 / -25 | 64 / -5 |
+| Rounding g3 | 10 / -167 | 28 / -109 | 22 / -126 | 37 / -87 | not comparable |
+| Mult k64_32_16 vs DW bank | 16 / -166 | 29 / -118 | 3 / -192 | not comparable | not comparable |
+| FP64 -> 2xFP32 | 53 / +5 | 50 / +2 | 43 / -12 | 54 / +6 | 54 / +8 |
+| FP32 -> 2xFP16 | 48 / -1 | 51 / +5 | 39 / -18 | 48 / -1 | 48 / +1 |
+| AddSub+MinMax d4, Min/Max function | 44 / -19 | 16 / -110 | 2 / -119 | -21 / -258 | -53 / -370 |
+
+### Overhead of each added lane format, by target (`mode_left_overhead.csv`)
+
+Area overhead at 100 MHz / 500 MHz / 1 GHz / 1.5 GHz / 2 GHz, and the median over the comparable
+targets (area, and PrimePower power of the widest-format operation):
+
+| Step | Area by target | Median area | Median PrimePower |
+|---|---|---:|---:|
+| AddSub d1 -> d2 | -7.5 / +1.1 / -1.9 / +22.8 / +9.2 | +1.1% | +19.4% |
+| AddSub d2 -> d4 | -3.3 / +8.5 / +3.3 / -7.4 / +10.8 | +3.3% | +3.8% |
+| AddSub d4 -> d8 | +2.2 / +4.7 / +28.1 / +7.5 / +8.6 | +7.5% | +7.8% |
+| MinMax m1 -> m2 | +5.5 / +4.0 / -4.4 / +17.4 / +8.8 | +5.5% | -1.0% |
+| MinMax m2 -> m4 | +10.3 / +7.7 / +5.0 / -0.5 / +12.3 | +7.7% | +10.1% |
+| Compare c1 -> c2 | +6.1 / +7.1 / +5.9 / +5.7 / +9.8 | +6.1% | +2.0% |
+| Compare c2 -> c4 | +38.5 / +38.2 / +54.1 / +77.2 / +79.3 | +54.1% | +38.1% |
+| Compare c4 -> c8 | -0.4 / -0.7 / +1.7 / +4.5 / +4.6 | +1.7% | +0.5% |
+| Abs a1 -> a2 | +0.3 / +1.8 / +17.0 / +5.4 / +0.8 | +1.8% | +37.0% |
+| Abs a2 -> a3 | +3.2 / -4.6 / -2.4 / +8.7 / +14.5 | +3.2% | +16.8% |
+| Barrel bs1 -> bs2 | +3.4 / +4.5 / +5.2 / +2.6 / -6.0 | +3.4% | +2.7% |
+| Barrel bs2 -> bs3 | +9.9 / +15.9 / +11.2 / +13.3 / +21.7 | +13.3% | +3.1% |
+| FP Compare g1 -> g2 | +7.5 / +7.0 / +4.5 / +4.3 / +6.8 | +6.8% | -1.0% |
+| FP Compare g2 -> g3 | +14.8 / +16.6 / +15.2 / +17.8 / +20.8 | +16.6% | +9.1% |
+| FP Min/Max m1 -> m2 | +9.3 / +13.6 / +0.1 / +4.4 / +8.9 | +8.9% | -1.0% |
+| FP Min/Max m2 -> m3 | +23.1 / +8.9 / +29.8 / +37.3 / +22.6 | +23.1% | +9.7% |
+| FP Min/Max (W=32) m1 -> m2 | +20.7 / +17.5 / +15.1 / +15.9 / +10.3 | +15.9% | +0.4% |
+| Rounding g1 -> g2 | +58.0 / +32.4 / +62.0 / +23.7 / +33.5* | +45.2% | +45.9% |
+| Rounding g2 -> g3 | +34.5 / +12.3 / +12.7 / +26.6 / +12.2* | +19.7% | +30.6% |
+| Mult k64 -> k64_32 | -8.1 / -6.6 / -27.3 / -12.8* / -19.2* | -8.1% | +4.4% |
+| Mult k64_32 -> k64_32_16 | +10.5 / +6.0 / +47.7 / +17.3* / +17.8* | +10.5% | +2.1% |
+| AddSub+MinMax d1 -> d2 | -4.1 / +7.3 / +9.8 / +4.6 / +10.9 | +7.3% | +6.9% |
+| AddSub+MinMax d2 -> d4 | +2.8 / +6.8 / +19.0 / +3.3 / +13.2 | +6.8% | +3.6% |
+| AddSub+MinMax d4 -> d8 | +7.3 / +4.3 / -3.1 / +30.2 / +38.5 | +7.3% | +3.8% |
+
+### Findings
+
+1. **Savings are largest at relaxed targets and fall as the target tightens for most integer
+   families** (Compare c4 59 -> 33% area, Barrel 57 -> 42%, Abs 61 -> 49%, AddSub static 68 ->
+   49%). At a relaxed target every unit is close to its minimum-area form. Under a tight target the
+   decomposable unit's longest path, which runs through the lane-boundary muxes and selects, needs
+   more upsizing than the short paths of the narrow fixed units. The FP units are the exception: the
+   sliced tree is shallow, and their savings stay at 53-64% across the whole range.
+2. **The multiplier crosses over.** Against the DesignWare bank the decomposable multiplier saves
+   35% area at 100 MHz and 29% at 500 MHz, and loses from 1 GHz. The Karatsuba tiers nearly double
+   between 500 MHz and 1 GHz (k64 2691 -> 4848 um2) while the DesignWare 64-bit unit grows 6%
+   (2142 -> 2281 um2): the Karatsuba chain (pre-adder, multiply, subtract, add) is too deep for
+   1 GHz without heavy upsizing. At 100 MHz k64 is only 14% larger than the DesignWare unit
+   (2280 vs 2002 um2). So "Karatsuba is twice DesignWare" is a timing effect at 1 GHz and above,
+   not an intrinsic property, and the decomposable multiplier is worth it at low frequency.
+3. **Min/Max as an AddSub side function pays only at 100 MHz.** There the side-function units save
+   7-12% area and, in Min/Max mode, 34-44% power against a separate pair whose units both switch.
+   From 500 MHz the serial subtract-then-select path costs more than the shared carry chain saves,
+   and the penalty grows with frequency (-9% at 500 MHz to -93% at 2 GHz for d4).
+4. **Compare's c2 -> c4 step is structural.** It costs +38% even at 100 MHz, where timing plays no
+   role, while c4 -> c8 is about free at every target. This rules out the timing explanation for
+   anomaly C2; the extra logic is in how the 4x16 lanes split the compare chains, and it needs a
+   look at the per-block netlist.
+5. **The AddSub fixed 32x2 anomaly (B1) is timing-driven.** The DesignWare duplex adder is the size
+   of the fixed 64-bit unit at 100 and 500 MHz (112.7 um2) and jumps to 263 um2 at 1 GHz. This is
+   also why AddSub's savings dip at 500 MHz (58% area, 35% power against the all-active bank): its
+   bank is small there.
+6. **Rounding's overhead is structural:** g1 -> g2 costs +24 to +62% at every target, from the
+   per-format lane decoders.
+7. **FP Compare breaks even with a gated DesignWare bank at every target** (-8 to +4%), and both
+   single splits of the two-level experiment break even or win against a gated bank at every target
+   except 1 GHz (+2 to +8% for FP64 -> 2xFP32, -1 to +5% for FP32 -> 2xFP16).
+8. **Single-compile noise is visible across the sweep.** The same step moves by 10-30 points between
+   neighbouring targets (AddSub d1 -> d2: -7.5 to +22.8%), and some 1 GHz points stand out from
+   their neighbours (MinMax m1, the two-level splits against the gated bank). Read trends across the
+   five targets, or the median, rather than any single point.
+9. **Leakage is negligible at every target.** Even at 100 MHz it is at most 0.05% of the PrimePower
+   total for every top-tier unit (SAED14 RVT, TT, 25 C). Static savings matter for area-driven cost
+   and for idle units, not for active power at these corners.
+10. **Energy per operation is not monotonic in frequency.** AddSub d4 uses 0.92 pJ at 100 MHz and
+    1.80 pJ at 2 GHz, as faster and larger cells switch more capacitance. The minimum-area 100 MHz
+    multiplier and barrel shifter use more energy per operation than at 1 GHz (49.5 vs 38.8 pJ and
+    4.38 vs 3.50 pJ), consistent with glitching along long unbalanced paths in area-minimized logic.
+
 ## Conclusions
 
 1. Moving mode selection to the left edge does not change PPA beyond DC's run-to-run structural
@@ -346,3 +476,7 @@ narrow 2/3 for FP64/FP32; 2/3 and 1/3 for FP32/FP16). Overhead of adding the nar
 5. In the FP min/max two-level experiment both single splits save 38-52% area; with simulated
    activity they save 39-54% power against an all-active bank, and break even with a gated
    DesignWare bank at 2 GHz.
+6. Across 100 MHz to 2 GHz, decomposition saves the most at relaxed targets; the integer families
+   lose 4-26 points of area saving by 2 GHz while the FP units hold at 53-64%. The decomposable
+   multiplier beats a DesignWare bank at 100 and 500 MHz, and the AddSub side function pays only
+   at 100 MHz, so the target frequency decides whether these two designs are worth building.

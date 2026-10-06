@@ -3,7 +3,8 @@
 
 Every design in the full rerun is resynthesized after moving mode selection to the left edge
 (one mode decode at the input, AND-OR selects on its one-hot lane-width bus) with
-`NETLIST=1 CLOSURE=1 synth/syn_rerun.tcl` into reports/3rd_run/raw, and simulated with
+`NETLIST=1 CLOSURE=1 synth/syn_rerun.tcl` into reports/3rd_run/raw at every target in
+collect_rerun.PERIOD (100 MHz to 2 GHz), and simulated with
 synth/run_primepower.py. The previous rerun (PPA_rerun.csv, rerun_overhead.csv,
 rerun_savings.csv) is the expected data. Writes:
 

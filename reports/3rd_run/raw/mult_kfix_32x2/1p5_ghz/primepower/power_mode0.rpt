@@ -1,0 +1,32 @@
+****************************************
+Report : Averaged Power
+Design : fu_mult_karatsuba_32x2
+Version: Y-2026.03-SP1
+Date   : Tue Oct  6 15:46:33 2026
+****************************************
+
+
+
+  Attributes
+  ----------
+      i  -  Including register clock pin internal power
+      u  -  User defined power group
+
+                        Internal  Switching  Leakage    Total
+Power Group             Power     Power      Power      Power   (     %)  Attrs
+--------------------------------------------------------------------------------
+clock_network              0.0000    0.0000    0.0000    0.0000 ( 0.00%)  i
+register                   0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+combinational           3.553e-03    0.0153 1.563e-06    0.0188 (100.00%) 
+sequential                 0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+memory                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+io_pad                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+black_box                  0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+
+  Net Switching Power  =    0.0153   (81.13%)
+  Cell Internal Power  = 3.553e-03   (18.86%)
+  Cell Leakage Power   = 1.563e-06   ( 0.01%)
+                         ---------
+Total Power            =    0.0188  (100.00%)
+
+1

@@ -1,0 +1,65 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_bshift_bs3
+Version: Y-2026.03-SP1
+Date   : Tue Oct  6 15:19:24 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: mode[0] (input port)
+  Endpoint: out_data[15]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_bshift_bs3      8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  mode[0] (in)                                            0.00       0.00 r
+  core/mode[0] (fu_barrel_shift_dec)                      0.00       0.00 r
+  core/U18/X (SAEDRVT14_INV_S_0P5)                        0.04       0.04 f
+  core/U19/X (SAEDRVT14_ND2_CDC_1)                        0.29       0.34 r
+  core/U21/X (SAEDRVT14_ND2_CDC_1)                        0.44       0.78 f
+  core/U22/X (SAEDRVT14_INV_S_0P5)                        0.45       1.23 r
+  core/U102/X (SAEDRVT14_OAI22_1)                         0.72       1.95 f
+  core/U103/X (SAEDRVT14_INV_S_0P5)                       0.60       2.55 r
+  core/U104/X (SAEDRVT14_NR2_1)                           0.36       2.91 f
+  core/U130/X (SAEDRVT14_INV_S_0P5)                       0.56       3.46 r
+  core/U614/X (SAEDRVT14_OAI22_0P5)                       0.18       3.64 f
+  core/U615/X (SAEDRVT14_AOI21_0P5)                       0.15       3.80 r
+  core/U735/X (SAEDRVT14_OAI22_0P5)                       0.11       3.90 f
+  core/U736/X (SAEDRVT14_AOI21_0P5)                       0.15       4.05 r
+  core/U862/X (SAEDRVT14_OAI22_0P5)                       0.11       4.17 f
+  core/U863/X (SAEDRVT14_AOI21_0P5)                       0.07       4.24 r
+  core/U864/X (SAEDRVT14_ND2_CDC_1)                       0.09       4.33 f
+  core/U865/X (SAEDRVT14_INV_S_0P5)                       0.08       4.41 r
+  core/U866/X (SAEDRVT14_OAI21_0P5)                       0.05       4.46 f
+  core/U867/X (SAEDRVT14_AOI21_0P5)                       0.10       4.56 r
+  core/U1088/X (SAEDRVT14_OAI22_0P5)                      0.09       4.66 f
+  core/U1089/X (SAEDRVT14_AOI21_0P5)                      0.08       4.74 r
+  core/U1090/X (SAEDRVT14_OAI21_0P5)                      0.05       4.79 f
+  core/out_data[15] (fu_barrel_shift_dec)                 0.00       4.79 f
+  out_data[15] (out)                                      0.00       4.79 f
+  data arrival time                                                  4.79
+
+  max_delay                                              10.00      10.00
+  output external delay                                   0.00      10.00
+  data required time                                                10.00
+  --------------------------------------------------------------------------
+  data required time                                                10.00
+  data arrival time                                                 -4.79
+  --------------------------------------------------------------------------
+  slack (MET)                                                        5.21
+
+
+1

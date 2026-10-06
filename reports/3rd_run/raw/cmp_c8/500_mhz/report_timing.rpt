@@ -1,0 +1,68 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_cmp_c8
+Version: Y-2026.03-SP1
+Date   : Tue Oct  6 14:53:33 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[4]
+              (input port)
+  Endpoint: out_data[48]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_cmp_c8          8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 r
+  in_data_0[4] (in)                        0.00       0.00 r
+  core/in_data_0[4] (fu_cmp_dec)           0.00       0.00 r
+  core/U123/X (SAEDRVT14_INV_0P75)         0.03       0.03 f
+  core/U23/X (SAEDRVT14_OAI22_0P5)         0.11       0.14 r
+  core/U132/X (SAEDRVT14_AOI21_0P5)        0.07       0.21 f
+  core/U133/X (SAEDRVT14_OA22_2)           0.04       0.24 f
+  core/U135/X (SAEDRVT14_OAI21_V1_4)       0.04       0.29 r
+  core/U136/X (SAEDRVT14_INV_S_0P5)        0.07       0.36 f
+  core/U139/X (SAEDRVT14_MUXI2_1)          0.09       0.45 r
+  core/U168/X (SAEDRVT14_AOI21_1P5)        0.09       0.54 f
+  core/U201/X (SAEDRVT14_OAI21_1)          0.13       0.67 r
+  core/U213/X (SAEDRVT14_AOI21_1P5)        0.12       0.79 f
+  core/U247/X (SAEDRVT14_OAI21_1)          0.13       0.92 r
+  core/U256/X (SAEDRVT14_AOI21_1P5)        0.12       1.04 f
+  core/U287/X (SAEDRVT14_OAI21_0P5)        0.15       1.18 r
+  core/U296/X (SAEDRVT14_AOI21_4)          0.07       1.25 f
+  core/U6/X (SAEDRVT14_AOI21_0P5)          0.05       1.30 r
+  core/U336/X (SAEDRVT14_OAI21_1)          0.04       1.35 f
+  core/U337/X (SAEDRVT14_AOI21_0P5)        0.05       1.39 r
+  core/U7/X (SAEDRVT14_OAI21_0P5)          0.05       1.44 f
+  core/U338/X (SAEDRVT14_AOI21_0P5)        0.06       1.50 r
+  core/U5/X (SAEDRVT14_OA22_4)             0.08       1.57 r
+  core/U409/X (SAEDRVT14_OAI22_0P5)        0.06       1.63 f
+  core/U410/X (SAEDRVT14_AOI21_0P5)        0.06       1.69 r
+  core/U3/X (SAEDRVT14_OAI21_0P5)          0.30       1.99 f
+  core/out_data[48] (fu_cmp_dec)           0.00       1.99 f
+  out_data[48] (out)                       0.00       1.99 f
+  data arrival time                                   1.99
+
+  max_delay                                2.00       2.00
+  output external delay                    0.00       2.00
+  data required time                                  2.00
+  -----------------------------------------------------------
+  data required time                                  2.00
+  data arrival time                                  -1.99
+  -----------------------------------------------------------
+  slack (MET)                                         0.01
+
+
+1

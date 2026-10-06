@@ -1,0 +1,32 @@
+****************************************
+Report : Averaged Power
+Design : fu_rounding_g3
+Version: Y-2026.03-SP1
+Date   : Tue Oct  6 15:38:40 2026
+****************************************
+
+
+
+  Attributes
+  ----------
+      i  -  Including register clock pin internal power
+      u  -  User defined power group
+
+                        Internal  Switching  Leakage    Total
+Power Group             Power     Power      Power      Power   (     %)  Attrs
+--------------------------------------------------------------------------------
+clock_network              0.0000    0.0000    0.0000    0.0000 ( 0.00%)  i
+register                   0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+combinational           1.963e-05 3.025e-04 1.459e-07 3.223e-04 (100.00%) 
+sequential                 0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+memory                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+io_pad                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+black_box                  0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+
+  Net Switching Power  = 3.025e-04   (93.87%)
+  Cell Internal Power  = 1.963e-05   ( 6.09%)
+  Cell Leakage Power   = 1.459e-07   ( 0.05%)
+                         ---------
+Total Power            = 3.223e-04  (100.00%)
+
+1

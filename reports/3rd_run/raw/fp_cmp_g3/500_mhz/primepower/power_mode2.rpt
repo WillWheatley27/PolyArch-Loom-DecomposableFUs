@@ -1,0 +1,32 @@
+****************************************
+Report : Averaged Power
+Design : fu_fp_cmp_g3
+Version: Y-2026.03-SP1
+Date   : Tue Oct  6 15:35:14 2026
+****************************************
+
+
+
+  Attributes
+  ----------
+      i  -  Including register clock pin internal power
+      u  -  User defined power group
+
+                        Internal  Switching  Leakage    Total
+Power Group             Power     Power      Power      Power   (     %)  Attrs
+--------------------------------------------------------------------------------
+clock_network              0.0000    0.0000    0.0000    0.0000 ( 0.00%)  i
+register                   0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+combinational           1.944e-05 2.796e-04 3.127e-08 2.990e-04 (100.00%) 
+sequential                 0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+memory                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+io_pad                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+black_box                  0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+
+  Net Switching Power  = 2.796e-04   (93.49%)
+  Cell Internal Power  = 1.944e-05   ( 6.50%)
+  Cell Leakage Power   = 3.127e-08   ( 0.01%)
+                         ---------
+Total Power            = 2.990e-04  (100.00%)
+
+1

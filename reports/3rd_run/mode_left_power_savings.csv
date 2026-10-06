@@ -1,139 +1,346 @@
 family,decomposable,bank,bank_components,corner,mode,lane_width_or_weights,lanes,dec_total_mw,dec_dynamic_mw,gated_bank_total_mw,gated_bank_dynamic_mw,all_active_bank_total_mw,dec_energy_per_op_pj,gated_bank_energy_per_op_pj,total_saving_vs_gated_percent,dynamic_saving_vs_gated_percent,total_saving_vs_all_active_percent,comparable
+addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,100_mhz,mode0,64,1,0.092680,0.092640,0.078986,0.078870,0.224920,0.926800,0.789865,-17.337,-17.459,58.794,true
+addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,100_mhz,mode1,32,2,0.091590,0.091550,0.073787,0.073670,0.224920,0.915900,0.737871,-24.127,-24.270,59.279,true
+addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,100_mhz,mode2,16,4,0.090120,0.090080,0.072378,0.072270,0.224920,0.901200,0.723781,-24.513,-24.644,59.932,true
+addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,100_mhz,weighted,64:0.250 32:0.500 16:0.250,,0.091495,0.091455,0.074735,0.074620,0.224920,0.914950,0.747347,-22.426,-22.561,59.321,true
+addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,500_mhz,mode0,64,1,0.728700,0.728670,0.381076,0.380890,1.110800,1.457400,0.762153,-91.221,-91.307,34.399,true
+addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,500_mhz,mode1,32,2,0.719800,0.719720,0.368493,0.368380,1.110800,1.439600,0.736986,-95.336,-95.374,35.200,true
+addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,500_mhz,mode2,16,4,0.714500,0.714470,0.361494,0.361290,1.110800,1.429000,0.722988,-97.652,-97.755,35.677,true
+addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,500_mhz,weighted,64:0.250 32:0.500 16:0.250,,0.720700,0.720645,0.369889,0.369735,1.110800,1.441400,0.739779,-94.842,-94.909,35.119,true
 addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,one_ghz,mode0,64,1,1.587000,1.586900,0.989724,0.989500,3.610000,1.587000,0.989724,-60.348,-60.374,56.039,true
 addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,one_ghz,mode1,32,2,1.567000,1.567200,1.905102,1.905200,3.610000,1.567000,1.905102,17.747,17.741,56.593,true
 addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,one_ghz,mode2,16,4,1.548000,1.548000,0.715550,0.715300,3.610000,1.548000,0.715550,-116.337,-116.413,57.119,true
 addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,one_ghz,weighted,64:0.250 32:0.500 16:0.250,,1.567250,1.567325,1.378870,1.378800,3.610000,1.567250,1.378870,-13.662,-13.673,56.586,true
+addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,1p5_ghz,mode0,64,1,2.548000,2.548300,1.599149,1.598800,5.462900,1.698667,1.066099,-59.335,-59.388,53.358,true
+addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,1p5_ghz,mode1,32,2,2.522000,2.521900,2.941116,2.940900,5.462900,1.681333,1.960744,14.250,14.247,53.834,true
+addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,1p5_ghz,mode2,16,4,2.442000,2.442000,0.923072,0.922900,5.462900,1.628000,0.615381,-164.551,-164.601,55.298,true
+addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,1p5_ghz,weighted,64:0.250 32:0.500 16:0.250,,2.508500,2.508525,2.101113,2.100875,5.462900,1.672333,1.400742,-19.389,-19.404,54.081,true
 addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,two_ghz,mode0,64,1,3.775000,3.774600,2.303195,2.302900,7.987000,1.887500,1.151598,-63.903,-63.906,52.736,true
 addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,two_ghz,mode1,32,2,3.592000,3.592400,3.898149,3.898000,7.987000,1.796000,1.949075,7.854,7.840,55.027,true
 addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,two_ghz,mode2,16,4,3.402000,3.401900,1.786213,1.785900,7.987000,1.701000,0.893107,-90.459,-90.487,57.406,true
 addsub,addsub_d4,64 + 32x2 + 16x4,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4,two_ghz,weighted,64:0.250 32:0.500 16:0.250,,3.590250,3.590325,2.971427,2.971200,7.987000,1.795125,1.485713,-20.826,-20.838,55.049,true
+addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,100_mhz,mode0,64,1,0.094440,0.094400,0.079022,0.078870,0.285370,0.944400,0.790224,-19.510,-19.691,66.906,true
+addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,100_mhz,mode1,32,2,0.093240,0.093200,0.073823,0.073670,0.285370,0.932400,0.738231,-26.302,-26.510,67.327,true
+addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,100_mhz,mode2,16,4,0.091760,0.091720,0.072414,0.072270,0.285370,0.917600,0.724141,-26.716,-26.913,67.845,true
+addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,100_mhz,mode3,8,8,0.089370,0.089330,0.060566,0.060410,0.285370,0.893700,0.605658,-47.558,-47.873,68.683,true
+addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,100_mhz,weighted,64:0.250 32:0.500 16:0.250 8:0.000,,0.093170,0.093130,0.074771,0.074620,0.285370,0.931700,0.747706,-24.608,-24.806,67.351,true
+addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,500_mhz,mode0,64,1,0.797200,0.797190,0.381112,0.380890,1.412900,1.594400,0.762225,-109.177,-109.297,43.577,true
+addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,500_mhz,mode1,32,2,0.788100,0.788080,0.368529,0.368380,1.412900,1.576200,0.737058,-113.850,-113.931,44.221,true
+addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,500_mhz,mode2,16,4,0.776800,0.776780,0.361530,0.361290,1.412900,1.553600,0.723060,-114.864,-115.002,45.021,true
+addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,500_mhz,mode3,8,8,0.754800,0.754750,0.302232,0.302100,1.412900,1.509600,0.604464,-149.742,-149.834,46.578,true
+addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,500_mhz,weighted,64:0.250 32:0.500 16:0.250 8:0.000,,0.787550,0.787532,0.369925,0.369735,1.412900,1.575100,0.739850,-112.894,-112.999,44.260,true
 addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,one_ghz,mode0,64,1,1.849000,1.848700,0.989760,0.989500,4.214200,1.849000,0.989760,-86.813,-86.832,56.125,true
 addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,one_ghz,mode1,32,2,1.828000,1.827600,1.905138,1.905200,4.214200,1.828000,1.905138,4.049,4.073,56.623,true
 addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,one_ghz,mode2,16,4,1.804000,1.803700,0.715586,0.715300,4.214200,1.804000,0.715586,-152.101,-152.160,57.192,true
 addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,one_ghz,mode3,8,8,1.755000,1.754800,0.604388,0.604100,4.214200,1.755000,0.604388,-190.376,-190.482,58.355,true
 addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,one_ghz,weighted,64:0.250 32:0.500 16:0.250 8:0.000,,1.827250,1.826900,1.378906,1.378800,4.214200,1.827250,1.378906,-32.514,-32.499,56.641,true
+addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,1p5_ghz,mode0,64,1,2.661000,2.660800,1.599185,1.598800,6.368700,1.774000,1.066123,-66.397,-66.425,58.218,true
+addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,1p5_ghz,mode1,32,2,2.635000,2.634200,2.941152,2.940900,6.368700,1.756667,1.960768,10.409,10.429,58.626,true
+addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,1p5_ghz,mode2,16,4,2.554000,2.553300,0.923108,0.922900,6.368700,1.702667,0.615405,-176.674,-176.661,59.898,true
+addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,1p5_ghz,mode3,8,8,2.440000,2.439400,0.906019,0.905700,6.368700,1.626667,0.604012,-169.310,-169.339,61.688,true
+addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,1p5_ghz,weighted,64:0.250 32:0.500 16:0.250 8:0.000,,2.621250,2.620625,2.101149,2.100875,6.368700,1.747500,1.400766,-24.753,-24.740,58.842,true
 addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,two_ghz,mode0,64,1,4.068000,4.067100,2.303232,2.302900,9.133000,2.034000,1.151616,-76.621,-76.608,55.458,true
 addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,two_ghz,mode1,32,2,3.965000,3.964900,3.898186,3.898000,9.133000,1.982500,1.949093,-1.714,-1.716,56.586,true
 addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,two_ghz,mode2,16,4,3.877000,3.876200,1.786250,1.785900,9.133000,1.938500,0.893125,-117.047,-117.045,57.550,true
 addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,two_ghz,mode3,8,8,3.699000,3.698900,1.146279,1.146300,9.133000,1.849500,0.573139,-222.696,-222.682,59.499,true
 addsub,addsub_d8,64 + 32x2 + 16x4 + 8x8,addsub_fix_64 + addsub_fix_32x2 + addsub_fix_16x4 + addsub_fix_8x8,two_ghz,weighted,64:0.250 32:0.500 16:0.250 8:0.000,,3.968750,3.968275,2.971464,2.971200,9.133000,1.984375,1.485732,-33.562,-33.558,56.545,true
+minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,100_mhz,mode0,64,1,0.082440,0.082417,0.070009,0.069949,0.216080,0.824400,0.700089,-17.756,-17.824,61.847,true
+minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,100_mhz,mode1,32,2,0.080670,0.080642,0.077785,0.077729,0.216080,0.806700,0.777851,-3.709,-3.748,62.667,true
+minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,100_mhz,mode2,16,4,0.080630,0.080615,0.068399,0.068343,0.216080,0.806300,0.683988,-17.882,-17.956,62.685,true
+minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,100_mhz,weighted,64:0.250 32:0.500 16:0.250,,0.081102,0.081079,0.073494,0.073438,0.216080,0.811025,0.734945,-10.352,-10.405,62.466,true
+minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,500_mhz,mode0,64,1,0.480200,0.480190,0.400554,0.400530,1.188800,0.960400,0.801107,-19.884,-19.889,59.606,true
+minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,500_mhz,mode1,32,2,0.473300,0.473260,0.425854,0.425690,1.188800,0.946600,0.851708,-11.141,-11.175,60.187,true
+minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,500_mhz,mode2,16,4,0.478500,0.478450,0.362558,0.362410,1.188800,0.957000,0.725116,-31.979,-32.019,59.749,true
+minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,500_mhz,weighted,64:0.250 32:0.500 16:0.250,,0.476325,0.476290,0.403705,0.403580,1.188800,0.952650,0.807410,-17.988,-18.016,59.932,true
 minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,one_ghz,mode0,64,1,1.278000,1.277590,0.671196,0.671080,2.733300,1.278000,0.671196,-90.406,-90.378,53.243,true
 minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,one_ghz,mode1,32,2,1.276000,1.275990,1.165069,1.165100,2.733300,1.276000,1.165069,-9.521,-9.518,53.317,true
 minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,one_ghz,mode2,16,4,1.255000,1.254400,0.897298,0.897120,2.733300,1.255000,0.897298,-39.864,-39.825,54.085,true
 minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,one_ghz,weighted,64:0.250 32:0.500 16:0.250,,1.271250,1.270992,0.974658,0.974600,2.733300,1.271250,0.974658,-30.430,-30.412,53.490,true
+minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,1p5_ghz,mode0,64,1,1.213000,1.213400,1.114093,1.114300,3.751000,0.808667,0.742729,-8.878,-8.893,67.662,true
+minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,1p5_ghz,mode1,32,2,1.297000,1.296900,1.094096,1.094200,3.751000,0.864667,0.729397,-18.545,-18.525,65.423,true
+minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,1p5_ghz,mode2,16,4,1.304000,1.304000,1.543073,1.543200,3.751000,0.869333,1.028715,15.493,15.500,65.236,true
+minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,1p5_ghz,weighted,64:0.250 32:0.500 16:0.250,,1.277750,1.277800,1.211339,1.211475,3.751000,0.851833,0.807560,-5.482,-5.475,65.936,true
 minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,two_ghz,mode0,64,1,1.605000,1.604500,1.524075,1.524000,4.740000,0.802500,0.762037,-5.310,-5.282,66.139,true
 minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,two_ghz,mode1,32,2,1.727000,1.727100,1.583088,1.583100,4.740000,0.863500,0.791544,-9.091,-9.096,63.565,true
 minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,two_ghz,mode2,16,4,1.836000,1.836700,1.633094,1.633300,4.740000,0.918000,0.816547,-12.425,-12.453,61.266,true
 minmax,minmax_m4,64 + 32x2 + 16x4,minmax_fix_64 + minmax_fix_32x2 + minmax_fix_16x4,two_ghz,weighted,64:0.250 32:0.500 16:0.250,,1.723750,1.723850,1.580836,1.580875,4.740000,0.861875,0.790418,-9.040,-9.044,63.634,true
+cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,100_mhz,mode0,64,1,0.068970,0.068938,0.052677,0.052588,0.162950,0.689700,0.526770,-30.930,-31.091,57.674,true
+cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,100_mhz,mode1,32,2,0.069100,0.069069,0.048103,0.048018,0.162950,0.691000,0.481035,-43.649,-43.840,57.594,true
+cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,100_mhz,mode2,16,4,0.069170,0.069142,0.062341,0.062259,0.162950,0.691700,0.623409,-10.954,-11.055,57.551,true
+cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,100_mhz,weighted,64:0.250 32:0.500 16:0.250,,0.069085,0.069055,0.052806,0.052721,0.162950,0.690850,0.528062,-30.827,-30.982,57.604,true
+cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,500_mhz,mode0,64,1,0.354600,0.354600,0.257464,0.257370,0.836100,0.709200,0.514928,-37.728,-37.778,57.589,true
+cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,500_mhz,mode1,32,2,0.354800,0.354790,0.267454,0.267320,0.836100,0.709600,0.534908,-32.658,-32.721,57.565,true
+cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,500_mhz,mode2,16,4,0.355100,0.355060,0.311368,0.311250,0.836100,0.710200,0.622736,-14.045,-14.076,57.529,true
+cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,500_mhz,weighted,64:0.250 32:0.500 16:0.250,,0.354825,0.354810,0.275935,0.275815,0.836100,0.709650,0.551870,-28.590,-28.641,57.562,true
 cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,one_ghz,mode0,64,1,0.788500,0.788430,0.527476,0.527460,1.796800,0.788500,0.527476,-49.485,-49.477,56.116,true
 cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,one_ghz,mode1,32,2,0.782600,0.782560,0.624254,0.624210,1.796800,0.782600,0.624254,-25.366,-25.368,56.445,true
 cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,one_ghz,mode2,16,4,0.782600,0.782550,0.645278,0.645220,1.796800,0.782600,0.645278,-21.281,-21.284,56.445,true
 cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,one_ghz,weighted,64:0.250 32:0.500 16:0.250,,0.784075,0.784025,0.605315,0.605275,1.796800,0.784075,0.605315,-29.532,-29.532,56.363,true
+cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,1p5_ghz,mode0,64,1,1.280000,1.279200,0.883570,0.883520,2.908900,0.853333,0.589046,-44.867,-44.784,55.997,true
+cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,1p5_ghz,mode1,32,2,1.274000,1.274500,0.916472,0.916380,2.908900,0.849333,0.610981,-39.011,-39.080,56.203,true
+cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,1p5_ghz,mode2,16,4,1.279000,1.278900,1.109072,1.109630,2.908900,0.852667,0.739381,-15.322,-15.255,56.031,true
+cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,1p5_ghz,weighted,64:0.250 32:0.500 16:0.250,,1.276750,1.276775,0.956396,0.956478,2.908900,0.851167,0.637598,-33.496,-33.487,56.109,true
 cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,two_ghz,mode0,64,1,1.957000,1.957400,1.299086,1.299000,4.051000,0.978500,0.649543,-50.644,-50.685,51.691,true
 cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,two_ghz,mode1,32,2,1.985000,1.985000,1.279095,1.279000,4.051000,0.992500,0.639548,-55.188,-55.199,51.000,true
 cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,two_ghz,mode2,16,4,1.997000,1.996700,1.473089,1.473300,4.051000,0.998500,0.736545,-35.565,-35.526,50.704,true
 cmp,cmp_c4,64 + 32x2 + 16x4,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4,two_ghz,weighted,64:0.250 32:0.500 16:0.250,,1.981000,1.981025,1.332592,1.332575,4.051000,0.990500,0.666296,-48.658,-48.661,51.098,true
+cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,100_mhz,mode0,64,1,0.068970,0.068938,0.052702,0.052588,0.228030,0.689700,0.527017,-30.869,-31.091,69.754,true
+cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,100_mhz,mode1,32,2,0.069100,0.069069,0.048128,0.048018,0.228030,0.691000,0.481282,-43.575,-43.840,69.697,true
+cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,100_mhz,mode2,16,4,0.069170,0.069142,0.062366,0.062259,0.228030,0.691700,0.623656,-10.911,-11.055,69.666,true
+cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,100_mhz,mode3,8,8,0.071020,0.070990,0.065166,0.065056,0.228030,0.710200,0.651657,-8.984,-9.121,68.855,true
+cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,100_mhz,weighted,64:0.250 32:0.500 16:0.250 8:0.000,,0.069085,0.069055,0.052831,0.052721,0.228030,0.690850,0.528309,-30.766,-30.982,69.704,true
+cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,500_mhz,mode0,64,1,0.356500,0.356490,0.257489,0.257370,1.163400,0.713000,0.514977,-38.453,-38.513,69.357,true
+cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,500_mhz,mode1,32,2,0.356500,0.356470,0.267479,0.267320,1.163400,0.713000,0.534957,-33.282,-33.350,69.357,true
+cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,500_mhz,mode2,16,4,0.357500,0.357390,0.311393,0.311250,1.163400,0.715000,0.622786,-14.807,-14.824,69.271,true
+cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,500_mhz,mode3,8,8,0.365700,0.365670,0.327393,0.327260,1.163400,0.731400,0.654786,-11.701,-11.737,68.566,true
+cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,500_mhz,weighted,64:0.250 32:0.500 16:0.250 8:0.000,,0.356750,0.356705,0.275960,0.275815,1.163400,0.713500,0.551919,-29.276,-29.328,69.336,true
 cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,one_ghz,mode0,64,1,0.798300,0.798210,0.527503,0.527460,2.496800,0.798300,0.527503,-51.336,-51.331,68.027,true
 cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,one_ghz,mode1,32,2,0.788900,0.788840,0.624281,0.624210,2.496800,0.788900,0.624281,-26.369,-26.374,68.404,true
 cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,one_ghz,mode2,16,4,0.788200,0.788150,0.645305,0.645220,2.496800,0.788200,0.645305,-22.144,-22.152,68.432,true
 cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,one_ghz,mode3,8,8,0.809400,0.809380,0.700104,0.699890,2.496800,0.809400,0.700104,-15.611,-15.644,67.583,true
 cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,one_ghz,weighted,64:0.250 32:0.500 16:0.250 8:0.000,,0.791075,0.791010,0.605343,0.605275,2.496800,0.791075,0.605343,-30.682,-30.686,68.316,true
+cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,1p5_ghz,mode0,64,1,1.244000,1.243900,0.883609,0.883520,3.987900,0.829333,0.589072,-40.786,-40.789,68.806,true
+cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,1p5_ghz,mode1,32,2,1.237000,1.237500,0.916511,0.916380,3.987900,0.824667,0.611007,-34.968,-35.042,68.981,true
+cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,1p5_ghz,mode2,16,4,1.242000,1.242100,1.109110,1.109630,3.987900,0.828000,0.739407,-11.982,-11.938,68.856,true
+cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,1p5_ghz,mode3,8,8,1.306000,1.306600,1.079107,1.078760,3.987900,0.870667,0.719404,-21.026,-21.121,67.251,true
+cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,1p5_ghz,weighted,64:0.250 32:0.500 16:0.250 8:0.000,,1.240000,1.240250,0.956435,0.956478,3.987900,0.826667,0.637623,-29.648,-29.668,68.906,true
 cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,two_ghz,mode0,64,1,1.968000,1.968200,1.299140,1.299000,5.588000,0.984000,0.649570,-51.485,-51.517,64.782,true
 cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,two_ghz,mode1,32,2,1.990000,1.989900,1.279149,1.279000,5.588000,0.995000,0.639574,-55.572,-55.582,64.388,true
 cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,two_ghz,mode2,16,4,2.010000,2.010300,1.473143,1.473300,5.588000,1.005000,0.736571,-36.443,-36.449,64.030,true
 cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,two_ghz,mode3,8,8,2.088000,2.088100,1.537136,1.537100,5.588000,1.044000,0.768568,-35.837,-35.847,62.634,true
 cmp,cmp_c8,64 + 32x2 + 16x4 + 8x8,cmp_fix_64 + cmp_fix_32x2 + cmp_fix_16x4 + cmp_fix_8x8,two_ghz,weighted,64:0.250 32:0.500 16:0.250 8:0.000,,1.989500,1.989575,1.332645,1.332575,5.588000,0.994750,0.666322,-49.290,-49.303,64.397,true
+abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,100_mhz,mode0,64,1,0.083150,0.083122,0.107538,0.107479,0.218880,0.831500,1.075376,22.678,22.662,62.011,true
+abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,100_mhz,mode1,32,2,0.084050,0.084032,0.078429,0.078373,0.218880,0.840500,0.784286,-7.167,-7.221,61.600,true
+abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,100_mhz,mode2,16,4,0.086400,0.086384,0.033034,0.032973,0.218880,0.864000,0.330335,-161.553,-161.984,60.526,true
+abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,100_mhz,weighted,64:0.250 32:0.500 16:0.250,,0.084413,0.084393,0.074357,0.074299,0.218880,0.844125,0.743571,-13.523,-13.584,61.434,true
+abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,500_mhz,mode0,64,1,0.468600,0.468570,0.526650,0.526520,1.028200,0.937200,1.053301,11.023,11.006,54.425,true
+abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,500_mhz,mode1,32,2,0.482300,0.482220,0.336772,0.336710,1.028200,0.964600,0.673544,-43.213,-43.215,53.093,true
+abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,500_mhz,mode2,16,4,0.502000,0.501960,0.164990,0.164860,1.028200,1.004000,0.329979,-204.261,-204.477,51.177,true
+abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,500_mhz,weighted,64:0.250 32:0.500 16:0.250,,0.483800,0.483742,0.341296,0.341200,1.028200,0.967600,0.682592,-41.754,-41.777,52.947,true
 abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,one_ghz,mode0,64,1,0.848900,0.848800,0.447765,0.447660,1.524100,0.848900,0.447765,-89.586,-89.608,44.302,true
 abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,one_ghz,mode1,32,2,0.876400,0.876400,0.780473,0.780390,1.524100,0.876400,0.780473,-12.291,-12.303,42.497,true
 abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,one_ghz,mode2,16,4,0.923500,0.923400,0.296096,0.296040,1.524100,0.923500,0.296096,-211.892,-211.917,39.407,true
 abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,one_ghz,weighted,64:0.250 32:0.500 16:0.250,,0.881300,0.881250,0.576202,0.576120,1.524100,0.881300,0.576202,-52.950,-52.963,42.176,true
+abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,1p5_ghz,mode0,64,1,1.075000,1.075100,0.671875,0.671800,1.669100,0.716667,0.447917,-60.000,-60.033,35.594,true
+abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,1p5_ghz,mode1,32,2,1.155000,1.154600,0.571085,0.570900,1.669100,0.770000,0.380723,-102.247,-102.242,30.801,true
+abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,1p5_ghz,mode2,16,4,1.188000,1.187800,0.426403,0.426320,1.669100,0.792000,0.284268,-178.610,-178.617,28.824,true
+abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,1p5_ghz,weighted,64:0.250 32:0.500 16:0.250,,1.143250,1.143025,0.560112,0.559980,1.669100,0.762167,0.373408,-104.111,-104.119,31.505,true
 abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,two_ghz,mode0,64,1,1.468000,1.468200,0.843482,0.843400,2.234000,0.734000,0.421741,-74.040,-74.081,34.288,true
 abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,two_ghz,mode1,32,2,1.610000,1.609500,0.804216,0.804100,2.234000,0.805000,0.402108,-100.195,-100.162,27.932,true
 abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,two_ghz,mode2,16,4,1.707000,1.706800,0.586631,0.586540,2.234000,0.853500,0.293316,-190.984,-190.995,23.590,true
 abs,abs_a3,a1 + 32x2 + 16x4,abs_a1 + abs_fix_32x2 + abs_fix_16x4,two_ghz,weighted,64:0.250 32:0.500 16:0.250,,1.598750,1.598500,0.759637,0.759535,2.234000,0.799375,0.379818,-110.462,-110.458,28.436,true
+barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,100_mhz,mode0,64,1,0.485300,0.485220,0.441702,0.441500,0.997700,4.853000,4.417019,-9.870,-9.903,51.358,true
+barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,100_mhz,mode1,32,2,0.443300,0.443230,0.308107,0.307960,0.997700,4.433000,3.081067,-43.879,-43.925,55.568,true
+barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,100_mhz,mode2,16,4,0.379000,0.378900,0.248221,0.248030,0.997700,3.790000,2.482209,-52.687,-52.764,62.013,true
+barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,100_mhz,weighted,64:0.250 32:0.500 16:0.250,,0.437725,0.437645,0.326534,0.326362,0.997700,4.377250,3.265340,-34.052,-34.098,56.127,true
+barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,500_mhz,mode0,64,1,2.248000,2.248200,2.158124,2.157660,4.750000,4.496000,4.316247,-4.165,-4.196,52.674,true
+barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,500_mhz,mode1,32,2,2.051000,2.050800,1.374127,1.374310,4.750000,4.102000,2.748255,-49.258,-49.224,56.821,true
+barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,500_mhz,mode2,16,4,1.755000,1.755340,1.218144,1.218170,4.750000,3.510000,2.436289,-44.072,-44.096,63.053,true
+barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,500_mhz,weighted,64:0.250 32:0.500 16:0.250,,2.026250,2.026285,1.531131,1.531112,4.750000,4.052500,3.062261,-32.337,-32.341,57.342,true
 barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,one_ghz,mode0,64,1,3.876000,3.875100,3.783162,3.782500,8.240000,3.876000,3.783162,-2.454,-2.448,52.961,true
 barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,one_ghz,mode1,32,2,3.544000,3.543700,2.335198,2.335100,8.240000,3.544000,2.335198,-51.764,-51.758,56.990,true
 barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,one_ghz,mode2,16,4,3.017000,3.016400,2.122221,2.121800,8.240000,3.017000,2.122221,-42.162,-42.162,63.386,true
 barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,one_ghz,weighted,64:0.250 32:0.500 16:0.250,,3.495250,3.494725,2.643945,2.643625,8.240000,3.495250,2.643945,-32.198,-32.194,57.582,true
+barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,1p5_ghz,mode0,64,1,6.563000,6.561900,5.911207,5.910700,12.593000,4.375333,3.940805,-11.026,-11.017,47.884,true
+barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,1p5_ghz,mode1,32,2,5.977000,5.976600,3.392301,3.392000,12.593000,3.984667,2.261534,-76.193,-76.197,52.537,true
+barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,1p5_ghz,mode2,16,4,5.029000,5.029100,3.290332,3.290100,12.593000,3.352667,2.193554,-52.842,-52.856,60.065,true
+barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,1p5_ghz,weighted,64:0.250 32:0.500 16:0.250,,5.886500,5.886050,3.996535,3.996200,12.593000,3.924333,2.664357,-47.290,-47.291,53.256,true
 barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,two_ghz,mode0,64,1,9.305000,9.304000,9.000300,9.000000,18.791000,4.652500,4.500150,-3.385,-3.378,50.482,true
 barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,two_ghz,mode1,32,2,8.708000,8.708000,4.880485,4.879700,18.791000,4.354000,2.440243,-78.425,-78.454,53.659,true
 barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,two_ghz,mode2,16,4,7.467000,7.467400,4.911501,4.910300,18.791000,3.733500,2.455750,-52.031,-52.076,60.263,true
 barrel,barrel_bs3,bs1 + 32x2 + 16x4,barrel_bs1 + barrel_fix_32x2 + barrel_fix_16x4,two_ghz,weighted,64:0.250 32:0.500 16:0.250,,8.547000,8.546850,5.918193,5.917425,18.791000,4.273500,2.959096,-44.419,-44.435,54.515,true
+fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,100_mhz,mode0,64,1,0.058720,0.058697,0.058628,0.058541,0.180230,0.587200,0.586277,-0.157,-0.266,67.419,true
+fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,100_mhz,mode1,32,2,0.058900,0.058870,0.065745,0.065657,0.180230,0.589000,0.657447,10.411,10.337,67.320,true
+fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,100_mhz,mode2,16,4,0.059140,0.059110,0.056030,0.055944,0.180230,0.591400,0.560299,-5.551,-5.659,67.186,true
+fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,100_mhz,weighted,64:0.250 32:0.500 16:0.250,,0.058915,0.058887,0.061537,0.061450,0.180230,0.589150,0.615368,4.260,4.171,67.311,true
+fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,500_mhz,mode0,64,1,0.298700,0.298690,0.282256,0.282190,0.876100,0.597400,0.564512,-5.826,-5.847,65.906,true
+fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,500_mhz,mode1,32,2,0.299500,0.299500,0.314052,0.314010,0.876100,0.599000,0.628103,4.634,4.621,65.814,true
+fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,500_mhz,mode2,16,4,0.299000,0.299040,0.279955,0.279800,0.876100,0.598000,0.559911,-6.803,-6.876,65.871,true
+fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,500_mhz,weighted,64:0.250 32:0.500 16:0.250,,0.299175,0.299183,0.297579,0.297503,0.876100,0.598350,0.595157,-0.536,-0.565,65.852,true
 fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,one_ghz,mode0,64,1,0.651500,0.651380,0.664269,0.664160,1.942300,0.651500,0.664269,1.922,1.924,66.457,true
 fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,one_ghz,mode1,32,2,0.649300,0.649280,0.659270,0.659230,1.942300,0.649300,0.659270,1.512,1.509,66.571,true
 fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,one_ghz,mode2,16,4,0.649000,0.649040,0.618977,0.618850,1.942300,0.649000,0.618977,-4.850,-4.878,66.586,true
 fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,one_ghz,weighted,64:0.250 32:0.500 16:0.250,,0.649775,0.649745,0.650446,0.650367,1.942300,0.649775,0.650446,0.103,0.096,66.546,true
+fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,1p5_ghz,mode0,64,1,1.151000,1.150800,1.040094,1.039970,3.169000,0.767333,0.693396,-10.663,-10.657,63.679,true
+fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,1p5_ghz,mode1,32,2,1.142000,1.141300,1.072085,1.072200,3.169000,0.761333,0.714723,-6.521,-6.445,63.963,true
+fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,1p5_ghz,mode2,16,4,1.128000,1.127900,1.057095,1.056830,3.169000,0.752000,0.704730,-6.707,-6.725,64.405,true
+fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,1p5_ghz,weighted,64:0.250 32:0.500 16:0.250,,1.140750,1.140325,1.060340,1.060300,3.169000,0.760500,0.706893,-7.583,-7.547,64.003,true
 fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,two_ghz,mode0,64,1,1.481000,1.481200,1.636114,1.635900,4.661000,0.740500,0.818057,9.481,9.457,68.226,true
 fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,two_ghz,mode1,32,2,1.488000,1.488700,1.522111,1.522600,4.661000,0.744000,0.761056,2.241,2.226,68.076,true
 fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,two_ghz,mode2,16,4,1.494000,1.493700,1.503115,1.502700,4.661000,0.747000,0.751558,0.606,0.599,67.947,true
 fp_cmp,fp_cmp_g3,DW FP64 + FP32x2 + FP16x4,fp_cmp_fix_64 + fp_cmp_fix_32x2 + fp_cmp_fix_16x4,two_ghz,weighted,64:0.250 32:0.500 16:0.250,,1.487750,1.488075,1.545863,1.545950,4.661000,0.743875,0.772931,3.759,3.744,68.081,true
+fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,100_mhz,mode0,64,1,0.087830,0.087790,0.081341,0.081267,0.221970,0.878300,0.813407,-7.978,-8.027,60.432,true
+fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,100_mhz,mode1,32,2,0.086550,0.086514,0.076260,0.076189,0.221970,0.865500,0.762601,-13.493,-13.552,61.008,true
+fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,100_mhz,mode2,16,4,0.082650,0.082611,0.064522,0.064443,0.221970,0.826500,0.645221,-28.096,-28.192,62.765,true
+fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,100_mhz,weighted,64:0.250 32:0.500 16:0.250,,0.085895,0.085857,0.074596,0.074522,0.221970,0.858950,0.745957,-15.147,-15.211,61.303,true
+fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,500_mhz,mode0,64,1,0.420500,0.420420,0.389656,0.389570,1.153700,0.841000,0.779313,-7.916,-7.919,63.552,true
+fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,500_mhz,mode1,32,2,0.451900,0.451900,0.424359,0.424290,1.153700,0.903800,0.848718,-6.490,-6.507,60.830,true
+fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,500_mhz,mode2,16,4,0.451600,0.451630,0.339864,0.339730,1.153700,0.903200,0.679728,-32.877,-32.938,60.856,true
+fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,500_mhz,weighted,64:0.250 32:0.500 16:0.250,,0.443975,0.443962,0.394560,0.394470,1.153700,0.887950,0.789119,-12.524,-12.547,61.517,true
 fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,one_ghz,mode0,64,1,1.105000,1.104700,0.887474,0.887360,2.631800,1.105000,0.887474,-24.511,-24.493,58.014,true
 fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,one_ghz,mode1,32,2,1.149000,1.148300,0.957378,0.957320,2.631800,1.149000,0.957378,-20.015,-19.949,56.342,true
 fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,one_ghz,mode2,16,4,1.125000,1.124200,0.787190,0.787080,2.631800,1.125000,0.787190,-42.913,-42.832,57.254,true
 fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,one_ghz,weighted,64:0.250 32:0.500 16:0.250,,1.132000,1.131375,0.897355,0.897270,2.631800,1.132000,0.897355,-26.148,-26.091,56.988,true
+fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,1p5_ghz,mode0,64,1,1.834000,1.833300,1.661102,1.661100,4.519000,1.222667,1.107401,-10.409,-10.367,59.416,true
+fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,1p5_ghz,mode1,32,2,1.879000,1.879000,1.503099,1.502900,4.519000,1.252667,1.002066,-25.008,-25.025,58.420,true
+fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,1p5_ghz,mode2,16,4,1.909000,1.908000,1.355119,1.354500,4.519000,1.272667,0.903413,-40.873,-40.864,57.756,true
+fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,1p5_ghz,weighted,64:0.250 32:0.500 16:0.250,,1.875250,1.874825,1.505605,1.505350,4.519000,1.250167,1.003737,-24.551,-24.544,58.503,true
 fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,two_ghz,mode0,64,1,2.256000,2.256400,2.212137,2.211500,6.489000,1.128000,1.106068,-1.983,-2.030,65.233,true
 fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,two_ghz,mode1,32,2,2.341000,2.340500,2.406128,2.405900,6.489000,1.170500,1.203064,2.707,2.718,63.924,true
 fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,two_ghz,mode2,16,4,2.401000,2.401200,1.871146,1.870200,6.489000,1.200500,0.935573,-28.317,-28.393,62.999,true
 fp_minmax,fp_minmax_m3,DW FP64 + FP32x2 + FP16x4,fp_minmax_fix_64 + fp_minmax_fix_32x2 + fp_minmax_fix_16x4,two_ghz,weighted,64:0.250 32:0.500 16:0.250,,2.334750,2.334650,2.223885,2.223375,6.489000,1.167375,1.111942,-4.985,-5.005,64.020,true
+rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,100_mhz,mode0,64,1,0.322300,0.322130,0.131197,0.130981,0.360200,3.223000,1.311966,-145.662,-145.936,10.522,true
+rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,100_mhz,mode1,32,2,0.322300,0.322070,0.127712,0.127540,0.360200,3.223000,1.277123,-152.364,-152.525,10.522,true
+rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,100_mhz,mode2,16,4,0.336700,0.336590,0.101614,0.101422,0.360200,3.367000,1.016144,-231.351,-231.871,6.524,true
+rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,100_mhz,weighted,64:0.250 32:0.500 16:0.250,,0.325900,0.325715,0.122059,0.121871,0.360200,3.259000,1.220589,-167.002,-167.263,9.522,true
+rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,500_mhz,mode0,64,1,1.565000,1.564800,0.867605,0.867100,2.220900,3.130000,1.735211,-80.382,-80.464,29.533,true
+rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,500_mhz,mode1,32,2,1.592000,1.592100,0.845597,0.845160,2.220900,3.184000,1.691195,-88.269,-88.379,28.317,true
+rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,500_mhz,mode2,16,4,1.667000,1.666800,0.508569,0.508130,2.220900,3.334000,1.017137,-227.783,-228.026,24.940,true
+rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,500_mhz,weighted,64:0.250 32:0.500 16:0.250,,1.604000,1.603950,0.766842,0.766387,2.220900,3.208000,1.533684,-109.170,-109.287,27.777,true
 rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,one_ghz,mode0,64,1,3.656000,3.655800,1.727304,1.727200,4.840000,3.656000,1.727304,-111.659,-111.660,24.463,true
 rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,one_ghz,mode1,32,2,3.769000,3.767700,1.817441,1.816300,4.840000,3.769000,1.817441,-107.380,-107.438,22.128,true
 rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,one_ghz,mode2,16,4,3.858000,3.857000,1.296531,1.295200,4.840000,3.858000,1.296531,-197.563,-197.792,20.289,true
 rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,one_ghz,weighted,64:0.250 32:0.500 16:0.250,,3.763000,3.762050,1.664679,1.663750,4.840000,3.763000,1.664679,-126.050,-126.119,22.252,true
+rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,1p5_ghz,mode0,64,1,5.912000,5.911200,3.648482,3.646800,9.554000,3.941333,2.432321,-62.040,-62.093,38.120,true
+rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,1p5_ghz,mode1,32,2,6.050000,6.049100,3.396883,3.396200,9.554000,4.033333,2.264589,-78.104,-78.114,36.676,true
+rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,1p5_ghz,mode2,16,4,6.193000,6.192400,2.511007,2.509700,9.554000,4.128667,1.674005,-146.634,-146.739,35.179,true
+rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,1p5_ghz,weighted,64:0.250 32:0.500 16:0.250,,6.051250,6.050450,3.238314,3.237225,9.554000,4.034167,2.158876,-86.864,-86.902,36.663,true
 rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,two_ghz,mode0,64,1,9.535000,9.534000,5.894717,5.893000,14.550000,4.767500,2.947359,-61.755,-61.785,34.467,false
 rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,two_ghz,mode1,32,2,9.767000,9.766000,4.915282,4.912900,14.550000,4.883500,2.457641,-98.707,-98.783,32.873,false
 rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,two_ghz,mode2,16,4,10.100000,10.066000,3.743475,3.741900,14.550000,5.050000,1.871737,-169.803,-169.008,30.584,false
 rounding,rounding_g3,g1 + FP32x2 + FP16x4,rounding_g1 + rounding_fix_32x2 + rounding_fix_16x4,two_ghz,weighted,64:0.250 32:0.500 16:0.250,,9.792250,9.783000,4.867189,4.865175,14.550000,4.896125,2.433595,-101.189,-101.082,32.699,false
+mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,100_mhz,mode0,64,1,5.010000,5.009000,3.888601,3.886900,5.910900,50.100000,38.886008,-28.838,-28.869,15.241,true
+mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,100_mhz,mode1,32,2,4.954000,4.952900,1.541905,1.540800,5.910900,49.540000,15.419045,-221.291,-221.450,16.189,true
+mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,100_mhz,mode2,16,4,4.900000,4.899800,0.482928,0.481700,5.910900,49.000000,4.829277,-914.645,-917.189,17.102,true
+mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,100_mhz,weighted,64:0.250 32:0.500 16:0.250,,4.954500,4.953650,1.863834,1.862550,5.910900,49.545000,18.638344,-165.823,-165.961,16.180,true
+mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,500_mhz,mode0,64,1,16.700000,16.697000,13.800603,13.837000,23.394000,33.400000,27.601206,-21.009,-20.669,28.614,true
+mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,500_mhz,mode1,32,2,16.700000,16.676000,7.186181,7.184000,23.394000,33.400000,14.372363,-132.390,-132.127,28.614,true
+mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,500_mhz,mode2,16,4,16.600000,16.548000,2.410307,2.408200,23.394000,33.200000,4.820613,-588.709,-587.152,29.042,true
+mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,500_mhz,weighted,64:0.250 32:0.500 16:0.250,,16.675000,16.649250,7.645818,7.653300,23.394000,33.350000,15.291636,-118.093,-117.543,28.721,true
 mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,one_ghz,mode0,64,1,38.800000,38.835000,22.500741,22.527000,39.762000,38.800000,22.500741,-72.439,-72.393,2.419,true
 mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,one_ghz,mode1,32,2,38.800000,38.815000,13.401343,13.412000,39.762000,38.800000,13.401343,-189.523,-189.405,2.419,true
 mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,one_ghz,mode2,16,4,38.700000,38.689000,3.863593,3.861800,39.762000,38.700000,3.863593,-901.658,-901.839,2.671,true
 mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,one_ghz,weighted,64:0.250 32:0.500 16:0.250,,38.775000,38.788500,13.291755,13.303200,39.762000,38.775000,13.291755,-191.722,-191.573,2.482,true
+mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,1p5_ghz,mode0,64,1,59.400000,59.400000,25.200919,25.187000,45.843000,39.600000,16.800612,-135.706,-135.836,-29.573,false
+mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,1p5_ghz,mode1,32,2,59.100000,59.100000,16.001742,16.072000,45.843000,39.400000,10.667828,-269.335,-267.720,-28.918,false
+mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,1p5_ghz,mode2,16,4,59.000000,59.000000,4.645130,4.642000,45.843000,39.333333,3.096753,-1170.147,-1171.004,-28.700,false
+mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,1p5_ghz,weighted,64:0.250 32:0.500 16:0.250,,59.150000,59.150000,15.462383,15.493250,45.843000,39.433333,10.308256,-282.541,-281.779,-29.027,false
 mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,two_ghz,mode0,64,1,78.000000,78.000000,30.601563,30.629000,54.042000,39.000000,15.300781,-154.889,-154.661,-44.332,false
 mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,two_ghz,mode1,32,2,77.900000,77.800000,15.902662,15.881000,54.042000,38.950000,7.951331,-389.855,-389.894,-44.147,false
 mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,two_ghz,mode2,16,4,77.700000,77.700000,7.545469,7.541900,54.042000,38.850000,3.772734,-929.757,-930.244,-43.777,false
 mult,mult_k64_32_16,DW 64 + 32x2 + 16x4,mult_dwfix_64 + mult_dwfix_32x2 + mult_dwfix_16x4,two_ghz,weighted,64:0.250 32:0.500 16:0.250,,77.875000,77.825000,17.488089,17.483225,54.042000,38.937500,8.744044,-345.303,-345.141,-44.101,false
+mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,100_mhz,mode0,64,1,5.010000,5.009000,4.700696,4.699000,7.255900,50.100000,47.006960,-6.580,-6.597,30.953,true
+mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,100_mhz,mode1,32,2,4.954000,4.952900,2.075090,2.073700,7.255900,49.540000,20.750898,-138.737,-138.844,31.725,true
+mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,100_mhz,mode2,16,4,4.900000,4.899800,0.483208,0.481700,7.255900,49.000000,4.832082,-914.056,-917.189,32.469,true
+mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,100_mhz,weighted,64:0.250 32:0.500 16:0.250,,4.954500,4.953650,2.333521,2.332025,7.255900,49.545000,23.335209,-112.319,-112.418,31.718,true
+mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,500_mhz,mode0,64,1,16.700000,16.697000,17.700750,17.619000,29.463000,33.400000,35.401499,5.654,5.233,43.319,true
+mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,500_mhz,mode1,32,2,16.700000,16.676000,9.355459,9.354000,29.463000,33.400000,18.710918,-78.505,-78.277,43.319,true
+mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,500_mhz,mode2,16,4,16.600000,16.548000,2.410731,2.408200,29.463000,33.200000,4.821461,-588.588,-587.152,43.658,true
+mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,500_mhz,weighted,64:0.250 32:0.500 16:0.250,,16.675000,16.649250,9.705600,9.683800,29.463000,33.350000,19.411199,-71.808,-71.929,43.404,true
 mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,one_ghz,mode0,64,1,38.800000,38.835000,36.001169,35.957000,55.362000,38.800000,36.001169,-7.774,-8.004,29.916,true
 mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,one_ghz,mode1,32,2,38.800000,38.815000,15.503240,15.551000,55.362000,38.800000,15.503240,-150.270,-149.598,29.916,true
 mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,one_ghz,mode2,16,4,38.700000,38.689000,3.865919,3.861800,55.362000,38.700000,3.865919,-901.056,-901.839,30.096,true
 mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,one_ghz,weighted,64:0.250 32:0.500 16:0.250,,38.775000,38.788500,17.718392,17.730200,55.362000,38.775000,17.718392,-118.840,-118.771,29.961,true
+mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,1p5_ghz,mode0,64,1,59.400000,59.400000,54.701828,54.700000,78.143000,39.600000,36.467886,-8.589,-8.592,23.986,false
+mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,1p5_ghz,mode1,32,2,59.100000,59.100000,18.803694,18.853000,78.143000,39.400000,12.535796,-214.300,-213.478,24.369,false
+mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,1p5_ghz,mode2,16,4,59.000000,59.000000,4.647992,4.642000,78.143000,39.333333,3.098661,-1169.365,-1171.004,24.497,false
+mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,1p5_ghz,weighted,64:0.250 32:0.500 16:0.250,,59.150000,59.150000,24.239302,24.262000,78.143000,39.433333,16.159535,-144.025,-143.797,24.305,false
 mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,two_ghz,mode0,64,1,78.000000,78.000000,84.502398,84.500000,122.242000,39.000000,42.251199,7.695,7.692,36.192,false
 mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,two_ghz,mode1,32,2,77.900000,77.800000,30.204115,30.164000,122.242000,38.950000,15.102057,-157.912,-157.923,36.274,false
 mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,two_ghz,mode2,16,4,77.700000,77.700000,7.547757,7.541900,122.242000,38.850000,3.773878,-929.445,-930.244,36.438,false
 mult,mult_k64_32_16,Karatsuba 64 + 32x2 + 16x4,mult_k64 + mult_kfix_32x2 + mult_kfix_16x4,two_ghz,weighted,64:0.250 32:0.500 16:0.250,,77.875000,77.825000,38.114596,38.092475,122.242000,38.937500,19.057298,-104.318,-104.305,36.294,false
+mult,mult_k64_32,DW 64 + 32x2,mult_dwfix_64 + mult_dwfix_32x2,100_mhz,mode0,64,1,4.908000,4.907300,3.888362,3.886900,5.429000,49.080000,38.883620,-26.223,-26.252,9.597,true
+mult,mult_k64_32,DW 64 + 32x2,mult_dwfix_64 + mult_dwfix_32x2,100_mhz,mode1,32,2,4.857000,4.856100,1.541666,1.540800,5.429000,48.570000,15.416657,-215.049,-215.167,10.536,true
+mult,mult_k64_32,DW 64 + 32x2,mult_dwfix_64 + mult_dwfix_32x2,100_mhz,weighted,64:0.333 32:0.667,,4.874000,4.873167,2.323898,2.322833,5.429000,48.740000,23.238978,-109.734,-109.794,10.223,true
+mult,mult_k64_32,DW 64 + 32x2,mult_dwfix_64 + mult_dwfix_32x2,500_mhz,mode0,64,1,18.700000,18.705000,13.800364,13.837000,20.985000,37.400000,27.600728,-35.504,-35.181,10.889,true
+mult,mult_k64_32,DW 64 + 32x2,mult_dwfix_64 + mult_dwfix_32x2,500_mhz,mode1,32,2,18.600000,18.585000,7.185942,7.184000,20.985000,37.200000,14.371885,-158.839,-158.700,11.365,true
+mult,mult_k64_32,DW 64 + 32x2,mult_dwfix_64 + mult_dwfix_32x2,500_mhz,weighted,64:0.333 32:0.667,,18.633333,18.625000,9.390750,9.401667,20.985000,37.266667,18.781499,-98.422,-98.103,11.206,true
 mult,mult_k64_32,DW 64 + 32x2,mult_dwfix_64 + mult_dwfix_32x2,one_ghz,mode0,64,1,32.500000,32.428000,22.500495,22.527000,35.900000,32.500000,22.500495,-44.441,-43.952,9.471,true
 mult,mult_k64_32,DW 64 + 32x2,mult_dwfix_64 + mult_dwfix_32x2,one_ghz,mode1,32,2,32.300000,32.261000,13.401098,13.412000,35.900000,32.300000,13.401098,-141.025,-140.538,10.028,true
 mult,mult_k64_32,DW 64 + 32x2,mult_dwfix_64 + mult_dwfix_32x2,one_ghz,weighted,64:0.333 32:0.667,,32.366667,32.316667,16.434231,16.450333,35.900000,32.366667,16.434231,-96.947,-96.450,9.842,true
+mult,mult_k64_32,DW 64 + 32x2,mult_dwfix_64 + mult_dwfix_32x2,1p5_ghz,mode0,64,1,38.700000,38.676000,25.200653,25.187000,41.200000,25.800000,16.800435,-53.567,-53.555,6.068,false
+mult,mult_k64_32,DW 64 + 32x2,mult_dwfix_64 + mult_dwfix_32x2,1p5_ghz,mode1,32,2,38.600000,38.604000,16.001477,16.072000,41.200000,25.733333,10.667651,-141.228,-140.194,6.311,false
+mult,mult_k64_32,DW 64 + 32x2,mult_dwfix_64 + mult_dwfix_32x2,1p5_ghz,weighted,64:0.333 32:0.667,,38.633333,38.628000,19.067869,19.110333,41.200000,25.755556,12.711913,-102.610,-102.131,6.230,false
 mult,mult_k64_32,DW 64 + 32x2,mult_dwfix_64 + mult_dwfix_32x2,two_ghz,mode0,64,1,54.300000,54.300000,30.601185,30.629000,46.500000,27.150000,15.300592,-77.444,-77.283,-16.774,false
 mult,mult_k64_32,DW 64 + 32x2,mult_dwfix_64 + mult_dwfix_32x2,two_ghz,mode1,32,2,53.800000,53.800000,15.902284,15.881000,46.500000,26.900000,7.951142,-238.316,-238.770,-15.699,false
 mult,mult_k64_32,DW 64 + 32x2,mult_dwfix_64 + mult_dwfix_32x2,two_ghz,weighted,64:0.333 32:0.667,,53.966667,53.966667,20.801918,20.797000,46.500000,26.983333,10.400959,-159.431,-159.493,-16.057,false
+mult,mult_k64_32,Karatsuba 64 + 32x2,mult_k64 + mult_kfix_32x2,100_mhz,mode0,64,1,4.908000,4.907300,4.700457,4.699000,6.774000,49.080000,47.004572,-4.415,-4.433,27.547,true
+mult,mult_k64_32,Karatsuba 64 + 32x2,mult_k64 + mult_kfix_32x2,100_mhz,mode1,32,2,4.857000,4.856100,2.074851,2.073700,6.774000,48.570000,20.748510,-134.089,-134.176,28.299,true
+mult,mult_k64_32,Karatsuba 64 + 32x2,mult_k64 + mult_kfix_32x2,100_mhz,weighted,64:0.333 32:0.667,,4.874000,4.873167,2.950053,2.948800,6.774000,48.740000,29.500531,-65.217,-65.259,28.048,true
+mult,mult_k64_32,Karatsuba 64 + 32x2,mult_k64 + mult_kfix_32x2,500_mhz,mode0,64,1,18.700000,18.705000,17.700511,17.619000,27.054000,37.400000,35.401021,-5.647,-6.164,30.879,true
+mult,mult_k64_32,Karatsuba 64 + 32x2,mult_k64 + mult_kfix_32x2,500_mhz,mode1,32,2,18.600000,18.585000,9.355220,9.354000,27.054000,37.200000,18.710440,-98.819,-98.685,31.249,true
+mult,mult_k64_32,Karatsuba 64 + 32x2,mult_k64 + mult_kfix_32x2,500_mhz,weighted,64:0.333 32:0.667,,18.633333,18.625000,12.136984,12.109000,27.054000,37.266667,24.273967,-53.525,-53.811,31.125,true
 mult,mult_k64_32,Karatsuba 64 + 32x2,mult_k64 + mult_kfix_32x2,one_ghz,mode0,64,1,32.500000,32.428000,36.000923,35.957000,51.500000,32.500000,36.000923,9.725,9.815,36.893,true
 mult,mult_k64_32,Karatsuba 64 + 32x2,mult_k64 + mult_kfix_32x2,one_ghz,mode1,32,2,32.300000,32.261000,15.502995,15.551000,51.500000,32.300000,15.502995,-108.347,-107.453,37.282,true
 mult,mult_k64_32,Karatsuba 64 + 32x2,mult_k64 + mult_kfix_32x2,one_ghz,weighted,64:0.333 32:0.667,,32.366667,32.316667,22.335638,22.353000,51.500000,32.366667,22.335638,-44.910,-44.574,37.152,true
+mult,mult_k64_32,Karatsuba 64 + 32x2,mult_k64 + mult_kfix_32x2,1p5_ghz,mode0,64,1,38.700000,38.676000,54.701563,54.700000,73.500000,25.800000,36.467709,29.252,29.294,47.347,false
+mult,mult_k64_32,Karatsuba 64 + 32x2,mult_k64 + mult_kfix_32x2,1p5_ghz,mode1,32,2,38.600000,38.604000,18.803429,18.853000,73.500000,25.733333,12.535619,-105.282,-104.763,47.483,false
+mult,mult_k64_32,Karatsuba 64 + 32x2,mult_k64 + mult_kfix_32x2,1p5_ghz,weighted,64:0.333 32:0.667,,38.633333,38.628000,30.769474,30.802000,73.500000,25.755556,20.512982,-25.557,-25.407,47.438,false
 mult,mult_k64_32,Karatsuba 64 + 32x2,mult_k64 + mult_kfix_32x2,two_ghz,mode0,64,1,54.300000,54.300000,84.502020,84.500000,114.700000,27.150000,42.251010,35.741,35.740,52.659,false
 mult,mult_k64_32,Karatsuba 64 + 32x2,mult_k64 + mult_kfix_32x2,two_ghz,mode1,32,2,53.800000,53.800000,30.203737,30.164000,114.700000,26.900000,15.101869,-78.124,-78.358,53.095,false
 mult,mult_k64_32,Karatsuba 64 + 32x2,mult_k64 + mult_kfix_32x2,two_ghz,weighted,64:0.333 32:0.667,,53.966667,53.966667,48.303165,48.276000,114.700000,26.983333,24.151582,-11.725,-11.788,52.950,false
+addsub,addsub_d1,standalone 64,addsub_fix_64,100_mhz,mode0,64,1,0.080140,0.080090,0.078910,0.078870,0.078910,0.801400,0.789100,-1.559,-1.547,-1.559,true
+addsub,addsub_d1,standalone 64,addsub_fix_64,500_mhz,mode0,64,1,0.391700,0.391690,0.381000,0.380890,0.381000,0.783400,0.762000,-2.808,-2.835,-2.808,true
 addsub,addsub_d1,standalone 64,addsub_fix_64,one_ghz,mode0,64,1,1.479000,1.478500,0.989600,0.989500,0.989600,1.479000,0.989600,-49.454,-49.419,-49.454,true
+addsub,addsub_d1,standalone 64,addsub_fix_64,1p5_ghz,mode0,64,1,2.114000,2.113600,1.599000,1.598800,1.599000,1.409333,1.066000,-32.208,-32.199,-32.208,true
 addsub,addsub_d1,standalone 64,addsub_fix_64,two_ghz,mode0,64,1,2.456000,2.456300,2.303000,2.302900,2.303000,1.228000,1.151500,-6.644,-6.661,-6.644,true
+minmax,minmax_m1,fu_min_max 64,minmax_fix_64,100_mhz,mode0,64,1,0.079970,0.079947,0.069970,0.069949,0.069970,0.799700,0.699700,-14.292,-14.293,-14.292,true
+minmax,minmax_m1,fu_min_max 64,minmax_fix_64,500_mhz,mode0,64,1,0.420400,0.420350,0.400500,0.400530,0.400500,0.840800,0.801000,-4.969,-4.948,-4.969,true
 minmax,minmax_m1,fu_min_max 64,minmax_fix_64,one_ghz,mode0,64,1,1.250000,1.250200,0.671100,0.671080,0.671100,1.250000,0.671100,-86.261,-86.297,-86.261,true
+minmax,minmax_m1,fu_min_max 64,minmax_fix_64,1p5_ghz,mode0,64,1,1.160000,1.159500,1.114000,1.114300,1.114000,0.773333,0.742667,-4.129,-4.056,-4.129,true
 minmax,minmax_m1,fu_min_max 64,minmax_fix_64,two_ghz,mode0,64,1,1.760000,1.760100,1.524000,1.524000,1.524000,0.880000,0.762000,-15.486,-15.492,-15.486,true
+cmp,cmp_c1,standalone 64,cmp_fix_64,100_mhz,mode0,64,1,0.053720,0.053701,0.052620,0.052588,0.052620,0.537200,0.526200,-2.090,-2.116,-2.090,true
+cmp,cmp_c1,standalone 64,cmp_fix_64,500_mhz,mode0,64,1,0.264900,0.264810,0.257400,0.257370,0.257400,0.529800,0.514800,-2.914,-2.891,-2.914,true
 cmp,cmp_c1,standalone 64,cmp_fix_64,one_ghz,mode0,64,1,0.518100,0.518100,0.527400,0.527460,0.527400,0.518100,0.527400,1.763,1.775,1.763,true
+cmp,cmp_c1,standalone 64,cmp_fix_64,1p5_ghz,mode0,64,1,0.937400,0.937420,0.883500,0.883520,0.883500,0.624933,0.589000,-6.101,-6.101,-6.101,true
 cmp,cmp_c1,standalone 64,cmp_fix_64,two_ghz,mode0,64,1,1.305000,1.305800,1.299000,1.299000,1.299000,0.652500,0.649500,-0.462,-0.523,-0.462,true
+fp_cmp,fp_cmp_g1,DW FP64,fp_cmp_fix_64,100_mhz,mode0,64,1,0.057090,0.057068,0.058570,0.058541,0.058570,0.570900,0.585700,2.527,2.516,2.527,true
+fp_cmp,fp_cmp_g1,DW FP64,fp_cmp_fix_64,500_mhz,mode0,64,1,0.276500,0.276470,0.282200,0.282190,0.282200,0.553000,0.564400,2.020,2.027,2.020,true
 fp_cmp,fp_cmp_g1,DW FP64,fp_cmp_fix_64,one_ghz,mode0,64,1,0.542900,0.542850,0.664200,0.664160,0.664200,0.542900,0.664200,18.263,18.265,18.263,true
+fp_cmp,fp_cmp_g1,DW FP64,fp_cmp_fix_64,1p5_ghz,mode0,64,1,0.964600,0.964610,1.040000,1.039970,1.040000,0.643067,0.693333,7.250,7.246,7.250,true
 fp_cmp,fp_cmp_g1,DW FP64,fp_cmp_fix_64,two_ghz,mode0,64,1,1.296000,1.296000,1.636000,1.635900,1.636000,0.648000,0.818000,20.782,20.778,20.782,true
+fp_minmax,fp_minmax_m1,DW FP64,fp_minmax_fix_64,100_mhz,mode0,64,1,0.075500,0.075475,0.081290,0.081267,0.081290,0.755000,0.812900,7.123,7.127,7.123,true
+fp_minmax,fp_minmax_m1,DW FP64,fp_minmax_fix_64,500_mhz,mode0,64,1,0.403400,0.403380,0.389600,0.389570,0.389600,0.806800,0.779200,-3.542,-3.545,-3.542,true
 fp_minmax,fp_minmax_m1,DW FP64,fp_minmax_fix_64,one_ghz,mode0,64,1,0.995100,0.995000,0.887400,0.887360,0.887400,0.995100,0.887400,-12.137,-12.130,-12.137,true
+fp_minmax,fp_minmax_m1,DW FP64,fp_minmax_fix_64,1p5_ghz,mode0,64,1,1.510000,1.510100,1.661000,1.661100,1.661000,1.006667,1.107333,9.091,9.090,9.091,true
 fp_minmax,fp_minmax_m1,DW FP64,fp_minmax_fix_64,two_ghz,mode0,64,1,1.796000,1.795900,2.212000,2.211500,2.212000,0.898000,1.106000,18.807,18.793,18.807,true
+mult,mult_k64,DW 64,mult_dwfix_64,100_mhz,mode0,64,1,4.700000,4.699000,3.888000,3.886900,3.888000,47.000000,38.880000,-20.885,-20.893,-20.885,true
+mult,mult_k64,DW 64,mult_dwfix_64,500_mhz,mode0,64,1,17.700000,17.619000,13.800000,13.837000,13.800000,35.400000,27.600000,-28.261,-27.333,-28.261,true
 mult,mult_k64,DW 64,mult_dwfix_64,one_ghz,mode0,64,1,36.000000,35.957000,22.500000,22.527000,22.500000,36.000000,22.500000,-60.000,-59.617,-60.000,true
+mult,mult_k64,DW 64,mult_dwfix_64,1p5_ghz,mode0,64,1,54.700000,54.700000,25.200000,25.187000,25.200000,36.466667,16.800000,-117.063,-117.176,-117.063,false
 mult,mult_k64,DW 64,mult_dwfix_64,two_ghz,mode0,64,1,84.500000,84.500000,30.600000,30.629000,30.600000,42.250000,15.300000,-176.144,-175.882,-176.144,false
+fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,100_mhz,mode0,64,1,0.073900,0.073875,0.081316,0.081267,0.157500,0.739000,0.813163,9.120,9.096,53.079,true
+fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,100_mhz,mode1,32,2,0.073860,0.073833,0.076236,0.076189,0.157500,0.738600,0.762357,3.116,3.092,53.105,true
+fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,100_mhz,weighted,64:0.333 32:0.667,,0.073873,0.073847,0.077929,0.077882,0.157500,0.738733,0.779293,5.205,5.181,53.096,true
+fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,500_mhz,mode0,64,1,0.399400,0.399360,0.389631,0.389570,0.813900,0.798800,0.779261,-2.507,-2.513,50.928,true
+fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,500_mhz,mode1,32,2,0.409400,0.409360,0.424333,0.424290,0.813900,0.818800,0.848667,3.519,3.519,49.699,true
+fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,500_mhz,weighted,64:0.333 32:0.667,,0.406067,0.406027,0.412766,0.412717,0.813900,0.812133,0.825532,1.623,1.621,50.109,true
 fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,one_ghz,mode0,64,1,1.007000,1.006750,0.887443,0.887360,1.844700,1.007000,0.887443,-13.472,-13.455,45.411,true
 fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,one_ghz,mode1,32,2,1.069000,1.069200,0.957347,0.957320,1.844700,1.069000,0.957347,-11.663,-11.687,42.050,true
 fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,one_ghz,weighted,64:0.333 32:0.667,,1.048333,1.048383,0.934046,0.934000,1.844700,1.048333,0.934046,-12.236,-12.247,43.171,true
+fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,1p5_ghz,mode0,64,1,1.440000,1.440100,1.661061,1.661100,3.164000,0.960000,1.107374,13.308,13.304,54.488,true
+fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,1p5_ghz,mode1,32,2,1.485000,1.485200,1.503058,1.502900,3.164000,0.990000,1.002039,1.201,1.178,53.066,true
+fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,1p5_ghz,weighted,64:0.333 32:0.667,,1.470000,1.470167,1.555726,1.555633,3.164000,0.980000,1.037151,5.510,5.494,53.540,true
 fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,two_ghz,mode0,64,1,2.138000,2.137800,2.212078,2.211500,4.618000,1.069000,1.106039,3.349,3.333,53.703,true
 fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,two_ghz,mode1,32,2,2.148000,2.147100,2.406069,2.405900,4.618000,1.074000,1.203034,10.726,10.757,53.486,true
 fp_minmax,fp_minmax_m2,DW FP64 + FP32x2,fp_minmax_fix_64 + fp_minmax_fix_32x2,two_ghz,weighted,64:0.333 32:0.667,,2.144667,2.144000,2.341405,2.341100,4.618000,1.072333,1.170703,8.403,8.419,53.559,true
+fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,100_mhz,mode0,32,1,0.036160,0.036141,0.038142,0.038116,0.070360,0.361600,0.381423,5.197,5.182,48.607,true
+fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,100_mhz,mode1,16,2,0.037120,0.037107,0.032243,0.032217,0.070360,0.371200,0.322433,-15.125,-15.178,47.243,true
+fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,100_mhz,weighted,32:0.667 16:0.333,,0.036480,0.036463,0.036176,0.036150,0.070360,0.364800,0.361760,-0.840,-0.867,48.152,true
+fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,500_mhz,mode0,32,1,0.186600,0.186530,0.213613,0.213580,0.383600,0.373200,0.427226,12.646,12.665,51.356,true
+fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,500_mhz,mode1,16,2,0.194500,0.194470,0.170015,0.169980,0.383600,0.389000,0.340031,-14.401,-14.408,49.296,true
+fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,500_mhz,weighted,32:0.667 16:0.333,,0.189233,0.189177,0.199080,0.199047,0.383600,0.378467,0.398161,4.946,4.959,50.669,true
 fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,one_ghz,mode0,32,1,0.514000,0.513960,0.454116,0.454080,0.847100,0.514000,0.454116,-13.187,-13.187,39.322,true
 fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,one_ghz,mode1,16,2,0.512300,0.512240,0.393021,0.392940,0.847100,0.512300,0.393021,-30.349,-30.361,39.523,true
 fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,one_ghz,weighted,32:0.667 16:0.333,,0.513433,0.513387,0.433751,0.433700,0.847100,0.513433,0.433751,-18.371,-18.374,39.389,true
+fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,1p5_ghz,mode0,32,1,0.759600,0.759560,0.796720,0.796690,1.475400,0.506400,0.531147,4.659,4.661,48.516,true
+fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,1p5_ghz,mode1,16,2,0.772000,0.771970,0.678732,0.678650,1.475400,0.514667,0.452488,-13.742,-13.751,47.675,true
+fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,1p5_ghz,weighted,32:0.667 16:0.333,,0.763733,0.763697,0.757390,0.757343,1.475400,0.509156,0.504927,-0.837,-0.839,48.236,true
 fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,two_ghz,mode0,32,1,1.070000,1.069600,1.196026,1.195600,2.054300,0.535000,0.598013,10.537,10.539,47.914,true
 fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,two_ghz,mode1,16,2,1.083000,1.083400,0.858338,0.858270,2.054300,0.541500,0.429169,-26.174,-26.231,47.281,true
 fp_minmax,fp_minmax_w32_m2,DW FP32 + FP16x2,fp_minmax_fix_32 + fp_minmax_fix_16x2,two_ghz,weighted,32:0.667 16:0.333,,1.074333,1.074200,1.083463,1.083157,2.054300,0.537167,0.541732,0.843,0.827,47.703,true
+fp_minmax,fp_minmax_w32_m1,DW FP32,fp_minmax_fix_32,100_mhz,mode0,32,1,0.037480,0.037470,0.038130,0.038116,0.038130,0.374800,0.381300,1.705,1.695,1.705,true
+fp_minmax,fp_minmax_w32_m1,DW FP32,fp_minmax_fix_32,500_mhz,mode0,32,1,0.215900,0.215950,0.213600,0.213580,0.213600,0.431800,0.427200,-1.077,-1.110,-1.077,true
 fp_minmax,fp_minmax_w32_m1,DW FP32,fp_minmax_fix_32,one_ghz,mode0,32,1,0.511900,0.511790,0.454100,0.454080,0.454100,0.511900,0.454100,-12.728,-12.709,-12.728,true
+fp_minmax,fp_minmax_w32_m1,DW FP32,fp_minmax_fix_32,1p5_ghz,mode0,32,1,0.667900,0.667890,0.796700,0.796690,0.796700,0.445267,0.531133,16.167,16.167,16.167,true
 fp_minmax,fp_minmax_w32_m1,DW FP32,fp_minmax_fix_32,two_ghz,mode0,32,1,1.029000,1.029190,1.196000,1.195600,1.196000,0.514500,0.598000,13.963,13.919,13.963,true

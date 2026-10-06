@@ -142,8 +142,13 @@ def wire_load(dc_power: Path, top: str) -> str:
 
 
 def run(cmd: str, cwd: Path, log: Path) -> int:
-    with log.open("w") as f:
-        return subprocess.call(["bash", "-lc", ENV + cmd], cwd=cwd, stdout=f, stderr=subprocess.STDOUT)
+    # Under parallel load `module load` occasionally leaves the tool off PATH; retry that case.
+    for _ in range(3):
+        with log.open("w") as f:
+            rc = subprocess.call(["bash", "-lc", ENV + cmd], cwd=cwd, stdout=f, stderr=subprocess.STDOUT)
+        if "command not found" not in log.read_text():
+            return rc
+    return rc
 
 
 def one(design: str, corner: str, raw: Path, work: Path, stim: dict[str, Path]) -> str:

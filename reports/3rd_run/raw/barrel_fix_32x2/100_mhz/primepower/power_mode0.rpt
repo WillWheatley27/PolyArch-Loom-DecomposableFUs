@@ -1,0 +1,32 @@
+****************************************
+Report : Averaged Power
+Design : fu_barrel_shift_32x2
+Version: Y-2026.03-SP1
+Date   : Tue Oct  6 15:34:10 2026
+****************************************
+
+
+
+  Attributes
+  ----------
+      i  -  Including register clock pin internal power
+      u  -  User defined power group
+
+                        Internal  Switching  Leakage    Total
+Power Group             Power     Power      Power      Power   (     %)  Attrs
+--------------------------------------------------------------------------------
+clock_network              0.0000    0.0000    0.0000    0.0000 ( 0.00%)  i
+register                   0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+combinational           1.756e-05 2.904e-04 5.803e-08 3.080e-04 (100.00%) 
+sequential                 0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+memory                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+io_pad                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+black_box                  0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+
+  Net Switching Power  = 2.904e-04   (94.28%)
+  Cell Internal Power  = 1.756e-05   ( 5.70%)
+  Cell Leakage Power   = 5.803e-08   ( 0.02%)
+                         ---------
+Total Power            = 3.080e-04  (100.00%)
+
+1

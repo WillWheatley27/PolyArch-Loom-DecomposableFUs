@@ -21,7 +21,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 RAW = ROOT / "rerun" / "raw"
-PERIOD = {"one_ghz": 1.0, "two_ghz": 0.5}
+PERIOD = {"100_mhz": 10.0, "500_mhz": 2.0, "one_ghz": 1.0, "1p5_ghz": 2.0 / 3.0, "two_ghz": 0.5}  # target ns
 
 # ---- Designs: name -> (family, role, capability) --------------------------------------
 DESIGNS = {

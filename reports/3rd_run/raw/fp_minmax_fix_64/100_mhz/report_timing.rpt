@@ -1,0 +1,81 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_fp_min_max_64
+Version: Y-2026.03-SP1
+Date   : Tue Oct  6 15:23:27 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_1[1]
+              (input port)
+  Endpoint: out_data[0]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_fp_min_max_64   8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 r
+  in_data_1[1] (in)                        0.00       0.00 r
+  U457/X (SAEDRVT14_INV_S_0P5)             0.07       0.07 f
+  U458/X (SAEDRVT14_OAI21_0P5)             0.05       0.12 r
+  U460/X (SAEDRVT14_OAI22_0P5)             0.06       0.18 f
+  U461/X (SAEDRVT14_AOI21_0P5)             0.05       0.23 r
+  U462/X (SAEDRVT14_OAI22_0P5)             0.06       0.29 f
+  U466/X (SAEDRVT14_AOI21_0P5)             0.05       0.35 r
+  U467/X (SAEDRVT14_OAI22_0P5)             0.06       0.41 f
+  U477/X (SAEDRVT14_AOI21_0P5)             0.05       0.46 r
+  U482/X (SAEDRVT14_ND2_CDC_1)             0.04       0.50 f
+  U500/X (SAEDRVT14_AOI21_0P5)             0.04       0.54 r
+  U505/X (SAEDRVT14_OA22_U_0P5)            0.05       0.59 r
+  U509/X (SAEDRVT14_OA22_U_0P5)            0.05       0.63 r
+  U510/X (SAEDRVT14_OAI22_0P5)             0.05       0.69 f
+  U514/X (SAEDRVT14_AOI21_0P5)             0.05       0.74 r
+  U517/X (SAEDRVT14_OAI22_0P5)             0.06       0.80 f
+  U518/X (SAEDRVT14_AOI21_0P5)             0.05       0.86 r
+  U521/X (SAEDRVT14_OAI22_0P5)             0.06       0.92 f
+  U522/X (SAEDRVT14_AOI21_0P5)             0.06       0.97 r
+  U526/X (SAEDRVT14_OA22_U_0P5)            0.05       1.02 r
+  U528/X (SAEDRVT14_OA22_U_0P5)            0.05       1.07 r
+  U529/X (SAEDRVT14_OA22_U_0P5)            0.05       1.12 r
+  U530/X (SAEDRVT14_OAI22_0P5)             0.05       1.17 f
+  U534/X (SAEDRVT14_AOI21_0P5)             0.05       1.23 r
+  U544/X (SAEDRVT14_OAI21_0P5)             0.04       1.27 f
+  U545/X (SAEDRVT14_NR2_1)                 0.04       1.31 r
+  U570/X (SAEDRVT14_OA31_1)                0.03       1.35 r
+  U571/X (SAEDRVT14_OAI22_0P5)             0.05       1.40 f
+  U575/X (SAEDRVT14_AOI21_0P5)             0.05       1.45 r
+  U578/X (SAEDRVT14_OA2BB2_V1_0P5)         0.06       1.51 r
+  U583/X (SAEDRVT14_OAI22_0P5)             0.06       1.57 f
+  U584/X (SAEDRVT14_AO21_1)                0.05       1.62 f
+  U613/X (SAEDRVT14_OAI21_0P5)             0.03       1.66 r
+  U614/X (SAEDRVT14_OAI21_0P5)             0.04       1.70 f
+  U344/X (SAEDRVT14_EO2_1)                 0.45       2.15 r
+  U615/X (SAEDRVT14_INV_0P75)              0.73       2.88 f
+  U342/X (SAEDRVT14_ND2_CDC_1)             0.81       3.69 r
+  U338/X (SAEDRVT14_BUF_1)                 0.65       4.34 r
+  U689/X (SAEDRVT14_OAI22_0P5)             0.18       4.52 f
+  out_data[0] (out)                        0.00       4.52 f
+  data arrival time                                   4.52
+
+  max_delay                               10.00      10.00
+  output external delay                    0.00      10.00
+  data required time                                 10.00
+  -----------------------------------------------------------
+  data required time                                 10.00
+  data arrival time                                  -4.52
+  -----------------------------------------------------------
+  slack (MET)                                         5.48
+
+
+1
