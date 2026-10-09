@@ -124,6 +124,7 @@ other eight miss 2 GHz even at the 70% retry:
 | `mult_dwfix_64` (DesignWare 64-bit) | 1.85 GHz | 1.89 GHz |
 | `mult_kfix_32x2` | 1.68 GHz | 1.69 GHz |
 | `mult_k64_32` | 1.34 GHz | not tried |
+| `mult_k64_1l` (added in Section 8) | 1.37 GHz | not tried |
 | `mult_k64` | 0.97 GHz | not tried |
 | `mult_k64_32_16` | 0.92 GHz | not tried |
 
@@ -149,10 +150,10 @@ not be used for conclusions:
 Making 2 GHz comparable for these two families needs a pipeline register, which changes the
 designs (latency 1). That is outside this rerun.
 
-At the 1.5 GHz target added in Section 7, only the three Karatsuba tiers miss (k64 1.06 GHz,
-k64_32 1.35 GHz, k64_32_16 1.03 GHz, after the 70% retry); Rounding, the DesignWare 64-bit
-multiplier and the Karatsuba fixed 32x2 meet it. Every design meets 100 MHz and 500 MHz, and every
-design other than those three meets 1.5 GHz on the first compile.
+At the 1.5 GHz target added in Section 7, only the Karatsuba tiers miss (k64 1.06 GHz,
+k64_32 1.35 GHz, k64_32_16 1.03 GHz, and k64_1l from Section 8 at 1.36 GHz, after the 70% retry);
+Rounding, the DesignWare 64-bit multiplier and the Karatsuba fixed 32x2 meet it. Every design meets
+100 MHz and 500 MHz, and every design other than those four meets 1.5 GHz on the first compile.
 
 ## 3. PrimePower: what the simulation shows
 
@@ -236,6 +237,9 @@ energy except FP Compare. FP Min/Max and AddSub come closest at 2 GHz.
 - **DesignWare multiplier vs hand-written Karatsuba (flagged).** At 1 GHz the DesignWare 64-bit
   multiplier is 53% smaller (2281 vs 4848 um2) and uses 37% less power (22.5 vs 36.0 mW) than
   the hand-written Karatsuba `mult_k64`. It is also faster: 1.89 GHz maximum versus 0.97 GHz.
+  The best Karatsuba 64-only design (`mult_k64_1l`, Section 8) narrows but does not close the gap:
+  3581 um2 and 31.9 mW at 1 GHz (57% larger, 42% more power than DesignWare); at 100 MHz it is
+  only 4% larger (2082 vs 2002 um2).
   - **Pros of DesignWare:** smaller, faster, and lower energy at this width and node; the
     Karatsuba saving in multipliers does not pay for its pre- and post-adders at 64 bits in
     SAED14.
@@ -359,7 +363,9 @@ Area saving (static saving in brackets); `*` = a design misses the target, not c
 | FP Min/Max m3 (DW bank) | 58.2 (55.9) | 59.1 (59.2) | 55.6 (48.6) | 52.9 (45.5) | 56.2 (52.8) |
 | Rounding g3 | 21.7 (8.9) | 27.2 (31.2) | 13.4 (1.6) | 17.7 (13.5) | 20.3* |
 | Mult k64_32_16 vs DW bank | **35.2** (37.0) | **28.6** (21.9) | -26.9 (-78.3) | -18.3* | 11.1* |
-| Mult k64_32_16 vs Karatsuba bank | 43.9 (48.5) | 41.7 (38.6) | 28.0 (21.2) | 35.6* | 42.8* |
+| Mult k64_32_16 vs Karatsuba bank (two-level 64) | 43.9 (48.5) | 41.7 (38.6) | 28.0 (21.2) | 35.6* | 42.8* |
+| Mult k64_32_16 vs Karatsuba bank (one-level 64, Section 8) | 41.0 (43.8) | 42.2 (40.7) | 12.7 (-5.8) | 29.1* | 36.3* |
+| Mult k64_32 vs Karatsuba bank (one-level 64, Section 8) | 37.1 (38.8) | 37.5 (42.0) | 34.3 (33.7) | 34.3* | 40.5* |
 | FP min/max FP64 -> 2xFP32 | 50.3 (50.9) | 46.0 (40.3) | 52.2 (52.5) | 51.9 (53.5) | 49.9 (49.4) |
 | FP min/max FP32 -> 2xFP16 | 44.5 (41.7) | 43.7 (41.6) | 37.9 (27.7) | 44.2 (44.4) | 42.3 (38.5) |
 | AddSub+MinMax d4 vs separate pair | **12.1** (4.3) | -8.8 (-23.4) | -44.9 (-95.8) | -53.8 (-115.1) | -92.6 (-164.5) |
@@ -407,8 +413,9 @@ targets (area, and PrimePower power of the widest-format operation):
 | FP Min/Max (W=32) m1 -> m2 | +20.7 / +17.5 / +15.1 / +15.9 / +10.3 | +15.9% | +0.4% |
 | Rounding g1 -> g2 | +58.0 / +32.4 / +62.0 / +23.7 / +33.5* | +45.2% | +45.9% |
 | Rounding g2 -> g3 | +34.5 / +12.3 / +12.7 / +26.6 / +12.2* | +19.7% | +30.6% |
-| Mult k64 -> k64_32 | -8.1 / -6.6 / -27.3 / -12.8* / -19.2* | -8.1% | +4.4% |
-| Mult k64_32 -> k64_32_16 | +10.5 / +6.0 / +47.7 / +17.3* / +17.8* | +10.5% | +2.1% |
+| Mult k64_1l -> k64_32 (one-level core, adds 2x32; Section 8) | +0.6 / -8.0 / -1.6 / +2.0* / -2.7* | -1.6% | +1.1% |
+| Mult k64_32 -> k64_32_16 (adds 4x16, which needs the two-level core) | +10.5 / +6.0 / +47.7 / +17.3* / +17.8* | +10.5% | +2.1% |
+| Mult k64 -> k64_32_16 (two-level core, adds 2x32 + 4x16) | +1.5 / -1.0 / +7.4 / +2.3* / -4.8* | +1.5% | +6.6% |
 | AddSub+MinMax d1 -> d2 | -4.1 / +7.3 / +9.8 / +4.6 / +10.9 | +7.3% | +6.9% |
 | AddSub+MinMax d2 -> d4 | +2.8 / +6.8 / +19.0 / +3.3 / +13.2 | +6.8% | +3.6% |
 | AddSub+MinMax d4 -> d8 | +7.3 / +4.3 / -3.1 / +30.2 / +38.5 | +7.3% | +3.8% |
@@ -457,6 +464,48 @@ targets (area, and PrimePower power of the widest-format operation):
     multiplier and barrel shifter use more energy per operation than at 1 GHz (49.5 vs 38.8 pJ and
     4.38 vs 3.50 pJ), consistent with glitching along long unbalanced paths in area-minimized logic.
 
+## 8. Multiplier ladder correction: a 64-only tier of the one-level core
+
+The multiplier ladder used `mult_k64` as its 64-only tier, but `mult_k64` is a two-level Karatsuba
+(each 32-bit half is itself split at 16 bits, with DesignWare 16x16 and 17x17 leaves and a 33x33
+cross product), while `mult_k64_32` is a one-level Karatsuba with three flat DesignWare 32x32
+leaves. The step `mult_k64 -> mult_k64_32` therefore compared two different multipliers and came
+out negative (-7% to -27% area), which made 2x32 support look cheaper than no 2x32 support.
+
+`mult_k64_1l` (`fu_mult_karatsuba_64_1l` in `rtl/fu_mult_karatsuba_64_32.sv`) is the missing tier:
+the same one-level core with `mode` tied to 1x64, so synthesis removes only the 2x32 output select.
+It passes the Karatsuba 64/32 testbench (20,000 random vectors, checked against `a * b`) and was
+synthesized at all five targets with PrimePower. Like `mult_k64_32`, it misses 1.5 GHz and 2 GHz
+(1.36 and 1.37 GHz).
+
+| | 100 MHz | 500 MHz | 1 GHz | 1.5 GHz | 2 GHz |
+|---|---:|---:|---:|---:|---:|
+| `mult_k64_1l` area (um2) | 2082 | 2730 | 3581 | 4531* | 4657* |
+| `mult_k64_32` area (um2) | 2094 | 2512 | 3525 | 4621* | 4531* |
+| Area overhead of 2x32 | +0.6% | -8.0% | -1.6% | +2.0%* | -2.7%* |
+| PrimePower overhead of 2x32 (64-bit operation) | -6.4% | +1.1% | +1.9% | +0.8%* | +6.3%* |
+
+Adding 2x32 to the one-level core costs nothing measurable: the steps scatter around zero within
+synthesis noise (median -1.6% area, +1.1% power over the comparable targets), as expected for a
+64-bit 2:1 output select on a multiplier of 2000-3600 um2.
+
+The multiplier ladders now read:
+
+| Ladder (`mode_left_overhead.csv` family) | Step | Median area | What it measures |
+|---|---|---:|---|
+| `mult` (best Karatsuba design per capability) | k64_1l -> k64_32 | -1.6% | 2x32: an output select, free |
+| `mult` | k64_32 -> k64_32_16 | +10.5% (+48% at 1 GHz) | 4x16: needs the 16-bit products, so the 32-bit halves become Karatsuba blocks themselves (a change of structure, not lane logic) |
+| `mult_two_level` (same two-level core) | k64 -> k64_32_16 | +1.5% | 2x32 + 4x16 on a core that already exposes 16-bit products: free |
+
+So in a Karatsuba multiplier the lane logic is free at every level; the real cost of 4x16 is the
+two-level structure it requires, which is 6-10% larger at 100 and 500 MHz and 48% larger at 1 GHz.
+
+The savings tables add a Karatsuba bank built on `mult_k64_1l`, the best 64-only Karatsuba unit
+(`Karatsuba one-level 64 + ...` rows); the banks built on `mult_k64` are kept for the comparison
+with the second run. Against the one-level bank, `mult_k64_32` saves 34-41% area and 32-34% power
+(all-active bank) at every target, and `mult_k64_32_16` saves 41-42% area at 100 and 500 MHz and
+13% at 1 GHz, where its two-level structure is upsized. The DesignWare-bank results are unchanged.
+
 ## Conclusions
 
 1. Moving mode selection to the left edge does not change PPA beyond DC's run-to-run structural
@@ -480,3 +529,6 @@ targets (area, and PrimePower power of the widest-format operation):
    lose 4-26 points of area saving by 2 GHz while the FP units hold at 53-64%. The decomposable
    multiplier beats a DesignWare bank at 100 and 500 MHz, and the AddSub side function pays only
    at 100 MHz, so the target frequency decides whether these two designs are worth building.
+7. In the Karatsuba multiplier, 2x32 and 4x16 lane support is free on a fixed core (about 0%
+   overhead); the cost of 4x16 is the two-level structure it needs (+6 to +10% area at 100 and
+   500 MHz, +48% at 1 GHz). The earlier negative 64 -> 64/32 overhead compared two different multipliers.

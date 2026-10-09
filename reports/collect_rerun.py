@@ -53,6 +53,9 @@ DESIGNS = {
     "rounding_g1": ("rounding", "tier", "FP64"), "rounding_g2": ("rounding", "tier", "FP64/FP32x2"),
     "rounding_g3": ("rounding", "tier", "FP64/FP32x2/FP16x4"),
     "rounding_fix_32x2": ("rounding", "fixed", "FP32x2"), "rounding_fix_16x4": ("rounding", "fixed", "FP16x4"),
+    # One-level Karatsuba (flat 32x32 leaves): mult_k64_1l -> mult_k64_32. Two-level (16-bit leaves,
+    # needed for 4x16): mult_k64 -> mult_k64_32_16.
+    "mult_k64_1l": ("mult", "tier", "64"),
     "mult_k64": ("mult", "tier", "64"), "mult_k64_32": ("mult", "tier", "64/32x2"),
     "mult_k64_32_16": ("mult", "tier", "64/32x2/16x4"),
     "mult_kfix_32x2": ("mult", "fixed_karatsuba", "32x2"), "mult_kfix_16x4": ("mult", "fixed_karatsuba", "16x4"),
@@ -75,7 +78,10 @@ TIERS = {  # family -> ordered capability ladder
     "fp_cmp": ["fp_cmp_g1", "fp_cmp_g2", "fp_cmp_g3"],
     "fp_minmax": ["fp_minmax_m1", "fp_minmax_m2", "fp_minmax_m3"],
     "rounding": ["rounding_g1", "rounding_g2", "rounding_g3"],
-    "mult": ["mult_k64", "mult_k64_32", "mult_k64_32_16"],
+    # Best Karatsuba design at each capability: the first step adds only the 2x32 output select;
+    # the second also changes structure (4x16 needs the two-level core that exposes 16-bit products).
+    "mult": ["mult_k64_1l", "mult_k64_32", "mult_k64_32_16"],
+    "mult_two_level": ["mult_k64", "mult_k64_32_16"],   # same two-level core, 2x32 + 4x16 added
     "addsub_minmax": ["addsub_minmax_d1", "addsub_minmax_d2", "addsub_minmax_d4", "addsub_minmax_d8"],
     "fp_minmax_w32": ["fp_minmax_w32_m1", "fp_minmax_w32_m2"],
 }
@@ -102,6 +108,12 @@ SAVINGS = [
     ("fp_cmp", "fp_cmp_g1", ["fp_cmp_fix_64"], "DW FP64", ("revised", "fp_cmp_rev64")),
     ("fp_minmax", "fp_minmax_m1", ["fp_minmax_fix_64"], "DW FP64", ("revised", "fp_minmax_rev64")),
     ("mult", "mult_k64", ["mult_dwfix_64"], "DW 64", None),
+    # Karatsuba bank built on the best 64-only Karatsuba unit (one level, mult_k64_1l); the banks
+    # above use the two-level mult_k64, which is larger, and are kept for the second-run comparison.
+    ("mult", "mult_k64_32_16", ["mult_k64_1l", "mult_kfix_32x2", "mult_kfix_16x4"],
+     "Karatsuba one-level 64 + 32x2 + 16x4", None),
+    ("mult", "mult_k64_32", ["mult_k64_1l", "mult_kfix_32x2"], "Karatsuba one-level 64 + 32x2", None),
+    ("mult", "mult_k64_1l", ["mult_dwfix_64"], "DW 64", None),
     # FP min/max two-level experiment: one split at each width, and each wide-only tier
     ("fp_minmax", "fp_minmax_m2", ["fp_minmax_fix_64", "fp_minmax_fix_32x2"], "DW FP64 + FP32x2", None),
     ("fp_minmax", "fp_minmax_w32_m2", ["fp_minmax_fix_32", "fp_minmax_fix_16x2"], "DW FP32 + FP16x2", None),

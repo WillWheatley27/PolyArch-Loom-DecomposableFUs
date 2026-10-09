@@ -61,3 +61,17 @@ module fu_mult_karatsuba_64_32 (
   assign p32 = {z2[31:0], z0[31:0]};
   assign out_data = l32 ? p32 : p64;
 endmodule : fu_mult_karatsuba_64_32
+
+// ---- 64-only tier of the same one-level core (mode tied to 1x64) ----
+// The baseline the 2x32 capability is added to: synthesis removes the 2x32 output select.
+module fu_mult_karatsuba_64_1l (
+  input logic clk, input logic rst_n,
+  input logic [63:0] in_data_0, input logic in_valid_0, output logic in_ready_0,
+  input logic [63:0] in_data_1, input logic in_valid_1, output logic in_ready_1,
+  output logic [63:0] out_data, output logic out_valid, input logic out_ready
+);
+  fu_mult_karatsuba_64_32 core (.clk(clk), .rst_n(rst_n), .mode(2'b00),
+    .in_data_0(in_data_0), .in_valid_0(in_valid_0), .in_ready_0(in_ready_0),
+    .in_data_1(in_data_1), .in_valid_1(in_valid_1), .in_ready_1(in_ready_1),
+    .out_data(out_data), .out_valid(out_valid), .out_ready(out_ready));
+endmodule : fu_mult_karatsuba_64_1l

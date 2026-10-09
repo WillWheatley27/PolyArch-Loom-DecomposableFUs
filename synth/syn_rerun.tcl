@@ -73,6 +73,7 @@ set jobs {
   {rounding_fix_32x2 rtl/standalone/rounding_standalones/fu_rounding_32x2.sv fu_rounding_32x2}
   {rounding_fix_16x4 rtl/standalone/rounding_standalones/fu_rounding_16x4.sv fu_rounding_16x4}
   {mult_k64 rtl/standalone/mult_karatsuba_standalones/fu_mult_karatsuba_64.sv fu_mult_karatsuba_64}
+  {mult_k64_1l rtl/fu_mult_karatsuba_64_32.sv fu_mult_karatsuba_64_1l}
   {mult_k64_32 rtl/fu_mult_karatsuba_64_32.sv fu_mult_karatsuba_64_32}
   {mult_k64_32_16 rtl/fu_mult_decomp.sv fu_mult_decomp}
   {mult_kfix_32x2 rtl/standalone/mult_karatsuba_standalones/fu_mult_karatsuba_32x2.sv fu_mult_karatsuba_32x2}
