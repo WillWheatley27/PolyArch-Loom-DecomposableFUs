@@ -1,0 +1,32 @@
+****************************************
+Report : Averaged Power
+Design : fu_add_sub_mm_ARCH0_MINMAX1_PIPE1_EN321_EN161_EN80
+Version: Y-2026.03-SP1
+Date   : Fri Oct 23 13:57:56 2026
+****************************************
+
+
+
+  Attributes
+  ----------
+      i  -  Including register clock pin internal power
+      u  -  User defined power group
+
+                        Internal  Switching  Leakage    Total
+Power Group             Power     Power      Power      Power   (     %)  Attrs
+--------------------------------------------------------------------------------
+clock_network           9.778e-04 3.694e-03 2.087e-09 4.672e-03 (51.11%)  i
+register                2.313e-04 2.894e-04 9.300e-08 5.209e-04 ( 5.70%)  
+combinational           4.556e-04 3.492e-03 1.528e-07 3.948e-03 (43.19%)  
+sequential                 0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+memory                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+io_pad                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+black_box                  0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+
+  Net Switching Power  = 7.476e-03   (81.78%)
+  Cell Internal Power  = 1.665e-03   (18.21%)
+  Cell Leakage Power   = 2.479e-07   ( 0.00%)
+                         ---------
+Total Power            = 9.141e-03  (100.00%)
+
+1

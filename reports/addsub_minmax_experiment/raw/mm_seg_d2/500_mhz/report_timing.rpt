@@ -1,0 +1,84 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_mm_ARCH0_MINMAX1_PIPE0_EN321_EN160_EN80
+Version: Y-2026.03-SP1
+Date   : Fri Oct 23 13:50:31 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: sub_sel[0] (input port)
+  Endpoint: out_data[0]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_mm_ARCH0_MINMAX1_PIPE0_EN321_EN160_EN80
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  sub_sel[0] (in)                                         0.00       0.00 f
+  U275/X (SAEDRVT14_EO2_0P5)                              0.04       0.04 r
+  U833/CO (SAEDRVT14_ADDF_V1_1)                           0.05       0.09 r
+  U831/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.13 r
+  U828/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.17 r
+  U825/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.21 r
+  U822/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.26 r
+  U819/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.30 r
+  U816/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.34 r
+  U813/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.38 r
+  U811/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.42 r
+  U808/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.46 r
+  U805/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.50 r
+  U802/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.54 r
+  U799/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.58 r
+  U796/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.63 r
+  U793/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.67 r
+  U790/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.71 r
+  U787/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.75 r
+  U784/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.79 r
+  U781/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.83 r
+  U778/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.87 r
+  U775/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.91 r
+  U772/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.95 r
+  U769/CO (SAEDRVT14_ADDF_V1_1)                           0.04       1.00 r
+  U767/CO (SAEDRVT14_ADDF_V1_1)                           0.17       1.17 r
+  U447/X (SAEDRVT14_AO21_2)                               0.07       1.23 r
+  U450/X (SAEDRVT14_MUX2_MM_4)                            0.06       1.29 r
+  U466/X (SAEDRVT14_AO21_4)                               0.07       1.36 r
+  U251/X (SAEDRVT14_AO21_2)                               0.10       1.46 r
+  U496/X (SAEDRVT14_AO21_4)                               0.08       1.54 r
+  U512/X (SAEDRVT14_AO21_1)                               0.04       1.58 r
+  U513/X (SAEDRVT14_AOI21_1P5)                            0.03       1.61 f
+  U514/X (SAEDRVT14_AOI21_V1_6)                           0.03       1.64 r
+  U716/X (SAEDRVT14_OA22_2)                               0.05       1.68 r
+  U718/X (SAEDRVT14_INV_S_1)                              0.03       1.71 f
+  U719/X (SAEDRVT14_ND2_5)                                0.05       1.76 r
+  U283/X (SAEDRVT14_MUXI2_1)                              0.15       1.91 f
+  U291/X (SAEDRVT14_AOI22_1P5)                            0.06       1.97 r
+  U834/X (SAEDRVT14_AO21B_0P5)                            0.03       2.00 f
+  output_stage.stage/d[0] (fu_out_stage_64_0)             0.00       2.00 f
+  output_stage.stage/q[0] (fu_out_stage_64_0)             0.00       2.00 f
+  out_data[0] (out)                                       0.00       2.00 f
+  data arrival time                                                  2.00
+
+  max_delay                                               2.00       2.00
+  output external delay                                   0.00       2.00
+  data required time                                                 2.00
+  --------------------------------------------------------------------------
+  data required time                                                 2.00
+  data arrival time                                                 -2.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

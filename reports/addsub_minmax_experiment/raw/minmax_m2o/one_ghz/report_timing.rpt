@@ -1,0 +1,76 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_min_max_piped_EN321_EN160
+Version: Y-2026.03-SP1
+Date   : Fri Oct 23 14:20:31 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_0[18]
+              (input port clocked by clk)
+  Endpoint: stage/registered.d_q_reg[6]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_min_max_piped_EN321_EN160
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.00       0.00 f
+  in_data_0[18] (in)                                      0.00       0.00 f
+  core/in_data_0[18] (fu_min_max_dec_1_0)                 0.00       0.00 f
+  core/U131/X (SAEDRVT14_INV_S_0P5)                       0.08       0.08 r
+  core/U137/X (SAEDRVT14_OAI22_0P5)                       0.09       0.17 f
+  core/U138/X (SAEDRVT14_AOI21_0P5)                       0.06       0.22 r
+  core/U139/X (SAEDRVT14_OAI22_0P75)                      0.05       0.27 f
+  core/U140/X (SAEDRVT14_AOI21_0P5)                       0.05       0.32 r
+  core/U141/X (SAEDRVT14_OA22_U_0P5)                      0.05       0.37 r
+  core/U142/X (SAEDRVT14_OAI21_0P5)                       0.04       0.41 f
+  core/U145/X (SAEDRVT14_AO221_0P5)                       0.05       0.46 f
+  core/U146/X (SAEDRVT14_OAI21_0P5)                       0.04       0.50 r
+  core/U147/X (SAEDRVT14_OAI22_1)                         0.04       0.54 f
+  core/U148/X (SAEDRVT14_OAI22_2)                         0.04       0.57 r
+  core/U9/X (SAEDRVT14_OAI21_V1_4)                        0.03       0.60 f
+  core/U7/X (SAEDRVT14_NR2_MM_6)                          0.02       0.62 r
+  core/U170/X (SAEDRVT14_NR2_MM_4)                        0.01       0.63 f
+  core/U200/X (SAEDRVT14_AO32_2)                          0.03       0.66 f
+  core/U201/X (SAEDRVT14_OAI22_4)                         0.02       0.68 r
+  core/U218/X (SAEDRVT14_AOI21_0P5)                       0.04       0.73 f
+  core/U219/X (SAEDRVT14_OAI21_V1_4)                      0.03       0.75 r
+  core/U251/X (SAEDRVT14_OAI21_V1_8)                      0.03       0.78 f
+  core/U254/X (SAEDRVT14_OAI21_V1_8)                      0.02       0.80 r
+  core/U255/X (SAEDRVT14_AOI21_8)                         0.02       0.82 f
+  core/U265/X (SAEDRVT14_AOI21_8)                         0.05       0.88 r
+  core/U273/X (SAEDRVT14_BUF_16)                          0.04       0.91 r
+  core/U274/X (SAEDRVT14_INV_S_20)                        0.01       0.92 f
+  core/U282/X (SAEDRVT14_OAI22_0P5)                       0.05       0.97 r
+  core/out_data[6] (fu_min_max_dec_1_0)                   0.00       0.97 r
+  stage/d[6] (fu_out_stage_W64_PIPE1)                     0.00       0.97 r
+  stage/registered.d_q_reg[6]/D (SAEDRVT14_FDP_V2_1)      0.00       0.97 r
+  data arrival time                                                  0.97
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  stage/registered.d_q_reg[6]/CK (SAEDRVT14_FDP_V2_1)     0.00       1.00 r
+  library setup time                                     -0.03       0.97
+  data required time                                                 0.97
+  --------------------------------------------------------------------------
+  data required time                                                 0.97
+  data arrival time                                                 -0.97
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

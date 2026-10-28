@@ -1,0 +1,62 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_mm_ARCH1_MINMAX0_PIPE0_EN321_EN161_EN80
+Version: Y-2026.03-SP1
+Date   : Fri Oct 23 13:39:23 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: mode[1] (input port)
+  Endpoint: out_data[59]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_mm_ARCH1_MINMAX0_PIPE0_EN321_EN161_EN80
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  mode[1] (in)                                            0.00       0.00 f
+  U246/X (SAEDRVT14_INV_S_8)                              0.00       0.00 r
+  U247/X (SAEDRVT14_NR2_MM_10)                            0.02       0.02 f
+  U250/X (SAEDRVT14_OR2_MM_8)                             0.02       0.04 f
+  U222/X (SAEDRVT14_INV_4)                                0.05       0.09 r
+  U251/X (SAEDRVT14_INV_S_10)                             0.02       0.11 f
+  U284/X (SAEDRVT14_INV_S_5)                              0.04       0.15 r
+  U192/X (SAEDRVT14_AN2_MM_1)                             0.05       0.20 r
+  carry_select.hi1/a[24] (fu_add_sub_mm_seg_1)            0.00       0.20 r
+  carry_select.hi1/U58/X (SAEDRVT14_ND2_1)                0.05       0.25 f
+  carry_select.hi1/U18/X (SAEDRVT14_OAI21_V1_4)           0.05       0.30 r
+  carry_select.hi1/U70/X (SAEDRVT14_INV_S_0P5)            0.04       0.34 f
+  carry_select.hi1/U178/X (SAEDRVT14_OAI21_0P5)           0.04       0.38 r
+  carry_select.hi1/U179/X (SAEDRVT14_AOI21_1)             0.05       0.43 f
+  carry_select.hi1/U180/X (SAEDRVT14_OAI21_V1_4)          0.02       0.45 r
+  carry_select.hi1/U183/X (SAEDRVT14_EN2_4)               0.03       0.48 f
+  carry_select.hi1/s[27] (fu_add_sub_mm_seg_1)            0.00       0.48 f
+  U270/X (SAEDRVT14_MUX2_2)                               0.02       0.50 f
+  output_stage.stage/d[59] (fu_out_stage_64_0)            0.00       0.50 f
+  output_stage.stage/q[59] (fu_out_stage_64_0)            0.00       0.50 f
+  out_data[59] (out)                                      0.00       0.50 f
+  data arrival time                                                  0.50
+
+  max_delay                                               0.50       0.50
+  output external delay                                   0.00       0.50
+  data required time                                                 0.50
+  --------------------------------------------------------------------------
+  data required time                                                 0.50
+  data arrival time                                                 -0.50
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
