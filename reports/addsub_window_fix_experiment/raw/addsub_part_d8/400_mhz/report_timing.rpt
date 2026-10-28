@@ -1,0 +1,120 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_part_EN321_EN161_EN81
+Version: Y-2026.03-SP1
+Date   : Fri Oct 16 15:51:04 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: op_sel[0] (input port)
+  Endpoint: out_data[63]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_part_EN321_EN161_EN81
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  op_sel[0] (in)                                          0.00       0.00 r
+  core/op_sel[0] (fu_add_sub_part_core_1_1_1)             0.00       0.00 r
+  core/decode/op_sel[0] (fu_add_sub_lane_decode_1_1_1)
+                                                          0.00       0.00 r
+  core/decode/sub[0] (fu_add_sub_lane_decode_1_1_1)       0.00       0.00 r
+  core/U9/X (SAEDRVT14_INV_4)                             0.03       0.03 f
+  core/U86/X (SAEDRVT14_MUXI2_U_0P5)                      0.07       0.10 r
+  core/U113/CO (SAEDRVT14_ADDF_V1_2)                      0.05       0.14 r
+  core/U110/CO (SAEDRVT14_ADDF_V1_2)                      0.03       0.18 r
+  core/U122/CO (SAEDRVT14_ADDF_V1_2)                      0.03       0.21 r
+  core/U109/CO (SAEDRVT14_ADDF_V1_2)                      0.03       0.24 r
+  core/U121/CO (SAEDRVT14_ADDF_V1_2)                      0.03       0.28 r
+  core/U112/CO (SAEDRVT14_ADDF_V1_2)                      0.03       0.31 r
+  core/U129/CO (SAEDRVT14_ADDF_V1_1)                      0.04       0.35 r
+  core/U78/X (SAEDRVT14_OAI22_1)                          0.04       0.38 f
+  core/U123/CO (SAEDRVT14_ADDF_V1_2)                      0.05       0.43 f
+  core/intadd_0/U8/CO (SAEDRVT14_ADDF_V1_2)               0.03       0.47 f
+  core/U125/CO (SAEDRVT14_ADDF_V1_2)                      0.03       0.50 f
+  core/intadd_0/U6/CO (SAEDRVT14_ADDF_V1_2)               0.03       0.53 f
+  core/intadd_0/U5/CO (SAEDRVT14_ADDF_V1_2)               0.03       0.57 f
+  core/U120/CO (SAEDRVT14_ADDF_V1_2)                      0.03       0.60 f
+  core/intadd_0/U3/CO (SAEDRVT14_ADDF_V1_2)               0.03       0.64 f
+  core/intadd_0/U2/CO (SAEDRVT14_ADDF_V1_1)               0.04       0.68 f
+  core/U13/X (SAEDRVT14_MUX2_2)                           0.03       0.70 f
+  core/U128/CO (SAEDRVT14_ADDF_V1_1)                      0.04       0.74 f
+  core/U124/CO (SAEDRVT14_ADDF_V1_2)                      0.04       0.78 f
+  core/intadd_1/U7/CO (SAEDRVT14_ADDF_V1_2)               0.03       0.81 f
+  core/U108/CO (SAEDRVT14_ADDF_V1_2)                      0.03       0.85 f
+  core/U119/CO (SAEDRVT14_ADDF_V1_2)                      0.03       0.88 f
+  core/U107/CO (SAEDRVT14_ADDF_V1_2)                      0.03       0.92 f
+  core/U118/CO (SAEDRVT14_ADDF_V1_2)                      0.03       0.95 f
+  core/intadd_1/U2/CO (SAEDRVT14_ADDF_V1_1)               0.04       0.99 f
+  core/U12/X (SAEDRVT14_MUX2_2)                           0.03       1.01 f
+  core/U127/CO (SAEDRVT14_ADDF_V1_1)                      0.04       1.05 f
+  core/U117/CO (SAEDRVT14_ADDF_V1_2)                      0.04       1.09 f
+  core/U106/CO (SAEDRVT14_ADDF_V1_2)                      0.03       1.13 f
+  core/U116/CO (SAEDRVT14_ADDF_V1_2)                      0.03       1.16 f
+  core/U105/CO (SAEDRVT14_ADDF_V1_2)                      0.03       1.20 f
+  core/U115/CO (SAEDRVT14_ADDF_V1_2)                      0.03       1.23 f
+  core/U111/CO (SAEDRVT14_ADDF_V1_2)                      0.03       1.26 f
+  core/intadd_2/U2/CO (SAEDRVT14_ADDF_V1_1)               0.04       1.30 f
+  core/U11/X (SAEDRVT14_MUX2_2)                           0.03       1.33 f
+  core/U126/CO (SAEDRVT14_ADDF_V1_1)                      0.04       1.37 f
+  core/intadd_3/U8/CO (SAEDRVT14_ADDF_V1_2)               0.04       1.41 f
+  core/U104/CO (SAEDRVT14_ADDF_V1_2)                      0.04       1.44 f
+  core/intadd_3/U6/CO (SAEDRVT14_ADDF_V1_2)               0.04       1.48 f
+  core/U103/CO (SAEDRVT14_ADDF_V1_2)                      0.04       1.51 f
+  core/U114/CO (SAEDRVT14_ADDF_V1_2)                      0.04       1.55 f
+  core/intadd_3/U3/CO (SAEDRVT14_ADDF_V1_2)               0.04       1.58 f
+  core/intadd_3/U2/CO (SAEDRVT14_ADDF_V1_1)               0.04       1.62 f
+  core/U10/X (SAEDRVT14_MUX2_2)                           0.03       1.65 f
+  core/U149/CO (SAEDRVT14_ADDF_V2_2)                      0.03       1.67 f
+  core/U132/CO (SAEDRVT14_ADDF_V1_2)                      0.03       1.71 f
+  core/U136/CO (SAEDRVT14_ADDF_V1_2)                      0.04       1.74 f
+  core/U135/CO (SAEDRVT14_ADDF_V1_2)                      0.04       1.78 f
+  core/intadd_4/U5/CO (SAEDRVT14_ADDF_V1_2)               0.04       1.81 f
+  core/U141/CO (SAEDRVT14_ADDF_V1_2)                      0.04       1.85 f
+  core/U140/CO (SAEDRVT14_ADDF_V1_2)                      0.04       1.88 f
+  core/U130/CO (SAEDRVT14_ADDF_V1_2)                      0.03       1.91 f
+  core/U100/X (SAEDRVT14_MUX2_MM_4)                       0.02       1.94 f
+  core/U148/CO (SAEDRVT14_ADDF_V2_2)                      0.02       1.96 f
+  core/U138/CO (SAEDRVT14_ADDF_V1_2)                      0.03       1.99 f
+  core/U137/CO (SAEDRVT14_ADDF_V1_2)                      0.03       2.03 f
+  core/U139/CO (SAEDRVT14_ADDF_V1_2)                      0.03       2.06 f
+  core/U142/CO (SAEDRVT14_ADDF_V1_2)                      0.03       2.10 f
+  core/U146/CO (SAEDRVT14_ADDF_V1_2)                      0.03       2.13 f
+  core/U145/CO (SAEDRVT14_ADDF_V1_2)                      0.03       2.17 f
+  core/intadd_5/U2/CO (SAEDRVT14_ADDF_V1_2)               0.03       2.20 f
+  core/U101/X (SAEDRVT14_MUX2_MM_4)                       0.02       2.22 f
+  core/U147/CO (SAEDRVT14_ADDF_V2_2)                      0.02       2.25 f
+  core/U134/CO (SAEDRVT14_ADDF_V1_2)                      0.03       2.28 f
+  core/U133/CO (SAEDRVT14_ADDF_V1_2)                      0.04       2.32 f
+  core/intadd_7/U5/CO (SAEDRVT14_ADDF_V1_2)               0.04       2.35 f
+  core/U144/CO (SAEDRVT14_ADDF_V1_2)                      0.04       2.39 f
+  core/U143/CO (SAEDRVT14_ADDF_V1_2)                      0.04       2.42 f
+  core/U131/CO (SAEDRVT14_ADDF_V1_2)                      0.03       2.45 f
+  core/U99/X (SAEDRVT14_EO4_2)                            0.04       2.50 f
+  core/sum_out[63] (fu_add_sub_part_core_1_1_1)           0.00       2.50 f
+  out_data[63] (out)                                      0.00       2.50 f
+  data arrival time                                                  2.50
+
+  max_delay                                               2.50       2.50
+  output external delay                                   0.00       2.50
+  data required time                                                 2.50
+  --------------------------------------------------------------------------
+  data required time                                                 2.50
+  data arrival time                                                 -2.50
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
