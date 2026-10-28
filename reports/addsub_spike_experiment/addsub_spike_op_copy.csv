@@ -1,0 +1,140 @@
+tier,corner,version,design,energy_random_ops_pj,energy_ops_held_pj,saving_vs_gated_random_ops_percent,saving_vs_gated_ops_held_percent,saving_vs_all_active_random_ops_percent,area_saving_percent,matched_energy_random_ops_pj,matched_saving_vs_gated_random_ops_percent,matched_energy_ops_held_pj,matched_saving_vs_gated_ops_held_percent
+d2,100_mhz,original,addsub_d2,0.9103,nan,-20.598,,40.355,53.650,,,,
+d2,100_mhz,copy upstream,addsub_segrep_d2,0.6822,0.4338,9.626,8.647,55.303,54.081,,,,
+d2,100_mhz,copy in the FU,addsub_segreg_d2,1.0877,0.4402,-44.095,7.314,28.734,52.867,1.0813,-43.257,0.4402,7.314
+d2,100_mhz,"copy in the FU, fast op registers",addsub_segfast_d2,0.7839,0.4502,-3.847,5.194,48.639,50.303,,,,
+d2,400_mhz,original,addsub_d2,0.9724,nan,-19.714,,42.791,52.136,,,,
+d2,400_mhz,copy upstream,addsub_segrep_d2,0.6899,0.4423,15.064,6.900,59.411,54.310,,,,
+d2,400_mhz,copy in the FU,addsub_segreg_d2,1.0263,0.4497,-26.352,5.339,39.619,52.098,1.0088,-24.197,0.4497,5.339
+d2,400_mhz,"copy in the FU, fast op registers",addsub_segfast_d2,0.7909,0.4577,2.630,3.673,53.469,49.733,,,,
+d2,450_mhz,copy upstream,addsub_segrep_d2,0.6929,0.4541,17.495,5.743,61.122,54.200,,,,
+d2,450_mhz,copy in the FU,addsub_segreg_d2,1.0462,0.4580,-24.577,4.944,41.297,50.844,0.9966,-18.668,0.4580,4.944
+d2,450_mhz,"copy in the FU, fast op registers",addsub_segfast_d2,0.7904,0.4703,5.879,2.392,55.648,50.028,,,,
+d2,500_mhz,original,addsub_d2,1.2333,nan,-65.473,,17.716,44.542,,,,
+d2,500_mhz,copy upstream,addsub_cselrep_d2,0.9630,0.6423,-29.210,-15.191,35.749,36.533,,,,
+d2,500_mhz,copy in the FU,addsub_cselreg_d2,1.3699,0.6294,-83.801,-12.883,8.602,34.043,1.3695,-83.747,0.6294,-12.883
+d2,500_mhz,"copy in the FU, fast op registers",addsub_cselfast_d2,0.9347,0.6723,-25.417,-20.571,37.635,33.005,,,,
+d2,550_mhz,copy upstream,addsub_cselrep_d2,0.9432,0.6430,-22.549,-10.503,39.934,37.999,,,,
+d2,550_mhz,copy in the FU,addsub_cselreg_d2,1.2822,0.6304,-66.602,-8.326,18.342,35.136,1.2821,-66.586,0.6304,-8.326
+d2,550_mhz,"copy in the FU, fast op registers",addsub_cselfast_d2,0.8666,0.6595,-12.603,-13.336,44.809,34.074,,,,
+d2,600_mhz,original,addsub_d2,1.2860,nan,-63.283,,20.999,45.138,,,,
+d2,600_mhz,copy upstream,addsub_cselrep_d2,0.9296,0.6347,-18.033,-5.605,42.893,38.573,,,,
+d2,600_mhz,copy in the FU,addsub_cselreg_d2,1.2360,0.6553,-56.935,-9.034,24.071,36.407,1.2343,-56.716,0.6553,-9.034
+d2,600_mhz,"copy in the FU, fast op registers",addsub_cselfast_d2,0.8721,0.6625,-10.725,-10.227,46.428,36.065,,,,
+d2,700_mhz,copy upstream,addsub_cselrep_d2,0.9299,0.6628,-5.183,-6.279,48.482,40.012,,,,
+d2,700_mhz,copy in the FU,addsub_cselreg_d2,1.2105,0.6740,-36.919,-8.089,32.938,37.475,1.1870,-34.269,0.6740,-8.089
+d2,700_mhz,"copy in the FU, fast op registers",addsub_cselfast_d2,0.9247,0.6750,-4.591,-8.234,48.772,36.098,,,,
+d2,800_mhz,copy upstream,addsub_cselrep_d2,0.9275,0.6761,-16.206,-7.309,44.888,39.380,,,,
+d2,800_mhz,copy in the FU,addsub_cselreg_d2,1.1884,0.6713,-48.903,-6.542,29.382,32.676,1.1794,-47.776,0.6713,-6.542
+d2,800_mhz,"copy in the FU, fast op registers",addsub_cselfast_d2,0.8959,0.6897,-12.254,-9.465,46.763,33.107,,,,
+d2,900_mhz,copy upstream,addsub_csel16rep_d2,1.3241,0.9442,-51.010,-47.198,26.667,39.733,,,,
+d2,900_mhz,copy in the FU,addsub_csel16reg_d2,1.5785,0.9752,-80.030,-52.030,12.574,36.261,1.5485,-76.608,0.9752,-52.030
+d2,900_mhz,"copy in the FU, fast op registers",addsub_csel16fast_d2,1.1848,0.9557,-35.128,-48.993,34.379,35.638,,,,
+d2,one_ghz,original,addsub_d2,1.5217,nan,4.892,,47.431,59.125,,,,
+d2,one_ghz,copy upstream,addsub_segrep_d2,1.0147,1.0090,36.581,36.130,64.946,61.064,,,,
+d2,one_ghz,copy in the FU,addsub_segreg_d2,1.8370,1.0860,-14.817,31.256,36.537,56.171,1.7577,-9.858,1.0860,31.256
+d2,one_ghz,"copy in the FU, fast op registers",addsub_csel16fast_d2,1.2377,0.9969,22.643,36.898,57.242,54.923,,,,
+d2,1p5_ghz,original,addsub_d2,1.6760,nan,-0.812,,44.626,49.774,,,,
+d2,1p5_ghz,copy upstream,addsub_segrep_d2,1.1973,1.1880,27.980,26.244,60.441,56.710,,,,
+d2,1p5_ghz,copy in the FU,addsub_segreg_d2,1.7287,1.1213,-3.980,30.383,42.885,53.934,1.6576,0.297,1.1213,30.383
+d2,1p5_ghz,"copy in the FU, fast op registers",addsub_segfast_d2,1.4544,1.1947,12.515,25.830,51.946,51.289,,,,
+d2,two_ghz,original,addsub_d2,1.5910,nan,5.479,,48.686,52.079,,,,
+d2,two_ghz,copy upstream,addsub_segrep_d2,1.1745,1.1715,30.223,29.557,62.119,58.464,,,,
+d2,two_ghz,copy in the FU,addsub_segreg_d2,1.7088,1.2035,-1.522,27.633,44.885,50.363,1.5450,8.211,1.2035,27.633
+d2,two_ghz,"copy in the FU, fast op registers",addsub_segfast_d2,1.7145,1.2557,-1.859,24.496,44.702,49.748,,,,
+d4,100_mhz,original,addsub_d4,0.9150,0.4242,-22.426,9.448,59.321,69.798,,,,
+d4,100_mhz,copy upstream,addsub_segrep_d4,0.6453,0.4110,13.651,12.276,71.309,70.339,,,,
+d4,100_mhz,copy in the FU,addsub_segreg_d4,0.9514,0.4233,-27.307,9.650,57.699,68.505,0.9175,-22.764,0.4233,9.651
+d4,100_mhz,"copy in the FU, fast op registers",addsub_segfast_d4,0.6464,0.4292,13.501,8.386,71.259,67.159,,,,
+d4,400_mhz,original,addsub_d4,0.9247,0.4423,-17.053,5.532,61.827,68.486,,,,
+d4,400_mhz,copy upstream,addsub_segrep_d4,0.6479,0.4246,17.993,9.310,73.256,69.990,,,,
+d4,400_mhz,copy in the FU,addsub_segreg_d4,0.9542,0.4399,-20.779,6.040,60.611,67.449,0.8851,-12.038,0.4399,6.039
+d4,400_mhz,"copy in the FU, fast op registers",addsub_segfast_d4,0.6753,0.4403,14.520,5.973,72.123,66.684,,,,
+d4,450_mhz,original,addsub_d4,0.9161,0.4621,-13.002,2.368,63.430,65.242,,,,
+d4,450_mhz,copy upstream,addsub_segrep_d4,0.6560,0.4292,19.082,9.305,73.814,69.172,,,,
+d4,450_mhz,copy in the FU,addsub_segreg_d4,1.5298,0.8238,-88.705,-74.064,38.932,54.508,1.5044,-85.573,0.8238,-74.065
+d4,450_mhz,"copy in the FU, fast op registers",addsub_cselfast_d4,0.9061,0.6298,-11.762,-33.072,63.832,49.307,,,,
+d4,500_mhz,original,addsub_d4,1.4414,0.8479,-94.842,-59.972,35.119,57.823,,,,
+d4,500_mhz,copy upstream,addsub_cselrep_d4,0.9464,0.6271,-27.923,-18.314,57.402,54.721,,,,
+d4,500_mhz,copy in the FU,addsub_cselreg_d4,1.2351,0.6280,-66.962,-18.484,44.403,52.745,1.1453,-54.823,0.6280,-18.483
+d4,500_mhz,"copy in the FU, fast op registers",addsub_cselfast_d4,0.8859,0.6344,-19.745,-19.691,60.126,51.836,,,,
+d4,550_mhz,original,addsub_d4,1.5108,0.8998,-99.321,-64.101,34.109,57.155,,,,
+d4,550_mhz,copy upstream,addsub_cselrep_d4,0.9430,0.6265,-24.415,-14.270,58.871,54.859,,,,
+d4,550_mhz,copy in the FU,addsub_cselreg_d4,1.1847,0.6265,-56.300,-14.270,48.331,53.372,1.0631,-40.252,0.6265,-14.270
+d4,550_mhz,"copy in the FU, fast op registers",addsub_cselfast_d4,0.8885,0.6313,-17.219,-15.140,61.250,52.444,,,,
+d4,600_mhz,original,addsub_d4,1.5260,0.9084,-97.821,-61.463,35.073,57.916,,,,
+d4,600_mhz,copy upstream,addsub_cselrep_d4,0.9192,0.6213,-19.160,-10.422,60.890,55.744,,,,
+d4,600_mhz,copy in the FU,addsub_cselreg_d4,1.1483,0.6252,-48.857,-11.118,51.143,53.003,1.1471,-48.706,0.6252,-11.118
+d4,600_mhz,"copy in the FU, fast op registers",addsub_cselfast_d4,0.8526,0.6393,-10.523,-13.628,63.725,53.014,,,,
+d4,700_mhz,original,addsub_d4,1.5525,0.9129,-84.086,-57.431,38.536,56.554,,,,
+d4,700_mhz,copy upstream,addsub_cselrep_d4,0.9009,0.6254,-6.818,-7.840,64.335,55.457,,,,
+d4,700_mhz,copy in the FU,addsub_cselreg_d4,1.1709,0.6580,-38.842,-13.476,53.642,53.297,1.1097,-31.579,0.6580,-13.476
+d4,700_mhz,"copy in the FU, fast op registers",addsub_cselfast_d4,0.9603,0.6559,-13.865,-13.112,61.982,52.144,,,,
+d4,800_mhz,original,addsub_d4,1.5531,0.9245,-99.438,-58.096,35.374,56.910,,,,
+d4,800_mhz,copy upstream,addsub_cselrep_d4,0.9060,0.6496,-16.344,-11.094,62.300,54.443,,,,
+d4,800_mhz,copy in the FU,addsub_cselreg_d4,1.7931,1.1940,-130.257,-104.189,25.387,31.704,1.7219,-121.108,1.1940,-104.189
+d4,800_mhz,"copy in the FU, fast op registers",addsub_cselfast_d4,0.9027,0.6722,-15.911,-14.958,62.440,49.699,,,,
+d4,900_mhz,original,addsub_d4,1.5561,0.9549,-85.938,-61.042,38.309,56.396,,,,
+d4,900_mhz,copy upstream,addsub_csel16rep_d4,1.2646,0.8859,-51.111,-49.410,49.865,49.837,,,,
+d4,900_mhz,copy in the FU,addsub_csel16reg_d4,1.5102,0.9143,-80.455,-54.202,40.129,46.477,1.5049,-79.814,0.9143,-54.202
+d4,900_mhz,"copy in the FU, fast op registers",addsub_csel16fast_d4,1.1839,0.9279,-41.468,-56.503,53.064,46.509,,,,
+d4,one_ghz,original,addsub_d4,1.5673,0.9633,-13.662,25.712,56.586,66.275,,,,
+d4,one_ghz,copy upstream,addsub_segrep_d4,1.0353,1.0198,24.920,21.354,71.323,68.091,,,,
+d4,one_ghz,copy in the FU,addsub_segreg_d4,2.0345,1.1987,-47.548,7.552,43.643,61.369,1.8335,-32.971,1.1987,7.552
+d4,one_ghz,"copy in the FU, fast op registers",addsub_csel16fast_d4,1.1999,0.9264,12.978,28.559,66.761,59.293,,,,
+d4,1p5_ghz,original,addsub_d4,1.6723,1.1137,-19.389,15.656,54.081,62.556,,,,
+d4,1p5_ghz,copy upstream,addsub_segrep_d4,1.1092,1.0935,20.816,17.184,69.545,66.601,,,,
+d4,1p5_ghz,copy in the FU,addsub_segreg_d4,1.7030,1.1780,-21.578,10.784,53.239,60.730,1.5022,-7.241,1.1780,10.784
+d4,1p5_ghz,"copy in the FU, fast op registers",addsub_segfast_d4,1.4110,1.1240,-0.732,14.874,61.257,62.306,,,,
+d4,two_ghz,original,addsub_d4,1.7951,1.2403,-20.826,15.281,55.049,59.888,,,,
+d4,two_ghz,copy upstream,addsub_segrep_d4,1.1824,1.1674,20.417,20.259,70.393,67.763,,,,
+d4,two_ghz,copy in the FU,addsub_segreg_d4,1.7004,1.2414,-14.448,15.205,57.421,60.726,1.5225,-2.476,1.2414,15.205
+d4,two_ghz,"copy in the FU, fast op registers",addsub_segfast_d4,1.6213,1.2178,-9.123,16.818,59.403,61.674,,,,
+d8,100_mhz,original,addsub_d8,0.9317,0.4521,-24.608,3.573,67.351,76.471,,,,
+d8,100_mhz,copy upstream,addsub_segrep_d8,0.6373,0.4083,14.769,12.915,77.668,77.667,,,,
+d8,100_mhz,copy in the FU,addsub_segreg_d8,0.8651,0.4289,-15.697,8.527,69.686,74.641,0.7021,6.100,0.4289,8.526
+d8,100_mhz,"copy in the FU, fast op registers",addsub_segfast_d8,0.7681,0.4286,-2.724,8.575,73.085,74.369,,,,
+d8,400_mhz,original,addsub_d8,0.9784,0.5016,-23.827,-7.114,67.676,72.202,,,,
+d8,400_mhz,copy upstream,addsub_segrep_d8,0.6501,0.4336,17.718,7.419,78.521,75.893,,,,
+d8,400_mhz,copy in the FU,addsub_segreg_d8,0.8734,0.4499,-10.546,3.923,71.143,73.581,0.7917,-0.199,0.4499,3.923
+d8,400_mhz,"copy in the FU, fast op registers",addsub_segfast_d8,0.7610,0.4492,3.685,4.083,74.858,73.105,,,,
+d8,450_mhz,original,addsub_d8,1.4665,0.8336,-80.875,-76.100,52.836,65.549,,,,
+d8,450_mhz,copy upstream,addsub_cselrep_d8,0.9635,0.6317,-18.836,-33.460,69.013,63.124,,,,
+d8,450_mhz,copy in the FU,addsub_cselreg_d8,1.1548,0.6424,-42.435,-35.725,62.859,60.368,0.9613,-18.562,0.6424,-35.725
+d8,450_mhz,"copy in the FU, fast op registers",addsub_cselfast_d8,0.8756,0.6413,-7.989,-35.490,71.841,60.094,,,,
+d8,500_mhz,original,addsub_d8,1.5751,0.9146,-112.894,-72.541,44.260,65.678,,,,
+d8,500_mhz,copy upstream,addsub_cselrep_d8,0.9569,0.6312,-29.337,-19.080,66.137,64.463,,,,
+d8,500_mhz,copy in the FU,addsub_cselreg_d8,1.1631,0.6382,-57.207,-20.401,58.840,61.571,1.0274,-38.866,0.6382,-20.401
+d8,500_mhz,"copy in the FU, fast op registers",addsub_cselfast_d8,0.9215,0.6368,-24.552,-20.118,67.390,61.345,,,,
+d8,550_mhz,original,addsub_d8,1.5776,0.9150,-108.112,-66.850,45.546,65.841,,,,
+d8,550_mhz,copy upstream,addsub_cselrep_d8,0.9210,0.6212,-21.502,-13.286,68.208,63.743,,,,
+d8,550_mhz,copy in the FU,addsub_cselreg_d8,1.1295,0.6475,-49.007,-18.069,61.011,61.598,1.0294,-35.791,0.6475,-18.069
+d8,550_mhz,"copy in the FU, fast op registers",addsub_cselfast_d8,0.9232,0.6467,-21.784,-17.928,68.134,61.533,,,,
+d8,600_mhz,original,addsub_d8,1.5765,0.9081,-104.357,-61.386,46.636,65.786,,,,
+d8,600_mhz,copy upstream,addsub_cselrep_d8,0.9088,0.6262,-17.801,-11.284,69.239,64.811,,,,
+d8,600_mhz,copy in the FU,addsub_cselreg_d8,1.1485,0.6432,-48.878,-14.305,61.123,60.957,1.0488,-35.943,0.6432,-14.305
+d8,600_mhz,"copy in the FU, fast op registers",addsub_cselfast_d8,0.9441,0.6418,-22.381,-14.053,68.043,60.893,,,,
+d8,700_mhz,original,addsub_d8,1.5600,0.9295,-84.964,-60.268,50.157,65.970,,,,
+d8,700_mhz,copy upstream,addsub_cselrep_d8,0.9288,0.6493,-10.128,-11.963,70.324,64.599,,,,
+d8,700_mhz,copy in the FU,addsub_cselreg_d8,1.1716,0.6800,-38.910,-17.247,62.568,60.846,1.0388,-23.166,0.6800,-17.246
+d8,700_mhz,"copy in the FU, fast op registers",addsub_cselfast_d8,0.9902,0.6729,-17.411,-16.027,68.361,60.412,,,,
+d8,800_mhz,original,addsub_d8,1.5369,0.9290,-97.340,-58.853,48.896,65.321,,,,
+d8,800_mhz,copy upstream,addsub_csel16rep_d8,1.3076,0.9200,-67.904,-57.320,56.519,59.396,,,,
+d8,800_mhz,copy in the FU,addsub_csel16reg_d8,1.1873,0.9348,-52.451,-59.858,60.521,56.579,1.1510,-47.796,0.9348,-59.858
+d8,800_mhz,"copy in the FU, fast op registers",addsub_csel16fast_d8,1.1627,0.9345,-49.301,-59.804,61.337,56.102,,,,
+d8,900_mhz,original,addsub_d8,1.6014,0.9417,-91.339,-58.820,48.783,63.615,,,,
+d8,900_mhz,copy upstream,addsub_csel16rep_d8,1.2928,0.9065,-54.472,-52.875,58.651,59.500,,,,
+d8,900_mhz,copy in the FU,addsub_csel16reg_d8,1.5574,0.9267,-86.082,-56.276,50.190,56.342,1.1506,-37.476,0.9267,-56.276
+d8,900_mhz,"copy in the FU, fast op registers",addsub_csel16fast_d8,1.1633,0.9366,-38.989,-57.958,62.796,56.169,,,,
+d8,one_ghz,original,addsub_d8,1.8273,1.0945,-32.514,15.594,56.641,63.750,,,,
+d8,one_ghz,copy upstream,addsub_segrep_d8,1.1118,1.0982,19.374,15.305,73.619,71.125,,,,
+d8,one_ghz,copy in the FU,addsub_segreg_d8,1.6115,1.0868,-16.868,16.192,61.760,69.003,1.4127,-2.454,1.0868,16.192
+d8,one_ghz,"copy in the FU, fast op registers",addsub_csel16fast_d8,1.1981,0.9423,13.110,27.329,71.569,64.682,,,,
+d8,1p5_ghz,original,addsub_d8,1.7475,1.1235,-24.753,14.913,58.842,65.857,,,,
+d8,1p5_ghz,copy upstream,addsub_segrep_d8,1.1433,1.1278,18.378,14.585,73.071,70.193,,,,
+d8,1p5_ghz,copy in the FU,addsub_segreg_d8,1.5225,1.1395,-8.691,13.702,64.141,65.780,1.4107,-0.707,1.1395,13.702
+d8,1p5_ghz,"copy in the FU, fast op registers",addsub_segfast_d8,1.5798,1.1372,-12.784,13.878,62.791,65.877,,,,
+d8,two_ghz,original,addsub_d8,1.9844,1.2792,-33.562,12.619,56.545,62.258,,,,
+d8,two_ghz,copy upstream,addsub_segrep_d8,1.2755,1.2534,14.150,14.386,72.068,68.580,,,,
+d8,two_ghz,copy in the FU,addsub_segreg_d8,1.6896,1.4839,-13.723,-1.359,63.000,62.985,1.6333,-9.929,1.4839,-1.359
+d8,two_ghz,"copy in the FU, fast op registers",addsub_segfast_d8,1.6655,1.4584,-12.100,0.383,63.528,63.281,,,,

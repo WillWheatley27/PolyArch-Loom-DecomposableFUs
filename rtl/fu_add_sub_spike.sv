@@ -14,6 +14,11 @@
 //             block i, prepared before the FU like the left-edge mode decode), so each block's
 //             operand inversion and carry-in come straight from an input pin (targets A; FLAT is
 //             then unused). With REP_OP = 0, op_sel[i] is the op of the lane starting at block i.
+//   OP_REG = 1  the per-block op copy is made in the FU: mode and op_sel (lane-start encoding) arrive
+//             one cycle ahead of their operands, and the decoded controls (lane starts and the flat
+//             per-block copy) are registered here, so the operand inversion and the lane breaks are
+//             driven from flops, as the operands are from the upstream register. Use with FLAT = 1,
+//             REP_OP = 0; its cost (copy muxes, flops, clock) is the FU's.
 //   ARCH = 0  segmented adder: eight 8-bit adds joined by carry-in muxes (the original
 //             fu_add_sub_segmented datapath).
 //   ARCH = 1  carry-select at bit 32 (targets B): the halves are separate partitioned adders (a
@@ -119,12 +124,13 @@ module fu_add_sub_spike #(
   parameter int ARCH = 1,
   parameter bit FLAT = 1,
   parameter bit REP_OP = 0,
+  parameter bit OP_REG = 0,
   parameter bit EN32 = 1,
   parameter bit EN16 = 1,
   parameter bit EN8  = 1
 ) (
   // verilator lint_off UNUSEDSIGNAL
-  input  logic        clk,
+  input  logic        clk,      // read only with OP_REG
   input  logic        rst_n,
   // verilator lint_on UNUSEDSIGNAL
   input  logic [1:0]  mode,
@@ -137,12 +143,22 @@ module fu_add_sub_spike #(
   assign in_ready_0 = out_ready & out_valid;
   assign in_ready_1 = out_ready & out_valid;
 
-  logic [7:0] sub;
+  logic [7:0] sub, sub_d;
   // verilator lint_off UNUSEDSIGNAL
-  logic [7:0] is_start;   // ARCH 2 reads only the lane starts at bits 16 and 32
+  logic [7:0] is_start, is_start_d;   // ARCH 2 reads only the lane starts at bits 16 and 32
   // verilator lint_on UNUSEDSIGNAL
   fu_add_sub_spike_decode #(.EN32(EN32), .EN16(EN16), .EN8(EN8), .FLAT(FLAT), .REP_OP(REP_OP)) decode (
-    .mode(mode), .op_sel(op_sel), .is_start(is_start), .sub(sub));
+    .mode(mode), .op_sel(op_sel), .is_start(is_start_d), .sub(sub_d));
+  if (OP_REG) begin : control_register
+    // controls decoded a cycle ahead of their operands, held for the operands' cycle
+    always_ff @(posedge clk) begin
+      sub      <= sub_d;
+      is_start <= is_start_d;
+    end
+  end else begin : control_direct
+    assign sub      = sub_d;
+    assign is_start = is_start_d;
+  end
 
   logic [63:0] be;
   for (genvar i = 0; i < 8; i++) begin : invert

@@ -14,6 +14,10 @@
 # Optional: STATIC_MODE=1 treats mode as a static configuration input (no timing paths from it).
 # Optional: RETIME=1 lets a registered design's registers move into its logic (compile_ultra -retime,
 # on the flattened design).
+# Optional: FAST_OP_REGS=1 (fu_add_sub_spike OP_REG): the per-block op registers (sub_reg*) are
+# not merged, so each drives one block, and are sized to their family's strongest flop after compile
+# (then fixed, and the rest recompiled incrementally), so the op leaves them as fast as a lightly
+# loaded data register's output.
 # Optional: POWER_OPT=1 compiles power-driven: the inputs get the stimulus's activity (every input
 # but mode toggles with probability 0.5 per operation) before compile, with dynamic and total power
 # optimization on.
@@ -81,6 +85,24 @@ set jobs {
   {addsub_csel16rep_d8 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=3,REP_OP=1,EN32=1,EN16=1,EN8=1}}
   {addsub_dwcselrep_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=2,REP_OP=1,EN32=1,EN16=0,EN8=0}}
   {addsub_dwcselrep_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=2,REP_OP=1,EN32=1,EN16=1,EN8=0}}
+  {addsub_segreg_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=0,FLAT=1,OP_REG=1,EN32=1,EN16=0,EN8=0}}
+  {addsub_segreg_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=0,FLAT=1,OP_REG=1,EN32=1,EN16=1,EN8=0}}
+  {addsub_segreg_d8 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=0,FLAT=1,OP_REG=1,EN32=1,EN16=1,EN8=1}}
+  {addsub_cselreg_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=1,FLAT=1,OP_REG=1,EN32=1,EN16=0,EN8=0}}
+  {addsub_cselreg_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=1,FLAT=1,OP_REG=1,EN32=1,EN16=1,EN8=0}}
+  {addsub_cselreg_d8 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=1,FLAT=1,OP_REG=1,EN32=1,EN16=1,EN8=1}}
+  {addsub_csel16reg_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=3,FLAT=1,OP_REG=1,EN32=1,EN16=0,EN8=0}}
+  {addsub_csel16reg_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=3,FLAT=1,OP_REG=1,EN32=1,EN16=1,EN8=0}}
+  {addsub_csel16reg_d8 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=3,FLAT=1,OP_REG=1,EN32=1,EN16=1,EN8=1}}
+  {addsub_segfast_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=0,FLAT=1,OP_REG=1,EN32=1,EN16=0,EN8=0}}
+  {addsub_segfast_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=0,FLAT=1,OP_REG=1,EN32=1,EN16=1,EN8=0}}
+  {addsub_segfast_d8 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=0,FLAT=1,OP_REG=1,EN32=1,EN16=1,EN8=1}}
+  {addsub_cselfast_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=1,FLAT=1,OP_REG=1,EN32=1,EN16=0,EN8=0}}
+  {addsub_cselfast_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=1,FLAT=1,OP_REG=1,EN32=1,EN16=1,EN8=0}}
+  {addsub_cselfast_d8 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=1,FLAT=1,OP_REG=1,EN32=1,EN16=1,EN8=1}}
+  {addsub_csel16fast_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=3,FLAT=1,OP_REG=1,EN32=1,EN16=0,EN8=0}}
+  {addsub_csel16fast_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=3,FLAT=1,OP_REG=1,EN32=1,EN16=1,EN8=0}}
+  {addsub_csel16fast_d8 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=3,FLAT=1,OP_REG=1,EN32=1,EN16=1,EN8=1}}
   {addsub_probe0_32x2 rtl/fu_add_sub_spike.sv fu_add_sub_spike_probe32x2 {PRIM=0}}
   {addsub_probe1_32x2 rtl/fu_add_sub_spike.sv fu_add_sub_spike_probe32x2 {PRIM=1}}
   {addsub_probe2_32x2 rtl/fu_add_sub_spike.sv fu_add_sub_spike_probe32x2 {PRIM=2}}
@@ -238,7 +260,20 @@ proc compile_at {rtl_rel top params constraint} {
     set_dynamic_optimization true
     set_app_var compile_enable_total_power_optimization true
   }
+  if {[info exists ::env(FAST_OP_REGS)]} {
+    set_register_merging [get_cells -hierarchical -filter "is_sequential == true && full_name =~ *sub_reg*"] false
+  }
   compile_ultra -area_high_effort_script -no_autoungroup {*}$gating
+  if {[info exists ::env(FAST_OP_REGS)]} {
+    foreach_in_collection c [get_cells -hierarchical -filter "is_sequential == true && full_name =~ *sub_reg*"] {
+      set ref [get_attribute $c ref_name]
+      set strong [regsub {_[0-9P]+$} $ref {_4}]
+      if {[sizeof_collection [get_lib_cells -quiet */$strong]] == 0} { set strong [regsub {_[0-9P]+$} $ref {_2}] }
+      if {$strong ne $ref && [sizeof_collection [get_lib_cells -quiet */$strong]] > 0} { size_cell $c $strong }
+      set_dont_touch $c true
+    }
+    compile_ultra -incremental -no_autoungroup
+  }
   # Worst-path arrival; for a registered design, the delay that path needs including the setup
   # time at a register endpoint.
   set arr 0.0

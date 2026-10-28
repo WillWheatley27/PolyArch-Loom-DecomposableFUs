@@ -95,6 +95,109 @@ gated bank.
 
 Outside the window every tier beats the gated bank by 6-37%.
 
+## Result 3: the per-block op copy made in the FU (`addsub_spike_op_copy.csv`)
+
+Results 1 and 2 copy each lane's op to its blocks before the FU, so the copy's cost is not counted.
+`OP_REG = 1` moves it into the FU and keeps the same structure per target (`segreg`, `cselreg`,
+`csel16reg`):
+- `mode` and `op_sel` keep the original lane-start interface, but arrive one cycle ahead of their
+  operands;
+- the FU makes the per-block copy (the flat decode) and registers it with the lane starts, so the
+  inversion and lane breaks are driven from its own flops.
+
+A copy inside the FU without a register is variable 1 (`segflat`, `csel`), which saves nothing.
+
+**Input timing.** The power runs apply inputs one flop clock-to-output after each edge, as an upstream
+register would (`run_primepower.py INPUT_CLK_Q`):
+- **light:** the netlist's fastest CK->Q, a lightly loaded upstream data register. These are the main
+  runs.
+- **matched:** the mean CK->Q of its own flops, the best case short of balancing every op flop.
+
+d4 against the gated bank, mode-weighted (%):
+
+| Version | 100 | 400 | 450 | 500 | 550 | 600 | 700 | 800 | 900 | 1000 | 1500 | 2000 MHz |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Original, random ops | -22 | -17 | -13 | -95 | -99 | -98 | -84 | -99 | -86 | -14 | -19 | -21 |
+| Copy upstream, random ops | +14 | +18 | +19 | -28 | -24 | -19 | -7 | -16 | -51 | +25 | +21 | +20 |
+| **Copy in the FU, random ops** | -27 | -21 | -89 | -67 | -56 | -49 | -39 | -130 | -80 | -48 | -22 | -14 |
+| Copy in the FU, matched, random ops | -23 | -12 | -86 | -55 | -40 | -49 | -32 | -121 | -80 | -33 | -7 | -2 |
+| Original, ops held | +9 | +6 | +2 | -60 | -64 | -61 | -57 | -58 | -61 | +26 | +16 | +15 |
+| Copy upstream, ops held | +12 | +9 | +9 | -18 | -14 | -10 | -8 | -11 | -49 | +21 | +17 | +20 |
+| **Copy in the FU, ops held** | +10 | +6 | -74 | -18 | -14 | -11 | -13 | -104 | -54 | +8 | +11 | +15 |
+| Area saving: original / upstream / in the FU | 70/70/69 | 68/70/67 | 65/69/55 | 58/55/53 | 57/55/53 | 58/56/53 | 57/55/53 | 57/54/32 | 56/50/46 | 66/68/61 | 63/67/61 | 60/68/61 |
+
+d2 and d8 follow the same pattern (the CSV has all three).
+
+**What the copy in the FU costs:**
+1. **The late op returns when ops change.**
+   - Synthesis has no reason to make the op flops fast: they are small and each drives a lane's
+     inverters, at 0.05-0.5 ns clock-to-output, against about 0.05 ns for a light data register.
+   - With ops held, the copy in the FU equals the copy upstream (600 MHz: -11% against -10%).
+   - With random ops it costs 1.15 against 0.92 pJ: the double switching is back.
+   - Matching the inputs to the flops' mean does not remove it, because their clock-to-output
+     spreads by up to 0.45 ns.
+2. **The flop's clock-to-output joins the critical path.**
+   - At 450 MHz the path starts at the op flop (`sub_reg[0]` to `out_data[41]`). DC rebuilds the
+     segmented adder as a fast adder: 62 -> 26 full adders, area +48%.
+   - At 800 MHz the carry-select does the same: 94 -> 61 full adders.
+   - The speed class moves down one target there; the per-target selection, made for the upstream
+     copy, no longer fits.
+3. **The hardware itself is small.** At 600 MHz d4 keeps 6 flops and a few copy gates; the 94
+   ripple full adders are unchanged.
+
+**Overall (d4, random ops):** the copy in the FU is better than the original from 500 to 700 MHz
+(-39..-67% against -84..-99%), but worse at 100-400 MHz and 1 GHz, and much worse at 450 and
+800 MHz. The upstream copy's gain depends on the op arriving with its operands, which a registered
+copy in the FU does not give by itself.
+
+### The fix: fast per-block op registers and a re-chosen structure (`segfast`, `cselfast`, `csel16fast`)
+
+Two changes, both counted in the FU:
+1. **Fast op registers** (`syn_rerun.tcl FAST_OP_REGS=1`):
+   - one op flop per 8-bit block, which synthesis may not merge, so each drives only its block's
+     inverters and carry-in;
+   - after compile each is sized to its family's strongest flop and fixed, and the rest is
+     recompiled incrementally.
+
+   At 100 MHz (d4) their clock-to-output falls from 0.41-0.52 ns to 0.10-0.13 ns, and the spread
+   from 0.46 to 0.03 ns.
+2. **The structure chosen again per target** for the copy in the FU (`addsub_spike_selected_fast.csv`),
+   by the same rule as Result 2. The extra clock-to-output moves each structure's last ripple target
+   down one step:
+
+| Tier | 100 | 400 | 450 | 500-700 | 800 | 900 | 1000 | 1500-2000 MHz |
+|---|---|---|---|---|---|---|---|---|
+| d2 | seg | seg | seg | csel | csel | csel16 | csel16 | seg |
+| d4 | seg | seg | csel | csel | csel | csel16 | csel16 | seg |
+| d8 | seg | seg | csel | csel | csel16 | csel16 | csel16 | seg |
+
+d4 against the gated bank, mode-weighted (%), and energy per operation (random ops):
+
+| Version | 100 | 400 | 450 | 500 | 550 | 600 | 700 | 800 | 900 | 1000 | 1500 | 2000 MHz |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Original, random ops | -22 | -17 | -13 | -95 | -99 | -98 | -84 | -99 | -86 | -14 | -19 | -21 |
+| Copy upstream, random ops | +14 | +18 | +19 | -28 | -24 | -19 | -7 | -16 | -51 | +25 | +21 | +20 |
+| Copy in the FU, first version, random ops | -27 | -21 | -89 | -67 | -56 | -49 | -39 | -130 | -80 | -48 | -22 | -14 |
+| **Copy in the FU, fixed, random ops** | +14 | +15 | -12 | -20 | -17 | -11 | -14 | -16 | -41 | +13 | -1 | -9 |
+| **Copy in the FU, fixed, ops held** | +8 | +6 | -33 | -20 | -15 | -14 | -13 | -15 | -57 | +29 | +15 | +17 |
+| Energy (pJ): original / upstream / in FU first / in FU fixed | 0.92/0.65/0.95/0.65 | 0.92/0.65/0.95/0.68 | 0.92/0.66/1.53/0.91 | 1.44/0.95/1.24/0.89 | 1.51/0.94/1.18/0.89 | 1.53/0.92/1.15/0.85 | 1.55/0.90/1.17/0.96 | 1.55/0.91/1.79/0.90 | 1.56/1.26/1.51/1.18 | 1.57/1.04/2.03/1.20 | 1.67/1.11/1.70/1.41 | 1.80/1.18/1.70/1.62 |
+| Area saving: upstream / in FU fixed | 70/67 | 70/67 | 69/49 | 55/52 | 55/52 | 56/53 | 55/52 | 54/50 | 50/47 | 68/59 | 67/62 | 68/62 |
+
+d2 and d8 follow the same pattern (`addsub_spike_op_copy.csv`).
+
+- **Up to 1 GHz the fixed copy in the FU matches the upstream copy within a few points,** and from
+  500 to 900 MHz it beats it (d4: 0.85-0.96 against 0.90-0.95 pJ at 500-800 MHz). The sawtooth is
+  gone: no point is worse than -16% from 450 to 800 MHz.
+- **The one weak point inside that range is 450 MHz with ops held (-33%):** it takes the carry-select a
+  step early, and the carry-select's duplicate costs more than a segmented ripple there.
+- **At 1.5 and 2 GHz it stays 20-30 points behind the upstream copy.** The fast flops still take
+  25-77 ps, about 5-15% of a 0.5-0.67 ns cycle, on the critical path. DC sizes the adder up for it
+  (d4 area 221 against 196 um2 at 1.5 GHz, 264 against 222 um2 at 2 GHz), and up to 40 ps of op
+  skew remains. Part of this is the flow's model: every other design's inputs are timed as arriving
+  at the clock edge with zero delay, while this design pays a real flop's delay.
+- **Cost:** 8 op flops at the strongest drive in place of 4-6 small ones, about 3-8 um2 (1-3 points
+  of area saving).
+
 ## Conclusions
 
 1. **The biggest single fix is the op encoding.** If the FU receives each 8-bit block's op
@@ -111,6 +214,12 @@ Outside the window every tier beats the gated bank by 6-37%.
    carry-select is the best option there, at about -50%.
 4. **No effect:** decode flattening, the adder primitive, and DC's power-driven compile (byte-
    identical netlists). Treating mode as static gives a few points to the carry-select only.
+5. **Counted inside the FU, the per-block copy keeps its gain up to 1 GHz once its registers are
+   fast (Result 3).** A plain registered copy delivers the op late (0.05-0.5 ns clock-to-output) and
+   at two targets pushes the adder into the faster class, losing most of the gain. Per-block op
+   flops sized to their strongest drive, with the structure re-chosen per target, match the upstream
+   copy up to 1 GHz and beat it from 500 to 900 MHz. At 1.5-2 GHz the flop's 25-77 ps still costs
+   adder size and leaves it 20-30 points behind.
 
 ## DesignWare flag
 
@@ -135,8 +244,10 @@ Used alone as fixed units, the DesignWare primitives match the inferred `+` exac
 | `addsub_spike_power.csv` | timed, zero-delay and ops-held PrimePower per variant, target and mode |
 | `addsub_spike_savings.csv` | each variant (and the original tiers) against the DesignWare bank, per target and mode and mode-weighted |
 | `addsub_spike_selected.csv` | the per-target selection (Result 2) |
+| `addsub_spike_selected_fast.csv` | the per-target choice for the copy in the FU with fast op registers (Result 3) |
+| `addsub_spike_op_copy.csv` | per tier and target: original, copy upstream, copy in the FU (first version, with light and matched input timing), and the fixed copy in the FU on its own choice: energy, savings against the gated and all-active bank, area (Result 3) |
 | `addsub_spike_static_mode_*.csv` | the same for variants synthesized with `STATIC_MODE=1` (`raw_static_mode/`) |
-| `raw/`, `raw_static_mode/` | DC and PrimePower reports (`primepower/`, `primepower_zero/`, `primepower_ops_held/`) |
+| `raw/`, `raw_static_mode/` | DC and PrimePower reports (`primepower/`, `primepower_zero/`, `primepower_ops_held/`; `*reg_*` designs also `primepower_matched/` and `primepower_ops_held_matched/`) |
 
 `reports/collect_addsub_spike.py` builds the tables using the isolation experiment's `collect()`;
 the bank and original tiers come from the isolation and window-fix experiments and the third run.
@@ -147,6 +258,8 @@ Coverage:
 - **Screened at the same four targets (d2, d4):** `dwcselser`, `dwcsel`.
 - **Also at 900 MHz (d2, d4):** `dwcselrep`.
 - **`csel16rep`:** d4 at 400 MHz-1 GHz; d2 and d8 at 700-900 MHz.
+- **`segreg`, `cselreg`, `csel16reg`:** the 36 selected tier/target points of Result 2.
+- **`segfast`, `cselfast`, `csel16fast`:** every tier at all 12 targets (108 netlists).
 
 Netlists are not kept (`NETLIST=1` regenerates them).
 
@@ -167,13 +280,20 @@ Netlists are not kept (`NETLIST=1` regenerates them).
 - The replicated-op netlists match the golden at gate level under the power testbench's op mapping
   (0 mismatches in 96,000 outputs: d2, d4 and d8 `cselrep` and d4 `segrep` at 100 MHz, 600 MHz,
   900 MHz and 2 GHz, timed and zero-delay).
+- The `OP_REG` instances (ARCH 0, 1, 3, every tier) are checked with their controls clocked in one
+  edge ahead; two planted bugs (inverted copy register, a stuck lane-start register) are caught.
+- At gate level the 36 `OP_REG` netlists give 0 errors in 360,000 operations: the next operation's
+  mode and ops presented during each cycle, a new random mode every operation (230,376 operations
+  follow a mode change), outputs sampled at 99.9% of the period.
+- The 36 selected fast-op-register netlists give 0 errors in 360,000 operations under the same check.
 - Every run met its target on the first compile. Every PrimePower run annotated 100% of nets.
 
 ## Caveats
 
 - **Replicated op changes the FU's interface:**
   - `op_sel[i]` is the op of the lane containing block i.
-  - The issuing logic must replicate the lane op per block, which is wiring once mode is known.
+  - The issuing logic must replicate the lane op per block. Result 3 measures that copy made and
+    registered inside the FU instead: it loses most of the gain.
   - The power testbench drives it from the same stimulus bits at the lane starts, so every lane
     sees the same op as in every other design.
 - **The per-target selection uses two RTL architectures.** Either is one generator parameter;

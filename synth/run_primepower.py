@@ -21,6 +21,11 @@ and writes primepower_ops_held/; the difference from the plain run is the cost o
 with every operation.
 A netlist with flops or latches (fu_add_sub_pipe) is also reset and clocked at the corner's period,
 with an ideal clock network (see CYCLE and ideal_clock).
+Optional: INPUT_CLK_Q applies a clocked design's inputs one flop clock-to-output after each edge, as
+an upstream register would, for a design whose controls come from its own flops (fu_add_sub_spike
+OP_REG). INPUT_CLK_Q=light: the fastest CK->Q among the netlist's flops (a lightly loaded upstream
+register; writes primepower*/ as usual); INPUT_CLK_Q=matched: their mean CK->Q (inputs arriving with
+the design's own flop outputs; writes primepower*_matched/).
 """
 from __future__ import annotations
 
@@ -42,6 +47,8 @@ LIB = "saed14rvt_base_tt0p8v25c.db"
 NVEC = 20000
 ZERO = os.environ.get("ZERO_DELAY") == "1"   # zero-delay simulation: functional switching only
 HOLD = os.environ.get("HOLD_OPS") == "1"     # control inputs other than mode held at 0
+CLK_Q = os.environ.get("INPUT_CLK_Q", "")   # "light" | "matched": clocked inputs a CK->Q after the edge
+assert CLK_Q in ("", "light", "matched"), CLK_Q
 SEED = 20260930
 # Multi-function units: family -> function -> control inputs held for the whole run. An input held
 # in only some functions takes its stimulus bits in the others (fu_add_sub_mm: every lane subtracts
@@ -158,12 +165,14 @@ def testbench(top: str, plist: list[tuple[str, str, int]], held: set[str], partl
         conns.append(f".{n}({n})")
     assert cbit <= 32, top
     wait = "cycle();" if clocked else "#(period);"
+    late = clocked and CLK_Q   # inputs follow each edge by the flops' clock-to-output (tcq)
+    step = lambda i: f"fork begin #(tcq); apply({i}); end join_none {wait}" if late else f"apply({i}); {wait}"
     return f"""`timescale 1ns/1ps
 module tb;
   localparam int N = {NVEC};
   logic [63:0] a [N], b [N];
   logic [31:0] c [N];
-  int mode_val; real period; string saif;
+  int mode_val; real period; string saif;{chr(10) + "  real tcq;" if late else ""}
 {"".join(f"  int held_{n};{chr(10)}" for n in sorted(held))}{"".join(f"  int held_{n}; bit use_held_{n};{chr(10)}" for n in sorted(partly))}
 {chr(10).join(decls)}
   {top} dut ({", ".join(conns)});
@@ -173,15 +182,15 @@ module tb;
 {CYCLE if clocked else ""}{REP_OP if rep else ""}  initial begin
     if (!$value$plusargs("MODE=%d", mode_val)) mode_val = 0;
     if (!$value$plusargs("PERIOD=%f", period)) period = 1.0;
-    if (!$value$plusargs("SAIF=%s", saif)) $fatal(1, "SAIF");
+    if (!$value$plusargs("SAIF=%s", saif)) $fatal(1, "SAIF");{chr(10) + '    if (!$value$plusargs("TCQ=%f", tcq)) $fatal(1, "TCQ");' if late else ""}
 {"".join(f'    if (!$value$plusargs("{n}=%d", held_{n})) $fatal(1, "{n}");{chr(10)}' for n in sorted(held))}{"".join(f'    use_held_{n} = $value$plusargs("{n}=%d", held_{n});{chr(10)}' for n in sorted(partly))}
     $readmemh("{{STIM_A}}", a); $readmemh("{{STIM_B}}", b); $readmemh("{{STIM_C}}", c);
     $sdf_annotate("{{SDF}}", dut);{CLOCK_START if clocked else ""}
-    apply(0); {wait}
+    {step(0)}
     $set_gate_level_monitoring("on");
     $set_toggle_region(tb.dut);
     $toggle_start;
-    for (int i = 1; i < N; i++) begin apply(i); {wait} end
+    for (int i = 1; i < N; i++) begin {step("i")} end
     $toggle_stop;
     $toggle_report(saif, 1.0e-9, "tb.dut");
     $finish;
@@ -201,6 +210,14 @@ def stimulus(work: Path) -> dict[str, Path]:
         files["C"] = work / "stim_c_ops_held.hex"
         files["C"].write_text("00000000\n" * NVEC)
     return files
+
+
+def clock_to_q(sdf: str) -> float:
+    """CK->Q delay (ns) of the netlist's flops (typical rise and fall of every flop's IOPATH): the
+    fastest for INPUT_CLK_Q=light, the mean for INPUT_CLK_Q=matched."""
+    d = [float(x) for r, f in re.findall(r"\(IOPATH \(posedge CK\) Q \([-\d.]+:([-\d.]+):[-\d.]+\) \([-\d.]+:([-\d.]+):[-\d.]+\)\)", sdf)
+         for x in (r, f)]
+    return min(d) if CLK_Q == "light" else sum(d) / len(d)
 
 
 def wire_load(dc_power: Path, top: str) -> str:
@@ -246,15 +263,16 @@ def one(design: str, corner: str, raw: Path, work: Path, stim: dict[str, Path]) 
            f"{CELLS / 'saed14rvt_base.v'} {CELLS / 'saed14rvt_base_udp.v'}", w, w / "vcs.log"):
         return f"{design} {corner} VCS COMPILE FAILED"
     modes = modes_of(design, has_mode)
+    tcq = f" +TCQ={clock_to_q((src / 'netlist.sdf').read_text()):.4f}" if clocked and CLK_Q else ""
     lic = True
     for func, hold in funcs.items():
         tag = f"{func}_" if func else ""
         plus = "".join(f" +{n}={v}" for n, v in hold.items())
         for m in modes:
-            if run(f"./simv +MODE={m} +PERIOD={PERIOD[corner]} +SAIF={tag}mode{m}.saif{plus}", w, w / f"sim_{tag}{m}.log"):
+            if run(f"./simv +MODE={m} +PERIOD={PERIOD[corner]} +SAIF={tag}mode{m}.saif{plus}{tcq}", w, w / f"sim_{tag}{m}.log"):
                 return f"{design} {corner} SIM {func} mode {m} FAILED"
         out = src / ("primepower" + ("_zero" if ZERO else "") + ("_ops_held" if HOLD else "")
-                     + ("_" + func if func else ""))
+                     + ("_matched" if clocked and CLK_Q == "matched" else "") + ("_" + func if func else ""))
         out.mkdir(exist_ok=True)
         tcl = [f"set search_path [list . {LIB_DIR}]", f"set link_library [list * {LIB}]",
                "set power_enable_analysis true", "set power_analysis_mode averaged",
@@ -273,7 +291,8 @@ def one(design: str, corner: str, raw: Path, work: Path, stim: dict[str, Path]) 
         (out / "info.txt").write_text(f"TOP={top} MODES={','.join(map(str, modes))} "
                                       f"LANES={','.join(str(lanes(design, m)) for m in modes)} NVEC={NVEC} "
                                       f"PERIOD_NS={PERIOD[corner]} SEED={SEED}"
-                                      + "".join(f" {n}={v}" for n, v in hold.items()) + "\n")
+                                      + "".join(f" {n}={v}" for n, v in hold.items())
+                                      + tcq.replace(" +TCQ=", " INPUT_CLK_Q_NS=") + "\n")
     return f"{design} {corner} ok modes={modes} functions={list(funcs)} license={'yes' if lic else 'NO'}"
 
 

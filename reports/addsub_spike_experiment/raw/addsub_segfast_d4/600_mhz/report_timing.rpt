@@ -1,0 +1,73 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_spike_ARCH0_FLAT1_OP_REG1_EN321_EN161_EN80
+Version: Y-2026.03-SP1
+Date   : Tue Oct 27 21:29:26 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: sub_reg[0] (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: out_data[57]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_spike_ARCH0_FLAT1_OP_REG1_EN321_EN161_EN80
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  sub_reg[0]/CK (SAEDRVT14_FDP_V2_4)       0.00       0.00 r
+  sub_reg[0]/Q (SAEDRVT14_FDP_V2_4)        0.08       0.08 r
+  U202/X (SAEDRVT14_EO2_0P5)               0.06       0.14 r
+  U570/CO (SAEDRVT14_ADDF_V1_1)            0.05       0.19 r
+  U93/CO (SAEDRVT14_ADDF_V1_1)             0.04       0.23 r
+  U569/CO (SAEDRVT14_ADDF_V1_1)            0.04       0.27 r
+  U91/CO (SAEDRVT14_ADDF_V1_1)             0.04       0.31 r
+  U568/CO (SAEDRVT14_ADDF_V1_1)            0.04       0.35 r
+  U567/CO (SAEDRVT14_ADDF_V1_1)            0.04       0.39 r
+  U566/CO (SAEDRVT14_ADDF_V1_1)            0.04       0.43 r
+  U565/CO (SAEDRVT14_ADDF_V1_1)            0.04       0.47 r
+  U564/CO (SAEDRVT14_ADDF_V1_1)            0.04       0.52 r
+  U563/CO (SAEDRVT14_ADDF_V1_1)            0.04       0.56 r
+  U562/CO (SAEDRVT14_ADDF_V1_1)            0.04       0.60 r
+  U561/CO (SAEDRVT14_ADDF_V1_1)            0.04       0.64 r
+  U560/CO (SAEDRVT14_ADDF_V1_1)            0.04       0.68 r
+  U559/CO (SAEDRVT14_ADDF_V1_1)            0.04       0.72 r
+  U558/CO (SAEDRVT14_ADDF_V1_1)            0.04       0.76 r
+  U94/CO (SAEDRVT14_ADDF_V1_1)             0.04       0.80 r
+  U253/X (SAEDRVT14_MUX2_1P5)              0.11       0.92 r
+  U314/X (SAEDRVT14_AO21_1)                0.18       1.10 r
+  U284/X (SAEDRVT14_AO21_1)                0.06       1.15 r
+  U285/X (SAEDRVT14_MUX2_2)                0.09       1.24 r
+  U354/X (SAEDRVT14_AO21_4)                0.08       1.32 r
+  U421/X (SAEDRVT14_AO21_1)                0.04       1.36 r
+  U422/X (SAEDRVT14_MUX2_MM_4)             0.06       1.42 r
+  U97/X (SAEDRVT14_AO21_2)                 0.10       1.52 r
+  U557/X (SAEDRVT14_AOI21_0P5)             0.06       1.58 f
+  U87/X (SAEDRVT14_EO2_0P5)                0.05       1.64 r
+  out_data[57] (out)                       0.00       1.64 r
+  data arrival time                                   1.64
+
+  clock clk (rise edge)                    1.67       1.67
+  clock network delay (ideal)              0.00       1.67
+  output external delay                    0.00       1.67
+  data required time                                  1.67
+  -----------------------------------------------------------
+  data required time                                  1.67
+  data arrival time                                  -1.64
+  -----------------------------------------------------------
+  slack (MET)                                         0.03
+
+
+1

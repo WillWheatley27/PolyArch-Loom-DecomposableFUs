@@ -1,14 +1,18 @@
 // Self-checking TB for the AddSub spike variants (rtl/fu_add_sub_spike.sv): every ARCH x FLAT
 // combination as tiers d2, d4 and d8 (ARCH 2: d2 and d4), each checked in every mode its tier
-// supports; the REP_OP variants (op_sel replicated per block) for every ARCH; and the 32x2 probe
-// on each adder primitive, against the 2x32 golden.
+// supports; the REP_OP variants (op_sel replicated per block) for every ARCH; the OP_REG variants
+// (the per-block copy made and registered in the FU: mode and op_sel are clocked in one edge ahead of
+// the operands) for ARCH 0, 1 and 3; and the 32x2 probe on each adder primitive, against the 2x32
+// golden.
 module tb;
   logic [1:0]  mode;
   logic [7:0]  op_sel;
   logic [63:0] a, b;
   logic [63:0] y [4][2][3];   // [ARCH][FLAT][tier]
   logic [63:0] yr [4][3];     // REP_OP: [ARCH][tier]
+  logic [63:0] yq [4][3];     // OP_REG: [ARCH][tier] (ARCH 2 not built)
   logic [7:0]  op_rep;        // each block gets its lane's op (the lane-start bit of op_sel)
+  logic        clk = 1'b0;
 
   for (genvar arch = 0; arch < 4; arch++) begin : g_arch
     for (genvar flat = 0; flat < 2; flat++) begin : g_flat
@@ -32,6 +36,18 @@ module tb;
     end
   end
 
+  for (genvar arch = 0; arch < 4; arch++) begin : g_reg
+    if (arch != 2) begin : built
+      for (genvar t = 0; t < 3; t++) begin : g_tier
+        fu_add_sub_spike #(.ARCH(arch), .FLAT(1), .OP_REG(1), .EN32(1), .EN16(t >= 1), .EN8(t >= 2)) dut (
+          .clk(clk), .rst_n(1'b1), .mode(mode), .op_sel(op_sel),
+          .in_data_0(a), .in_valid_0(1'b1), .in_ready_0(),
+          .in_data_1(b), .in_valid_1(1'b1), .in_ready_1(),
+          .out_data(yq[arch][t]), .out_valid(), .out_ready(1'b1));
+      end
+    end
+  end
+
   logic [63:0] yp [5];       // probe32x2: [PRIM]
   for (genvar p = 0; p < 5; p++) begin : g_probe
     fu_add_sub_spike_probe32x2 #(.PRIM(p)) dut (
@@ -48,7 +64,8 @@ module tb;
     logic [63:0] g;
     a = av; b = bv; mode = m; op_sel = op;
     for (int i = 0; i < 8; i++) op_rep[i] = op[m == 2'b01 ? i & 4 : m == 2'b10 ? i & 6 : m == 2'b11 ? i : 0];
-    #1;
+    #1 clk = 1'b1;   // OP_REG: this operation's controls are clocked in
+    #1 clk = 1'b0;
     g = gold(m, op, av, bv);
     for (int p = 0; p < 5; p++)
       if (yp[p] !== gold(2'b01, op, av, bv)) begin
@@ -63,6 +80,11 @@ module tb;
           if (y[arch][flat][t] !== g) begin
             $display("FAIL arch=%0d flat=%0d d%0d m=%b op=%h a=%h b=%h got %h exp %h",
                      arch, flat, 2 << t, m, op, av, bv, y[arch][flat][t], g);
+            errors++;
+          end
+          if (flat == 0 && arch != 2 && yq[arch][t] !== g) begin
+            $display("FAIL arch=%0d op_reg d%0d m=%b op=%h a=%h b=%h got %h exp %h",
+                     arch, 2 << t, m, op, av, bv, yq[arch][t], g);
             errors++;
           end
           if (flat == 0 && yr[arch][t] !== g) begin
@@ -98,7 +120,7 @@ module tb;
       chk(xa[1:0], xb[7:0], xa, xb);
     end
 
-    if (errors == 0) $display("PASS all (spike ARCH x FLAT, REP_OP and probe32x2 == golden)");
+    if (errors == 0) $display("PASS all (spike ARCH x FLAT, REP_OP, OP_REG and probe32x2 == golden)");
     else $display("TOTAL FAILURES: %0d", errors);
     $finish;
   end

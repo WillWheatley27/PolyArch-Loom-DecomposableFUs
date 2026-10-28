@@ -1,0 +1,91 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_spike_ARCH3_FLAT1_OP_REG1_EN321_EN161_EN81
+Version: Y-2026.03-SP1
+Date   : Tue Oct 27 21:40:23 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: sub_reg[0] (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: out_data[48]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_spike_ARCH3_FLAT1_OP_REG1_EN321_EN161_EN81
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  sub_reg[0]/CK (SAEDRVT14_FDP_V2_4)                      0.00       0.00 r
+  sub_reg[0]/Q (SAEDRVT14_FDP_V2_4)                       0.08       0.08 f
+  U254/X (SAEDRVT14_MUXI2_U_0P5)                          0.08       0.15 r
+  carry_select16.seg[0].a0/be[0] (fu_add_sub_spike_seg_2_3_3)
+                                                          0.00       0.15 r
+  carry_select16.seg[0].a0/intadd_0/U9/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.06       0.21 r
+  carry_select16.seg[0].a0/intadd_0/U8/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.25 r
+  carry_select16.seg[0].a0/intadd_0/U7/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.29 r
+  carry_select16.seg[0].a0/intadd_0/U6/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.33 r
+  carry_select16.seg[0].a0/intadd_0/U5/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.38 r
+  carry_select16.seg[0].a0/intadd_0/U4/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.42 r
+  carry_select16.seg[0].a0/intadd_0/U3/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.46 r
+  carry_select16.seg[0].a0/intadd_0/U2/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.50 r
+  carry_select16.seg[0].a0/U3/X (SAEDRVT14_MUX2_MM_0P5)
+                                                          0.05       0.55 r
+  carry_select16.seg[0].a0/intadd_1/U9/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.05       0.59 r
+  carry_select16.seg[0].a0/intadd_1/U8/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.64 r
+  carry_select16.seg[0].a0/intadd_1/U7/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.68 r
+  carry_select16.seg[0].a0/intadd_1/U6/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.72 r
+  carry_select16.seg[0].a0/intadd_1/U5/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.76 r
+  carry_select16.seg[0].a0/intadd_1/U4/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.80 r
+  carry_select16.seg[0].a0/intadd_1/U3/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.85 r
+  carry_select16.seg[0].a0/intadd_1/U2/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       0.89 r
+  carry_select16.seg[0].a0/co (fu_add_sub_spike_seg_2_3_3)
+                                                          0.00       0.89 r
+  U258/X (SAEDRVT14_ND2_1)                                0.43       1.32 f
+  U249/X (SAEDRVT14_INV_0P75)                             0.12       1.44 r
+  U321/X (SAEDRVT14_OA221_U_0P5)                          0.09       1.53 r
+  U322/X (SAEDRVT14_INV_S_1)                              0.06       1.59 f
+  U257/X (SAEDRVT14_OA221_1)                              0.53       2.12 f
+  U250/X (SAEDRVT14_MUX2_MM_0P5)                          0.10       2.21 f
+  out_data[48] (out)                                      0.00       2.21 f
+  data arrival time                                                  2.21
+
+  clock clk (rise edge)                                   2.22       2.22
+  clock network delay (ideal)                             0.00       2.22
+  output external delay                                   0.00       2.22
+  data required time                                                 2.22
+  --------------------------------------------------------------------------
+  data required time                                                 2.22
+  data arrival time                                                 -2.21
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.01
+
+
+1

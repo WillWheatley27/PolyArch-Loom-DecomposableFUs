@@ -125,3 +125,147 @@ addsub_dwcselrep_d4,"DesignWare carry-select 32, op replicated per block",tier,6
 addsub_dwcselrep_d4,"DesignWare carry-select 32, op replicated per block",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.249950,true,225.241201,0.094995,575,1
 addsub_dwcselrep_d4,"DesignWare carry-select 32, op replicated per block",tier,64/32x2/16x4,900_mhz,1.111,addsub_spike_experiment,1.110350,true,310.711204,0.107858,868,1
 addsub_dwcselrep_d4,"DesignWare carry-select 32, op replicated per block",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.998974,true,314.662803,0.110719,872,0
+addsub_segreg_d2,"segmented, op copied in the FU",tier,64/32x2,100_mhz,10.000,addsub_spike_experiment,4.903590,true,106.915196,0.039283,201,62
+addsub_segreg_d2,"segmented, op copied in the FU",tier,64/32x2,400_mhz,2.500,addsub_spike_experiment,2.499312,true,111.532801,0.049410,205,62
+addsub_segreg_d2,"segmented, op copied in the FU",tier,64/32x2,450_mhz,2.222,addsub_spike_experiment,2.221419,true,117.704402,0.057907,204,62
+addsub_segreg_d2,"segmented, op copied in the FU",tier,64/32x2,one_ghz,1.000,addsub_spike_experiment,0.996778,true,191.719202,0.077266,546,14
+addsub_segreg_d2,"segmented, op copied in the FU",tier,64/32x2,1p5_ghz,0.667,addsub_spike_experiment,0.666428,true,217.338001,0.096735,586,8
+addsub_segreg_d2,"segmented, op copied in the FU",tier,64/32x2,two_ghz,0.500,addsub_spike_experiment,0.499897,true,258.186000,0.134796,598,8
+addsub_segreg_d4,"segmented, op copied in the FU",tier,64/32x2/16x4,100_mhz,10.000,addsub_spike_experiment,3.516200,true,105.982796,0.039241,181,62
+addsub_segreg_d4,"segmented, op copied in the FU",tier,64/32x2/16x4,400_mhz,2.500,addsub_spike_experiment,2.498147,true,111.488401,0.050696,182,62
+addsub_segreg_d4,"segmented, op copied in the FU",tier,64/32x2/16x4,450_mhz,2.222,addsub_spike_experiment,2.216588,true,158.818800,0.058876,438,26
+addsub_segreg_d4,"segmented, op copied in the FU",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.998015,true,211.521601,0.085234,596,8
+addsub_segreg_d4,"segmented, op copied in the FU",tier,64/32x2/16x4,1p5_ghz,0.667,addsub_spike_experiment,0.665898,true,230.169600,0.101438,634,2
+addsub_segreg_d4,"segmented, op copied in the FU",tier,64/32x2/16x4,two_ghz,0.500,addsub_spike_experiment,0.499831,true,270.351600,0.139476,626,7
+addsub_segreg_d8,"segmented, op copied in the FU",tier,64/32x2/16x4/8x8,100_mhz,10.000,addsub_spike_experiment,3.497920,true,111.976796,0.040938,182,62
+addsub_segreg_d8,"segmented, op copied in the FU",tier,64/32x2/16x4/8x8,400_mhz,2.500,addsub_spike_experiment,2.499300,true,118.237201,0.053789,184,62
+addsub_segreg_d8,"segmented, op copied in the FU",tier,64/32x2/16x4/8x8,one_ghz,1.000,addsub_spike_experiment,0.998231,true,202.286402,0.076222,601,8
+addsub_segreg_d8,"segmented, op copied in the FU",tier,64/32x2/16x4/8x8,1p5_ghz,0.667,addsub_spike_experiment,0.666582,true,236.518800,0.104481,620,8
+addsub_segreg_d8,"segmented, op copied in the FU",tier,64/32x2/16x4/8x8,two_ghz,0.500,addsub_spike_experiment,0.499954,true,294.016800,0.147191,719,8
+addsub_cselreg_d2,"carry-select 32, op copied in the FU",tier,64/32x2,500_mhz,2.000,addsub_spike_experiment,1.999926,true,169.297195,0.067459,280,94
+addsub_cselreg_d2,"carry-select 32, op copied in the FU",tier,64/32x2,550_mhz,1.818,addsub_spike_experiment,1.818178,true,170.984395,0.069335,282,94
+addsub_cselreg_d2,"carry-select 32, op copied in the FU",tier,64/32x2,600_mhz,1.667,addsub_spike_experiment,1.665103,true,173.337596,0.075011,284,94
+addsub_cselreg_d2,"carry-select 32, op copied in the FU",tier,64/32x2,700_mhz,1.429,addsub_spike_experiment,1.428138,true,179.420400,0.087944,286,94
+addsub_cselreg_d2,"carry-select 32, op copied in the FU",tier,64/32x2,800_mhz,1.250,addsub_spike_experiment,1.249938,true,193.939202,0.102445,303,93
+addsub_cselreg_d4,"carry-select 32, op copied in the FU",tier,64/32x2/16x4,500_mhz,2.000,addsub_spike_experiment,1.999340,true,173.115594,0.066529,289,94
+addsub_cselreg_d4,"carry-select 32, op copied in the FU",tier,64/32x2/16x4,550_mhz,1.818,addsub_spike_experiment,1.815376,true,174.047995,0.068616,297,94
+addsub_cselreg_d4,"carry-select 32, op copied in the FU",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.665957,true,179.642394,0.075029,301,94
+addsub_cselreg_d4,"carry-select 32, op copied in the FU",tier,64/32x2/16x4,700_mhz,1.429,addsub_spike_experiment,1.427767,true,185.236802,0.089634,304,94
+addsub_cselreg_d4,"carry-select 32, op copied in the FU",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.249994,true,271.639202,0.135628,596,61
+addsub_cselreg_d8,"carry-select 32, op copied in the FU",tier,64/32x2/16x4/8x8,450_mhz,2.222,addsub_spike_experiment,2.215342,true,179.997594,0.066343,309,94
+addsub_cselreg_d8,"carry-select 32, op copied in the FU",tier,64/32x2/16x4/8x8,500_mhz,2.000,addsub_spike_experiment,1.976683,true,181.151994,0.066416,313,94
+addsub_cselreg_d8,"carry-select 32, op copied in the FU",tier,64/32x2/16x4/8x8,550_mhz,1.818,addsub_spike_experiment,1.817866,true,183.682794,0.071244,312,94
+addsub_cselreg_d8,"carry-select 32, op copied in the FU",tier,64/32x2/16x4/8x8,600_mhz,1.667,addsub_spike_experiment,1.666078,true,190.253995,0.076737,321,94
+addsub_cselreg_d8,"carry-select 32, op copied in the FU",tier,64/32x2/16x4/8x8,700_mhz,1.429,addsub_spike_experiment,1.428262,true,196.425601,0.092498,318,94
+addsub_csel16reg_d2,"carry-select 16, op copied in the FU",tier,64/32x2,900_mhz,1.111,addsub_spike_experiment,1.111103,true,190.742394,0.083371,294,106
+addsub_csel16reg_d4,"carry-select 16, op copied in the FU",tier,64/32x2/16x4,900_mhz,1.111,addsub_spike_experiment,1.110745,true,219.202794,0.093149,375,110
+addsub_csel16reg_d8,"carry-select 16, op copied in the FU",tier,64/32x2/16x4/8x8,800_mhz,1.250,addsub_spike_experiment,1.246018,true,218.314793,0.086202,373,110
+addsub_csel16reg_d8,"carry-select 16, op copied in the FU",tier,64/32x2/16x4/8x8,900_mhz,1.111,addsub_spike_experiment,1.111098,true,224.663994,0.094424,382,110
+addsub_segfast_d2,"segmented, op copied in the FU, fast op registers",tier,64/32x2,100_mhz,10.000,addsub_spike_experiment,2.949510,true,112.731596,0.041847,206,62
+addsub_segfast_d2,"segmented, op copied in the FU, fast op registers",tier,64/32x2,400_mhz,2.500,addsub_spike_experiment,2.499644,true,117.038400,0.051467,208,62
+addsub_segfast_d2,"segmented, op copied in the FU, fast op registers",tier,64/32x2,450_mhz,2.222,addsub_spike_experiment,2.222160,true,119.658001,0.055087,211,62
+addsub_segfast_d2,"segmented, op copied in the FU, fast op registers",tier,64/32x2,500_mhz,2.000,addsub_spike_experiment,1.964611,true,156.776400,0.058870,417,28
+addsub_segfast_d2,"segmented, op copied in the FU, fast op registers",tier,64/32x2,550_mhz,1.818,addsub_spike_experiment,1.812800,true,163.347601,0.064636,443,24
+addsub_segfast_d2,"segmented, op copied in the FU, fast op registers",tier,64/32x2,600_mhz,1.667,addsub_spike_experiment,1.662422,true,167.210401,0.066358,460,22
+addsub_segfast_d2,"segmented, op copied in the FU, fast op registers",tier,64/32x2,700_mhz,1.429,addsub_spike_experiment,1.427353,true,171.606001,0.063676,506,16
+addsub_segfast_d2,"segmented, op copied in the FU, fast op registers",tier,64/32x2,800_mhz,1.250,addsub_spike_experiment,1.249999,true,177.200402,0.069545,508,17
+addsub_segfast_d2,"segmented, op copied in the FU, fast op registers",tier,64/32x2,900_mhz,1.111,addsub_spike_experiment,1.111008,true,184.704001,0.066792,571,8
+addsub_segfast_d2,"segmented, op copied in the FU, fast op registers",tier,64/32x2,one_ghz,1.000,addsub_spike_experiment,0.999631,true,192.784801,0.073938,575,8
+addsub_segfast_d2,"segmented, op copied in the FU, fast op registers",tier,64/32x2,1p5_ghz,0.667,addsub_spike_experiment,0.666667,true,229.814401,0.101750,585,8
+addsub_segfast_d2,"segmented, op copied in the FU, fast op registers",tier,64/32x2,two_ghz,0.500,addsub_spike_experiment,0.499912,true,261.382801,0.132073,614,6
+addsub_segfast_d4,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4,100_mhz,10.000,addsub_spike_experiment,3.049570,true,110.511596,0.041409,186,62
+addsub_segfast_d4,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4,400_mhz,2.500,addsub_spike_experiment,2.494934,true,114.108001,0.050405,188,62
+addsub_segfast_d4,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4,450_mhz,2.222,addsub_spike_experiment,2.221259,true,162.681600,0.059170,442,26
+addsub_segfast_d4,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4,500_mhz,2.000,addsub_spike_experiment,1.999965,true,163.303200,0.060685,451,24
+addsub_segfast_d4,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4,550_mhz,1.818,addsub_spike_experiment,1.815249,true,170.762401,0.061664,504,17
+addsub_segfast_d4,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.636979,true,172.671601,0.061379,510,16
+addsub_segfast_d4,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4,700_mhz,1.429,addsub_spike_experiment,1.426898,true,176.312401,0.064627,518,16
+addsub_segfast_d4,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.247658,true,178.843201,0.064832,538,14
+addsub_segfast_d4,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4,900_mhz,1.111,addsub_spike_experiment,1.110273,true,199.977602,0.074565,596,8
+addsub_segfast_d4,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.999638,true,201.798002,0.077759,585,8
+addsub_segfast_d4,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4,1p5_ghz,0.667,addsub_spike_experiment,0.666301,true,220.934400,0.092795,599,8
+addsub_segfast_d4,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4,two_ghz,0.500,addsub_spike_experiment,0.499864,true,263.824800,0.129295,626,7
+addsub_segfast_d8,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,100_mhz,10.000,addsub_spike_experiment,3.239580,true,113.175596,0.042539,183,62
+addsub_segfast_d8,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,400_mhz,2.500,addsub_spike_experiment,2.498535,true,120.368401,0.055702,186,62
+addsub_segfast_d8,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,450_mhz,2.222,addsub_spike_experiment,2.221272,true,170.540400,0.062706,487,20
+addsub_segfast_d8,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,500_mhz,2.000,addsub_spike_experiment,1.956313,true,176.001600,0.060609,523,16
+addsub_segfast_d8,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,550_mhz,1.818,addsub_spike_experiment,1.812115,true,177.244800,0.061173,527,16
+addsub_segfast_d8,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,600_mhz,1.667,addsub_spike_experiment,1.658844,true,181.107601,0.062647,544,14
+addsub_segfast_d8,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,700_mhz,1.429,addsub_spike_experiment,1.427608,true,191.142001,0.066971,590,8
+addsub_segfast_d8,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,800_mhz,1.250,addsub_spike_experiment,1.249957,true,207.303601,0.078246,606,8
+addsub_segfast_d8,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,900_mhz,1.111,addsub_spike_experiment,1.110846,true,210.322802,0.081050,601,8
+addsub_segfast_d8,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,one_ghz,1.000,addsub_spike_experiment,0.998688,true,201.531602,0.074727,603,8
+addsub_segfast_d8,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,1p5_ghz,0.667,addsub_spike_experiment,0.666385,true,235.852800,0.103777,620,8
+addsub_segfast_d8,"segmented, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,two_ghz,0.500,addsub_spike_experiment,0.499999,true,291.663600,0.145036,712,8
+addsub_cselfast_d2,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2,100_mhz,10.000,addsub_spike_experiment,3.680160,true,170.051993,0.064508,278,94
+addsub_cselfast_d2,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2,400_mhz,2.500,addsub_spike_experiment,2.385422,true,170.806793,0.065450,279,94
+addsub_cselfast_d2,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2,450_mhz,2.222,addsub_spike_experiment,2.202304,true,170.762393,0.065592,278,94
+addsub_cselfast_d2,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2,500_mhz,2.000,addsub_spike_experiment,1.998431,true,171.961193,0.067061,279,94
+addsub_cselfast_d2,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2,550_mhz,1.818,addsub_spike_experiment,1.818134,true,173.781595,0.071907,281,94
+addsub_cselfast_d2,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2,600_mhz,1.667,addsub_spike_experiment,1.666095,true,174.269997,0.072810,281,94
+addsub_cselfast_d2,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2,700_mhz,1.429,addsub_spike_experiment,1.427537,true,183.372000,0.088574,286,94
+addsub_cselfast_d2,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2,800_mhz,1.250,addsub_spike_experiment,1.249735,true,192.696000,0.100333,289,94
+addsub_cselfast_d2,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2,900_mhz,1.111,addsub_spike_experiment,1.110987,true,306.271201,0.119226,885,2
+addsub_cselfast_d2,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2,one_ghz,1.000,addsub_spike_experiment,0.999856,true,312.265200,0.122620,903,0
+addsub_cselfast_d2,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2,1p5_ghz,0.667,addsub_spike_experiment,0.666657,true,375.091199,0.162122,1005,0
+addsub_cselfast_d2,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2,two_ghz,0.500,addsub_spike_experiment,0.499992,true,423.487198,0.200280,1032,0
+addsub_cselfast_d4,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4,100_mhz,10.000,addsub_spike_experiment,4.166090,true,174.447593,0.064974,293,94
+addsub_cselfast_d4,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4,400_mhz,2.500,addsub_spike_experiment,2.490950,true,175.113593,0.066405,293,94
+addsub_cselfast_d4,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4,450_mhz,2.222,addsub_spike_experiment,2.221537,true,176.978393,0.066899,299,94
+addsub_cselfast_d4,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4,500_mhz,2.000,addsub_spike_experiment,1.997716,true,176.445593,0.068303,293,94
+addsub_cselfast_d4,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4,550_mhz,1.818,addsub_spike_experiment,1.818005,true,177.511194,0.069248,296,94
+addsub_cselfast_d4,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.666630,true,179.597995,0.075455,296,94
+addsub_cselfast_d4,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4,700_mhz,1.429,addsub_spike_experiment,1.427599,true,189.810001,0.091743,303,94
+addsub_cselfast_d4,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.249449,true,200.066400,0.104810,303,94
+addsub_cselfast_d4,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4,900_mhz,1.111,addsub_spike_experiment,1.111099,true,314.041201,0.121906,897,3
+addsub_cselfast_d4,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.999972,true,323.853600,0.127392,921,0
+addsub_cselfast_d4,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4,1p5_ghz,0.667,addsub_spike_experiment,0.666649,true,359.684400,0.147225,1010,0
+addsub_cselfast_d4,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4,two_ghz,0.500,addsub_spike_experiment,0.499975,true,419.091598,0.189873,1065,0
+addsub_cselfast_d8,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,100_mhz,10.000,addsub_spike_experiment,3.436770,true,180.130793,0.066120,308,94
+addsub_cselfast_d8,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,400_mhz,2.500,addsub_spike_experiment,2.491689,true,181.951194,0.067416,313,94
+addsub_cselfast_d8,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,450_mhz,2.222,addsub_spike_experiment,2.188770,true,181.240794,0.067960,309,94
+addsub_cselfast_d8,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,500_mhz,2.000,addsub_spike_experiment,1.999990,true,182.217593,0.067715,313,94
+addsub_cselfast_d8,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,550_mhz,1.818,addsub_spike_experiment,1.818037,true,183.993594,0.071943,311,94
+addsub_cselfast_d8,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,600_mhz,1.667,addsub_spike_experiment,1.666550,true,190.564794,0.077477,319,94
+addsub_cselfast_d8,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,700_mhz,1.429,addsub_spike_experiment,1.428514,true,198.601200,0.093919,319,94
+addsub_cselfast_d8,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,800_mhz,1.250,addsub_spike_experiment,1.249991,true,277.944001,0.113114,717,33
+addsub_cselfast_d8,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,900_mhz,1.111,addsub_spike_experiment,1.111027,true,318.259200,0.119322,949,2
+addsub_cselfast_d8,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,one_ghz,1.000,addsub_spike_experiment,0.999996,true,322.832400,0.123774,947,0
+addsub_cselfast_d8,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,1p5_ghz,0.667,addsub_spike_experiment,0.666628,true,378.110399,0.154462,1022,0
+addsub_cselfast_d8,"carry-select 32, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,two_ghz,0.500,addsub_spike_experiment,0.499976,true,414.695998,0.183846,1098,0
+addsub_csel16fast_d2,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2,100_mhz,10.000,addsub_spike_experiment,3.349530,true,182.261993,0.070262,280,106
+addsub_csel16fast_d2,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2,400_mhz,2.500,addsub_spike_experiment,2.431780,true,183.949193,0.071539,282,106
+addsub_csel16fast_d2,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2,450_mhz,2.222,addsub_spike_experiment,2.201243,true,184.437593,0.071758,283,106
+addsub_csel16fast_d2,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2,500_mhz,2.000,addsub_spike_experiment,1.969024,true,184.481993,0.071874,283,106
+addsub_csel16fast_d2,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2,550_mhz,1.818,addsub_spike_experiment,1.815662,true,184.037993,0.072435,282,106
+addsub_csel16fast_d2,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2,600_mhz,1.667,addsub_spike_experiment,1.664440,true,184.437593,0.073108,281,106
+addsub_csel16fast_d2,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2,700_mhz,1.429,addsub_spike_experiment,1.425008,true,186.346794,0.075519,283,106
+addsub_csel16fast_d2,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2,800_mhz,1.250,addsub_spike_experiment,1.247065,true,187.456793,0.076805,285,106
+addsub_csel16fast_d2,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2,900_mhz,1.111,addsub_spike_experiment,1.111064,true,192.607194,0.083238,287,106
+addsub_csel16fast_d2,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2,one_ghz,1.000,addsub_spike_experiment,0.999777,true,197.180395,0.091055,292,106
+addsub_csel16fast_d2,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2,1p5_ghz,0.667,addsub_spike_experiment,0.666624,true,354.667201,0.145833,1025,2
+addsub_csel16fast_d2,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2,two_ghz,0.500,addsub_spike_experiment,0.499950,true,400.976399,0.178301,1091,0
+addsub_csel16fast_d4,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4,100_mhz,10.000,addsub_spike_experiment,3.719490,true,208.191592,0.077350,359,110
+addsub_csel16fast_d4,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4,400_mhz,2.500,addsub_spike_experiment,2.490811,true,209.390392,0.079131,360,110
+addsub_csel16fast_d4,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4,450_mhz,2.222,addsub_spike_experiment,2.217305,true,209.523592,0.079498,360,110
+addsub_csel16fast_d4,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4,500_mhz,2.000,addsub_spike_experiment,1.993698,true,208.901992,0.079567,357,110
+addsub_csel16fast_d4,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4,550_mhz,1.818,addsub_spike_experiment,1.812935,true,209.390392,0.079676,359,110
+addsub_csel16fast_d4,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.663304,true,211.610392,0.082897,362,110
+addsub_csel16fast_d4,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4,700_mhz,1.429,addsub_spike_experiment,1.428536,true,214.762792,0.086788,363,110
+addsub_csel16fast_d4,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.248023,true,215.162393,0.087345,365,110
+addsub_csel16fast_d4,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4,900_mhz,1.111,addsub_spike_experiment,1.111107,true,219.069594,0.093264,365,110
+addsub_csel16fast_d4,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.999971,true,222.887995,0.098401,371,110
+addsub_csel16fast_d4,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4,1p5_ghz,0.667,addsub_spike_experiment,0.666637,true,390.276000,0.164020,1100,4
+addsub_csel16fast_d4,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4,two_ghz,0.500,addsub_spike_experiment,0.499986,true,428.903999,0.188376,1167,0
+addsub_csel16fast_d8,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,100_mhz,10.000,addsub_spike_experiment,3.581310,true,213.386392,0.079150,373,110
+addsub_csel16fast_d8,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,400_mhz,2.500,addsub_spike_experiment,2.486694,true,214.363192,0.079980,373,110
+addsub_csel16fast_d8,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,450_mhz,2.222,addsub_spike_experiment,2.211576,true,214.762792,0.080075,374,110
+addsub_csel16fast_d8,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,500_mhz,2.000,addsub_spike_experiment,1.995308,true,215.828392,0.081540,375,110
+addsub_csel16fast_d8,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,550_mhz,1.818,addsub_spike_experiment,1.808534,true,215.162392,0.080519,376,110
+addsub_csel16fast_d8,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,600_mhz,1.667,addsub_spike_experiment,1.664816,true,216.538792,0.082817,375,110
+addsub_csel16fast_d8,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,700_mhz,1.429,addsub_spike_experiment,1.427500,true,219.691193,0.086467,377,110
+addsub_csel16fast_d8,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,800_mhz,1.250,addsub_spike_experiment,1.249062,true,220.712393,0.088972,374,110
+addsub_csel16fast_d8,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,900_mhz,1.111,addsub_spike_experiment,1.110487,true,225.551993,0.094826,380,110
+addsub_csel16fast_d8,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,one_ghz,1.000,addsub_spike_experiment,0.999997,true,230.480397,0.103343,387,110
+addsub_csel16fast_d8,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,1p5_ghz,0.667,addsub_spike_experiment,0.666612,true,391.119599,0.163208,1116,2
+addsub_csel16fast_d8,"carry-select 16, op copied in the FU, fast op registers",tier,64/32x2/16x4/8x8,two_ghz,0.500,addsub_spike_experiment,0.499894,true,465.311998,0.212066,1187,0

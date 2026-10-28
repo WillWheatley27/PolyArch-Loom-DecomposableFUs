@@ -61,6 +61,14 @@ DESIGNS = {
     "addsub_csel16rep_d2": ("addsub", "tier", "64/32x2"), "addsub_csel16rep_d4": ("addsub", "tier", "64/32x2/16x4"),
     "addsub_csel16rep_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
     "addsub_dwcselrep_d2": ("addsub", "tier", "64/32x2"), "addsub_dwcselrep_d4": ("addsub", "tier", "64/32x2/16x4"),
+    # the per-block op copy made and registered in the FU (OP_REG = 1)
+    "addsub_segreg_d2": ("addsub", "tier", "64/32x2"), "addsub_segreg_d4": ("addsub", "tier", "64/32x2/16x4"), "addsub_segreg_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "addsub_cselreg_d2": ("addsub", "tier", "64/32x2"), "addsub_cselreg_d4": ("addsub", "tier", "64/32x2/16x4"), "addsub_cselreg_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "addsub_csel16reg_d2": ("addsub", "tier", "64/32x2"), "addsub_csel16reg_d4": ("addsub", "tier", "64/32x2/16x4"), "addsub_csel16reg_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    # the same with the op registers kept per block and sized to their strongest flop (FAST_OP_REGS=1)
+    "addsub_segfast_d2": ("addsub", "tier", "64/32x2"), "addsub_segfast_d4": ("addsub", "tier", "64/32x2/16x4"), "addsub_segfast_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "addsub_cselfast_d2": ("addsub", "tier", "64/32x2"), "addsub_cselfast_d4": ("addsub", "tier", "64/32x2/16x4"), "addsub_cselfast_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "addsub_csel16fast_d2": ("addsub", "tier", "64/32x2"), "addsub_csel16fast_d4": ("addsub", "tier", "64/32x2/16x4"), "addsub_csel16fast_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
     # the bank's 32x2 function on different adder primitives (fu_add_sub_spike_probe32x2 PRIM 0-4)
     "addsub_probe0_32x2": ("addsub", "fixed", "32x2"),
     "addsub_probe1_32x2": ("addsub", "fixed", "32x2"),

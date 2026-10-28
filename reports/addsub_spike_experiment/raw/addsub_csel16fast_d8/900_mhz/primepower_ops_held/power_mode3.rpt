@@ -1,0 +1,32 @@
+****************************************
+Report : Averaged Power
+Design : fu_add_sub_spike_ARCH3_FLAT1_OP_REG1_EN321_EN161_EN81
+Version: Y-2026.03-SP1
+Date   : Wed Oct 28 13:20:14 2026
+****************************************
+
+
+
+  Attributes
+  ----------
+      i  -  Including register clock pin internal power
+      u  -  User defined power group
+
+                        Internal  Switching  Leakage    Total
+Power Group             Power     Power      Power      Power   (     %)  Attrs
+--------------------------------------------------------------------------------
+clock_network           2.010e-05    0.0000    0.0000 2.010e-05 ( 3.75%)  i
+register                   0.0000    0.0000 8.848e-09 8.848e-09 ( 0.00%)  
+combinational           1.388e-04 3.765e-04 8.538e-08 5.155e-04 (96.25%)  
+sequential                 0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+memory                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+io_pad                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+black_box                  0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+
+  Net Switching Power  = 3.765e-04   (70.31%)
+  Cell Internal Power  = 1.589e-04   (29.68%)
+  Cell Leakage Power   = 9.423e-08   ( 0.02%)
+                         ---------
+Total Power            = 5.356e-04  (100.00%)
+
+1
