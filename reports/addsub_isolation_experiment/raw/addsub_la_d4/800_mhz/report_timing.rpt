@@ -1,0 +1,95 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_pd4
+Version: Y-2026.03-SP1
+Date   : Fri Oct 16 14:02:56 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: mode[0] (input port)
+  Endpoint: out_data[63]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_pd4     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  mode[0] (in)                                            0.00       0.00 f
+  u/mode[0] (fu_add_sub_prefix_EN321_EN161_EN80)          0.00       0.00 f
+  u/core/mode[0] (fu_add_sub_prefix_core_1_1_0)           0.00       0.00 f
+  u/core/U75/X (SAEDRVT14_INV_S_2)                        0.02       0.02 r
+  u/core/U76/X (SAEDRVT14_ND2_5)                          0.05       0.07 f
+  u/core/U78/X (SAEDRVT14_OAI21_V1_4)                     0.05       0.12 r
+  u/core/U79/X (SAEDRVT14_ND2_CDC_2)                      0.04       0.16 f
+  u/core/U80/X (SAEDRVT14_OAI21_3)                        0.03       0.19 r
+  u/core/U81/X (SAEDRVT14_BUF_16)                         0.06       0.25 r
+  u/core/U82/X (SAEDRVT14_OAI22_3)                        0.03       0.28 f
+  u/core/U83/X (SAEDRVT14_BUF_10)                         0.06       0.34 f
+  u/core/U35/X (SAEDRVT14_INV_S_9)                        0.08       0.42 r
+  u/core/U12/X (SAEDRVT14_MUXI2_U_0P5)                    0.11       0.53 f
+  u/core/U121/X (SAEDRVT14_AN2_MM_1)                      0.07       0.60 f
+  u/core/U122/X (SAEDRVT14_OA21B_1)                       0.15       0.75 r
+  u/core/level[0].node[53].combine.dot/p_lo (fu_add_sub_prefix_dot_165)
+                                                          0.00       0.75 r
+  u/core/level[0].node[53].combine.dot/U2/X (SAEDRVT14_AN2_MM_2)
+                                                          0.07       0.83 r
+  u/core/level[0].node[53].combine.dot/p (fu_add_sub_prefix_dot_165)
+                                                          0.00       0.83 r
+  u/core/level[1].node[55].combine.dot/p_lo (fu_add_sub_prefix_dot_132)
+                                                          0.00       0.83 r
+  u/core/level[1].node[55].combine.dot/U2/X (SAEDRVT14_AN2_MM_2)
+                                                          0.04       0.86 r
+  u/core/level[1].node[55].combine.dot/p (fu_add_sub_prefix_dot_132)
+                                                          0.00       0.86 r
+  u/core/level[2].node[55].combine.dot/p_hi (fu_add_sub_prefix_dot_100)
+                                                          0.00       0.86 r
+  u/core/level[2].node[55].combine.dot/U1/X (SAEDRVT14_AN2_MM_1)
+                                                          0.21       1.08 r
+  u/core/level[2].node[55].combine.dot/p (fu_add_sub_prefix_dot_100)
+                                                          0.00       1.08 r
+  u/core/level[3].node[63].combine.dot/p_lo (fu_add_sub_prefix_dot_64)
+                                                          0.00       1.08 r
+  u/core/level[3].node[63].combine.dot/U2/X (SAEDRVT14_AN2_MM_2)
+                                                          0.06       1.14 r
+  u/core/level[3].node[63].combine.dot/p (fu_add_sub_prefix_dot_64)
+                                                          0.00       1.14 r
+  u/core/level[4].node[63].combine.dot/p_hi (fu_add_sub_prefix_dot_32)
+                                                          0.00       1.14 r
+  u/core/level[4].node[63].combine.dot/U2/X (SAEDRVT14_AN2_MM_1)
+                                                          0.03       1.17 r
+  u/core/level[4].node[63].combine.dot/p (fu_add_sub_prefix_dot_32)
+                                                          0.00       1.17 r
+  u/core/level[5].node[63].combine.dot/p_hi (fu_add_sub_prefix_dot_0)
+                                                          0.00       1.17 r
+  u/core/level[5].node[63].combine.dot/U1/X (SAEDRVT14_AO21_1)
+                                                          0.03       1.20 r
+  u/core/level[5].node[63].combine.dot/g (fu_add_sub_prefix_dot_0)
+                                                          0.00       1.20 r
+  u/core/U64/X (SAEDRVT14_EN4_M_1)                        0.05       1.25 f
+  u/core/sum_out[63] (fu_add_sub_prefix_core_1_1_0)       0.00       1.25 f
+  u/out_data[63] (fu_add_sub_prefix_EN321_EN161_EN80)     0.00       1.25 f
+  out_data[63] (out)                                      0.00       1.25 f
+  data arrival time                                                  1.25
+
+  max_delay                                               1.25       1.25
+  output external delay                                   0.00       1.25
+  data required time                                                 1.25
+  --------------------------------------------------------------------------
+  data required time                                                 1.25
+  data arrival time                                                 -1.25
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

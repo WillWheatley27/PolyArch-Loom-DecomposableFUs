@@ -1,0 +1,60 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_d8
+Version: Y-2026.03-SP1
+Date   : Wed Oct 14 12:06:08 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: mode[0] (input port)
+  Endpoint: out_data[63]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_d8      8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  mode[0] (in)                                            0.00       0.00 f
+  core/mode[0] (fu_add_sub_dec_EN321_EN161_EN81)          0.00       0.00 f
+  core/segmented/mode[0] (fu_add_sub_segmented_1_1_1)     0.00       0.00 f
+  core/segmented/U204/X (SAEDRVT14_OR2_MM_2)              0.02       0.02 f
+  core/segmented/U205/X (SAEDRVT14_MUX2_MM_1)             0.25       0.28 r
+  core/segmented/U350/X (SAEDRVT14_MUX2_MM_0P5)           0.44       0.72 r
+  core/segmented/U38/X (SAEDRVT14_MUX2_MM_0P5)            0.41       1.13 r
+  core/segmented/U425/X (SAEDRVT14_EO2_1P5)               0.10       1.23 r
+  core/segmented/U4/X (SAEDRVT14_NR2_1P5)                 0.04       1.27 f
+  core/segmented/U440/X (SAEDRVT14_NR2_1)                 0.12       1.39 r
+  core/segmented/U459/X (SAEDRVT14_ND2_CDC_4)             0.04       1.43 f
+  core/segmented/U470/X (SAEDRVT14_NR2_MM_3)              0.03       1.46 r
+  core/segmented/U494/X (SAEDRVT14_ND2_CDC_1)             0.05       1.52 f
+  core/segmented/U497/X (SAEDRVT14_NR2_1)                 0.06       1.57 r
+  core/segmented/U502/X (SAEDRVT14_AOI21_1)               0.04       1.62 f
+  core/segmented/U503/X (SAEDRVT14_EO2_0P5)               0.05       1.67 r
+  core/segmented/sum_out[63] (fu_add_sub_segmented_1_1_1)
+                                                          0.00       1.67 r
+  core/out_data[63] (fu_add_sub_dec_EN321_EN161_EN81)     0.00       1.67 r
+  out_data[63] (out)                                      0.00       1.67 r
+  data arrival time                                                  1.67
+
+  max_delay                                               1.67       1.67
+  output external delay                                   0.00       1.67
+  data required time                                                 1.67
+  --------------------------------------------------------------------------
+  data required time                                                 1.67
+  data arrival time                                                 -1.67
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

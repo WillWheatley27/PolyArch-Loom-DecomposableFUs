@@ -1,0 +1,75 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_32x2
+Version: Y-2026.03-SP1
+Date   : Wed Oct 14 12:17:38 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: op_sel[1] (input port)
+  Endpoint: out_data[62]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_32x2    8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  op_sel[1] (in)                                          0.00       0.00 f
+  U95/X (SAEDRVT14_INV_4)                                 0.01       0.01 r
+  U119/X (SAEDRVT14_MUXI2_U_0P5)                          0.05       0.06 f
+  U280/CO (SAEDRVT14_ADDF_V2_2)                           0.04       0.10 f
+  U327/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.14 f
+  U113/CO (SAEDRVT14_ADDF_V1_2)                           0.04       0.17 f
+  U300/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.21 f
+  U286/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.24 f
+  U284/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.27 f
+  U287/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.31 f
+  U279/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.34 f
+  U299/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.37 f
+  U326/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.41 f
+  intadd_1/U21/CO (SAEDRVT14_ADDF_V1_2)                   0.03       0.44 f
+  U325/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.47 f
+  intadd_1/U19/CO (SAEDRVT14_ADDF_V1_2)                   0.03       0.51 f
+  U324/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.54 f
+  U323/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.58 f
+  U322/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.61 f
+  U321/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.64 f
+  U320/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.68 f
+  U319/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.71 f
+  U318/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.75 f
+  intadd_1/U11/CO (SAEDRVT14_ADDF_V1_2)                   0.03       0.78 f
+  U317/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.81 f
+  U316/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.85 f
+  U315/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.88 f
+  U314/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.91 f
+  U313/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.95 f
+  U302/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.98 f
+  U285/CO (SAEDRVT14_ADDF_V1_2)                           0.03       1.02 f
+  U301/CO (SAEDRVT14_ADDF_V1_2)                           0.03       1.05 f
+  U283/S (SAEDRVT14_ADDF_V1_2)                            0.05       1.10 r
+  U114/X (SAEDRVT14_INV_S_2)                              0.01       1.11 f
+  out_data[62] (out)                                      0.00       1.11 f
+  data arrival time                                                  1.11
+
+  max_delay                                               1.11       1.11
+  output external delay                                   0.00       1.11
+  data required time                                                 1.11
+  --------------------------------------------------------------------------
+  data required time                                                 1.11
+  data arrival time                                                 -1.11
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
