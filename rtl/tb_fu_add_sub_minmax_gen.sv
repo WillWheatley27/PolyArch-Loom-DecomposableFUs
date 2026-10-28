@@ -16,51 +16,15 @@ module tb;
 
   int errors = 0;
 
-  function automatic logic signed [63:0] sign_extend(input logic [63:0] value, input int width);
-    sign_extend = $signed(value << (64-width)) >>> (64-width);
-  endfunction
-
-  function automatic logic [63:0] gold(input logic mm, input logic sg,
-                                       input logic [1:0] m, input logic [7:0] op,
-                                       input logic [63:0] av, input logic [63:0] bv);
-    logic [63:0] r;
-    logic [63:0] al, bl, lmask;
-    logic signed [63:0] sal, sbl;
-    logic gt;
-    int nb, width;
-    begin
-      case (m)
-        2'b01: nb = 4;
-        2'b10: nb = 2;
-        2'b11: nb = 1;
-        default: nb = 8;
-      endcase
-      width = nb * 8;
-      lmask = (width == 64) ? '1 : ((64'd1 << width) - 1);
-      r = '0;
-      for (int lo = 0; lo < 8; lo += nb) begin
-        al = (av >> (lo*8)) & lmask;
-        bl = (bv >> (lo*8)) & lmask;
-        if (!mm) begin
-          r |= ((op[lo] ? al - bl : al + bl) & lmask) << (lo*8);
-        end else begin
-          sal = sign_extend(al, width);
-          sbl = sign_extend(bl, width);
-          gt = sg ? (sal > sbl) : (al > bl);
-          // min selects A on equality; max selects B on equality.
-          r |= ((op[lo] ? (gt ? al : bl) : (gt ? bl : al)) & lmask) << (lo*8);
-        end
-      end
-      gold = r;
-    end
-  endfunction
+  `include "add_sub_lane_gold.svh"
+  `include "min_max_lane_gold.svh"
 
   task automatic chk(input logic mm, input logic sg, input logic [1:0] m,
                      input logic [7:0] op, input logic [63:0] av, input logic [63:0] bv);
     logic [63:0] expected;
     begin
       a=av; b=bv; mode=m; is_min_max=mm; is_signed=sg; op_sel=op; #1;
-      expected = gold(mm, sg, m, op, av, bv);
+      expected = mm ? mm_gold(sg, m, op, av, bv) : gold(m, op, av, bv);
       if (y8 !== expected) begin $display("FAIL d8 mm=%b sg=%b m=%b op=%h a=%h b=%h got=%h exp=%h",mm,sg,m,op,av,bv,y8,expected); errors++; end
       if (m != 2'b11 && y4 !== expected) begin $display("FAIL d4"); errors++; end
       if ((m == 2'b00 || m == 2'b01) && y2 !== expected) begin $display("FAIL d2"); errors++; end

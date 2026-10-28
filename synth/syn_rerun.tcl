@@ -10,6 +10,13 @@
 # Optional: CLOSURE=1 retries a design that misses its target with the max-delay constraint
 # tightened to 90%, 80%, then 70% of the period, keeping the first result that meets the
 # real target (CLOSURE_FACTOR in result.txt; 1.0 = met on the first compile).
+# A design with registers (fu_add_sub_pipe) is also clocked at the target period, with clock gating.
+# Optional: STATIC_MODE=1 treats mode as a static configuration input (no timing paths from it).
+# Optional: RETIME=1 lets a registered design's registers move into its logic (compile_ultra -retime,
+# on the flattened design).
+# Optional: POWER_OPT=1 compiles power-driven: the inputs get the stimulus's activity (every input
+# but mode toggles with probability 0.5 per operation) before compile, with dynamic and total power
+# optimization on.
 set LIB_DIR /mnt/nas0/eda.libs/saed14/EDK_03_2025/SAED14nm_EDK_STD_RVT/liberty/nldm/base
 set LIB saed14rvt_base_tt0p8v25c.db
 set ROOT /edata1/will/Decomposable_FU
@@ -31,6 +38,100 @@ set jobs {
   {addsub_fix_32x2 rtl/standalone/fu_add_sub_32x2.sv fu_add_sub_32x2}
   {addsub_fix_16x4 rtl/standalone/fu_add_sub_16x4.sv fu_add_sub_16x4}
   {addsub_fix_8x8 rtl/standalone/fu_add_sub_8x8.sv fu_add_sub_8x8}
+  {addsub_la_d2 rtl/fu_add_sub_prefix.sv fu_add_sub_pd2}
+  {addsub_la_d4 rtl/fu_add_sub_prefix.sv fu_add_sub_pd4}
+  {addsub_la_d8 rtl/fu_add_sub_prefix.sv fu_add_sub_pd8}
+  {addsub_la_fix_64 rtl/fu_add_sub_prefix.sv fu_add_sub_p64}
+  {addsub_la_fix_32x2 rtl/fu_add_sub_prefix.sv fu_add_sub_p32x2}
+  {addsub_la_fix_16x4 rtl/fu_add_sub_prefix.sv fu_add_sub_p16x4}
+  {addsub_la_fix_8x8 rtl/fu_add_sub_prefix.sv fu_add_sub_p8x8}
+  {addsub_part_d2 rtl/fu_add_sub_window_fix.sv fu_add_sub_part {EN32=1,EN16=0,EN8=0}}
+  {addsub_part_d4 rtl/fu_add_sub_window_fix.sv fu_add_sub_part {EN32=1,EN16=1,EN8=0}}
+  {addsub_part_d8 rtl/fu_add_sub_window_fix.sv fu_add_sub_part {EN32=1,EN16=1,EN8=1}}
+  {addsub_blkinc_d2 rtl/fu_add_sub_window_fix.sv fu_add_sub_blkinc {EN32=1,EN16=0,EN8=0}}
+  {addsub_blkinc_d4 rtl/fu_add_sub_window_fix.sv fu_add_sub_blkinc {EN32=1,EN16=1,EN8=0}}
+  {addsub_blkinc_d8 rtl/fu_add_sub_window_fix.sv fu_add_sub_blkinc {EN32=1,EN16=1,EN8=1}}
+  {addsub_pipe_d2 rtl/fu_add_sub_window_fix.sv fu_add_sub_pipe {EN32=1,EN16=0,EN8=0}}
+  {addsub_pipe_d4 rtl/fu_add_sub_window_fix.sv fu_add_sub_pipe {EN32=1,EN16=1,EN8=0}}
+  {addsub_pipe_d8 rtl/fu_add_sub_window_fix.sv fu_add_sub_pipe {EN32=1,EN16=1,EN8=1}}
+  {addsub_segser_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=0,FLAT=0,EN32=1,EN16=0,EN8=0}}
+  {addsub_segser_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=0,FLAT=0,EN32=1,EN16=1,EN8=0}}
+  {addsub_segser_d8 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=0,FLAT=0,EN32=1,EN16=1,EN8=1}}
+  {addsub_segflat_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=0,FLAT=1,EN32=1,EN16=0,EN8=0}}
+  {addsub_segflat_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=0,FLAT=1,EN32=1,EN16=1,EN8=0}}
+  {addsub_segflat_d8 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=0,FLAT=1,EN32=1,EN16=1,EN8=1}}
+  {addsub_cselser_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=1,FLAT=0,EN32=1,EN16=0,EN8=0}}
+  {addsub_cselser_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=1,FLAT=0,EN32=1,EN16=1,EN8=0}}
+  {addsub_cselser_d8 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=1,FLAT=0,EN32=1,EN16=1,EN8=1}}
+  {addsub_csel_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=1,FLAT=1,EN32=1,EN16=0,EN8=0}}
+  {addsub_csel_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=1,FLAT=1,EN32=1,EN16=1,EN8=0}}
+  {addsub_csel_d8 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=1,FLAT=1,EN32=1,EN16=1,EN8=1}}
+  {addsub_dwcselser_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=2,FLAT=0,EN32=1,EN16=0,EN8=0}}
+  {addsub_dwcselser_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=2,FLAT=0,EN32=1,EN16=1,EN8=0}}
+  {addsub_dwcsel_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=2,FLAT=1,EN32=1,EN16=0,EN8=0}}
+  {addsub_dwcsel_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=2,FLAT=1,EN32=1,EN16=1,EN8=0}}
+  {addsub_segrep_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=0,REP_OP=1,EN32=1,EN16=0,EN8=0}}
+  {addsub_segrep_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=0,REP_OP=1,EN32=1,EN16=1,EN8=0}}
+  {addsub_segrep_d8 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=0,REP_OP=1,EN32=1,EN16=1,EN8=1}}
+  {addsub_cselrep_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=1,REP_OP=1,EN32=1,EN16=0,EN8=0}}
+  {addsub_cselrep_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=1,REP_OP=1,EN32=1,EN16=1,EN8=0}}
+  {addsub_cselrep_d8 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=1,REP_OP=1,EN32=1,EN16=1,EN8=1}}
+  {addsub_csel16rep_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=3,REP_OP=1,EN32=1,EN16=0,EN8=0}}
+  {addsub_csel16rep_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=3,REP_OP=1,EN32=1,EN16=1,EN8=0}}
+  {addsub_csel16rep_d8 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=3,REP_OP=1,EN32=1,EN16=1,EN8=1}}
+  {addsub_dwcselrep_d2 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=2,REP_OP=1,EN32=1,EN16=0,EN8=0}}
+  {addsub_dwcselrep_d4 rtl/fu_add_sub_spike.sv fu_add_sub_spike {ARCH=2,REP_OP=1,EN32=1,EN16=1,EN8=0}}
+  {addsub_probe0_32x2 rtl/fu_add_sub_spike.sv fu_add_sub_spike_probe32x2 {PRIM=0}}
+  {addsub_probe1_32x2 rtl/fu_add_sub_spike.sv fu_add_sub_spike_probe32x2 {PRIM=1}}
+  {addsub_probe2_32x2 rtl/fu_add_sub_spike.sv fu_add_sub_spike_probe32x2 {PRIM=2}}
+  {addsub_probe3_32x2 rtl/fu_add_sub_spike.sv fu_add_sub_spike_probe32x2 {PRIM=3}}
+  {addsub_probe4_32x2 rtl/fu_add_sub_spike.sv fu_add_sub_spike_probe32x2 {PRIM=4}}
+  {mm_seg_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=1,PIPE=0,EN32=1,EN16=0,EN8=0}}
+  {mm_seg_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=1,PIPE=0,EN32=1,EN16=1,EN8=0}}
+  {mm_seg_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=1,PIPE=0,EN32=1,EN16=1,EN8=1}}
+  {mm_csel_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=1,PIPE=0,EN32=1,EN16=0,EN8=0}}
+  {mm_csel_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=1,PIPE=0,EN32=1,EN16=1,EN8=0}}
+  {mm_csel_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=1,PIPE=0,EN32=1,EN16=1,EN8=1}}
+  {as_seg_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=0,PIPE=0,EN32=1,EN16=0,EN8=0}}
+  {as_seg_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=0,PIPE=0,EN32=1,EN16=1,EN8=0}}
+  {as_seg_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=0,PIPE=0,EN32=1,EN16=1,EN8=1}}
+  {as_csel_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=0,PIPE=0,EN32=1,EN16=0,EN8=0}}
+  {as_csel_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=0,PIPE=0,EN32=1,EN16=1,EN8=0}}
+  {as_csel_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=0,PIPE=0,EN32=1,EN16=1,EN8=1}}
+  {mm_segp_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=1,PIPE=1,EN32=1,EN16=0,EN8=0}}
+  {mm_segp_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=1,PIPE=1,EN32=1,EN16=1,EN8=0}}
+  {mm_segp_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=1,PIPE=1,EN32=1,EN16=1,EN8=1}}
+  {mm_cselp_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=1,PIPE=1,EN32=1,EN16=0,EN8=0}}
+  {mm_cselp_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=1,PIPE=1,EN32=1,EN16=1,EN8=0}}
+  {mm_cselp_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=1,PIPE=1,EN32=1,EN16=1,EN8=1}}
+  {as_segp_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=0,PIPE=1,EN32=1,EN16=0,EN8=0}}
+  {as_segp_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=0,PIPE=1,EN32=1,EN16=1,EN8=0}}
+  {as_segp_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=0,PIPE=1,EN32=1,EN16=1,EN8=1}}
+  {as_cselp_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=0,PIPE=1,EN32=1,EN16=0,EN8=0}}
+  {as_cselp_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=0,PIPE=1,EN32=1,EN16=1,EN8=0}}
+  {as_cselp_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=0,PIPE=1,EN32=1,EN16=1,EN8=1}}
+  {mm_segl_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=1,PIPE=2,EN32=1,EN16=0,EN8=0}}
+  {mm_segl_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=1,PIPE=2,EN32=1,EN16=1,EN8=0}}
+  {mm_segl_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=1,PIPE=2,EN32=1,EN16=1,EN8=1}}
+  {mm_csell_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=1,PIPE=2,EN32=1,EN16=0,EN8=0}}
+  {mm_csell_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=1,PIPE=2,EN32=1,EN16=1,EN8=0}}
+  {mm_csell_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=1,PIPE=2,EN32=1,EN16=1,EN8=1}}
+  {mm_sego_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=1,PIPE=1,EN32=1,EN16=0,EN8=0}}
+  {mm_sego_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=1,PIPE=1,EN32=1,EN16=1,EN8=0}}
+  {mm_sego_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=1,PIPE=1,EN32=1,EN16=1,EN8=1}}
+  {mm_cselo_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=1,PIPE=1,EN32=1,EN16=0,EN8=0}}
+  {mm_cselo_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=1,PIPE=1,EN32=1,EN16=1,EN8=0}}
+  {mm_cselo_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=1,PIPE=1,EN32=1,EN16=1,EN8=1}}
+  {as_sego_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=0,PIPE=1,EN32=1,EN16=0,EN8=0}}
+  {as_sego_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=0,PIPE=1,EN32=1,EN16=1,EN8=0}}
+  {as_sego_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=0,MINMAX=0,PIPE=1,EN32=1,EN16=1,EN8=1}}
+  {as_cselo_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=0,PIPE=1,EN32=1,EN16=0,EN8=0}}
+  {as_cselo_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=0,PIPE=1,EN32=1,EN16=1,EN8=0}}
+  {as_cselo_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=0,PIPE=1,EN32=1,EN16=1,EN8=1}}
+  {minmax_m2o rtl/fu_add_sub_mm.sv fu_min_max_piped {EN32=1,EN16=0}}
+  {minmax_m4o rtl/fu_add_sub_mm.sv fu_min_max_piped {EN32=1,EN16=1}}
+  {minmax_m2p rtl/fu_add_sub_mm.sv fu_min_max_piped {EN32=1,EN16=0}}
+  {minmax_m4p rtl/fu_add_sub_mm.sv fu_min_max_piped {EN32=1,EN16=1}}
   {minmax_m1 rtl/fu_min_max_gen.sv fu_min_max_m1}
   {minmax_m2 rtl/fu_min_max_gen.sv fu_min_max_m2}
   {minmax_m4 rtl/fu_min_max_gen.sv fu_min_max_m4}
@@ -91,7 +192,14 @@ set jobs {
   {fp_minmax_fix_16x2 rtl/standalone/fp_min_max_standalones/fu_fp_min_max_16x2.sv fu_fp_min_max_16x2}
 }
 set PERIOD(100_mhz) 10.000
+set PERIOD(400_mhz) 2.500
+set PERIOD(450_mhz) [expr {1.0 / 0.45}]
 set PERIOD(500_mhz) 2.000
+set PERIOD(550_mhz) [expr {1.0 / 0.55}]
+set PERIOD(600_mhz) [expr {5.0 / 3.0}]
+set PERIOD(700_mhz) [expr {1.0 / 0.7}]
+set PERIOD(800_mhz) 1.250
+set PERIOD(900_mhz) [expr {1.0 / 0.9}]
 set PERIOD(one_ghz) 1.000
 set PERIOD(1p5_ghz) [expr {2.0 / 3.0}]
 set PERIOD(two_ghz) 0.500
@@ -105,10 +213,38 @@ proc compile_at {rtl_rel top params constraint} {
   if {$params eq ""} { elaborate $top } else { elaborate $top -parameters $params }
   link
   set_max_delay $constraint -from [all_inputs] -to [all_outputs]
-  compile_ultra -area_high_effort_script -no_autoungroup
+  if {[info exists ::env(STATIC_MODE)]} { set_false_path -from [get_ports -quiet mode*] }
+  set gating {}
+  if {[sizeof_collection [all_registers]] > 0} {
+    # Registered design: every input-to-register and register-to-output path gets the same
+    # period as the input-to-output paths, and DC gates the register clocks. With no clock-tree
+    # synthesis, each clock gate drives at most 16 flops, like a clock-tree leaf buffer, so the
+    # wire-load model sees leaf-sized clock nets instead of one net to every flop.
+    set_clock_gating_style -max_fanout 16
+    create_clock -name clk -period $constraint [get_ports clk]
+    set_input_delay 0 -clock clk [remove_from_collection [all_inputs] [get_ports clk]]
+    set_output_delay 0 -clock clk [all_outputs]
+    set gating -gate_clock
+    # RETIME=1: the registers may move into the logic (the hierarchy is flattened so they can).
+    if {[info exists ::env(RETIME)]} {
+      ungroup -all -flatten
+      lappend gating -retime
+    }
+  }
+  if {[info exists ::env(POWER_OPT)]} {
+    set_switching_activity -static_probability 0.5 -toggle_rate 0.5 -period $constraint \
+      [remove_from_collection [all_inputs] [get_ports -quiet mode*]]
+    set_switching_activity -static_probability 0.5 -toggle_rate 0 [get_ports -quiet mode*]
+    set_dynamic_optimization true
+    set_app_var compile_enable_total_power_optimization true
+  }
+  compile_ultra -area_high_effort_script -no_autoungroup {*}$gating
+  # Worst-path arrival; for a registered design, the delay that path needs including the setup
+  # time at a register endpoint.
   set arr 0.0
   foreach_in_collection p [get_timing_paths -delay_type max -max_paths 1 -nworst 1] {
     set arr [get_attribute $p arrival]
+    if {$gating ne {}} { set arr [expr {$constraint - [get_attribute $p slack]}] }
   }
   return $arr
 }

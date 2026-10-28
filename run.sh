@@ -22,6 +22,10 @@ mkdir -p build
 
 SHARED_MODULES=(
   fu_add_sub_gen
+  fu_add_sub_prefix
+  fu_add_sub_window_fix
+  fu_add_sub_spike
+  fu_add_sub_mm
   fu_add_sub_minmax_gen
   fu_mult_decomp
   fu_min_max_gen

@@ -21,7 +21,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 RAW = ROOT / "rerun" / "raw"
-PERIOD = {"100_mhz": 10.0, "500_mhz": 2.0, "one_ghz": 1.0, "1p5_ghz": 2.0 / 3.0, "two_ghz": 0.5}  # target ns
+PERIOD = {"100_mhz": 10.0, "400_mhz": 2.5, "450_mhz": 1 / 0.45, "500_mhz": 2.0, "550_mhz": 1 / 0.55,
+          "600_mhz": 5.0 / 3.0, "700_mhz": 1 / 0.7, "800_mhz": 1.25, "900_mhz": 1 / 0.9, "one_ghz": 1.0,
+          "1p5_ghz": 2.0 / 3.0, "two_ghz": 0.5}  # target ns; 400-900 MHz: AddSub isolation experiment
 
 # ---- Designs: name -> (family, role, capability) --------------------------------------
 DESIGNS = {
@@ -29,6 +31,62 @@ DESIGNS = {
     "addsub_d4": ("addsub", "tier", "64/32x2/16x4"), "addsub_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
     "addsub_fix_64": ("addsub", "fixed", "64"), "addsub_fix_32x2": ("addsub", "fixed", "32x2"),
     "addsub_fix_16x4": ("addsub", "fixed", "16x4"), "addsub_fix_8x8": ("addsub", "fixed", "8x8"),
+    # the same AddSub on one explicit parallel-prefix adder (rtl/fu_add_sub_prefix.sv)
+    "addsub_la_d2": ("addsub", "tier", "64/32x2"), "addsub_la_d4": ("addsub", "tier", "64/32x2/16x4"),
+    "addsub_la_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "addsub_la_fix_64": ("addsub", "fixed", "64"), "addsub_la_fix_32x2": ("addsub", "fixed", "32x2"),
+    "addsub_la_fix_16x4": ("addsub", "fixed", "16x4"), "addsub_la_fix_8x8": ("addsub", "fixed", "8x8"),
+    # fixes for the 500-900 MHz AddSub power window (rtl/fu_add_sub_window_fix.sv)
+    "addsub_part_d2": ("addsub", "tier", "64/32x2"), "addsub_part_d4": ("addsub", "tier", "64/32x2/16x4"),
+    "addsub_part_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "addsub_blkinc_d2": ("addsub", "tier", "64/32x2"), "addsub_blkinc_d4": ("addsub", "tier", "64/32x2/16x4"),
+    "addsub_blkinc_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "addsub_pipe_d2": ("addsub", "tier", "64/32x2"), "addsub_pipe_d4": ("addsub", "tier", "64/32x2/16x4"),
+    "addsub_pipe_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    # variants for the AddSub power spike (rtl/fu_add_sub_spike.sv)
+    "addsub_segser_d2": ("addsub", "tier", "64/32x2"), "addsub_segser_d4": ("addsub", "tier", "64/32x2/16x4"),
+    "addsub_segser_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "addsub_segflat_d2": ("addsub", "tier", "64/32x2"), "addsub_segflat_d4": ("addsub", "tier", "64/32x2/16x4"),
+    "addsub_segflat_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "addsub_cselser_d2": ("addsub", "tier", "64/32x2"), "addsub_cselser_d4": ("addsub", "tier", "64/32x2/16x4"),
+    "addsub_cselser_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "addsub_csel_d2": ("addsub", "tier", "64/32x2"), "addsub_csel_d4": ("addsub", "tier", "64/32x2/16x4"),
+    "addsub_csel_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "addsub_dwcselser_d2": ("addsub", "tier", "64/32x2"), "addsub_dwcselser_d4": ("addsub", "tier", "64/32x2/16x4"),
+    "addsub_dwcsel_d2": ("addsub", "tier", "64/32x2"), "addsub_dwcsel_d4": ("addsub", "tier", "64/32x2/16x4"),
+    "addsub_segrep_d2": ("addsub", "tier", "64/32x2"), "addsub_segrep_d4": ("addsub", "tier", "64/32x2/16x4"),
+    "addsub_segrep_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "addsub_cselrep_d2": ("addsub", "tier", "64/32x2"), "addsub_cselrep_d4": ("addsub", "tier", "64/32x2/16x4"),
+    "addsub_cselrep_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "addsub_csel16rep_d2": ("addsub", "tier", "64/32x2"), "addsub_csel16rep_d4": ("addsub", "tier", "64/32x2/16x4"),
+    "addsub_csel16rep_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "addsub_dwcselrep_d2": ("addsub", "tier", "64/32x2"), "addsub_dwcselrep_d4": ("addsub", "tier", "64/32x2/16x4"),
+    # the bank's 32x2 function on different adder primitives (fu_add_sub_spike_probe32x2 PRIM 0-4)
+    "addsub_probe0_32x2": ("addsub", "fixed", "32x2"),
+    "addsub_probe1_32x2": ("addsub", "fixed", "32x2"),
+    "addsub_probe2_32x2": ("addsub", "fixed", "32x2"),
+    "addsub_probe3_32x2": ("addsub", "fixed", "32x2"),
+    "addsub_probe4_32x2": ("addsub", "fixed", "32x2"),
+    # AddSub with Min/Max as a side function of its carry network (rtl/fu_add_sub_mm.sv): mm_* the
+    # fused unit, as_* the same unit without the side function; seg / csel the adder, o an output
+    # register (PIPE 1), p the same register retimed into the logic, l the Min/Max choice behind the
+    # register (PIPE 2); minmax_m2/m4 o and p: the decomposable Min/Max with the o and p register
+    "mm_seg_d2": ("addsub_mm", "tier", "64/32x2"), "mm_seg_d4": ("addsub_mm", "tier", "64/32x2/16x4"), "mm_seg_d8": ("addsub_mm", "tier", "64/32x2/16x4/8x8"),
+    "mm_csel_d2": ("addsub_mm", "tier", "64/32x2"), "mm_csel_d4": ("addsub_mm", "tier", "64/32x2/16x4"), "mm_csel_d8": ("addsub_mm", "tier", "64/32x2/16x4/8x8"),
+    "mm_segp_d2": ("addsub_mm", "tier", "64/32x2"), "mm_segp_d4": ("addsub_mm", "tier", "64/32x2/16x4"), "mm_segp_d8": ("addsub_mm", "tier", "64/32x2/16x4/8x8"),
+    "mm_cselp_d2": ("addsub_mm", "tier", "64/32x2"), "mm_cselp_d4": ("addsub_mm", "tier", "64/32x2/16x4"), "mm_cselp_d8": ("addsub_mm", "tier", "64/32x2/16x4/8x8"),
+    "as_seg_d2": ("addsub", "tier", "64/32x2"), "as_seg_d4": ("addsub", "tier", "64/32x2/16x4"), "as_seg_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "as_csel_d2": ("addsub", "tier", "64/32x2"), "as_csel_d4": ("addsub", "tier", "64/32x2/16x4"), "as_csel_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "as_segp_d2": ("addsub", "tier", "64/32x2"), "as_segp_d4": ("addsub", "tier", "64/32x2/16x4"), "as_segp_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "as_cselp_d2": ("addsub", "tier", "64/32x2"), "as_cselp_d4": ("addsub", "tier", "64/32x2/16x4"), "as_cselp_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "mm_segl_d2": ("addsub_mm", "tier", "64/32x2"), "mm_segl_d4": ("addsub_mm", "tier", "64/32x2/16x4"), "mm_segl_d8": ("addsub_mm", "tier", "64/32x2/16x4/8x8"),
+    "mm_csell_d2": ("addsub_mm", "tier", "64/32x2"), "mm_csell_d4": ("addsub_mm", "tier", "64/32x2/16x4"), "mm_csell_d8": ("addsub_mm", "tier", "64/32x2/16x4/8x8"),
+    "mm_sego_d2": ("addsub_mm", "tier", "64/32x2"), "mm_sego_d4": ("addsub_mm", "tier", "64/32x2/16x4"), "mm_sego_d8": ("addsub_mm", "tier", "64/32x2/16x4/8x8"),
+    "mm_cselo_d2": ("addsub_mm", "tier", "64/32x2"), "mm_cselo_d4": ("addsub_mm", "tier", "64/32x2/16x4"), "mm_cselo_d8": ("addsub_mm", "tier", "64/32x2/16x4/8x8"),
+    "as_sego_d2": ("addsub", "tier", "64/32x2"), "as_sego_d4": ("addsub", "tier", "64/32x2/16x4"), "as_sego_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "as_cselo_d2": ("addsub", "tier", "64/32x2"), "as_cselo_d4": ("addsub", "tier", "64/32x2/16x4"), "as_cselo_d8": ("addsub", "tier", "64/32x2/16x4/8x8"),
+    "minmax_m2p": ("minmax", "tier", "64/32x2"), "minmax_m4p": ("minmax", "tier", "64/32x2/16x4"),
+    "minmax_m2o": ("minmax", "tier", "64/32x2"), "minmax_m4o": ("minmax", "tier", "64/32x2/16x4"),
     "minmax_m1": ("minmax", "tier", "64"), "minmax_m2": ("minmax", "tier", "64/32x2"),
     "minmax_m4": ("minmax", "tier", "64/32x2/16x4"),
     "minmax_fix_64": ("minmax", "fixed", "64"), "minmax_fix_32x2": ("minmax", "fixed", "32x2"),

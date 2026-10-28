@@ -45,7 +45,8 @@ LEFT_EDGE_RTL = {"rtl/revised_fp_fus/fu_fp_minmax_32_16.sv", "rtl/fu_cmp_gen.sv"
                  "rtl/fu_fp_cmp_gen.sv", "rtl/fu_fp_min_max_gen.sv", "rtl/fu_rounding_gen.sv",
                  "rtl/fu_mult_decomp.sv", "rtl/fu_mult_karatsuba_64_32.sv"}
 # mode_probabilities.csv row per family (per function for the AddSub+MinMax unit)
-PROB_FU = {"addsub_minmax:addsub": "AddSub", "addsub_minmax:minmax": "IntegerMinMax", "addsub": "AddSub", "mult": "IntegerMult", "minmax": "IntegerMinMax", "fp_minmax": "FPMinMax",
+PROB_FU = {"addsub_minmax:addsub": "AddSub", "addsub_minmax:minmax": "IntegerMinMax", "addsub_mm:addsub": "AddSub", "addsub_mm:minmax": "IntegerMinMax",
+           "addsub": "AddSub", "mult": "IntegerMult", "minmax": "IntegerMinMax", "fp_minmax": "FPMinMax",
            "fp_cmp": "FPCmp", "cmp": "IntegerCmp", "rounding": "Rounding", "barrel": "BarrelShift", "abs": "Abs"}
 
 
@@ -61,12 +62,13 @@ def lane_width(cap: str, mode: int = 0) -> int:
 
 def functions(d: str, c: str) -> list[str]:
     """PrimePower runs of a design: "" for a single-function unit, else each held function."""
-    return sorted(p.name.partition("_")[2] for p in (RAW / d / c).glob("primepower*"))
+    return sorted(p.name.partition("_")[2] for p in (RAW / d / c).glob("primepower*")   # skip diagnostics:
+                  if not p.name.startswith(("primepower_zero", "primepower_ops_held")))  # zero-delay, ops held
 
 
-def pp_parse(d: str, c: str, func: str = "") -> dict[int, dict[str, float]]:
+def pp_parse(d: str, c: str, func: str = "", raw: Path | None = None) -> dict[int, dict[str, float]]:
     """mode -> PrimePower power (mW, leakage uW), energy, and annotation."""
-    pp = RAW / d / c / ("primepower_" + func if func else "primepower")
+    pp = (raw or RAW) / d / c / ("primepower_" + func if func else "primepower")
     if not (pp / "info.txt").exists():
         return {}
     info = dict(kv.split("=") for kv in (pp / "info.txt").read_text().split())

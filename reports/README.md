@@ -104,6 +104,10 @@ repeatability trial). The trials are in `tier_ladders/trials/` and
 tier and bank component (`PPA_rerun.csv`, `rerun_overhead.csv`, `rerun_savings.csv`;
 `synth/syn_rerun.tcl`, `collect_rerun.py`).
 `3rd_run/` (README) reruns every design after moving mode selection to the left edge, at 100 MHz, 500 MHz, 1 GHz, 1.5 GHz and 2 GHz, with timing closure and PrimePower simulation power per mode (`PPA_mode_left.csv`, `mode_left_overhead.csv`, `mode_left_savings.csv`, `mode_left_primepower.csv`, `mode_left_power_savings.csv`; `synth/run_primepower.py`, `collect_mode_left.py`).
+`addsub_isolation_experiment/` (README) explains the AddSub gated-bank power window between 500 and 900 MHz with extra targets from 400 MHz to 900 MHz and zero-delay (glitch-free) PrimePower runs, and repeats the comparison with one look-ahead (parallel-prefix) adder in every unit at every target (`rtl/fu_add_sub_prefix.sv`, `collect_addsub_isolation.py`).
+`addsub_window_fix_experiment/` (README) builds and measures three fixes for that window (partitioned adder, lane-block carry-increment, 64-bit operations in two cycles; `rtl/fu_add_sub_window_fix.sv`, `collect_addsub_window_fix.py`) and a diagnostic run with every op held at add.
+`addsub_spike_experiment/` (README) varies op encoding, adder architecture and primitive, mode timing, power-driven synthesis and stimulus to remove the spike; replicated op encoding plus a per-target architecture (segmented / carry-select) removes it everywhere except 900 MHz (`rtl/fu_add_sub_spike.sv`, `collect_addsub_spike.py`).
+`addsub_minmax_experiment/` (README) rebuilds Min/Max as an AddSub side function that reads its compare from the lane carry outs, and compares it with a separate AddSub and Min/Max single-cycle and with three register stages (output register, retimed, Min/Max select behind the register); area and energy savings now turn negative between 1.5 and 2 GHz instead of at 500 MHz (`rtl/fu_add_sub_mm.sv`, `collect_addsub_mm.py`).
 The synthesis scripts accept `JOB_FILTER=<regexp>` to rerun a subset of jobs.
 
 The complete capability-ladder sweep is in `tier_ladders/`. It synthesizes the
