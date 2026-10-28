@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : fu_add_sub_spike_probe32x2_PRIM1
+Version: Y-2026.03-SP1
+Date   : Tue Oct 20 19:34:10 2026
+****************************************
+
+Library(s) Used:
+
+    saed14rvt_base_tt0p8v25c (File: /mnt/nas0/eda.libs/saed14/EDK_03_2025/SAED14nm_EDK_STD_RVT/liberty/nldm/base/saed14rvt_base_tt0p8v25c.db)
+
+Number of ports:                          202
+Number of nets:                           457
+Number of cells:                          264
+Number of combinational cells:            264
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                        136
+Number of references:                      15
+
+Combinational area:                116.816401
+Buf/Inv area:                       24.642000
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:             114.081974
+
+Total cell area:                   116.816401
+Total area:                        230.898374
+1

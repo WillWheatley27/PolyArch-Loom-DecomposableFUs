@@ -1,0 +1,127 @@
+design,adder,role,capability,corner,target_period_ns,source,achieved_delay_ns,timing_met,cell_area_um2,static_leakage_power_uw,cells,ripple_full_adder_cells
+addsub_segser_d4,"segmented, serial decode",tier,64/32x2/16x4,400_mhz,2.500,addsub_spike_experiment,2.499190,true,105.494401,0.047923,178,62
+addsub_segser_d4,"segmented, serial decode",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.662420,true,163.658401,0.057479,496,16
+addsub_segser_d4,"segmented, serial decode",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.249340,true,172.671600,0.063196,505,16
+addsub_segser_d4,"segmented, serial decode",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.999179,true,187.723200,0.072541,550,12
+addsub_segflat_d4,"segmented, flat decode",tier,64/32x2/16x4,400_mhz,2.500,addsub_spike_experiment,2.499360,true,106.426802,0.048553,183,62
+addsub_segflat_d4,"segmented, flat decode",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.663090,true,161.571601,0.055634,501,16
+addsub_segflat_d4,"segmented, flat decode",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.248290,true,174.936001,0.066473,510,16
+addsub_segflat_d4,"segmented, flat decode",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.997922,true,183.505201,0.069423,548,12
+addsub_cselser_d4,"carry-select 32, serial decode",tier,64/32x2/16x4,400_mhz,2.500,addsub_spike_experiment,2.499750,true,166.766394,0.063181,286,94
+addsub_cselser_d4,"carry-select 32, serial decode",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.666540,true,173.071196,0.072547,289,94
+addsub_cselser_d4,"carry-select 32, serial decode",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.249850,true,263.602801,0.110850,696,40
+addsub_cselser_d4,"carry-select 32, serial decode",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.999890,true,318.614401,0.128581,919,0
+addsub_csel_d4,"carry-select 32, flat decode",tier,64/32x2/16x4,400_mhz,2.500,addsub_spike_experiment,2.499980,true,170.096394,0.066113,291,94
+addsub_csel_d4,"carry-select 32, flat decode",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.666170,true,177.644397,0.078527,299,94
+addsub_csel_d4,"carry-select 32, flat decode",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.249900,true,260.406002,0.112154,678,41
+addsub_csel_d4,"carry-select 32, flat decode",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.999976,true,331.401600,0.136906,916,4
+addsub_dwcselser_d2,"DesignWare carry-select 32, serial decode",tier,64/32x2,400_mhz,2.500,addsub_spike_experiment,2.500000,true,156.199198,0.058208,418,32
+addsub_dwcselser_d2,"DesignWare carry-select 32, serial decode",tier,64/32x2,600_mhz,1.667,addsub_spike_experiment,1.665950,true,170.451598,0.071190,419,32
+addsub_dwcselser_d2,"DesignWare carry-select 32, serial decode",tier,64/32x2,800_mhz,1.250,addsub_spike_experiment,1.249130,true,228.837602,0.110214,555,63
+addsub_dwcselser_d2,"DesignWare carry-select 32, serial decode",tier,64/32x2,one_ghz,1.000,addsub_spike_experiment,0.999041,true,307.159203,0.108619,836,0
+addsub_dwcselser_d4,"DesignWare carry-select 32, serial decode",tier,64/32x2/16x4,400_mhz,2.500,addsub_spike_experiment,2.499960,true,157.753198,0.058171,406,33
+addsub_dwcselser_d4,"DesignWare carry-select 32, serial decode",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.666620,true,178.399199,0.079144,407,33
+addsub_dwcselser_d4,"DesignWare carry-select 32, serial decode",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.249710,true,228.837600,0.103737,491,77
+addsub_dwcselser_d4,"DesignWare carry-select 32, serial decode",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.999744,true,335.397603,0.132337,859,0
+addsub_dwcsel_d2,"DesignWare carry-select 32, flat decode",tier,64/32x2,400_mhz,2.500,addsub_spike_experiment,2.500000,true,156.199198,0.058208,418,32
+addsub_dwcsel_d2,"DesignWare carry-select 32, flat decode",tier,64/32x2,600_mhz,1.667,addsub_spike_experiment,1.665950,true,170.451598,0.071190,419,32
+addsub_dwcsel_d2,"DesignWare carry-select 32, flat decode",tier,64/32x2,800_mhz,1.250,addsub_spike_experiment,1.249130,true,228.837602,0.110214,555,63
+addsub_dwcsel_d2,"DesignWare carry-select 32, flat decode",tier,64/32x2,one_ghz,1.000,addsub_spike_experiment,0.999041,true,307.159203,0.108619,836,0
+addsub_dwcsel_d4,"DesignWare carry-select 32, flat decode",tier,64/32x2/16x4,400_mhz,2.500,addsub_spike_experiment,2.499590,true,155.621998,0.055957,411,33
+addsub_dwcsel_d4,"DesignWare carry-select 32, flat decode",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.666650,true,179.420399,0.078533,412,33
+addsub_dwcsel_d4,"DesignWare carry-select 32, flat decode",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.249970,true,236.341202,0.103509,650,30
+addsub_dwcsel_d4,"DesignWare carry-select 32, flat decode",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.999865,true,327.716403,0.124164,861,0
+addsub_segrep_d2,"segmented, op replicated per block",tier,64/32x2,100_mhz,10.000,addsub_spike_experiment,3.134830,true,104.162396,0.037477,203,62
+addsub_segrep_d2,"segmented, op replicated per block",tier,64/32x2,400_mhz,2.500,addsub_spike_experiment,2.499450,true,106.382400,0.044491,203,62
+addsub_segrep_d2,"segmented, op replicated per block",tier,64/32x2,450_mhz,2.222,addsub_spike_experiment,2.216760,true,109.668002,0.049260,204,62
+addsub_segrep_d2,"segmented, op replicated per block",tier,64/32x2,500_mhz,2.000,addsub_spike_experiment,1.999430,true,141.502800,0.051722,390,30
+addsub_segrep_d2,"segmented, op replicated per block",tier,64/32x2,550_mhz,1.818,addsub_spike_experiment,1.788370,true,147.496800,0.052355,432,24
+addsub_segrep_d2,"segmented, op replicated per block",tier,64/32x2,600_mhz,1.667,addsub_spike_experiment,1.666570,true,150.116401,0.055254,436,24
+addsub_segrep_d2,"segmented, op replicated per block",tier,64/32x2,700_mhz,1.429,addsub_spike_experiment,1.416070,true,160.772402,0.059298,489,17
+addsub_segrep_d2,"segmented, op replicated per block",tier,64/32x2,800_mhz,1.250,addsub_spike_experiment,1.248530,true,159.973202,0.056471,495,16
+addsub_segrep_d2,"segmented, op replicated per block",tier,64/32x2,900_mhz,1.111,addsub_spike_experiment,1.108570,true,164.457602,0.059879,512,14
+addsub_segrep_d2,"segmented, op replicated per block",tier,64/32x2,one_ghz,1.000,addsub_spike_experiment,0.999417,true,170.318402,0.062561,528,12
+addsub_segrep_d2,"segmented, op replicated per block",tier,64/32x2,1p5_ghz,0.667,addsub_spike_experiment,0.661370,true,204.240001,0.083834,575,7
+addsub_segrep_d2,"segmented, op replicated per block",tier,64/32x2,two_ghz,0.500,addsub_spike_experiment,0.499895,true,216.050400,0.093992,579,8
+addsub_segrep_d4,"segmented, op replicated per block",tier,64/32x2/16x4,100_mhz,10.000,addsub_spike_experiment,3.208060,true,99.811196,0.036743,176,62
+addsub_segrep_d4,"segmented, op replicated per block",tier,64/32x2/16x4,400_mhz,2.500,addsub_spike_experiment,2.495170,true,102.786001,0.045245,176,62
+addsub_segrep_d4,"segmented, op replicated per block",tier,64/32x2/16x4,450_mhz,2.222,addsub_spike_experiment,2.221700,true,107.625602,0.050597,179,62
+addsub_segrep_d4,"segmented, op replicated per block",tier,64/32x2/16x4,500_mhz,2.000,addsub_spike_experiment,1.990510,true,150.471600,0.053279,431,25
+addsub_segrep_d4,"segmented, op replicated per block",tier,64/32x2/16x4,550_mhz,1.818,addsub_spike_experiment,1.797680,true,152.780401,0.054643,453,22
+addsub_segrep_d4,"segmented, op replicated per block",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.642610,true,158.374801,0.054766,493,16
+addsub_segrep_d4,"segmented, op replicated per block",tier,64/32x2/16x4,700_mhz,1.429,addsub_spike_experiment,1.427340,true,163.170002,0.059782,499,16
+addsub_segrep_d4,"segmented, op replicated per block",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.249940,true,163.747202,0.059548,503,16
+addsub_segrep_d4,"segmented, op replicated per block",tier,64/32x2/16x4,900_mhz,1.111,addsub_spike_experiment,1.103870,true,166.677602,0.060485,520,14
+addsub_segrep_d4,"segmented, op replicated per block",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.998281,true,174.714002,0.063882,537,12
+addsub_segrep_d4,"segmented, op replicated per block",tier,64/32x2/16x4,1p5_ghz,0.667,addsub_spike_experiment,0.666600,true,195.759601,0.077721,581,8
+addsub_segrep_d4,"segmented, op replicated per block",tier,64/32x2/16x4,two_ghz,0.500,addsub_spike_experiment,0.498893,true,221.911200,0.098061,583,7
+addsub_segrep_d8,"segmented, op replicated per block",tier,64/32x2/16x4/8x8,100_mhz,10.000,addsub_spike_experiment,3.395480,true,98.612396,0.036613,163,62
+addsub_segrep_d8,"segmented, op replicated per block",tier,64/32x2/16x4/8x8,400_mhz,2.500,addsub_spike_experiment,2.499930,true,107.892002,0.050516,167,62
+addsub_segrep_d8,"segmented, op replicated per block",tier,64/32x2/16x4/8x8,450_mhz,2.222,addsub_spike_experiment,2.196810,true,153.313201,0.053808,452,22
+addsub_segrep_d8,"segmented, op replicated per block",tier,64/32x2/16x4/8x8,500_mhz,2.000,addsub_spike_experiment,1.998260,true,160.683601,0.055635,495,16
+addsub_segrep_d8,"segmented, op replicated per block",tier,64/32x2/16x4/8x8,550_mhz,1.818,addsub_spike_experiment,1.807100,true,159.840001,0.054064,498,16
+addsub_segrep_d8,"segmented, op replicated per block",tier,64/32x2/16x4/8x8,600_mhz,1.667,addsub_spike_experiment,1.660140,true,160.062001,0.054296,498,16
+addsub_segrep_d8,"segmented, op replicated per block",tier,64/32x2/16x4/8x8,700_mhz,1.429,addsub_spike_experiment,1.424510,true,167.299201,0.057010,531,12
+addsub_segrep_d8,"segmented, op replicated per block",tier,64/32x2/16x4/8x8,800_mhz,1.250,addsub_spike_experiment,1.249220,true,175.335602,0.059523,569,8
+addsub_segrep_d8,"segmented, op replicated per block",tier,64/32x2/16x4/8x8,900_mhz,1.111,addsub_spike_experiment,1.109850,true,178.221601,0.061699,569,8
+addsub_segrep_d8,"segmented, op replicated per block",tier,64/32x2/16x4/8x8,one_ghz,1.000,addsub_spike_experiment,0.997972,true,188.433602,0.070189,571,8
+addsub_segrep_d8,"segmented, op replicated per block",tier,64/32x2/16x4/8x8,1p5_ghz,0.667,addsub_spike_experiment,0.666378,true,206.016001,0.082918,587,8
+addsub_segrep_d8,"segmented, op replicated per block",tier,64/32x2/16x4/8x8,two_ghz,0.500,addsub_spike_experiment,0.499647,true,249.572400,0.119556,626,7
+addsub_cselrep_d2,"carry-select 32, op replicated per block",tier,64/32x2,100_mhz,10.000,addsub_spike_experiment,3.226720,true,161.615994,0.060287,275,94
+addsub_cselrep_d2,"carry-select 32, op replicated per block",tier,64/32x2,400_mhz,2.500,addsub_spike_experiment,2.423710,true,162.104394,0.060557,277,94
+addsub_cselrep_d2,"carry-select 32, op replicated per block",tier,64/32x2,450_mhz,2.222,addsub_spike_experiment,2.221700,true,162.992395,0.062472,276,94
+addsub_cselrep_d2,"carry-select 32, op replicated per block",tier,64/32x2,500_mhz,2.000,addsub_spike_experiment,1.998610,true,162.903595,0.062777,277,94
+addsub_cselrep_d2,"carry-select 32, op replicated per block",tier,64/32x2,550_mhz,1.818,addsub_spike_experiment,1.807920,true,163.436394,0.062040,279,94
+addsub_cselrep_d2,"carry-select 32, op replicated per block",tier,64/32x2,600_mhz,1.667,addsub_spike_experiment,1.666660,true,167.432394,0.067119,280,94
+addsub_cselrep_d2,"carry-select 32, op replicated per block",tier,64/32x2,700_mhz,1.429,addsub_spike_experiment,1.428480,true,172.138798,0.078472,281,94
+addsub_cselrep_d2,"carry-select 32, op replicated per block",tier,64/32x2,800_mhz,1.250,addsub_spike_experiment,1.247830,true,174.625202,0.084664,286,94
+addsub_cselrep_d2,"carry-select 32, op replicated per block",tier,64/32x2,900_mhz,1.111,addsub_spike_experiment,1.110980,true,296.414400,0.120739,829,3
+addsub_cselrep_d2,"carry-select 32, op replicated per block",tier,64/32x2,one_ghz,1.000,addsub_spike_experiment,0.999783,true,327.450000,0.138258,892,2
+addsub_cselrep_d2,"carry-select 32, op replicated per block",tier,64/32x2,1p5_ghz,0.667,addsub_spike_experiment,0.666553,true,337.573200,0.142523,955,0
+addsub_cselrep_d2,"carry-select 32, op replicated per block",tier,64/32x2,two_ghz,0.500,addsub_spike_experiment,0.499980,true,370.695599,0.162568,1011,0
+addsub_cselrep_d4,"carry-select 32, op replicated per block",tier,64/32x2/16x4,100_mhz,10.000,addsub_spike_experiment,3.653900,true,163.525194,0.060369,282,94
+addsub_cselrep_d4,"carry-select 32, op replicated per block",tier,64/32x2/16x4,400_mhz,2.500,addsub_spike_experiment,2.488070,true,164.057994,0.060783,284,94
+addsub_cselrep_d4,"carry-select 32, op replicated per block",tier,64/32x2/16x4,450_mhz,2.222,addsub_spike_experiment,2.218200,true,164.457594,0.061636,284,94
+addsub_cselrep_d4,"carry-select 32, op replicated per block",tier,64/32x2/16x4,500_mhz,2.000,addsub_spike_experiment,1.996840,true,165.878396,0.064561,287,94
+addsub_cselrep_d4,"carry-select 32, op replicated per block",tier,64/32x2/16x4,550_mhz,1.818,addsub_spike_experiment,1.816730,true,168.497995,0.067848,286,94
+addsub_cselrep_d4,"carry-select 32, op replicated per block",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.665660,true,169.163995,0.067619,286,94
+addsub_cselrep_d4,"carry-select 32, op replicated per block",tier,64/32x2/16x4,700_mhz,1.429,addsub_spike_experiment,1.428560,true,176.667601,0.080177,290,94
+addsub_cselrep_d4,"carry-select 32, op replicated per block",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.249610,true,181.196402,0.090824,294,94
+addsub_cselrep_d4,"carry-select 32, op replicated per block",tier,64/32x2/16x4,900_mhz,1.111,addsub_spike_experiment,1.110960,true,287.490000,0.109136,859,3
+addsub_cselrep_d4,"carry-select 32, op replicated per block",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.999138,true,295.837200,0.111912,899,0
+addsub_cselrep_d4,"carry-select 32, op replicated per block",tier,64/32x2/16x4,1p5_ghz,0.667,addsub_spike_experiment,0.666666,true,355.333199,0.155321,982,0
+addsub_cselrep_d4,"carry-select 32, op replicated per block",tier,64/32x2/16x4,two_ghz,0.500,addsub_spike_experiment,0.499963,true,383.216399,0.172853,1020,0
+addsub_cselrep_d8,"carry-select 32, op replicated per block",tier,64/32x2/16x4/8x8,100_mhz,10.000,addsub_spike_experiment,3.618850,true,166.366794,0.060512,291,94
+addsub_cselrep_d8,"carry-select 32, op replicated per block",tier,64/32x2/16x4/8x8,400_mhz,2.500,addsub_spike_experiment,2.488490,true,166.366794,0.060880,289,94
+addsub_cselrep_d8,"carry-select 32, op replicated per block",tier,64/32x2/16x4/8x8,450_mhz,2.222,addsub_spike_experiment,2.188980,true,167.476795,0.063013,292,94
+addsub_cselrep_d8,"carry-select 32, op replicated per block",tier,64/32x2/16x4/8x8,500_mhz,2.000,addsub_spike_experiment,1.998980,true,167.521194,0.062787,291,94
+addsub_cselrep_d8,"carry-select 32, op replicated per block",tier,64/32x2/16x4/8x8,550_mhz,1.818,addsub_spike_experiment,1.818180,true,173.426394,0.067552,294,94
+addsub_cselrep_d8,"carry-select 32, op replicated per block",tier,64/32x2/16x4/8x8,600_mhz,1.667,addsub_spike_experiment,1.666590,true,171.472795,0.066836,295,94
+addsub_cselrep_d8,"carry-select 32, op replicated per block",tier,64/32x2/16x4/8x8,700_mhz,1.429,addsub_spike_experiment,1.428140,true,177.600000,0.079257,296,94
+addsub_cselrep_d8,"carry-select 32, op replicated per block",tier,64/32x2/16x4/8x8,800_mhz,1.250,addsub_spike_experiment,1.248890,true,255.166800,0.106712,652,42
+addsub_cselrep_d8,"carry-select 32, op replicated per block",tier,64/32x2/16x4/8x8,900_mhz,1.111,addsub_spike_experiment,1.111010,true,295.260000,0.115577,877,3
+addsub_cselrep_d8,"carry-select 32, op replicated per block",tier,64/32x2/16x4/8x8,one_ghz,1.000,addsub_spike_experiment,0.999623,true,328.826400,0.130223,944,0
+addsub_cselrep_d8,"carry-select 32, op replicated per block",tier,64/32x2/16x4/8x8,1p5_ghz,0.667,addsub_spike_experiment,0.666608,true,351.203999,0.144501,992,0
+addsub_cselrep_d8,"carry-select 32, op replicated per block",tier,64/32x2/16x4/8x8,two_ghz,0.500,addsub_spike_experiment,0.499663,true,400.221599,0.169713,1115,0
+addsub_csel16rep_d2,"carry-select 16, op replicated per block",tier,64/32x2,700_mhz,1.429,addsub_spike_experiment,1.428140,true,179.065194,0.070966,284,106
+addsub_csel16rep_d2,"carry-select 16, op replicated per block",tier,64/32x2,800_mhz,1.250,addsub_spike_experiment,1.248370,true,177.289194,0.069819,282,106
+addsub_csel16rep_d2,"carry-select 16, op replicated per block",tier,64/32x2,900_mhz,1.111,addsub_spike_experiment,1.111030,true,180.352794,0.073355,284,106
+addsub_csel16rep_d4,"carry-select 16, op replicated per block",tier,64/32x2/16x4,400_mhz,2.500,addsub_spike_experiment,2.499980,true,198.512393,0.074673,348,110
+addsub_csel16rep_d4,"carry-select 16, op replicated per block",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.651490,true,200.288393,0.076911,350,110
+addsub_csel16rep_d4,"carry-select 16, op replicated per block",tier,64/32x2/16x4,700_mhz,1.429,addsub_spike_experiment,1.426680,true,201.797993,0.077441,356,110
+addsub_csel16rep_d4,"carry-select 16, op replicated per block",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.247560,true,202.597193,0.080459,352,110
+addsub_csel16rep_d4,"carry-select 16, op replicated per block",tier,64/32x2/16x4,900_mhz,1.111,addsub_spike_experiment,1.110710,true,205.438794,0.084399,354,110
+addsub_csel16rep_d4,"carry-select 16, op replicated per block",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.999528,true,208.102795,0.089941,357,110
+addsub_csel16rep_d8,"carry-select 16, op replicated per block",tier,64/32x2/16x4/8x8,700_mhz,1.429,addsub_spike_experiment,1.426140,true,203.618393,0.078751,357,110
+addsub_csel16rep_d8,"carry-select 16, op replicated per block",tier,64/32x2/16x4/8x8,800_mhz,1.250,addsub_spike_experiment,1.248690,true,204.151194,0.080431,354,110
+addsub_csel16rep_d8,"carry-select 16, op replicated per block",tier,64/32x2/16x4/8x8,900_mhz,1.111,addsub_spike_experiment,1.110780,true,208.413597,0.087630,357,110
+addsub_dwcselrep_d2,"DesignWare carry-select 32, op replicated per block",tier,64/32x2,400_mhz,2.500,addsub_spike_experiment,2.498920,true,147.319199,0.051693,413,32
+addsub_dwcselrep_d2,"DesignWare carry-select 32, op replicated per block",tier,64/32x2,600_mhz,1.667,addsub_spike_experiment,1.666660,true,178.043998,0.075398,413,32
+addsub_dwcselrep_d2,"DesignWare carry-select 32, op replicated per block",tier,64/32x2,800_mhz,1.250,addsub_spike_experiment,1.249580,true,192.518400,0.088964,428,32
+addsub_dwcselrep_d2,"DesignWare carry-select 32, op replicated per block",tier,64/32x2,900_mhz,1.111,addsub_spike_experiment,1.108350,true,278.476802,0.105794,791,3
+addsub_dwcselrep_d2,"DesignWare carry-select 32, op replicated per block",tier,64/32x2,one_ghz,1.000,addsub_spike_experiment,0.996641,true,311.599203,0.109141,857,1
+addsub_dwcselrep_d4,"DesignWare carry-select 32, op replicated per block",tier,64/32x2/16x4,400_mhz,2.500,addsub_spike_experiment,2.498190,true,140.303999,0.048240,385,33
+addsub_dwcselrep_d4,"DesignWare carry-select 32, op replicated per block",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.666170,true,158.019599,0.062071,386,33
+addsub_dwcselrep_d4,"DesignWare carry-select 32, op replicated per block",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.249950,true,225.241201,0.094995,575,1
+addsub_dwcselrep_d4,"DesignWare carry-select 32, op replicated per block",tier,64/32x2/16x4,900_mhz,1.111,addsub_spike_experiment,1.110350,true,310.711204,0.107858,868,1
+addsub_dwcselrep_d4,"DesignWare carry-select 32, op replicated per block",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.998974,true,314.662803,0.110719,872,0

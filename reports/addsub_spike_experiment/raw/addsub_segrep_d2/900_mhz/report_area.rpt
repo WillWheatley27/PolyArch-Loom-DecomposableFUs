@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : fu_add_sub_spike_ARCH0_REP_OP1_EN321_EN160_EN80
+Version: Y-2026.03-SP1
+Date   : Tue Oct 20 19:52:23 2026
+****************************************
+
+Library(s) Used:
+
+    saed14rvt_base_tt0p8v25c (File: /mnt/nas0/eda.libs/saed14/EDK_03_2025/SAED14nm_EDK_STD_RVT/liberty/nldm/base/saed14rvt_base_tt0p8v25c.db)
+
+Number of ports:                          236
+Number of nets:                           686
+Number of cells:                          513
+Number of combinational cells:            512
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                         87
+Number of references:                      22
+
+Combinational area:                164.457602
+Buf/Inv area:                       15.451200
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:             182.555883
+
+Total cell area:                   164.457602
+Total area:                        347.013485
+1

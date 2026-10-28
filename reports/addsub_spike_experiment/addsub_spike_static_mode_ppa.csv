@@ -1,0 +1,13 @@
+design,adder,role,capability,corner,target_period_ns,source,achieved_delay_ns,timing_met,cell_area_um2,static_leakage_power_uw,cells,ripple_full_adder_cells
+addsub_segrep_d4,"segmented, op replicated per block",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.642610,true,158.374801,0.054766,493,16
+addsub_segrep_d4,"segmented, op replicated per block",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.249940,true,163.747202,0.059548,503,16
+addsub_segrep_d4,"segmented, op replicated per block",tier,64/32x2/16x4,900_mhz,1.111,addsub_spike_experiment,1.103870,true,166.677602,0.060486,520,14
+addsub_segrep_d4,"segmented, op replicated per block",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.998280,true,174.714002,0.063882,537,12
+addsub_cselrep_d4,"carry-select 32, op replicated per block",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.666660,true,167.876394,0.065704,284,94
+addsub_cselrep_d4,"carry-select 32, op replicated per block",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.249720,true,179.509203,0.085948,289,94
+addsub_cselrep_d4,"carry-select 32, op replicated per block",tier,64/32x2/16x4,900_mhz,1.111,addsub_spike_experiment,1.111050,true,285.536400,0.109326,813,15
+addsub_cselrep_d4,"carry-select 32, op replicated per block",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.999956,true,285.048000,0.103516,880,3
+addsub_csel16rep_d4,"carry-select 16, op replicated per block",tier,64/32x2/16x4,600_mhz,1.667,addsub_spike_experiment,1.662150,true,199.267193,0.076443,349,110
+addsub_csel16rep_d4,"carry-select 16, op replicated per block",tier,64/32x2/16x4,800_mhz,1.250,addsub_spike_experiment,1.248350,true,201.309593,0.078250,349,110
+addsub_csel16rep_d4,"carry-select 16, op replicated per block",tier,64/32x2/16x4,900_mhz,1.111,addsub_spike_experiment,1.110180,true,202.907993,0.080403,349,110
+addsub_csel16rep_d4,"carry-select 16, op replicated per block",tier,64/32x2/16x4,one_ghz,1.000,addsub_spike_experiment,0.996300,true,205.438794,0.083769,351,110

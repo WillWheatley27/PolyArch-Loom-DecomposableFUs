@@ -1,0 +1,73 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_spike_ARCH1_REP_OP1_EN321_EN161_EN80
+Version: Y-2026.03-SP1
+Date   : Tue Oct 20 19:45:46 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: op_sel[1] (input port)
+  Endpoint: out_data[41]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_spike_ARCH1_REP_OP1_EN321_EN161_EN80
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 r
+  op_sel[1] (in)                                          0.00       0.00 r
+  decode/op_sel[1] (fu_add_sub_spike_decode_1_1_0_1_1)
+                                                          0.00       0.00 r
+  decode/sub[1] (fu_add_sub_spike_decode_1_1_0_1_1)       0.00       0.00 r
+  U361/X (SAEDRVT14_INV_S_5)                              0.03       0.03 f
+  U230/X (SAEDRVT14_MUXI2_U_0P5)                          0.11       0.14 r
+  carry_select.lo/be[11] (fu_add_sub_spike_half_5_1)      0.00       0.14 r
+  carry_select.lo/U108/X (SAEDRVT14_ND2_CDC_2)            0.06       0.19 f
+  carry_select.lo/U109/X (SAEDRVT14_INV_0P75)             0.06       0.25 r
+  carry_select.lo/U112/X (SAEDRVT14_AOI21_0P5)            0.07       0.32 f
+  carry_select.lo/U116/X (SAEDRVT14_OAI21_1)              0.07       0.39 r
+  carry_select.lo/U119/X (SAEDRVT14_AOI21_0P5)            0.06       0.45 f
+  carry_select.lo/U120/X (SAEDRVT14_OAI21_V1_4)           0.03       0.48 r
+  carry_select.lo/U6/X (SAEDRVT14_AOI21_V1_6)             0.03       0.51 f
+  carry_select.lo/U126/X (SAEDRVT14_OAI21_V1_4)           0.03       0.54 r
+  carry_select.lo/U5/X (SAEDRVT14_AOI21_V1_6)             0.03       0.57 f
+  carry_select.lo/U130/X (SAEDRVT14_OAI21_V1_4)           0.03       0.60 r
+  carry_select.lo/U26/X (SAEDRVT14_AOI21_6)               0.03       0.63 f
+  carry_select.lo/U134/X (SAEDRVT14_OAI21_V1_4)           0.03       0.66 r
+  carry_select.lo/U27/X (SAEDRVT14_AOI21_6)               0.03       0.69 f
+  carry_select.lo/U139/X (SAEDRVT14_OAI21_V1_4)           0.03       0.72 r
+  carry_select.lo/U28/X (SAEDRVT14_AOI21_6)               0.03       0.75 f
+  carry_select.lo/U144/X (SAEDRVT14_OAI21_V1_4)           0.03       0.78 r
+  carry_select.lo/U3/X (SAEDRVT14_AOI21_V1_6)             0.03       0.81 f
+  carry_select.lo/U25/X (SAEDRVT14_OAI21_V1_8)            0.02       0.83 r
+  carry_select.lo/U229/X (SAEDRVT14_AO21_2)               0.03       0.86 r
+  carry_select.lo/co (fu_add_sub_spike_half_5_1)          0.00       0.86 r
+  U233/X (SAEDRVT14_ND2_CDC_4)                            0.01       0.87 f
+  U328/X (SAEDRVT14_INV_4)                                0.03       0.90 r
+  U324/X (SAEDRVT14_INV_S_2)                              0.05       0.96 f
+  U341/X (SAEDRVT14_MUX2_MM_1)                            0.04       1.00 r
+  out_data[41] (out)                                      0.00       1.00 r
+  data arrival time                                                  1.00
+
+  max_delay                                               1.00       1.00
+  output external delay                                   0.00       1.00
+  data required time                                                 1.00
+  --------------------------------------------------------------------------
+  data required time                                                 1.00
+  data arrival time                                                 -1.00
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

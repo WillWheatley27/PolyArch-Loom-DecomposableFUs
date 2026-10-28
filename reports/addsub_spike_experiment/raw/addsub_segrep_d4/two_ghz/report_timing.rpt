@@ -1,0 +1,61 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_spike_ARCH0_REP_OP1_EN321_EN161_EN80
+Version: Y-2026.03-SP1
+Date   : Tue Oct 20 19:55:41 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_1[24]
+              (input port)
+  Endpoint: out_data[61]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_spike_ARCH0_REP_OP1_EN321_EN161_EN80
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 f
+  in_data_1[24] (in)                       0.00       0.00 f
+  U298/X (SAEDRVT14_EO2_3)                 0.03       0.03 r
+  U315/X (SAEDRVT14_ND2_1)                 0.04       0.07 f
+  U119/X (SAEDRVT14_OAI21_2)               0.07       0.14 r
+  U321/X (SAEDRVT14_AOI21_6)               0.03       0.17 f
+  U322/X (SAEDRVT14_OAI21_3)               0.04       0.21 r
+  U325/X (SAEDRVT14_AOI21_6)               0.03       0.24 f
+  U327/X (SAEDRVT14_OAI21_3)               0.04       0.27 r
+  U159/X (SAEDRVT14_AO21_2)                0.03       0.31 r
+  U330/X (SAEDRVT14_AO21_4)                0.02       0.33 r
+  U331/X (SAEDRVT14_MUX2_MM_4)             0.02       0.35 r
+  U343/X (SAEDRVT14_AO21_4)                0.02       0.37 r
+  U357/X (SAEDRVT14_AO21_4)                0.02       0.39 r
+  U358/X (SAEDRVT14_MUX2_MM_4)             0.02       0.41 r
+  U378/X (SAEDRVT14_AN2_8)                 0.02       0.43 r
+  U392/X (SAEDRVT14_OR2_MM_20)             0.02       0.45 r
+  U441/X (SAEDRVT14_AOI21_V1_4)            0.02       0.47 f
+  U442/X (SAEDRVT14_EO2_V1_1P5)            0.03       0.50 f
+  out_data[61] (out)                       0.00       0.50 f
+  data arrival time                                   0.50
+
+  max_delay                                0.50       0.50
+  output external delay                    0.00       0.50
+  data required time                                  0.50
+  -----------------------------------------------------------
+  data required time                                  0.50
+  data arrival time                                  -0.50
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+1

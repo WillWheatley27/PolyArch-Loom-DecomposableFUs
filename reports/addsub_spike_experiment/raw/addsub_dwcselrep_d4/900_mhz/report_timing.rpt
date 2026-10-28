@@ -1,0 +1,53 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_spike_ARCH2_REP_OP1_EN321_EN161_EN80
+Version: Y-2026.03-SP1
+Date   : Tue Oct 20 21:01:04 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: in_data_1[53]
+              (input port)
+  Endpoint: out_data[56]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_spike_ARCH2_REP_OP1_EN321_EN161_EN80
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 f
+  in_data_1[53] (in)                       0.00       0.00 f
+  U790/X (SAEDRVT14_INV_S_0P5)             0.03       0.03 r
+  U791/X (SAEDRVT14_EN2_1)                 0.11       0.14 f
+  U810/X (SAEDRVT14_ND2_CDC_1)             0.11       0.25 r
+  U215/X (SAEDRVT14_MUXI2_U_0P5)           0.12       0.37 f
+  U214/X (SAEDRVT14_MUXI2_U_0P5)           0.14       0.51 r
+  U280/X (SAEDRVT14_MUX2_MM_0P5)           0.33       0.84 r
+  U848/X (SAEDRVT14_MUXI2_U_0P5)           0.14       0.98 f
+  U198/X (SAEDRVT14_MUXI2_U_0P5)           0.08       1.07 r
+  U849/X (SAEDRVT14_MUX2_MM_1)             0.04       1.11 r
+  out_data[56] (out)                       0.00       1.11 r
+  data arrival time                                   1.11
+
+  max_delay                                1.11       1.11
+  output external delay                    0.00       1.11
+  data required time                                  1.11
+  -----------------------------------------------------------
+  data required time                                  1.11
+  data arrival time                                  -1.11
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+1

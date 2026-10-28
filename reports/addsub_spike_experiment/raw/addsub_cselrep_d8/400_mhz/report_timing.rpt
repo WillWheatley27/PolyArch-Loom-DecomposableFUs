@@ -1,0 +1,119 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_spike_ARCH1_REP_OP1_EN321_EN161_EN81
+Version: Y-2026.03-SP1
+Date   : Tue Oct 20 20:02:15 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: mode[0] (input port)
+  Endpoint: out_data[63]
+            (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_spike_ARCH1_REP_OP1_EN321_EN161_EN81
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  input external delay                                    0.00       0.00 f
+  mode[0] (in)                                            0.00       0.00 f
+  decode/mode[0] (fu_add_sub_spike_decode_1_1_1_1_1)      0.00       0.00 f
+  decode/U4/X (SAEDRVT14_OR2_MM_0P5)                      0.03       0.03 f
+  decode/is_start[4] (fu_add_sub_spike_decode_1_1_1_1_1)
+                                                          0.00       0.03 f
+  U190/X (SAEDRVT14_INV_S_2)                              0.66       0.69 r
+  U271/X (SAEDRVT14_NR2_1)                                0.19       0.88 f
+  carry_select.hi0/cin[0] (fu_add_sub_spike_half_f_0)     0.00       0.88 f
+  carry_select.hi0/intadd_4/U9/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.08       0.96 f
+  carry_select.hi0/intadd_4/U8/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.00 f
+  carry_select.hi0/intadd_4/U7/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.04 f
+  carry_select.hi0/intadd_4/U6/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.08 f
+  carry_select.hi0/intadd_4/U5/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.12 f
+  carry_select.hi0/intadd_4/U4/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.17 f
+  carry_select.hi0/intadd_4/U3/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.21 f
+  carry_select.hi0/intadd_4/U2/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.25 f
+  carry_select.hi0/U7/X (SAEDRVT14_MUX2_MM_0P5)           0.04       1.29 f
+  carry_select.hi0/intadd_5/U9/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.05       1.34 f
+  carry_select.hi0/intadd_5/U8/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.38 f
+  carry_select.hi0/intadd_5/U7/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.42 f
+  carry_select.hi0/intadd_5/U6/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.46 f
+  carry_select.hi0/intadd_5/U5/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.50 f
+  carry_select.hi0/intadd_5/U4/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.55 f
+  carry_select.hi0/intadd_5/U3/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.59 f
+  carry_select.hi0/intadd_5/U2/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.63 f
+  carry_select.hi0/U6/X (SAEDRVT14_MUX2_MM_0P5)           0.04       1.67 f
+  carry_select.hi0/intadd_6/U9/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.05       1.72 f
+  carry_select.hi0/intadd_6/U8/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.76 f
+  carry_select.hi0/intadd_6/U7/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.80 f
+  carry_select.hi0/intadd_6/U6/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.84 f
+  carry_select.hi0/intadd_6/U5/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.89 f
+  carry_select.hi0/intadd_6/U4/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.93 f
+  carry_select.hi0/intadd_6/U3/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       1.97 f
+  carry_select.hi0/intadd_6/U2/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       2.01 f
+  carry_select.hi0/U5/X (SAEDRVT14_MUX2_MM_0P5)           0.04       2.05 f
+  carry_select.hi0/intadd_7/U8/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.05       2.10 f
+  carry_select.hi0/intadd_7/U7/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       2.14 f
+  carry_select.hi0/intadd_7/U6/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       2.18 f
+  carry_select.hi0/intadd_7/U5/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       2.22 f
+  carry_select.hi0/intadd_7/U4/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       2.27 f
+  carry_select.hi0/intadd_7/U3/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       2.31 f
+  carry_select.hi0/intadd_7/U2/CO (SAEDRVT14_ADDF_V1_1)
+                                                          0.04       2.35 f
+  carry_select.hi0/U3/X (SAEDRVT14_EO2_0P5)               0.05       2.39 r
+  carry_select.hi0/U4/X (SAEDRVT14_EO2_0P5)               0.05       2.45 r
+  carry_select.hi0/s[31] (fu_add_sub_spike_half_f_0)      0.00       2.45 r
+  U222/X (SAEDRVT14_MUX2_MM_0P5)                          0.04       2.49 r
+  out_data[63] (out)                                      0.00       2.49 r
+  data arrival time                                                  2.49
+
+  max_delay                                               2.50       2.50
+  output external delay                                   0.00       2.50
+  data required time                                                 2.50
+  --------------------------------------------------------------------------
+  data required time                                                 2.50
+  data arrival time                                                 -2.49
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.01
+
+
+1
