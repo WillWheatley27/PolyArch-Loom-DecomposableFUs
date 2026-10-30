@@ -1,0 +1,99 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_mm_reg_ARCH0_MINMAX1_PIPE0_EN321_EN161_EN81
+Version: Y-2026.03-SP1
+Date   : Thu Oct 29 22:13:16 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: sub_reg[0] (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: out_data[41]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_mm_reg_ARCH0_MINMAX1_PIPE0_EN321_EN161_EN81
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  sub_reg[0]/CK (SAEDRVT14_FDP_V2_4)                      0.00       0.00 r
+  sub_reg[0]/Q (SAEDRVT14_FDP_V2_4)                       0.08       0.08 r
+  U432/X (SAEDRVT14_EO2_2)                                0.04       0.12 f
+  U1025/CO (SAEDRVT14_ADDF_V1_1)                          0.04       0.16 f
+  U438/CO (SAEDRVT14_ADDF_V1_2)                           0.04       0.19 f
+  U1020/CO (SAEDRVT14_ADDF_V1_1)                          0.04       0.23 f
+  U1017/CO (SAEDRVT14_ADDF_V1_1)                          0.04       0.27 f
+  U1014/CO (SAEDRVT14_ADDF_V1_1)                          0.04       0.31 f
+  U1012/CO (SAEDRVT14_ADDF_V1_1)                          0.04       0.35 f
+  U1009/CO (SAEDRVT14_ADDF_V1_1)                          0.04       0.39 f
+  U439/CO (SAEDRVT14_ADDF_V1_2)                           0.04       0.44 f
+  U433/X (SAEDRVT14_MUX2_MM_0P5)                          0.04       0.48 f
+  U910/CO (SAEDRVT14_ADDF_V2_2)                           0.03       0.51 f
+  U918/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.54 f
+  U921/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.58 f
+  U924/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.62 f
+  U848/CO (SAEDRVT14_ADDF_V1_2)                           0.04       0.66 f
+  U845/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.70 f
+  U862/CO (SAEDRVT14_ADDF_V1_2)                           0.04       0.73 f
+  U440/CO (SAEDRVT14_ADDF_V1_2)                           0.04       0.77 f
+  U590/X (SAEDRVT14_MUX2_MM_4)                            0.02       0.80 f
+  U851/CO (SAEDRVT14_ADDF_V2_2)                           0.02       0.82 f
+  U857/CO (SAEDRVT14_ADDF_V1_2)                           0.03       0.85 f
+  U854/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.89 f
+  U828/CO (SAEDRVT14_ADDF_V1_2)                           0.04       0.93 f
+  U837/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.97 f
+  U831/CO (SAEDRVT14_ADDF_V1_1)                           0.04       1.01 f
+  U834/CO (SAEDRVT14_ADDF_V1_2)                           0.04       1.04 f
+  U441/CO (SAEDRVT14_ADDF_V1_2)                           0.04       1.09 f
+  U591/X (SAEDRVT14_MUX2_MM_4)                            0.03       1.12 f
+  U395/X (SAEDRVT14_MUX2_MM_2)                            0.03       1.14 r
+  U811/CO (SAEDRVT14_ADDF_V2_2)                           0.02       1.17 r
+  U800/CO (SAEDRVT14_ADDF_V1_2)                           0.03       1.20 r
+  U814/CO (SAEDRVT14_ADDF_V1_1)                           0.04       1.24 r
+  U808/CO (SAEDRVT14_ADDF_V1_2)                           0.04       1.27 r
+  U796/CO (SAEDRVT14_ADDF_V1_1)                           0.04       1.31 r
+  U443/CO (SAEDRVT14_ADDF_V2_2)                           0.03       1.34 r
+  U593/X (SAEDRVT14_MUX2_MM_4)                            0.06       1.41 r
+  U610/X (SAEDRVT14_AO21_4)                               0.04       1.44 r
+  U611/X (SAEDRVT14_MUX2_MM_4)                            0.02       1.47 r
+  U628/X (SAEDRVT14_AO21_4)                               0.02       1.49 r
+  U629/X (SAEDRVT14_MUX2_MM_4)                            0.02       1.52 r
+  U646/X (SAEDRVT14_AO21_4)                               0.03       1.54 r
+  U430/X (SAEDRVT14_MUX2_MM_1)                            0.04       1.58 r
+  U663/X (SAEDRVT14_AO21_4)                               0.03       1.61 r
+  U666/X (SAEDRVT14_ND2_MM_4)                             0.01       1.62 f
+  U393/X (SAEDRVT14_ND2_CDC_4)                            0.02       1.64 r
+  U400/X (SAEDRVT14_ND2_CDC_1)                            0.05       1.70 f
+  U404/X (SAEDRVT14_ND2_CDC_1)                            0.04       1.74 r
+  U738/X (SAEDRVT14_EO2_0P5)                              0.08       1.81 f
+  U374/X (SAEDRVT14_NR2_MM_1)                             0.28       2.10 r
+  U875/X (SAEDRVT14_AOI22_0P5)                            0.09       2.19 f
+  U460/X (SAEDRVT14_OAI21_0P5)                            0.04       2.22 r
+  core/output_stage.stage/d[41] (fu_out_stage_64_0)       0.00       2.22 r
+  core/output_stage.stage/q[41] (fu_out_stage_64_0)       0.00       2.22 r
+  out_data[41] (out)                                      0.00       2.22 r
+  data arrival time                                                  2.22
+
+  clock clk (rise edge)                                   2.22       2.22
+  clock network delay (ideal)                             0.00       2.22
+  output external delay                                   0.00       2.22
+  data required time                                                 2.22
+  --------------------------------------------------------------------------
+  data required time                                                 2.22
+  data arrival time                                                 -2.22
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

@@ -1,0 +1,70 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_mm_reg_ARCH0_MINMAX1_PIPE2_EN321_EN160_EN80
+Version: Y-2026.03-SP1
+Date   : Thu Oct 29 22:26:30 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: sub_reg[0] (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: core/late_select.stage/registered.d_q_reg[27]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_mm_reg_ARCH0_MINMAX1_PIPE2_EN321_EN160_EN80
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  sub_reg[0]/CK (SAEDRVT14_FDP_V2_4)                      0.00       0.00 r
+  sub_reg[0]/QN (SAEDRVT14_FDP_V2_4)                      0.04       0.04 r
+  U501/X (SAEDRVT14_EN2_4)                                0.03       0.06 f
+  U499/X (SAEDRVT14_OAI21_V1_8)                           0.01       0.08 r
+  U497/X (SAEDRVT14_ND2_3)                                0.01       0.09 f
+  U839/CO (SAEDRVT14_ADDF_V2_2)                           0.02       0.11 f
+  U837/CO (SAEDRVT14_ADDF_V2_2)                           0.02       0.13 f
+  U844/CO (SAEDRVT14_ADDF_V2_2)                           0.02       0.15 f
+  U841/CO (SAEDRVT14_ADDF_V2_2)                           0.03       0.19 f
+  U1035/X (SAEDRVT14_AOI21_8)                             0.02       0.21 r
+  U504/X (SAEDRVT14_OAI21_V1_8)                           0.02       0.23 f
+  U948/X (SAEDRVT14_ND2_MM_6)                             0.02       0.24 r
+  U1049/X (SAEDRVT14_ND2_MM_16)                           0.02       0.27 f
+  U843/X (SAEDRVT14_AOI21_V1_8)                           0.02       0.29 r
+  U505/X (SAEDRVT14_NR2_MM_12)                            0.01       0.30 f
+  U534/X (SAEDRVT14_NR2_MM_16)                            0.01       0.32 r
+  U422/X (SAEDRVT14_OAI21_2)                              0.03       0.34 f
+  U546/X (SAEDRVT14_BUF_10)                               0.03       0.37 f
+  U565/X (SAEDRVT14_AOI21_0P5)                            0.04       0.41 r
+  U324/X (SAEDRVT14_EO2_1)                                0.04       0.46 f
+  U959/X (SAEDRVT14_MUX2_MM_1)                            0.03       0.49 f
+  core/late_select.stage/d[27] (fu_out_stage_W65_PIPE1)
+                                                          0.00       0.49 f
+  core/late_select.stage/registered.d_q_reg[27]/D (SAEDRVT14_FDP_V2_0P5)
+                                                          0.00       0.49 f
+  data arrival time                                                  0.49
+
+  clock clk (rise edge)                                   0.50       0.50
+  clock network delay (ideal)                             0.00       0.50
+  core/late_select.stage/registered.d_q_reg[27]/CK (SAEDRVT14_FDP_V2_0P5)
+                                                          0.00       0.50 r
+  library setup time                                     -0.01       0.49
+  data required time                                                 0.49
+  --------------------------------------------------------------------------
+  data required time                                                 0.49
+  data arrival time                                                 -0.49
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

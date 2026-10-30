@@ -1,0 +1,60 @@
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : fu_add_sub_mm_reg_ARCH0_MINMAX0_PIPE0_EN321_EN161_EN80
+Version: Y-2026.03-SP1
+Date   : Thu Oct 29 22:34:17 2026
+****************************************
+
+
+Library(s) Used:
+
+    saed14rvt_base_tt0p8v25c (File: /mnt/nas0/eda.libs/saed14/EDK_03_2025/SAED14nm_EDK_STD_RVT/liberty/nldm/base/saed14rvt_base_tt0p8v25c.db)
+
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+fu_add_sub_mm_reg_ARCH0_MINMAX0_PIPE0_EN321_EN161_EN80
+                       8000              saed14rvt_base_tt0p8v25c
+
+
+Global Operating Voltage = 0.8  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  =  25.5046 uW   (24%)
+  Net Switching Power  =  80.2247 uW   (76%)
+                         ---------
+Total Dynamic Power    = 105.7293 uW  (100%)
+
+Cell Leakage Power     =  46.3543 nW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network  1.9785e-03            0.0000            0.0000        1.9785e-03  (   1.87%)  i
+register       1.0121e-03        4.6675e-03        8.4570e+03        5.6881e-03  (   5.38%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  2.2514e-02        7.5557e-02        3.7897e+04        9.8109e-02  (  92.75%)
+--------------------------------------------------------------------------------------------------
+Total          2.5505e-02 mW     8.0225e-02 mW     4.6354e+04 pW         0.1058 mW
+1

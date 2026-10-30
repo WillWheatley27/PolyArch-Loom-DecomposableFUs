@@ -1,0 +1,81 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_mm_reg_ARCH0_MINMAX0_PIPE1_EN321_EN160_EN80
+Version: Y-2026.03-SP1
+Date   : Thu Oct 29 22:40:18 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: sub_reg[0] (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: core/output_stage.stage/registered.d_q_reg[57]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_mm_reg_ARCH0_MINMAX0_PIPE1_EN321_EN160_EN80
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  sub_reg[0]/CK (SAEDRVT14_FDP_V2_4)                      0.00       0.00 r
+  sub_reg[0]/Q (SAEDRVT14_FDP_V2_4)                       0.08       0.08 r
+  U339/X (SAEDRVT14_EO2_0P5)                              0.06       0.14 r
+  U547/CO (SAEDRVT14_ADDF_V2_2)                           0.05       0.19 r
+  U546/CO (SAEDRVT14_ADDF_V2_2)                           0.02       0.21 r
+  U545/CO (SAEDRVT14_ADDF_V2_2)                           0.02       0.24 r
+  U544/CO (SAEDRVT14_ADDF_V2_2)                           0.02       0.26 r
+  U543/CO (SAEDRVT14_ADDF_V2_2)                           0.02       0.28 r
+  U542/CO (SAEDRVT14_ADDF_V2_2)                           0.02       0.31 r
+  U464/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.34 r
+  U323/CO (SAEDRVT14_ADDF_V2_2)                           0.03       0.37 r
+  U102/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.41 r
+  U322/CO (SAEDRVT14_ADDF_V2_2)                           0.03       0.43 r
+  U101/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.47 r
+  U100/CO (SAEDRVT14_ADDF_V1_2)                           0.04       0.51 r
+  U540/CO (SAEDRVT14_ADDF_V1_1)                           0.04       0.54 r
+  U321/CO (SAEDRVT14_ADDF_V2_1)                           0.03       0.57 r
+  U99/CO (SAEDRVT14_ADDF_V1_1)                            0.04       0.61 r
+  U320/CO (SAEDRVT14_ADDF_V2_2)                           0.03       0.64 r
+  U98/CO (SAEDRVT14_ADDF_V1_1)                            0.04       0.68 r
+  U319/CO (SAEDRVT14_ADDF_V2_2)                           0.03       0.70 r
+  U97/CO (SAEDRVT14_ADDF_V1_1)                            0.04       0.74 r
+  U104/CO (SAEDRVT14_ADDF_V1_2)                           0.04       0.78 r
+  U96/CO (SAEDRVT14_ADDF_V1_1)                            0.04       0.82 r
+  U95/CO (SAEDRVT14_ADDF_V1_1)                            0.04       0.86 r
+  U443/CO (SAEDRVT14_ADDF_V1_1)                           0.17       1.03 r
+  U249/X (SAEDRVT14_AO21_1)                               0.06       1.08 r
+  U251/X (SAEDRVT14_MUX2_MM_4)                            0.06       1.14 r
+  U465/X (SAEDRVT14_AO21_1)                               0.19       1.33 r
+  U511/X (SAEDRVT14_AO21_1)                               0.22       1.55 r
+  U307/X (SAEDRVT14_AO21_2)                               0.13       1.68 r
+  U288/X (SAEDRVT14_AOI21_0P75)                           0.06       1.74 f
+  U407/X (SAEDRVT14_EO2_0P5)                              0.05       1.79 r
+  core/output_stage.stage/d[57] (fu_out_stage_64_1)       0.00       1.79 r
+  core/output_stage.stage/registered.d_q_reg[57]/D (SAEDRVT14_FDPCBQ_V2LP_0P5)
+                                                          0.00       1.79 r
+  data arrival time                                                  1.79
+
+  clock clk (rise edge)                                   1.82       1.82
+  clock network delay (ideal)                             0.00       1.82
+  core/output_stage.stage/registered.d_q_reg[57]/CK (SAEDRVT14_FDPCBQ_V2LP_0P5)
+                                                          0.00       1.82 r
+  library setup time                                     -0.02       1.80
+  data required time                                                 1.80
+  --------------------------------------------------------------------------
+  data required time                                                 1.80
+  data arrival time                                                 -1.79
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

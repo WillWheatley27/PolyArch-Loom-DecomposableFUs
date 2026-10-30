@@ -1,0 +1,134 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_mm_reg_ARCH0_MINMAX1_PIPE0_EN321_EN161_EN81
+Version: Y-2026.03-SP1
+Date   : Thu Oct 29 22:13:12 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: mode_q_reg[1]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: out_data[20]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_mm_reg_ARCH0_MINMAX1_PIPE0_EN321_EN161_EN81
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  mode_q_reg[1]/CK (SAEDRVT14_FDPQB_V2LP_0P5)             0.00       0.00 r
+  mode_q_reg[1]/QN (SAEDRVT14_FDPQB_V2LP_0P5)             0.15       0.15 f
+  U376/X (SAEDRVT14_INV_S_0P5)                            0.38       0.53 r
+  U377/X (SAEDRVT14_ND2_CDC_1)                            0.32       0.85 f
+  U378/X (SAEDRVT14_INV_S_0P5)                            0.46       1.31 r
+  U587/X (SAEDRVT14_OAI22_0P5)                            0.34       1.65 f
+  U589/X (SAEDRVT14_OA21_1)                               0.06       1.71 f
+  U590/X (SAEDRVT14_AOI21_0P75)                           0.04       1.75 r
+  intadd_1/U8/CO (SAEDRVT14_ADDF_V1_1)                    0.06       1.81 r
+  intadd_1/U7/CO (SAEDRVT14_ADDF_V1_1)                    0.04       1.85 r
+  intadd_1/U6/CO (SAEDRVT14_ADDF_V1_1)                    0.04       1.89 r
+  intadd_1/U5/CO (SAEDRVT14_ADDF_V1_1)                    0.04       1.94 r
+  intadd_1/U4/CO (SAEDRVT14_ADDF_V1_1)                    0.04       1.98 r
+  intadd_1/U3/CO (SAEDRVT14_ADDF_V1_1)                    0.04       2.02 r
+  intadd_1/U2/CO (SAEDRVT14_ADDF_V1_1)                    0.05       2.07 r
+  U571/X (SAEDRVT14_OAI22_0P5)                            0.16       2.23 f
+  U573/X (SAEDRVT14_OA21_1)                               0.06       2.29 f
+  U574/X (SAEDRVT14_AOI21_0P75)                           0.04       2.33 r
+  intadd_2/U8/CO (SAEDRVT14_ADDF_V1_1)                    0.06       2.39 r
+  intadd_2/U7/CO (SAEDRVT14_ADDF_V1_1)                    0.04       2.43 r
+  intadd_2/U6/CO (SAEDRVT14_ADDF_V1_1)                    0.04       2.47 r
+  intadd_2/U5/CO (SAEDRVT14_ADDF_V1_1)                    0.04       2.52 r
+  intadd_2/U4/CO (SAEDRVT14_ADDF_V1_1)                    0.04       2.56 r
+  intadd_2/U3/CO (SAEDRVT14_ADDF_V1_1)                    0.04       2.60 r
+  intadd_2/U2/CO (SAEDRVT14_ADDF_V1_1)                    0.05       2.65 r
+  U553/X (SAEDRVT14_OAI22_0P5)                            0.16       2.81 f
+  U555/X (SAEDRVT14_OA21_1)                               0.06       2.87 f
+  U556/X (SAEDRVT14_AOI21_0P75)                           0.04       2.91 r
+  intadd_3/U8/CO (SAEDRVT14_ADDF_V1_1)                    0.06       2.97 r
+  intadd_3/U7/CO (SAEDRVT14_ADDF_V1_1)                    0.04       3.01 r
+  intadd_3/U6/CO (SAEDRVT14_ADDF_V1_1)                    0.04       3.05 r
+  intadd_3/U5/CO (SAEDRVT14_ADDF_V1_1)                    0.04       3.10 r
+  intadd_3/U4/CO (SAEDRVT14_ADDF_V1_1)                    0.04       3.14 r
+  intadd_3/U3/CO (SAEDRVT14_ADDF_V1_1)                    0.04       3.18 r
+  intadd_3/U2/CO (SAEDRVT14_ADDF_V1_1)                    0.05       3.24 r
+  U529/X (SAEDRVT14_OAI22_0P5)                            0.15       3.39 f
+  U531/X (SAEDRVT14_OA21_1)                               0.06       3.44 f
+  U532/X (SAEDRVT14_AOI21_0P75)                           0.04       3.49 r
+  intadd_4/U8/CO (SAEDRVT14_ADDF_V1_1)                    0.06       3.54 r
+  intadd_4/U7/CO (SAEDRVT14_ADDF_V1_1)                    0.04       3.59 r
+  intadd_4/U6/CO (SAEDRVT14_ADDF_V1_1)                    0.04       3.63 r
+  intadd_4/U5/CO (SAEDRVT14_ADDF_V1_1)                    0.04       3.67 r
+  intadd_4/U4/CO (SAEDRVT14_ADDF_V1_1)                    0.04       3.71 r
+  intadd_4/U3/CO (SAEDRVT14_ADDF_V1_1)                    0.04       3.76 r
+  intadd_4/U2/CO (SAEDRVT14_ADDF_V1_1)                    0.05       3.81 r
+  U330/X (SAEDRVT14_OAI22_0P5)                            0.16       3.96 f
+  U513/X (SAEDRVT14_OA21_1)                               0.06       4.02 f
+  U514/X (SAEDRVT14_AOI21_0P75)                           0.04       4.06 r
+  intadd_5/U8/CO (SAEDRVT14_ADDF_V1_1)                    0.06       4.13 r
+  intadd_5/U7/CO (SAEDRVT14_ADDF_V1_1)                    0.04       4.17 r
+  intadd_5/U6/CO (SAEDRVT14_ADDF_V1_1)                    0.04       4.21 r
+  intadd_5/U5/CO (SAEDRVT14_ADDF_V1_1)                    0.04       4.25 r
+  intadd_5/U4/CO (SAEDRVT14_ADDF_V1_1)                    0.04       4.29 r
+  intadd_5/U3/CO (SAEDRVT14_ADDF_V1_1)                    0.04       4.34 r
+  intadd_5/U2/CO (SAEDRVT14_ADDF_V1_1)                    0.05       4.39 r
+  U331/X (SAEDRVT14_OAI22_0P5)                            0.16       4.55 f
+  U497/X (SAEDRVT14_OA21_1)                               0.06       4.60 f
+  U498/X (SAEDRVT14_AOI21_0P75)                           0.04       4.65 r
+  intadd_6/U8/CO (SAEDRVT14_ADDF_V1_1)                    0.06       4.70 r
+  intadd_6/U7/CO (SAEDRVT14_ADDF_V1_1)                    0.04       4.75 r
+  intadd_6/U6/CO (SAEDRVT14_ADDF_V1_1)                    0.04       4.79 r
+  intadd_6/U5/CO (SAEDRVT14_ADDF_V1_1)                    0.04       4.83 r
+  intadd_6/U4/CO (SAEDRVT14_ADDF_V1_1)                    0.04       4.87 r
+  intadd_6/U3/CO (SAEDRVT14_ADDF_V1_1)                    0.04       4.92 r
+  intadd_6/U2/CO (SAEDRVT14_ADDF_V1_1)                    0.05       4.97 r
+  U426/X (SAEDRVT14_OAI22_0P5)                            0.16       5.13 f
+  U481/X (SAEDRVT14_OA21_1)                               0.06       5.18 f
+  U482/X (SAEDRVT14_AOI21_0P75)                           0.04       5.23 r
+  intadd_7/U7/CO (SAEDRVT14_ADDF_V1_1)                    0.06       5.29 r
+  intadd_7/U6/CO (SAEDRVT14_ADDF_V1_1)                    0.04       5.33 r
+  intadd_7/U5/CO (SAEDRVT14_ADDF_V1_1)                    0.04       5.37 r
+  intadd_7/U4/CO (SAEDRVT14_ADDF_V1_1)                    0.04       5.41 r
+  intadd_7/U3/CO (SAEDRVT14_ADDF_V1_1)                    0.04       5.45 r
+  intadd_7/U2/CO (SAEDRVT14_ADDF_V1_1)                    0.07       5.52 r
+  U396/X (SAEDRVT14_NR2_1)                                0.07       5.60 f
+  U397/X (SAEDRVT14_AOI21_0P75)                           0.06       5.66 r
+  U399/X (SAEDRVT14_MUXI2_U_0P5)                          0.11       5.77 f
+  U400/X (SAEDRVT14_INV_S_0P5)                            0.24       6.01 r
+  U401/X (SAEDRVT14_AO221_0P5)                            0.14       6.16 r
+  U653/X (SAEDRVT14_OA31_1)                               0.05       6.21 r
+  U654/X (SAEDRVT14_OA31_1)                               0.03       6.24 r
+  U655/X (SAEDRVT14_OAI21_0P5)                            0.07       6.31 f
+  U656/X (SAEDRVT14_ND2_CDC_1)                            0.05       6.36 r
+  U657/X (SAEDRVT14_OAI21_0P5)                            0.07       6.43 f
+  U658/X (SAEDRVT14_ND2_CDC_1)                            0.23       6.66 r
+  U635/X (SAEDRVT14_OAI22_0P5)                            0.15       6.81 f
+  U760/X (SAEDRVT14_AO21_1)                               0.05       6.86 f
+  core/output_stage.stage/d[20] (fu_out_stage_64_0)       0.00       6.86 f
+  core/output_stage.stage/q[20] (fu_out_stage_64_0)       0.00       6.86 f
+  out_data[20] (out)                                      0.00       6.86 f
+  data arrival time                                                  6.86
+
+  clock clk (rise edge)                                  10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  output external delay                                   0.00      10.00
+  data required time                                                10.00
+  --------------------------------------------------------------------------
+  data required time                                                10.00
+  data arrival time                                                 -6.86
+  --------------------------------------------------------------------------
+  slack (MET)                                                        3.14
+
+
+1

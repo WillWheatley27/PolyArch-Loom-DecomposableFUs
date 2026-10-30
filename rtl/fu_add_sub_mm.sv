@@ -26,7 +26,16 @@
 // sub_sel and max_sel arrive per 8-bit block (the lane's control replicated to each of its blocks),
 // prepared before the FU like the left-edge mode decode, so the operand inversion is driven straight
 // from an input pin. All controls are runtime inputs; the circuit is the same in every mode.
+//
+// fu_add_sub_mm_reg is the same unit behind the original fused unit's interface
+// (fu_add_sub_minmax_gen.sv): op_sel[i] is the op of the lane starting at block i (AddSub: 0 add,
+// 1 sub; Min/Max: 0 min, 1 max), and the per-block copy is made in the FU, so its cost is the FU's.
+// Every control arrives one cycle ahead of its operands and is registered here, as in
+// fu_add_sub_spike OP_REG: the operand inversion is driven from a flop per block (sub_reg*, sized
+// by synthesis with FAST_OP_REGS=1). The control register loads when an upstream operand register
+// would: when the operation at the inputs is accepted, or there is none.
 `include "fu_min_max_gen.sv"
+`include "fu_add_sub_spike.sv"
 
 module fu_add_sub_mm #(
   parameter int ARCH   = 0,
@@ -162,6 +171,52 @@ module fu_add_sub_mm #(
   end
   assign in_ready_1 = in_ready_0;
 endmodule : fu_add_sub_mm
+
+module fu_add_sub_mm_reg #(
+  parameter int ARCH   = 0,
+  parameter bit MINMAX = 1,
+  parameter int PIPE   = 0,
+  parameter bit EN32   = 1,
+  parameter bit EN16   = 1,
+  parameter bit EN8    = 1
+) (
+  input  logic        clk,
+  input  logic        rst_n,
+  input  logic [1:0]  mode,         // of the next operation, as are the other controls
+  input  logic        is_min_max,
+  input  logic        is_signed,
+  input  logic [7:0]  op_sel,
+  input  logic [63:0] in_data_0, input logic in_valid_0, output logic in_ready_0,
+  input  logic [63:0] in_data_1, input logic in_valid_1, output logic in_ready_1,
+  output logic [63:0] out_data, output logic out_valid, input logic out_ready
+);
+  // each block's lane op: op_sel at its lane's start
+  logic [7:0] lane_op;
+  // verilator lint_off UNUSEDSIGNAL
+  logic [7:0] is_start_unused;   // the core decodes the lane starts from the registered mode
+  // verilator lint_on UNUSEDSIGNAL
+  fu_add_sub_spike_decode #(.EN32(EN32), .EN16(EN16), .EN8(EN8), .FLAT(1), .REP_OP(0)) decode (
+    .mode(mode), .op_sel(op_sel), .is_start(is_start_unused), .sub(lane_op));
+
+  logic [1:0] mode_q;
+  logic       is_min_max_q, is_signed_q;
+  logic [7:0] sub, mx;   // per block: the lane subtracts (every lane for Min/Max); the lane takes the max
+  always_ff @(posedge clk)
+    if (~(in_valid_0 & in_valid_1) | in_ready_0) begin
+      mode_q       <= mode;
+      is_min_max_q <= is_min_max;
+      is_signed_q  <= is_signed;
+      sub          <= lane_op | {8{MINMAX & is_min_max}};
+      mx           <= lane_op;
+    end
+
+  fu_add_sub_mm #(.ARCH(ARCH), .MINMAX(MINMAX), .PIPE(PIPE), .EN32(EN32), .EN16(EN16), .EN8(EN8)) core (
+    .clk(clk), .rst_n(rst_n), .mode(mode_q), .sub_sel(sub), .max_sel(mx), .is_signed(is_signed_q),
+    .is_min_max(is_min_max_q),
+    .in_data_0(in_data_0), .in_valid_0(in_valid_0), .in_ready_0(in_ready_0),
+    .in_data_1(in_data_1), .in_valid_1(in_valid_1), .in_ready_1(in_ready_1),
+    .out_data(out_data), .out_valid(out_valid), .out_ready(out_ready));
+endmodule : fu_add_sub_mm_reg
 
 // Partitioned add over NBLK 8-bit blocks (rtl/fu_add_sub_spike.sv fu_add_sub_spike_seg): a guard
 // bit below each block in BRK (block 0 always has one, the segment's carry-in). A guard bit passes

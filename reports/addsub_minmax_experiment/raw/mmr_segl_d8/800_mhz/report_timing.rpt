@@ -1,0 +1,74 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_mm_reg_ARCH0_MINMAX1_PIPE2_EN321_EN161_EN81
+Version: Y-2026.03-SP1
+Date   : Thu Oct 29 22:29:07 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: mode_q_reg[1]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: core/late_select.take_b_q_reg[6]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_mm_reg_ARCH0_MINMAX1_PIPE2_EN321_EN161_EN81
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  mode_q_reg[1]/CK (SAEDRVT14_FDP_V2LP_0P5)               0.00       0.00 r
+  mode_q_reg[1]/Q (SAEDRVT14_FDP_V2LP_0P5)                0.28       0.28 r
+  U563/X (SAEDRVT14_AN2_MM_1)                             0.26       0.53 r
+  U650/X (SAEDRVT14_MUX2_MM_4)                            0.06       0.59 r
+  U506/X (SAEDRVT14_AO21_1)                               0.04       0.63 r
+  U663/X (SAEDRVT14_MUX2_MM_4)                            0.03       0.66 r
+  U500/X (SAEDRVT14_AO21_1)                               0.04       0.70 r
+  U676/X (SAEDRVT14_MUX2_MM_4)                            0.03       0.73 r
+  U1007/X (SAEDRVT14_AO21_4)                              0.03       0.76 r
+  U766/X (SAEDRVT14_MUX2_MM_4)                            0.02       0.78 r
+  U503/X (SAEDRVT14_AO21_4)                               0.02       0.81 r
+  U780/X (SAEDRVT14_MUX2_MM_4)                            0.02       0.83 r
+  U546/X (SAEDRVT14_AOI21_1P5)                            0.02       0.85 f
+  U794/X (SAEDRVT14_INV_4)                                0.02       0.87 r
+  U795/X (SAEDRVT14_MUX2_MM_4)                            0.03       0.89 r
+  U427/X (SAEDRVT14_INV_6)                                0.01       0.90 f
+  U809/X (SAEDRVT14_OAI21_V1_8)                           0.01       0.92 r
+  U810/X (SAEDRVT14_MUX2_MM_4)                            0.03       0.94 r
+  U811/X (SAEDRVT14_INV_3)                                0.01       0.96 f
+  U827/X (SAEDRVT14_OAI21_V1_4)                           0.01       0.97 r
+  U828/X (SAEDRVT14_OA31_1)                               0.03       1.00 r
+  U581/X (SAEDRVT14_AO21_1)                               0.08       1.08 r
+  U1208/X (SAEDRVT14_INV_S_3)                             0.03       1.12 f
+  U1211/X (SAEDRVT14_OAI21_0P5)                           0.03       1.15 r
+  U1212/X (SAEDRVT14_OA31_1P5)                            0.05       1.20 r
+  U1213/X (SAEDRVT14_EO2_1)                               0.04       1.24 f
+  core/late_select.take_b_q_reg[6]/D (SAEDRVT14_FDP_V2_0P5)
+                                                          0.00       1.24 f
+  data arrival time                                                  1.24
+
+  clock clk (rise edge)                                   1.25       1.25
+  clock network delay (ideal)                             0.00       1.25
+  core/late_select.take_b_q_reg[6]/CK (SAEDRVT14_FDP_V2_0P5)
+                                                          0.00       1.25 r
+  library setup time                                     -0.01       1.24
+  data required time                                                 1.24
+  --------------------------------------------------------------------------
+  data required time                                                 1.24
+  data arrival time                                                 -1.24
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

@@ -12,12 +12,18 @@
 # real target (CLOSURE_FACTOR in result.txt; 1.0 = met on the first compile).
 # A design with registers (fu_add_sub_pipe) is also clocked at the target period, with clock gating.
 # Optional: STATIC_MODE=1 treats mode as a static configuration input (no timing paths from it).
+# Optional: UNGROUP_TOP=1 dissolves the top design's own instances (one level), so the top's registers
+# and the logic they drive one module down are optimized together (fu_add_sub_mm_reg: its control
+# register and the fu_add_sub_mm datapath, whose adders stay separate designs).
 # Optional: RETIME=1 lets a registered design's registers move into its logic (compile_ultra -retime,
 # on the flattened design).
-# Optional: FAST_OP_REGS=1 (fu_add_sub_spike OP_REG): the per-block op registers (sub_reg*) are
-# not merged, so each drives one block, and are sized to their family's strongest flop after compile
-# (then fixed, and the rest recompiled incrementally), so the op leaves them as fast as a lightly
-# loaded data register's output.
+# Optional: FAST_OP_REGS=1 (fu_add_sub_spike OP_REG, fu_add_sub_mm_reg): the per-block op registers (sub_reg*) are
+# not merged, so each drives one block, nor clock-gated, and are sized after compile to the standard
+# (not low-power) variant of their flop at its strongest drive (then fixed, and the rest recompiled
+# incrementally), so every block's op leaves its register at the same time, as fast as a lightly
+# loaded data register's output. (Until 2026-10-29 the size stayed in the flop's own variant, which
+# left a mix of standard and low-power op flops, skewed by up to 50 ps; the fu_add_sub_spike *fast
+# results in reports/addsub_spike_experiment were synthesized that way.)
 # Optional: POWER_OPT=1 compiles power-driven: the inputs get the stimulus's activity (every input
 # but mode toggles with probability 0.5 per operation) before compile, with dynamic and total power
 # optimization on.
@@ -150,6 +156,36 @@ set jobs {
   {as_cselo_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=0,PIPE=1,EN32=1,EN16=0,EN8=0}}
   {as_cselo_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=0,PIPE=1,EN32=1,EN16=1,EN8=0}}
   {as_cselo_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm {ARCH=1,MINMAX=0,PIPE=1,EN32=1,EN16=1,EN8=1}}
+  {mmr_seg_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=0,MINMAX=1,PIPE=0,EN32=1,EN16=0,EN8=0}}
+  {mmr_seg_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=0,MINMAX=1,PIPE=0,EN32=1,EN16=1,EN8=0}}
+  {mmr_seg_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=0,MINMAX=1,PIPE=0,EN32=1,EN16=1,EN8=1}}
+  {mmr_csel_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=1,MINMAX=1,PIPE=0,EN32=1,EN16=0,EN8=0}}
+  {mmr_csel_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=1,MINMAX=1,PIPE=0,EN32=1,EN16=1,EN8=0}}
+  {mmr_csel_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=1,MINMAX=1,PIPE=0,EN32=1,EN16=1,EN8=1}}
+  {mmr_sego_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=0,MINMAX=1,PIPE=1,EN32=1,EN16=0,EN8=0}}
+  {mmr_sego_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=0,MINMAX=1,PIPE=1,EN32=1,EN16=1,EN8=0}}
+  {mmr_sego_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=0,MINMAX=1,PIPE=1,EN32=1,EN16=1,EN8=1}}
+  {mmr_cselo_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=1,MINMAX=1,PIPE=1,EN32=1,EN16=0,EN8=0}}
+  {mmr_cselo_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=1,MINMAX=1,PIPE=1,EN32=1,EN16=1,EN8=0}}
+  {mmr_cselo_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=1,MINMAX=1,PIPE=1,EN32=1,EN16=1,EN8=1}}
+  {mmr_segl_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=0,MINMAX=1,PIPE=2,EN32=1,EN16=0,EN8=0}}
+  {mmr_segl_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=0,MINMAX=1,PIPE=2,EN32=1,EN16=1,EN8=0}}
+  {mmr_segl_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=0,MINMAX=1,PIPE=2,EN32=1,EN16=1,EN8=1}}
+  {mmr_csell_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=1,MINMAX=1,PIPE=2,EN32=1,EN16=0,EN8=0}}
+  {mmr_csell_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=1,MINMAX=1,PIPE=2,EN32=1,EN16=1,EN8=0}}
+  {mmr_csell_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=1,MINMAX=1,PIPE=2,EN32=1,EN16=1,EN8=1}}
+  {asr_seg_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=0,MINMAX=0,PIPE=0,EN32=1,EN16=0,EN8=0}}
+  {asr_seg_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=0,MINMAX=0,PIPE=0,EN32=1,EN16=1,EN8=0}}
+  {asr_seg_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=0,MINMAX=0,PIPE=0,EN32=1,EN16=1,EN8=1}}
+  {asr_csel_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=1,MINMAX=0,PIPE=0,EN32=1,EN16=0,EN8=0}}
+  {asr_csel_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=1,MINMAX=0,PIPE=0,EN32=1,EN16=1,EN8=0}}
+  {asr_csel_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=1,MINMAX=0,PIPE=0,EN32=1,EN16=1,EN8=1}}
+  {asr_sego_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=0,MINMAX=0,PIPE=1,EN32=1,EN16=0,EN8=0}}
+  {asr_sego_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=0,MINMAX=0,PIPE=1,EN32=1,EN16=1,EN8=0}}
+  {asr_sego_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=0,MINMAX=0,PIPE=1,EN32=1,EN16=1,EN8=1}}
+  {asr_cselo_d2 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=1,MINMAX=0,PIPE=1,EN32=1,EN16=0,EN8=0}}
+  {asr_cselo_d4 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=1,MINMAX=0,PIPE=1,EN32=1,EN16=1,EN8=0}}
+  {asr_cselo_d8 rtl/fu_add_sub_mm.sv fu_add_sub_mm_reg {ARCH=1,MINMAX=0,PIPE=1,EN32=1,EN16=1,EN8=1}}
   {minmax_m2o rtl/fu_add_sub_mm.sv fu_min_max_piped {EN32=1,EN16=0}}
   {minmax_m4o rtl/fu_add_sub_mm.sv fu_min_max_piped {EN32=1,EN16=1}}
   {minmax_m2p rtl/fu_add_sub_mm.sv fu_min_max_piped {EN32=1,EN16=0}}
@@ -236,6 +272,7 @@ proc compile_at {rtl_rel top params constraint} {
   link
   set_max_delay $constraint -from [all_inputs] -to [all_outputs]
   if {[info exists ::env(STATIC_MODE)]} { set_false_path -from [get_ports -quiet mode*] }
+  if {[info exists ::env(UNGROUP_TOP)]} { ungroup -all }
   set gating {}
   if {[sizeof_collection [all_registers]] > 0} {
     # Registered design: every input-to-register and register-to-output path gets the same
@@ -261,15 +298,21 @@ proc compile_at {rtl_rel top params constraint} {
     set_app_var compile_enable_total_power_optimization true
   }
   if {[info exists ::env(FAST_OP_REGS)]} {
-    set_register_merging [get_cells -hierarchical -filter "is_sequential == true && full_name =~ *sub_reg*"] false
+    set ops [get_cells -hierarchical -filter "is_sequential == true && full_name =~ *sub_reg*"]
+    set_register_merging $ops false
+    set_clock_gating_objects -exclude $ops
   }
   compile_ultra -area_high_effort_script -no_autoungroup {*}$gating
   if {[info exists ::env(FAST_OP_REGS)]} {
     foreach_in_collection c [get_cells -hierarchical -filter "is_sequential == true && full_name =~ *sub_reg*"] {
       set ref [get_attribute $c ref_name]
-      set strong [regsub {_[0-9P]+$} $ref {_4}]
-      if {[sizeof_collection [get_lib_cells -quiet */$strong]] == 0} { set strong [regsub {_[0-9P]+$} $ref {_2}] }
-      if {$strong ne $ref && [sizeof_collection [get_lib_cells -quiet */$strong]] > 0} { size_cell $c $strong }
+      # the standard (not low-power) variant of the flop, at its strongest drive
+      set family [regsub {_[0-9P]+$} [regsub {LP(_[0-9P]+)$} $ref {\1}] {}]
+      set strong $ref
+      foreach drive {8 6 4 2} {
+        if {[sizeof_collection [get_lib_cells -quiet */${family}_$drive]] > 0} { set strong ${family}_$drive; break }
+      }
+      if {$strong ne $ref} { size_cell $c $strong }
       set_dont_touch $c true
     }
     compile_ultra -incremental -no_autoungroup

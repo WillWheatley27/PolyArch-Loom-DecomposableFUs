@@ -1,0 +1,67 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_mm_reg_ARCH1_MINMAX0_PIPE1_EN321_EN161_EN80
+Version: Y-2026.03-SP1
+Date   : Thu Oct 29 22:44:50 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: mode_q_reg[0]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: core/output_stage.stage/registered.d_q_reg[52]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_mm_reg_ARCH1_MINMAX0_PIPE1_EN321_EN161_EN80
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  mode_q_reg[0]/CK (SAEDRVT14_FDP_V2LP_0P5)               0.00       0.00 r
+  mode_q_reg[0]/Q (SAEDRVT14_FDP_V2LP_0P5)                0.11       0.11 r
+  U258/X (SAEDRVT14_AN2B_MM_8)                            0.06       0.17 f
+  U260/X (SAEDRVT14_NR2_MM_12)                            0.02       0.18 r
+  U351/X (SAEDRVT14_BUF_4)                                0.02       0.20 r
+  U352/X (SAEDRVT14_INV_6)                                0.01       0.21 f
+  U355/X (SAEDRVT14_INV_6)                                0.03       0.25 r
+  U226/X (SAEDRVT14_AN2_MM_1)                             0.05       0.29 r
+  core/carry_select.hi1/be[4] (fu_add_sub_mm_seg_1)       0.00       0.29 r
+  core/carry_select.hi1/U40/X (SAEDRVT14_NR2_MM_3)        0.04       0.33 f
+  core/carry_select.hi1/U19/X (SAEDRVT14_NR2_MM_6)        0.02       0.35 r
+  core/carry_select.hi1/U102/X (SAEDRVT14_ND2_0P5)        0.03       0.38 f
+  core/carry_select.hi1/U108/X (SAEDRVT14_OAI21_V1_8)     0.02       0.40 r
+  core/carry_select.hi1/U121/X (SAEDRVT14_AOI21_8)        0.15       0.55 f
+  core/carry_select.hi1/U227/X (SAEDRVT14_OAI21_V1_8)     0.03       0.58 r
+  core/carry_select.hi1/U230/X (SAEDRVT14_EN2_1)          0.04       0.62 f
+  core/carry_select.hi1/s[20] (fu_add_sub_mm_seg_1)       0.00       0.62 f
+  U338/X (SAEDRVT14_MUX2_MM_1)                            0.03       0.65 f
+  core/output_stage.stage/d[52] (fu_out_stage_64_1)       0.00       0.65 f
+  core/output_stage.stage/registered.d_q_reg[52]/D (SAEDRVT14_FDP_V2_1)
+                                                          0.00       0.65 f
+  data arrival time                                                  0.65
+
+  clock clk (rise edge)                                   0.67       0.67
+  clock network delay (ideal)                             0.00       0.67
+  core/output_stage.stage/registered.d_q_reg[52]/CK (SAEDRVT14_FDP_V2_1)
+                                                          0.00       0.67 r
+  library setup time                                     -0.01       0.65
+  data required time                                                 0.65
+  --------------------------------------------------------------------------
+  data required time                                                 0.65
+  data arrival time                                                 -0.65
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

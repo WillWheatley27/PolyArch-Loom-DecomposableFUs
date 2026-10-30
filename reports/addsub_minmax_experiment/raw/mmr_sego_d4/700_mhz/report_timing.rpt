@@ -1,0 +1,66 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_mm_reg_ARCH0_MINMAX1_PIPE1_EN321_EN161_EN80
+Version: Y-2026.03-SP1
+Date   : Thu Oct 29 22:19:53 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: core/output_stage.stage/registered.v_q_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: clk_gate_mx_reg/latch
+            (negative level-sensitive latch clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_mm_reg_ARCH0_MINMAX1_PIPE1_EN321_EN161_EN80
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  core/output_stage.stage/registered.v_q_reg/CK (SAEDRVT14_FDPRBQ_V2LP_0P5)
+                                                          0.00       0.00 r
+  core/output_stage.stage/registered.v_q_reg/Q (SAEDRVT14_FDPRBQ_V2LP_0P5)
+                                                          0.08       0.08 r
+  core/output_stage.stage/U2/X (SAEDRVT14_INV_S_0P5)      0.08       0.15 f
+  core/output_stage.stage/U5/X (SAEDRVT14_OA21_1)         0.13       0.28 f
+  core/output_stage.stage/d_ready (fu_out_stage_64_1)     0.00       0.28 f
+  U766/X (SAEDRVT14_INV_S_0P5)                            0.08       0.36 r
+  U734/X (SAEDRVT14_ND2_0P5)                              0.34       0.70 f
+  clk_gate_mx_reg/EN (SNPS_CLOCK_GATE_HIGH_fu_add_sub_mm_reg_ARCH0_MINMAX1_PIPE1_EN321_EN161_EN80)
+                                                          0.00       0.70 f
+  clk_gate_mx_reg/latch/D (SAEDRVT14_LDNQ_U_0P5)          0.00       0.70 f
+  data arrival time                                                  0.70
+
+  clock clk (fall edge)                                   0.71       0.71
+  clock network delay (ideal)                             0.00       0.71
+  clk_gate_mx_reg/latch/G (SAEDRVT14_LDNQ_U_0P5)          0.00       0.71 f
+  time given to endpoint                                 -0.01       0.70
+  data required time                                                 0.70
+  --------------------------------------------------------------------------
+  data required time                                                 0.70
+  data arrival time                                                 -0.70
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+  Time Borrowing Information
+  --------------------------------------------------------------
+  clk nominal pulse width                                 0.71   
+  library setup time                                     -0.06   
+  --------------------------------------------------------------
+  max time borrow                                         0.65   
+  actual time borrow                                     -0.01   
+  --------------------------------------------------------------
+
+
+1

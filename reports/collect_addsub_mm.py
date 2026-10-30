@@ -10,6 +10,10 @@ the fused unit once per function):
   mm_<adder>l_<tier>      the Min/Max choice behind the register (PIPE 2, latency 1);
   as_<adder>[o|p]_<tier>  the AddSub alone (MINMAX 0): combinational, output register, retimed;
   minmax_m2/m4 o and p    the decomposable Min/Max (fu_min_max_gen.sv), output register, retimed;
+  mmr_<adder>[o|l]_<tier> the fused unit behind the original interface, its controls copied per block
+                          and registered in the FU (fu_add_sub_mm_reg, FAST_OP_REGS=1): combinational
+                          datapath, output register, late select;
+  asr_<adder>[o]_<tier>   the AddSub alone the same way;
   adder: seg (segmented) or csel (carry-select at bit 32); tier: d2, d4, d8.
 
 The separate pair of a tier is its AddSub alone and the decomposable Min/Max (m2 for d2, m4 for d4
@@ -28,7 +32,11 @@ addsub_minmax_experiment/:
                               unit serving the function alone, and against both units switching);
   addsub_minmax_selected.csv  the same with each unit on its own better adder (lower energy: the
                               AddSub alone in AddSub, the fused unit summed over its two functions)
-                              and, for the late-select pair, its better register form.
+                              and, for the late-select pair, its better register form;
+  addsub_minmax_reg_savings.csv, addsub_minmax_reg_selected.csv
+                              the same for mmr/asr (controls registered in the FU); the pair's Min/Max
+                              is m2/m4 (single-cycle) or m2o/m4o (registered), the late-select pair's
+                              AddSub is asr_*o.
 cells.txt (each netlist's cell-type histogram) is written next to every netlist.v found.
 """
 from __future__ import annotations
@@ -50,15 +58,18 @@ ADDERS = ("seg", "csel")
 # pair takes the lower-energy of its suffixes
 PIPELINES = {"none": ("", ("",), ("",)), "output register": ("o", ("o",), ("o",)),
              "retimed register": ("p", ("p",), ("p",)), "late select": ("l", ("o", "p"), ("o", "p"))}
+# controls registered in the FU: no retimed form (retiming would move the control registers)
+PIPELINES_REG = {"none": ("", ("",), ("",)), "output register": ("o", ("o",), ("o",)),
+                 "late select": ("l", ("o",), ("o",))}
 
 
-def raw_of(d: str) -> Path:
-    return RAW if (RAW / d).is_dir() else THIRD
+def raw_of(d: str, c: str) -> Path:
+    return RAW if (RAW / d / c).is_dir() else THIRD
 
 
 def cells(d: str, c: str) -> dict[str, int]:
     """Cell-type histogram of the netlist (cells.txt, refreshed from netlist.v when present)."""
-    path = raw_of(d) / d / c
+    path = raw_of(d, c) / d / c
     if (path / "netlist.v").exists():
         hist: dict[str, int] = {}
         for ref in re.findall(r"^\s+SAEDRVT14_(\w+?)_\w*\s+\S+\s*\(", (path / "netlist.v").read_text(), re.M):
@@ -70,7 +81,7 @@ def cells(d: str, c: str) -> dict[str, int]:
 
 def weighted_energy(d: str, c: str, func: str, modes: set[int] | None = None) -> float:
     """Mode-weighted energy per operation (pJ) of a function, over `modes` (default: all run)."""
-    pp = pp_parse(d, c, func, raw_of(d))
+    pp = pp_parse(d, c, func, raw_of(d, c))
     w = {m: probs(d, func).get(lane_width(DESIGNS[d][2], m), 0.0) for m in pp if modes is None or m in modes}
     tot = sum(w.values())
     return sum(pp[m]["energy_pj"] * w[m] for m in w) / tot if tot else float("nan")
@@ -78,13 +89,13 @@ def weighted_energy(d: str, c: str, func: str, modes: set[int] | None = None) ->
 
 def leakage_pj(d: str, c: str) -> float:
     """Leakage energy per operation of an idle unit (pJ), from its PrimePower run."""
-    pp = pp_parse(d, c, "", raw_of(d))
+    pp = pp_parse(d, c, "", raw_of(d, c))
     return next(iter(pp.values()))["leakage_uw"] * PERIOD[c] * 1e-3 if pp else float("nan")
 
 
 def cheapest(designs: list[str], c: str) -> str | None:
     """The design with the lowest mode-weighted energy (single-function units) among those run."""
-    run = [d for d in designs if (raw_of(d) / d / c / "result.txt").exists()]
+    run = [d for d in designs if (raw_of(d, c) / d / c / "result.txt").exists()]
     return min(run, key=lambda d: weighted_energy(d, c, "")) if run else None
 
 
@@ -92,9 +103,9 @@ def comparison(tier: str, c: str, pipeline: str, adder: str, fused: str, alone: 
                minmax: str | None) -> dict | None:
     if alone is None or minmax is None:
         return None
-    if not all((raw_of(d) / d / c / "result.txt").exists() for d in (fused, alone, minmax)):
+    if not all((raw_of(d, c) / d / c / "result.txt").exists() for d in (fused, alone, minmax)):
         return None
-    dc = {d: parse(raw_of(d) / d / c, PERIOD[c]) for d in (fused, alone, minmax)}
+    dc = {d: parse(raw_of(d, c) / d / c, PERIOD[c]) for d in (fused, alone, minmax)}
     row = {"tier": tier, "corner": c, "pipelining": pipeline, "adder": adder, "fused": fused, "addsub_alone": alone,
            "minmax_alone": minmax, "timing_met": str(all(v["timing_met"] for v in dc.values())).lower(),
            "fused_area_um2": fmt(dc[fused]["area_um2"]), "addsub_area_um2": fmt(dc[alone]["area_um2"]),
@@ -102,7 +113,7 @@ def comparison(tier: str, c: str, pipeline: str, adder: str, fused: str, alone: 
            "area_saving_vs_pair_percent": fmt(saving(dc[alone]["area_um2"] + dc[minmax]["area_um2"],
                                                      dc[fused]["area_um2"]), 3),
            "side_function_area_cost_percent": fmt(-saving(dc[alone]["area_um2"], dc[fused]["area_um2"]), 3)}
-    mm_modes = set(pp_parse(minmax, c, "", raw_of(minmax)))   # lane widths the separate Min/Max runs
+    mm_modes = set(pp_parse(minmax, c, "", raw_of(minmax, c)))   # lane widths the separate Min/Max runs
     for func, active, idle in (("addsub", alone, minmax), ("minmax", minmax, alone)):
         modes = None if func == "addsub" else mm_modes
         e_fused = weighted_energy(fused, c, func, modes)
@@ -140,32 +151,29 @@ def main() -> None:
     write(f"{OUT}/addsub_minmax_ppa.csv", ppa)
     write(f"{OUT}/addsub_minmax_power.csv", power)
 
-    sav = []
-    for tier in TIERS:
-        for c in corners:
-            orig = comparison(tier, c, "original", "segmented (original)", f"addsub_minmax_{tier}",
-                              f"addsub_{tier}", MINMAX[tier])
-            sav += [orig] if orig else []
-            for pipeline, (fp, aps, mps) in PIPELINES.items():
-                minmax = cheapest([MINMAX[tier] + mp for mp in mps], c)
-                for a in ADDERS:
-                    alone = cheapest([f"as_{a}{ap}_{tier}" for ap in aps], c)
-                    r = comparison(tier, c, pipeline, a, f"mm_{a}{fp}_{tier}", alone, minmax)
-                    sav += [r] if r else []
-    write(f"{OUT}/addsub_minmax_savings.csv", sav)
-
-    sel = []
-    for tier in TIERS:
-        for c in corners:
-            for pipeline, (fp, aps, mps) in PIPELINES.items():
-                fused = [f"mm_{a}{fp}_{tier}" for a in ADDERS]
-                if not all((RAW / d / c / "result.txt").exists() for d in fused):
-                    continue
-                f = min(fused, key=lambda d: sum(weighted_energy(d, c, fn) for fn in ("addsub", "minmax")))
-                alone = cheapest([f"as_{a}{ap}_{tier}" for a in ADDERS for ap in aps], c)
-                r = comparison(tier, c, pipeline, "selected", f, alone, cheapest([MINMAX[tier] + mp for mp in mps], c))
-                sel += [r] if r else []
-    write(f"{OUT}/addsub_minmax_selected.csv", sel)
+    for tag, fused_pre, alone_pre, pipelines, original in (("", "mm", "as", PIPELINES, True),
+                                                           ("_reg", "mmr", "asr", PIPELINES_REG, False)):
+        sav, sel = [], []
+        for tier in TIERS:
+            for c in corners:
+                orig = comparison(tier, c, "original", "segmented (original)", f"addsub_minmax_{tier}",
+                                  f"addsub_{tier}", MINMAX[tier]) if original else None
+                sav += [orig] if orig else []
+                for pipeline, (fp, aps, mps) in pipelines.items():
+                    minmax = cheapest([MINMAX[tier] + mp for mp in mps], c)
+                    for a in ADDERS:
+                        alone = cheapest([f"{alone_pre}_{a}{ap}_{tier}" for ap in aps], c)
+                        r = comparison(tier, c, pipeline, a, f"{fused_pre}_{a}{fp}_{tier}", alone, minmax)
+                        sav += [r] if r else []
+                    fused = [f"{fused_pre}_{a}{fp}_{tier}" for a in ADDERS]
+                    if not all((RAW / d / c / "result.txt").exists() for d in fused):
+                        continue
+                    f = min(fused, key=lambda d: sum(weighted_energy(d, c, fn) for fn in ("addsub", "minmax")))
+                    alone = cheapest([f"{alone_pre}_{a}{ap}_{tier}" for a in ADDERS for ap in aps], c)
+                    r = comparison(tier, c, pipeline, "selected", f, alone, minmax)
+                    sel += [r] if r else []
+        write(f"{OUT}/addsub_minmax{tag}_savings.csv", sav)
+        write(f"{OUT}/addsub_minmax{tag}_selected.csv", sel)
 
 
 if __name__ == "__main__":

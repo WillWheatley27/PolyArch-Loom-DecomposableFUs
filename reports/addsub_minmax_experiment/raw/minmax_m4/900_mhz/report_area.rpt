@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : fu_min_max_m4
+Version: Y-2026.03-SP1
+Date   : Thu Oct 29 16:20:13 2026
+****************************************
+
+Library(s) Used:
+
+    saed14rvt_base_tt0p8v25c (File: /mnt/nas0/eda.libs/saed14/EDK_03_2025/SAED14nm_EDK_STD_RVT/liberty/nldm/base/saed14rvt_base_tt0p8v25c.db)
+
+Number of ports:                          414
+Number of nets:                           729
+Number of cells:                          387
+Number of combinational cells:            386
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                        155
+Number of references:                       1
+
+Combinational area:                122.055598
+Buf/Inv area:                       32.367599
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:             179.058776
+
+Total cell area:                   122.055598
+Total area:                        301.114374
+1

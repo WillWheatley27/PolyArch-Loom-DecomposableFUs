@@ -1,0 +1,64 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fu_add_sub_mm_reg_ARCH0_MINMAX1_PIPE0_EN321_EN161_EN81
+Version: Y-2026.03-SP1
+Date   : Thu Oct 29 22:16:17 2026
+****************************************
+
+Operating Conditions: tt0p8v25c   Library: saed14rvt_base_tt0p8v25c
+Wire Load Model Mode: top
+
+  Startpoint: sub_reg[7] (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: out_data[19]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fu_add_sub_mm_reg_ARCH0_MINMAX1_PIPE0_EN321_EN161_EN81
+                     8000                  saed14rvt_base_tt0p8v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  sub_reg[7]/CK (SAEDRVT14_FDP_V2_4)                      0.00       0.00 r
+  sub_reg[7]/Q (SAEDRVT14_FDP_V2_4)                       0.07       0.07 r
+  U854/X (SAEDRVT14_EO2_1)                                0.06       0.13 f
+  U409/X (SAEDRVT14_NR2_MM_1)                             0.09       0.22 r
+  U855/X (SAEDRVT14_NR2_1P5)                              0.07       0.29 f
+  U407/X (SAEDRVT14_AOI21_3)                              0.04       0.33 r
+  U452/X (SAEDRVT14_OAI21_V1_4)                           0.03       0.37 f
+  U504/X (SAEDRVT14_AOI21_V1_4)                           0.03       0.40 r
+  U878/X (SAEDRVT14_OAI21_V1_4)                           0.03       0.43 f
+  U1173/X (SAEDRVT14_AOI21_1P5)                           0.03       0.47 r
+  U503/X (SAEDRVT14_AN2_MM_12)                            0.03       0.50 r
+  U544/X (SAEDRVT14_ND2_8)                                0.01       0.50 f
+  U548/X (SAEDRVT14_ND2_MM_10)                            0.01       0.52 r
+  U391/X (SAEDRVT14_ND2_4)                                0.01       0.53 f
+  U1264/X (SAEDRVT14_EN2_4)                               0.03       0.56 r
+  U524/X (SAEDRVT14_AN2_MM_12)                            0.03       0.59 r
+  U850/X (SAEDRVT14_AOI22_0P75)                           0.04       0.63 f
+  U1290/X (SAEDRVT14_AO21B_0P5)                           0.03       0.67 r
+  core/output_stage.stage/d[19] (fu_out_stage_64_0)       0.00       0.67 r
+  core/output_stage.stage/q[19] (fu_out_stage_64_0)       0.00       0.67 r
+  out_data[19] (out)                                      0.00       0.67 r
+  data arrival time                                                  0.67
+
+  clock clk (rise edge)                                   0.67       0.67
+  clock network delay (ideal)                             0.00       0.67
+  output external delay                                   0.00       0.67
+  data required time                                                 0.67
+  --------------------------------------------------------------------------
+  data required time                                                 0.67
+  data arrival time                                                 -0.67
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

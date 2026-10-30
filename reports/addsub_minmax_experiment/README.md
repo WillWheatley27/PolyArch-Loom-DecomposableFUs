@@ -281,11 +281,146 @@ How to read the tables:
   figures exactly (−72.127%, +8.733%, −18.946%, +44.082% at 100 MHz, d4).
 - **Coverage:** every PrimePower run annotated 100% of nets.
 
+## Controls registered inside the FU (`fu_add_sub_mm_reg`)
+
+The results above take `sub_sel` and `max_sel` as ready-made per-block inputs (see Caveats). Then the
+FU's interface depends on its own block layout, and the unit that issues operations pays for the copy.
+`fu_add_sub_mm_reg` closes that gap. It keeps the original interface: `mode`, `is_min_max`,
+`is_signed` and the lane-start `op_sel` (AddSub: 0 add, 1 subtract; Min/Max: 0 min, 1 max). An
+operation's controls arrive one cycle ahead, during the previous operation's cycle, as the next
+operation's operands are prepared upstream.
+- **Inside the FU:** `fu_add_sub_spike_decode` (the revised AddSub's decoder) spreads each lane's op
+  over its blocks. A register then holds the mode, function and sign, and one subtract and one max bit
+  per block (14, 16 and 20 flops for d2, d4 and d8). Min/Max forces subtract.
+- **Loading:** the register loads whenever an operand register upstream would:
+  `~(in_valid_0 & in_valid_1) | in_ready_0`. Stalls hold the controls and bubbles pass correctly.
+- **The circuit is the same in every configuration:** mode, function, sign and op are runtime values.
+  The adder (`ARCH`) and pipelining are design-time choices, as in the revised AddSub.
+
+The AddSub alone in the pair (`asr_*`) is the revised AddSub with the same interface and register
+(`fu_add_sub_mm_reg` with `MINMAX=0`). So both sides of every comparison now pay for their own control
+copy. Its energy matches the committed revised AddSub (`asr_seg_d4`: 0.67 / 1.02 / 1.32 / 1.64 pJ at
+100 MHz / 500 MHz / 1 GHz / 2 GHz; `addsub_segfast_d4`: 0.65 / 1.21 / 1.30 / 1.62). It is higher than
+the AddSub with ideal per-block inputs in the tables above (1.04 pJ at 1 GHz).
+
+Twelve targets: the five above plus 400, 450, 550, 600, 700, 800 and 900 MHz. The pair's Min/Max
+(`minmax_m2`, `minmax_m4` and their output-register forms) was synthesized at the seven new targets.
+The five original targets still come from the third run, because re-synthesizing at 2 GHz did not
+reproduce it (m2 127.2 vs 126.4 µm², m4 145.6 vs 141.9). **All 360 netlists met their target**
+(`addsub_minmax_reg_selected.csv`; each unit on its lower-energy adder).
+
+#### d4 (64, 2×32, 4×16)
+
+| Saving against the separate pair (%), target (MHz) | 100 | 400 | 450 | 500 | 550 | 600 | 700 | 800 | 900 | 1000 | 1500 | 2000 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **Area: single-cycle** | +11 | −13 | +8 | +6 | +5 | +5 | +5 | +6 | +12 | +6 | −4 | −28 |
+| **Area: output register** | +26 | +10 | +21 | +20 | +19 | +15 | +22 | +18 | +19 | +21 | +4 | −12 |
+| **Area: late select** | −15 | −11 | +3 | +4 | +3 | +3 | +5 | +3 | +5 | +7 | +6 | −2 |
+| AddSub, both active: single-cycle | +25 | +16 | +21 | +25 | +27 | +23 | +5 | +21 | +28 | +27 | +4 | −8 |
+| AddSub, both active: output register | +38 | +33 | +35 | +36 | +38 | +37 | +31 | +32 | +36 | +34 | +18 | +14 |
+| AddSub, both active: late select | +34 | +36 | +40 | +38 | +41 | +42 | +41 | +40 | +41 | +41 | +31 | +25 |
+| Min/Max, both active: single-cycle | +14 | +5 | +3 | +8 | +8 | 0 | −2 | +3 | +14 | +14 | −8 | −17 |
+| Min/Max, both active: output register | +34 | +28 | +28 | +25 | +29 | +27 | +23 | +25 | +27 | +23 | +11 | +7 |
+| Min/Max, both active: late select | +21 | +22 | +27 | +26 | +29 | +31 | +32 | +26 | +28 | +29 | +21 | +18 |
+| AddSub, gated pair: single-cycle | −65 | −91 | −57 | −56 | −56 | −62 | −101 | −54 | −40 | −43 | −56 | −65 |
+| AddSub, gated pair: output register | −31 | −44 | −31 | −31 | −29 | −33 | −48 | −38 | −28 | −33 | −41 | −42 |
+| AddSub, gated pair: late select | −38 | −39 | −20 | −26 | −22 | −21 | −26 | −23 | −19 | −19 | −17 | −24 |
+| Min/Max, gated pair: single-cycle | −57 | −71 | −94 | −76 | −72 | −91 | −94 | −99 | −78 | −74 | −179 | −239 |
+| Min/Max, gated pair: output register | −26 | −35 | −43 | −48 | −38 | −40 | −45 | −48 | −46 | −52 | −116 | −136 |
+| Min/Max, gated pair: late select | −51 | −46 | −44 | −45 | −37 | −33 | −28 | −45 | −43 | −41 | −90 | −109 |
+
+#### d2 (64, 2×32)
+
+| Saving against the separate pair (%), target (MHz) | 100 | 400 | 450 | 500 | 550 | 600 | 700 | 800 | 900 | 1000 | 1500 | 2000 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **Area: single-cycle** | +32 | −9 | +8 | +7 | +5 | +5 | −8 | +12 | +5 | +8 | −5 | −24 |
+| **Area: output register** | +38 | +22 | +22 | +20 | +22 | +20 | +25 | +24 | +18 | +20 | +10 | −6 |
+| **Area: late select** | +3 | +4 | +4 | +4 | +5 | +5 | +5 | +12 | +6 | +8 | +8 | 0 |
+| AddSub, both active: single-cycle | +37 | +17 | +21 | +23 | +24 | +27 | +4 | +12 | +28 | +30 | +11 | −2 |
+| AddSub, both active: output register | +44 | +34 | +33 | +33 | +34 | +34 | +32 | +32 | +36 | +39 | +27 | +14 |
+| AddSub, both active: late select | +39 | +40 | +40 | +41 | +36 | +41 | +44 | +40 | +44 | +45 | +36 | +29 |
+| Min/Max, both active: single-cycle | +33 | +23 | +19 | +14 | +13 | +15 | −7 | −4 | +12 | +17 | −5 | −14 |
+| Min/Max, both active: output register | +42 | +35 | +38 | +34 | +30 | +28 | +26 | +21 | +31 | +28 | +18 | +4 |
+| Min/Max, both active: late select | +27 | +27 | +27 | +28 | +27 | +28 | +33 | +24 | +31 | +31 | +24 | +20 |
+| AddSub, gated pair: single-cycle | −17 | −57 | −52 | −52 | −54 | −54 | −88 | −75 | −20 | −17 | −48 | −61 |
+| AddSub, gated pair: output register | −8 | −29 | −28 | −34 | −30 | −30 | −39 | −40 | −16 | −11 | −29 | −47 |
+| AddSub, gated pair: late select | −18 | −17 | −15 | −16 | −26 | −16 | −14 | −24 | −2 | +1 | −12 | −22 |
+| Min/Max, gated pair: single-cycle | −46 | −63 | −70 | −76 | −71 | −62 | −118 | −109 | −119 | −106 | −163 | −208 |
+| Min/Max, gated pair: output register | −21 | −35 | −30 | −33 | −42 | −47 | −45 | −53 | −54 | −62 | −90 | −129 |
+| Min/Max, gated pair: late select | −53 | −51 | −52 | −44 | −48 | −46 | −31 | −47 | −53 | −53 | −77 | −92 |
+
+#### d8 (64, 2×32, 4×16, 8×8; the Min/Max of the pair is m4)
+
+| Saving against the separate pair (%), target (MHz) | 100 | 400 | 450 | 500 | 550 | 600 | 700 | 800 | 900 | 1000 | 1500 | 2000 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **Area: single-cycle** | +5 | −19 | +1 | −3 | −2 | −3 | 0 | +6 | +7 | −5 | −21 | −40 |
+| **Area: output register** | +21 | +6 | +15 | +14 | +14 | +11 | +12 | +14 | +14 | +9 | −3 | −18 |
+| **Area: late select** | −20 | −15 | −3 | −2 | −4 | −1 | −9 | −1 | +7 | +4 | −1 | −7 |
+| AddSub, both active: single-cycle | +15 | +7 | +13 | +15 | +14 | +19 | −2 | +20 | +23 | +24 | −7 | −19 |
+| AddSub, both active: output register | +33 | +29 | +34 | +31 | +32 | +34 | +14 | +26 | +31 | +26 | +12 | +6 |
+| AddSub, both active: late select | +31 | +34 | +38 | +36 | +37 | +35 | +31 | +34 | +36 | +38 | +23 | +22 |
+| Min/Max, both active: single-cycle | 0 | −3 | +2 | +6 | +9 | +5 | −9 | +11 | +13 | +16 | −5 | −30 |
+| Min/Max, both active: output register | +25 | +23 | +28 | +25 | +25 | +27 | +15 | +25 | +29 | +24 | +10 | −2 |
+| Min/Max, both active: late select | +17 | +20 | +26 | +23 | +25 | +25 | +21 | +22 | +29 | +29 | +15 | +8 |
+| AddSub, gated pair: single-cycle | −83 | −104 | −73 | −78 | −83 | −61 | −107 | −46 | −46 | −40 | −65 | −80 |
+| AddSub, gated pair: output register | −39 | −50 | −27 | −39 | −39 | −37 | −84 | −47 | −30 | −45 | −49 | −55 |
+| AddSub, gated pair: late select | −43 | −39 | −20 | −29 | −29 | −34 | −48 | −30 | −20 | −21 | −30 | −30 |
+| Min/Max, gated pair: single-cycle | −86 | −89 | −97 | −82 | −71 | −90 | −114 | −98 | −84 | −82 | −197 | −286 |
+| Min/Max, gated pair: output register | −44 | −47 | −48 | −48 | −47 | −40 | −60 | −52 | −51 | −57 | −121 | −157 |
+| Min/Max, gated pair: late select | −59 | −52 | −53 | −53 | −46 | −45 | −49 | −57 | −51 | −46 | −108 | −132 |
+
+#### d4 energy per operation (pJ: AddSub / Min/Max) and area (µm²), single-cycle
+
+| Target (MHz) | 100 | 500 | 1000 | 1500 | 2000 |
+|---|---|---|---|---|---|
+| Fused, controls inside | 1.11 / 1.27 / 191 | 1.36 / 1.67 / 268 | 1.88 / 2.21 / 313 | 2.11 / 2.38 / 367 | 2.71 / 2.92 / 537 |
+| Pair, controls inside | 0.67 / 0.81 / 215 | 0.87 / 0.95 / 286 | 1.32 / 1.27 / 332 | 1.35 / 0.85 / 354 | 1.64 / 0.86 / 420 |
+| Fused, per-block inputs (above) | 1.17 / 1.24 / 171 | 1.38 / 1.42 / 247 | 1.53 / 2.00 / 280 | 1.51 / 2.07 / 314 | 1.87 / 2.54 / 469 |
+
+**Findings:**
+1. **The conclusions above hold with the controls inside.** The single-cycle boundary is still between
+   1 and 1.5 GHz (d4 area −4% at 1.5 GHz). The output register still saves area up to 1.5 GHz and
+   saves energy against both units active at every target. Late select is still the best AddSub-mode
+   choice from 450 MHz (−17 to −26% against the gated pair, d4). The gated pair still wins everywhere
+   except d2 late select at 1 GHz (+1%, within noise).
+2. **The fused unit grows 3–20% against its per-block-input version** (d4): the control register,
+   decode and clock gate, plus compile-to-compile variation at the high targets. The pair grows by the same kind of register, so savings move by
+   only a few points.
+3. **400 MHz is a speed-class step, not noise.** There the fused unit's adder becomes fast (1 full
+   adder cell in `mmr_seg_d4`, against 59 at 100 MHz), while the AddSub alone stays ripple (61). So
+   the single-cycle area saving drops to −13% (d4) and returns to +8% at 450 MHz, where the AddSub
+   alone needs a fast adder too.
+4. **Hierarchy matters for the control register.** With the register in the wrapper and its loads in
+   the core, DC kept the boundary and buffered every block's op across it (`asr_seg_d4` 100 MHz:
+   0.88 pJ vs 0.65 for the revised AddSub). `UNGROUP_TOP=1` dissolves one level: 0.67 pJ. A full
+   flatten breaks the carry-select adder's structure (`asr_csel_d4` 500 MHz: 1.16 vs 0.90 pJ), so it
+   is not used.
+
+**Verification:**
+- **RTL:** `rtl/tb_fu_add_sub_mm.sv` drives every registered instance with operation k's controls
+  alongside operation k−1's operands (1,488,522 checks in all, with the core instances). It includes a
+  stall, where the different controls offered must not load, and a bubble. All 7 planted bugs were
+  caught: loading during a stall; loading on valid alone; no forced subtract for Min/Max; max taken
+  from subtract; and mode, function or sign left unregistered.
+- **Gate level:** every one of the 360 netlists ran 100,000 operations with SDF delays. Each operation
+  draws a new random mode, function, sign and op (36.0 M checks; 23.0 M follow a mode change and
+  10.8 M a function change). Controls were presented 0.99 period ahead; outputs were checked at 99.9%
+  of the period.
+  - 358 netlists: 0 errors.
+  - `asr_csel_d8` at 1 GHz (6 errors, bit 63) and `asr_seg_d8` at 900 MHz (1 error, bit 57): both
+    closed with 0 ps slack, and both give 0 errors at 100% of the period.
+
 ## Flow changes
 
 - **`synth/syn_rerun.tcl`:**
   - jobs for every design here;
-  - `RETIME=1` flattens a registered design and compiles with `-retime`.
+  - `RETIME=1` flattens a registered design and compiles with `-retime`;
+  - `UNGROUP_TOP=1` dissolves the top design's own instances, one level (`fu_add_sub_mm_reg`);
+  - **`FAST_OP_REGS` fix:** the per-block op registers are now sized to the standard (not low-power)
+    variant of their flop at its strongest drive, and excluded from clock gating. Before, the size
+    stayed in the flop's own variant, which left a mix of standard and low-power op flops skewed by up
+    to 50 ps (fused AddSub mode, d4, 100 MHz: 1.28 pJ before, 1.11 after). The committed
+    `fu_add_sub_spike` `*fast` results in `reports/addsub_spike_experiment` were synthesized the old way.
 - **`synth/run_primepower.py`:**
   - **Inputs held in only some functions:** the fused unit holds `sub_sel` at all ones for Min/Max
     and drives it from the stimulus for AddSub.
@@ -304,7 +439,8 @@ How to read the tables:
   - `sub_sel` is the lane's subtract replicated per block, all ones for Min/Max;
   - `max_sel` is the lane's max replicated per block.
 
-  The issuing logic's cost (muxes into an existing register) is not in these numbers.
+  The issuing logic's cost (muxes into an existing register) is not in these numbers. The
+  registered-control version (`fu_add_sub_mm_reg`, its own section above) removes this caveat.
 - **The gated-pair comparison stays negative** in every configuration (Finding 3).
 - **Single-compile noise** moves single points by 10–20 points (e.g. d4 Min/Max at 1 GHz in the third
   run's m4). Read trends across the five targets.
@@ -322,6 +458,8 @@ How to read the tables:
 | `addsub_minmax_power.csv` | PrimePower energy per operation per design, target, function and mode |
 | `addsub_minmax_savings.csv` | per tier, target, pipelining and adder: the fused unit against the separate pair (area; energy per function against the gated pair and both units active), and the original |
 | `addsub_minmax_selected.csv` | the same with each unit on its lower-energy adder (and, for the late-select pair, register form) |
+| `addsub_minmax_reg_savings.csv` | the same as `addsub_minmax_savings.csv` for the registered-control version (`mmr_*` against `asr_*` and the Min/Max), 12 targets |
+| `addsub_minmax_reg_selected.csv` | the same as `addsub_minmax_selected.csv` for the registered-control version |
 | `raw/` | DC and PrimePower reports, `cells.txt` per netlist |
 
 `reports/collect_addsub_mm.py` builds the tables. Netlists are not kept: `NETLIST=1` regenerates
